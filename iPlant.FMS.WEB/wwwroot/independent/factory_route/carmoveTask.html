@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>库位配置</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_route/carmoveTask.css" />
+</head>
+
+<body class="">
+    <div class="lmvt-container">
+        <div class="zzza lmvt-container-Regular zace-left" style="width: 100%;">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <div class="btn-group">
+                            <button type="button" id="searchTime" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>时间查询
+                            </button>
+                            <button type="button" id="alfie-Device-search" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>车号查询
+                            </button>
+                        </div>
+                      
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Device-item"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-Device-search" class="btn btn-default">
+                            <span class="" aria-hidden="true"></span>筛选
+                        </button>
+                        <button type="button" id="zace-Device-refresh" class="btn btn-default">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button>
+                    </div>
+
+                    <span class="lmvt-header-title">移车任务列表</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part"
+                            id="deviceSparePart1">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="width: 80px" data-order="ID">序号</th>
+                                    <!-- <th style="min-width: 50px" data-order="Code">单据编号</th> -->
+                                    <!-- <th style="min-width: 50px" data-order="CarType">车型</th> -->
+                                    <th style="min-width: 50px" data-order="PartNoName">车号</th>
+                                    <th style="min-width: 20px" data-order="UpFlowName">申请人</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">申请时间</th>
+                                    <th style="min-width: 50px" data-order="StockName">起始库位</th>
+                                    <th style="min-width: 50px" data-order="PlaceName">起始台位</th>
+                                    <th style="min-width: 50px" data-order="TargetStockName">目标库位</th>
+                                    <th style="min-width: 50px" data-order="TargetName">目标台位</th>
+                                    <th style="min-width: 50px" data-order="ExpectedTime">预计移车时间</th>
+                                    <th style="min-width: 50px" data-order="SubmitTime">任务更新时间</th>
+                                    <th style="min-width: 50px" data-order="Status">任务状态</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="femi-Device-tbody-item" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="12">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="zzzb lmvt-container-Regular zace-right" style="display: none;">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-hide" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title" id="detail">详情</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <div class="overAll">
+                            <div class="m-card">
+                                <div class="m-c-panel">
+                                    <div class="m-c-body">
+                                        <ul class="m-detail-list upload-list">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-table process">
+                                <div class="m-c-panel upload-list">
+                                    <div class="m-c-body handle-info clearfix nobd">
+                                        <ul class="list-group">
+                                            <li class="list-li upload-img" data-id="{{ID}}">
+                                                <div class="list-group-item" style="background: #fafafa">
+                                                    <div class="list-group-item-cell item-static item-title"
+                                                        style="width:90%;">
+                                                        <span style="font-size: 16px;">流程信息</span>
+                                                    </div>
+                                                    <div class="list-group-item-cell item-icon" style="width:10%">
+                                                        <i class="icon icon-arrow-right icon-arrow-expand"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="list-group">
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_route/carmoveTask.js"></script>
+</body>
+
+</html>

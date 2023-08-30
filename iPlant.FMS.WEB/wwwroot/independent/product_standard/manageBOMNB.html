@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>BOM管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/product_standard/manageBOMNB.css" />
+</head>
+
+<body>
+
+    <div class="zace-cbd-contain zace-Bom zace-leftContain">
+        <div class="zace-tree-header" style="overflow:visible;">
+            <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                    <!-- <button type="button" id="zace-import-bom" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+                    </button>
+                    <button type="button" id="lmvt-bopImport-inputErrorLog" class="btn btn-default">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>导入日志
+                    </button> -->
+                    <button type="button" id="zace-add-bom" class="btn lmvt-danger-btn">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                    <!-- <button type="button" id="zace-edit-bomCompare" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>对比
+                    </button> -->
+                    <!-- <button type="button" id="zace-disable-IsStandard" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>设为当前
+                    </button> -->
+                    <!-- <button type="button" style="display:none" class="btn btn-default">
+                        <input type="file" id="input-file" />
+                    </button> -->
+                    <!-- <button type="button" id="zace-delete-bom" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                    </button> -->
+                    <!-- <div class="btn-group ">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="zace-delete-bom">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                </a>
+                            </li>
+                            <li class="device_status" id="zace-delete-bomActive">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>启用
+                                </a>
+                            </li>
+
+                            <li class="device_status" id="zace-disable-IsStandard">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>设为当前
+                                </a>
+                            </li>
+
+                            <li class="device_status" id="zace-active-levelRoute">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>更改工艺BOP
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+                    </div> -->
+
+
+                    <!--<button type="button" id="zace-open-bomItem"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看子项
+                    </button>-->
+                </div>
+
+            </div>
+
+            <div class="columns columns-right btn-group pull-right">
+                <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                    <input type="text" id="femi-search-text-ledger"
+                        style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                        placeholder="请输入查询字符" />
+                </button>
+                <button class="btn lmvt-def-btn" type="button" id="zace-search-bomZace">
+                    <span class="glyphicon "></span>筛选
+                </button>
+                <!-- <button class="btn btn-default" type="button" id="zace-search-bom">
+                    <span class="glyphicon glyphicon-search"></span>查询
+                </button> -->
+                <!-- <button type="button" id="zace-refresh-bom" class="btn lmvt-def-btn">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                </button> -->
+            </div>
+            <span class="zace-header-title">BOM列表</span>
+
+        </div>
+        <div class="zace-tree-body femi-contain-border">
+            <div class="femi-tb-scroll">
+                <table class="table   table-hover table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th style="width: 3px">
+                                <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                    value="{{functionID}}" />
+                            </th>
+                            <th style="min-width: 50px" data-order="WID">序号</th>
+                            <th style="min-width: 50px;display: none;" data-order="ID">序号</th>
+                            <th style="min-width: 50px" data-order="LineID">产线</th>
+                            <th style="min-width: 50px" data-order="ProductID">型号</th>
+                            <!-- <th style="min-width: 50px" data-order="CustomerID">配属局段</th> -->
+                            <th style="min-width: 50px" data-order="BOMNo">BOM版本</th>
+                            <th style="min-width: 50px" data-order="BOMName">BOM名称</th>
+                            <th style="min-width: 50px" data-order="RouteID">工艺Bop</th>
+                            <th style="min-width: 50px" data-order="IsStandard">是否当前</th>
+                            <!--<th style="min-width: 50px" data-order="WorkShopID">车间</th>    -->
+                            <!-- <th style="min-width: 50px" data-order="PartID">工位</th> -->
+                            <th style="min-width: 50px" data-order="Status">状态</th>
+                            <th style="min-width: 50px" data-order="Auditor">编辑者</th>
+                            <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+                            <th style="min-width: 50px" data-order="">操作</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="femi-bom-tbody" class="table-color"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="zace-cbd-contain zace-BomItem" style="display:none">
+
+
+
+
+        <div class="femi-full-bd partPointStandard">
+            <div class="femi-bd-half-right femi-lf" id="role-user-contain">
+                <div class="femi-tb-head">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-bomItem" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true">返回</span>
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div class="femi-toolbar-self femi-rt">
+                        <button type="button" id="lmvt-standardtable-refresh" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true">刷新</span>
+                        </button>
+                    </div>
+                    <p class="femi-tb-title">
+                        <strong>BOM树</strong>
+                    </p>
+                </div>
+                <div class="femi-contain-border femi-tb-border">
+                    <div style='height: 100%;overflow:auto;'>
+                        <ul id="standardItem" class="femi-left-tree treeview-famfamfam">
+                            等待。。
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="femi-bd-half-left ">
+                <div style="width: auto;height:100%">
+                    <div class="zace-tree-header" style="overflow:visible;">
+
+                        <div class="btn-group zace-left zace-zace-show" role="group" style="display: none;">
+                            <!--<div class="femi-toolbar-self femi-lf">-->
+                            <!-- <button type="button" id="zace-import-bom"
+                                        class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+                                    </button> -->
+                            <!-- <button class="btn btn-default" type="button" id="zace-close-bomItem">
+                                <span class="glyphicon glyphicon-arrow-left"></span>返回
+                            </button> -->
+                            <button type="button" id="zace-add-bomItem" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button type="button" id="zace-edit-bomItem" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button>
+
+                            <!-- <div class="btn-group ">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-delete-bomItem">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-active-bomItem">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>启用
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-disable-bomItem">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </div> -->
+                            <!--<button type="button" id="zace-add-bomItemSon"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>增加子项
+                    </button>-->
+                        </div>
+
+                        <div class="columns columns-right btn-group pull-right">
+                            <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                                <input type="text" id="femi-search-text-ledgerItemBom"
+                                    style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                    placeholder="请输入查询字符" />
+                            </button>
+                            <button class="btn lmvt-def-btn" type="button" id="zace-search-bomZaceItemBom">
+                                <span class="glyphicon "></span>筛选
+                            </button>
+                            <!-- <button class="btn btn-default" type="button" id="zace-save-bomAll">
+                                        <span class="glyphicon glyphicon-saved"></span>保存
+                                    </button> -->
+                            <!-- <button class="btn btn-default" type="button" id="zace-search-bomItem">
+                                <span class="glyphicon glyphicon-search"></span>查询
+                            </button> -->
+                            <!-- <button type="button" id="zace-refresh-bomItemZace" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                            </button> -->
+                        </div>
+
+                        <span class="zace-header-title" id="zace-spanTextChange"> 子项</span>
+                    </div>
+                    <div class="zace-tree-body femi-contain-border">
+                        <div class="femi-tb-scroll table-part">
+                            <table class="table   table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width: 50px" data-order="WID">序号</th>
+                                        <th style="min-width: 50px;display: none;" data-order="ID">序号</th>
+                                        <!-- <th style="min-width: 50px" data-order="ProductQD">局段</th> -->
+                                        <!--<th style="min-width: 50px" data-order="ParentID">ParentID</th>-->
+                                        <!--<th style="min-width: 50px" data-order="GradeID">层级ID</th>-->
+                                        <!--<th style="min-width: 50px" data-order="BOMID">BOM编号</th>-->
+                                        <th style="min-width: 80px" data-order="PlaceID">工序名称</th>
+                                        <!-- <th style="min-width: 50px" data-order="PlaceNo">工序编码</th> -->
+                                        <th style="min-width: 80px" data-order="PartPointName">工步名称</th>
+                                        <th style="min-width: 50px" data-order="MaterialNo">物料</th>
+                                        <th style="min-width: 80px" data-order="MaterialName">物料名称</th>
+
+                                        <th style="min-width: 50px" data-order="UnitID">单位</th>
+
+                                        <!-- <th style="min-width: 80px" data-order="BomType">BOM类型</th> -->
+                                        <!--<th style="min-width: 50px" data-order="DeviceNo">设备号</th>-->
+                                        <!-- <th style="min-width: 50px" data-order="MaterialNumber">数量</th> -->
+                                        <th style="min-width: 80px" data-order="MaterialUnit">用量:分子</th>
+                                        <th style="min-width: 80px" data-order="MaterialUnitRatio">用量:分母</th>
+                                        <!-- <th style="min-width: 80px" data-order="ReplaceType">必换偶换</th>
+                                        <th style="min-width: 80px" data-order="OutsourceType">必修偶修</th> -->
+                                        <th style="min-width: 50px" data-order="Remark">备注</th>
+                                        <th style="min-width: 50px" data-order="Active">状态</th>
+                                        <th style="min-width: 50px" data-order="">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="femi-bomItem-tbody" class="table-color">
+
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                value="{{functionID}}" />
+                                        </td>
+                                        <td colspan="13">请先点击需要查看的工序。。。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_standard/manageBOMNB.js"></script>
+</body>
+
+</html>

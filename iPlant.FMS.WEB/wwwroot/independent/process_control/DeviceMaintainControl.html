@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>设备保养</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link type="text/css" rel="stylesheet" href="../static/css/process_control/DeviceMaintainControl.css">
+</head>
+
+<body>
+<div class="femi-bd-contain" style="">
+  <div class="femi-full-bd partPointStandard">
+    <div class="femi-bd-half-right femi-lf" id="role-user-contain" style="width: 20%;display: inline-block;">
+      <div class="femi-tb-head">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="lmvt-tree-open" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true">全部展开</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="femi-toolbar-self femi-rt">
+          <button type="button" id="lmvt-tree-close" class="btn lmvt-def-btn">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true">全部折叠</span>
+          </button>
+        </div>
+        <span class="lmvt-header-title" style="font-family:STXinwei;font-size: 20px;color: #C7001A;">设备树
+					</span>
+      </div>
+
+      <!-- <div class="femi-tb-head">
+          <div class="col-sm-12">
+
+              <div class="form-group">
+                  <label for="input-select-node" class="sr-only">Search
+                      Tree:</label>
+                  <input type="input" class="form-control" id="input-select-node" placeholder="模糊匹配，请输入名称或编码"
+                      value="">
+              </div>
+          </div>
+      </div> -->
+
+      <div class="femi-contain-border femi-tb-border" style="padding: 95px 10px 15px 10px;">
+        <div style="height: 100%;overflow:auto;margin-top: -40px;">
+          <ul id="standardItem" class="femi-left-tree treeview-famfamfam">
+            等待。。
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+        class="femi-bd-half-left" id="leftDIV_left"
+        style="background-color: #fff;padding:0px 0px 0 0px;width: 80%;display: inline-block;"
+    >
+      <div style="width: auto;height:100%;">
+        <div class="lmvt-container-header-btn">
+          <div class="btn-group femi-lf pull-left" role="group">
+            <button type="button" id="lmvt-standard-add" class="btn btn-danger">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+          </div>
+
+          <span
+              class="lmvt-header-title"
+              style="font-family:STXinwei;font-size: 20px;color: #C7001A;position: absolute;left: 50%;transform: translate(-50%);"
+          >设备保养项列表<span
+              class="templateName"
+          ></span></span>
+          <div class="columns columns-right btn-group pull-right">
+            <div class="btn-group femi-lf pull-left" role="group">
+
+            </div>
+            <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+              <input
+                  v-on:keyup.enter="searchLevel" type="text" id="zace-search"
+                  style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                  placeholder="请输入筛选字符"
+              />
+            </button>
+            <button
+                @click="searchlevelProGrade" type="button" id="zace-search-levelPro"
+                class="btn lmvt-def-btn"
+            >
+              <span class="glyphicon " aria-hidden="true"></span>筛选
+            </button>
+          </div>
+        </div>
+        <div class="zace-container-left-table">
+          <div class="femi-tb-scroll">
+            <table class="table table-hover table-bordered standard-table">
+              <thead>
+              <tr>
+                <th style="width: 3px">
+                  <input
+                      type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}"
+                  />
+                </th>
+                <th style="min-width:50px" data-order="ID">序号</th>
+                <th style="min-width: 80px" data-order="Name">名称
+                </th>
+                <!-- <th style="min-width: 80px" data-order="WorkShopName">车间
+                </th>
+                <th style="min-width: 80px" data-order="LineName">产线
+                </th> -->
+                <th style="min-width: 80px" data-order="ModeOptions">保养模式
+                </th>
+                <th style="min-width: 80px" data-order="Comment">备注
+                </th>
+                <th style="min-width: 80px" data-order="PDTimeC">加工周期
+                </th>
+                <th style="min-width: 80px" data-order="PDNumC">加工倍率
+                </th>
+                <!-- <th style="min-width: 80px" data-order="Editor">编辑人</th>
+                <th style="min-width: 80px" data-order="EditTime">编辑时间
+                </th> -->
+                <!-- <th style="min-width: 80px" data-order="CreatorID">创建人
+                </th>
+                <th style="min-width: 80px" data-order="CreateTime">创建时间
+                </th> -->
+                <th style="min-width: 80px" data-order="Active">状态
+                </th>
+                <th style="min-width: 80px">操作
+                </th>
+
+              </tr>
+              </thead>
+              <tbody class="zace-partAll-body table-color">
+              <tr style="">
+                <td colspan="13">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+        class="femi-bd-half-left" id="leftDIV_right"
+        style="background-color: #fff;padding:0px 0px 0 0px;width: 19.5%;display: none;"
+    >
+      <div style="width: auto;height:100%;">
+        <div class="lmvt-container-header-btn">
+          <div class="btn-group femi-lf pull-left" role="group">
+            <button type="button" id="lmvt-DeviceRatio-add" class="btn btn-danger">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+          </div>
+
+          <span
+              class="lmvt-header-title"
+              style="font-family:STXinwei;font-size: 20px;color: #C7001A;position: absolute;left: 50%;transform: translate(-50%);"
+          ><span
+              class="templateNameRatio"
+          ></span></span>
+          <div class="columns columns-right btn-group pull-right">
+            <button type="button" id="zace-Device-yinc" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+            </button>
+          </div>
+        </div>
+        <div class="zace-container-left-table">
+          <div class="femi-tb-scroll">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="width: 3px">
+                  <input
+                      type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}"
+                  />
+                </th>
+                <th style="min-width: 50px" data-order="LeftTimes">左次数范围</th>
+                <th style="min-width: 50px" data-order="RightTimes">右次数范围</th>
+                <th style="min-width: 50px" data-order="Ratio">倍率</th>
+              </tr>
+              </thead>
+              <tbody id="femi-Device-tbody-time" class="table-color">
+              <tr>
+                <td>
+                  <input
+                      type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}"
+                  />
+                </td>
+                <td colspan="12">等待数据加载</td>
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/DeviceMaintainControl.js"></script>
+
+</body>
+
+</html>

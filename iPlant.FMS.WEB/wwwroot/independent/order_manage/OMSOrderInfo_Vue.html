@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>工单详情</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/order_manage/OMSOrderInfo_Vue.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="fzy-oms-order-info" class="fzy-page">
+  <div v-cloak class="fzy-title-box">
+    <span class="fzy-title">设备详情:</span>
+  </div>
+
+  <div v-cloak class="fzy-head-box">
+    <div v-cloak class="fzy-line-box-icon">
+      <img :src="getLineBarIcon(0)" alt="">
+      <div :class="{ show:lineBarIndex>0  }" class="fzy-line"></div>
+      <img :src="getLineBarIcon(1)" alt="">
+      <div :class="{ show:lineBarIndex>1  }" class="fzy-line"></div>
+      <img :src="getLineBarIcon(2)" alt="">
+      <div :class="{ show:lineBarIndex>2  }" class="fzy-line"></div>
+      <img :src="getLineBarIcon(3)" alt="">
+    </div>
+    <div class="fzy-line-box-msg">
+      <span>工单导入</span>
+      <span>工单开工</span>
+      <span>工单完成/关闭</span>
+      <span>信息上传</span>
+    </div>
+    <div v-cloak class="fzy-line-box-msg">
+      <span>{{ orderInfo.AuditTime | ToolTime }}</span>
+      <span>{{ orderInfo.RealStartDate | ToolTime }}</span>
+      <span>{{ orderInfo.RealFinishDate | ToolTime }}</span>
+      <span>{{ orderInfo.RealSendDate | ToolTime }}</span>
+    </div>
+  </div>
+
+  <div v-cloak class="fzy-center-box flex flex-column">
+
+    <div class="fzy-center-box-title flex-none">
+      <p>
+        <span class="glyphicon glyphicon-info-sign"></span>
+        当前工单状态: <span v-cloak>{{ orderInfo.Status | orderStatus }}</span>
+      </p>
+    </div>
+
+    <div class="fzy-center-box-form flex-none">
+      <div style="display:flex;justify-content: space-between;margin: 0 0 5px">
+        <span class="fzy-title">基本信息:</span>
+        <div v-if="status.isCheckRole">
+          <button v-cloak class="btn btn-info" @click="editClick">{{ status.edit ? '保存' : '编辑' }}</button>
+          <button v-show="status.edit" class="btn btn-info" @click="cancelClick">取消</button>
+        </div>
+      </div>
+      <el-row class="border-l border-t">
+
+        <el-col :span="2">
+          <div class="fzy-form-title">工单编号</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <input v-if="status.edit" v-model="editOrder.OrderNo" type="text">
+            <span v-else>{{ orderInfo.OrderNo }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">作业工位</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <el-select
+                v-if="status.edit"
+                v-model="editOrder.StationID"
+                :disabled="!status.edit"
+            >
+              <el-option
+                  v-for="item in newSelectOptions.fMCStationList"
+                  :key="item.ID"
+                  :value="item.ID"
+                  :label="item.Name"
+              >
+              </el-option>
+            </el-select>
+            <span v-else>{{ orderInfo.StationID | fmsName }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">作业班组</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <el-select
+                v-if="status.edit"
+                v-model="editOrder.TeamID"
+                :disabled="!status.edit"
+                @change="teamIDChange"
+                filterable
+            >
+              <el-option
+                  v-for="item in newSelectOptions.teamManageList"
+                  :key="item.ID"
+                  :value="item.ID"
+                  :label="item.Name"
+              >
+              </el-option>
+            </el-select>
+            <span v-else>{{ orderInfo.TeamID | teamName }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">作业人员</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <el-select
+                v-if="status.edit"
+                v-model="editOrder.WorkerIDList"
+                :disabled="!status.edit"
+                filterable
+                multiple
+                collapse-tags
+                clearable
+            >
+              <el-option
+                  v-for="item in newSelectOptions.userList"
+                  :key="item.ID"
+                  :value="item.ID"
+                  :label="item.Name"
+                  multiple
+              >
+              </el-option>
+            </el-select>
+            <span v-else>{{ orderInfo.WorkerName }}</span>
+          </div>
+        </el-col>
+
+      </el-row>
+
+      <el-row class="border-l">
+
+        <el-col :span="2">
+          <div class="fzy-form-title">车号</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <input v-if="status.edit" v-model="editOrder.WBSNo" type="text">
+            <span v-else>{{ orderInfo.WBSNo }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">路线号</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.Customer }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">作业名称</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.WorkName }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">计划员</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.Auditor }}</span>
+          </div>
+        </el-col>
+
+      </el-row>
+
+      <el-row class="border-l" v-show="!status.edit">
+
+        <el-col :span="2">
+          <div class="fzy-form-title">下达时间</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.CreateTime | ToolTime }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">开工时间</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.RealStartDate | ToolTime }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">完工时间</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.RealFinishDate | ToolTime }}</span>
+          </div>
+        </el-col>
+
+        <el-col :span="2">
+          <div class="fzy-form-title">信息上传时间</div>
+        </el-col>
+        <el-col :span="4">
+          <div class="fzy-form-value">
+            <span>{{ orderInfo.RealSendDate | ToolTime }}</span>
+          </div>
+        </el-col>
+
+      </el-row>
+
+    </div>
+
+    <div v-show="!status.edit && !status.info" class="flex-1 flex-column">
+      <div class>
+        <table class="fzy-center-box-table">
+          <div style="margin: 5px 0">
+            <span class="fzy-title">部件检修明细:</span>
+          </div>
+          <thead>
+          <tr>
+            <th>工件编号</th>
+            <th>起始时间</th>
+            <th>结束时间</th>
+            <th>状态</th>
+            <th>备注</th>
+            <!--
+            <th v-for="item in dmsProcessRecordTh" v-cloak :key="item">
+              {{ item.ParameterName }}
+            </th>
+            -->
+            <th>操作</th>
+
+          </tr>
+          </thead>
+          <tbody v-cloak id="femi-Device-tbody-item">
+          <tr v-for="(item,index) in dmsProcessRecord" :key="index">
+            <td>{{ item.WorkPieceNo }}</td>
+            <td>{{ item.StartTime }}</td>
+            <td>{{ item.EndTime }}</td>
+            <td>{{ item.StatusText }}</td>
+            <td>{{ item.Remark }}</td>
+            <!--
+            <td
+                v-for="(items,index_) in item.ItemList.slice(0,6)"
+                :key="index_"
+            >
+              <div
+                  v-if="items.DataType === 1"
+                  :style="{background: items.ParameterValue?'#70b603':'#808080'}"
+                  class="circle"
+              >
+              </div>
+              <span v-else-if="items.DataType ===4">{{ items.ParameterValue | decimal2 }}</span>
+              <span v-else-if="items.DataType ===5">{{ items.ParameterValue | decimal4 }}</span>
+              <span v-else>{{ items.ParameterValue }}</span>
+            </td>
+            -->
+            <td>
+              <span class="info-btn" @click="dmsProcessRecordInfoClick(item)">
+						<span class="glyphicon glyphicon-zoom-in"></span>
+						详情
+					</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div v-show="status.info" class="flex-1">
+      <table class="fzy-center-box-table">
+        <div style="margin: 5px 0">
+          <div style="display:flex;justify-content: space-between;margin: 0 0 5px">
+            <span class="fzy-title">工件详情(<span v-cloak>{{ dmsProcessRecordInfo.MetroNo }}</span>):</span>
+            <button class="btn btn-info" @click="status.info=false">
+              <span aria-hidden="true" class="glyphicon glyphicon-arrow-left"></span>
+              返回
+            </button>
+          </div>
+        </div>
+        <thead>
+        <tr>
+          <th>参数编号</th>
+          <th>抽样时间</th>
+          <th>参数名称</th>
+          <th>参数内容</th>
+          <th>备注</th>
+        </tr>
+        </thead>
+        <tbody v-cloak>
+        <tr v-for="(item,index) in dmsProcessRecordInfo.ItemList" :key="index">
+          <td>{{ item.ParameterNo }}</td>
+          <td>{{ item.SampleTime }}</td>
+          <td>{{ item.ParameterName }}</td>
+          <td>
+            <div
+                v-if="item.DataType === 1"
+                :style="{background: item.ParameterValue?'#70b603':'#808080'}"
+                class="circle"
+            >
+            </div>
+            <span v-else-if="item.DataType ===4">{{ item.ParameterValue | decimal2 }}</span>
+            <span v-else-if="item.DataType ===5">{{ item.ParameterValue | decimal4 }}</span>
+            <span v-else>{{ item.ParameterValue }}</span>
+          </td>
+          <td>{{ item.ParameterDesc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+
+</div>
+
+</body>
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/order_manage/OMSOrderInfo_Vue.js" type="text/javascript"></script>
+</html>

@@ -1,0 +1,775 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>生产遏制</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/ProductionContain.css"/>
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/reset.min.css">
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/style.css">
+</head>
+
+<body class="femi-font-size-middle">
+<!-- 已办 -->
+<div class="zace-cbd-contain zacePlanCommitDone" style="display: none;">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-undone" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>待办
+            </button>
+            <button type="button" id="zace-done" class="btn lmvt-def-btn" style="color: black;">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已办
+            </button>
+            <button type="button" id="zace-Send" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>发起
+            </button>
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+            <input
+                type="text" id="zace-search-done"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button type="button" id="zace-searchDone" class="btn lmvt-def-btn">
+            <span class="glyphicon " aria-hidden="true"></span>筛选
+          </button>
+          <button type="button" id="zace-refresh-Done" class="btn lmvt-def-btn">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+          </button>
+        </div>
+
+        <span class="zace-header-title zace-title">生产遏制已办列表</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered table-part table-partApprovalRecord">
+
+            <thead>
+            <tr>
+              <!-- <th style="width: 3px">
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </th> -->
+              <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+              <th style="min-width: 50px" data-order="Code">单据编号</th>
+              <th style="min-width: 50px" data-order="UpFlowName">发起人</th>
+              <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+              <th style="min-width: 50px" data-order="SubmitTime">操作时间</th>
+              <th style="min-width: 50px" data-order="StatusText">状态</th>
+              <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+            </tr>
+            </thead>
+            <tbody id="femi-zacePlanCommitDone-tbody" class="table-color">
+            <tr>
+              <!-- <td>
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </td> -->
+              <td colspan="7">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 待办 -->
+<div class="zace-cbd-contain zacePlanCommit">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-undone" class="btn lmvt-def-btn" style="color: black;">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>待办
+            </button>
+            <button type="button" id="zace-done" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已办
+            </button>
+            <button type="button" id="zace-Send" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>发起
+            </button>
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+            <input
+                type="text" id="zace-search-undone"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button type="button" id="zace-searchUndone" class="btn   lmvt-def-btn">
+            <span class="glyphicon " aria-hidden="true"></span>筛选
+          </button>
+          <button type="button" id="zace-refresh-UnDone" class="btn  lmvt-def-btn">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+          </button>
+        </div>
+
+        <span class="zace-header-title zace-title">生产遏制待办列表</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered table-part table-partApprovalRecord">
+
+            <thead>
+            <tr>
+              <!-- <th style="width: 3px">
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </th> -->
+              <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+              <th style="min-width: 50px" data-order="Code">单据编号</th>
+              <th style="min-width: 50px" data-order="UpFlowName">发起人</th>
+              <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+              <th style="min-width: 50px" data-order="SubmitTime">操作时间</th>
+              <th style="min-width: 50px" data-order="StatusText">状态</th>
+              <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+            </tr>
+            </thead>
+            <tbody id="femi-zacePlanCommit-tbody" class="table-color">
+            <tr>
+              <!-- <td>
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </td> -->
+              <td colspan="7">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 发起 -->
+<div class="zace-cbd-contain zacePlanSend" style="display: none;">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-undone" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>待办
+            </button>
+            <button type="button" id="zace-done" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已办
+            </button>
+            <button type="button" id="zace-Send" class="btn lmvt-def-btn" style="color: black;">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>发起
+            </button>
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+            <input
+                type="text" id="zace-search-send"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button type="button" id="zace-searchSend" class="btn   lmvt-def-btn">
+            <span class="glyphicon " aria-hidden="true"></span>筛选
+          </button>
+          <button type="button" id="zace-refresh-Send" class="btn  lmvt-def-btn">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+          </button>
+          <button
+              type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true"
+          >
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看申请
+            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+          </button>
+          <ul class="dropdown-menu  pull-right">
+            <li class="device_property" data-type="2" id="applySingle">
+              <a href="javascript:;">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>单条申请
+              </a>
+            </li>
+            <li class="device_property" data-type="2" id="applyMultiple">
+              <a href="javascript:;">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>多条申请
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <span class="zace-header-title zace-title">生产遏制发起列表</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered table-part table-partApprovalRecord">
+
+            <thead>
+            <tr>
+              <!-- <th style="width: 3px">
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </th> -->
+              <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+              <th style="min-width: 50px" data-order="Code">单据编号</th>
+              <th style="min-width: 50px" data-order="UpFlowName">发起人</th>
+              <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+              <th style="min-width: 50px" data-order="SubmitTime">操作时间</th>
+              <th style="min-width: 50px" data-order="StatusText">状态</th>
+              <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+            </tr>
+            </thead>
+            <tbody id="femi-zacePlanSend-tbody" class="table-color">
+            <tr>
+              <!-- <td>
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </td> -->
+              <td colspan="7">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+    id="outerdiv"
+    style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;"
+>
+  <div id="innerdiv" style="position:absolute;">
+    <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src=""/>
+  </div>
+</div>
+<!-- 流程图 -->
+<div id="cby-route-charf-ontask" class="cby-charf-down cby-route-charf " style="display:none">
+  <div class="" style="min-width:1000px">
+    <div class="cby-tree-header" style="overflow:visible;">
+      <div class="btn-group cby-left lmvt-def-btn" role="group">
+
+      </div>
+      <div class="columns columns-right btn-group pull-right">
+
+        <button class="btn lmvt-def-btn" type="button" id="cby-return-ontask">
+          <span class="glyphicon glyphicon-eye-open"></span>隐藏
+        </button>
+      </div>
+      <span class="cby-header-title" id="">流程图</span>
+    </div>
+    <div style="overflow: auto;">
+
+      <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+    </div>
+  </div>
+</div>
+
+<!-- 处理界面（包括单条发起） -->
+<div class="zace-cbd-contain zacePencil" style="display: none;">
+
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn  lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <div class="btn-group" role="group">
+
+            <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+              <span class="glyphicon " aria-hidden="true"></span>流程图
+            </button>
+          </div>
+        </div>
+
+        <span class="zace-header-title zace-title BPM-title">生产遏制处理信息</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;">
+          <div
+              class="header"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">基础数据</p>
+              <div class="BasicTable">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >状态</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >待审批</span>
+                  </div>
+                </div>
+              </div>
+              <div class="BasicTableContentBasic">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middle Businessfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">业务数据</p>
+              <div class="BasicTableContentBusiness">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middleFill"
+              style="width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;min-height: 100px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">填写数据</p>
+              <div class="BasicTableContentFillIn" style="height: max-content;">
+                <div class="BasicTable" style="display: inline-block;height: max-content;">
+                  <!-- multiple有这个多选   data-live-search="true"  搜索框-->
+                  <!-- <div class="Select">
+      <span style="
+      font-size: 20px;">水果</span>
+      <select id="slpk" class="selectpicker" data-live-search="true" multiple></select>
+  </div>                        -->
+                  <!-- <select id="slpk" class="selectpicker" data-live-search="true" ></select> -->
+
+                  <div class="TempTable Write-Control-LineID TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-LineID"
+                    >产线</span></div>
+                    <div class="FieldContentTwo Select" style="padding: 0px;">
+                      <select
+                          id="slpkLineID" class="selectpicker Write-content-LineID"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-WorkShopID TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-WorkShopID"
+                    >车间</span></div>
+                    <div class="FieldContentTwo Select" style="padding: 0px;">
+                      <select
+                          id="slpkWorkShopID"
+                          class="selectpicker Write-content-WorkShopID"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-PackgeNo TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-PackgeNo"
+                    >工件编号</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-PackgeNo"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写工件编号" value=""
+                    /></div>
+                  </div>
+
+                  <div class="TempTable Write-Control-CurbRemark TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-CurbRemark"
+                    >遏制描述</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-CurbRemark"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写遏制描述" value=""
+                    /></div>
+                  </div>
+                  <div class="TempTable Write-Control-CheckResult TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-CheckResult"
+                    >遏制结果</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <input
+                          type="checkbox" class="switch Write-content-CheckResult" checked
+                          style="margin-top: 10px; margin-left: 8%;" data-value="1"
+                      >
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-FileList TempTableContent Img">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-FileList"
+                    >遏制描述附件</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          class="m-c-body m-c-upload clearfix" style="border: 1px solid #dbdbdb;
+                                                border-width: 1px 0;
+                                                background: #fff;"
+                      >
+                        <ul class="upload-list">
+                          <li
+                              class="upload-btn" style="background: url(/MESCore/my_app/static/images/upload.png) no-repeat;
+                                                        background-size: 100%;
+                                                        float: left;width: 36px;height: 36px;"
+                          >
+                            <input
+                                type="file" data-value=""
+                                class="uploadImageZac Write-content-FileList" style=" opacity: 0;position: relative;
+                                                            z-index: 100;
+                                                            width: 100%;
+                                                            height: 100%;"
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-CheckRemark TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-CheckRemark"
+                    >遏制结果备注</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-CheckRemark"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写结果备注" value=""
+                    /></div>
+                  </div>
+                  <div class="TempTable Write-Control-CheckFileList TempTableContent Img">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-CheckFileList"
+                    >遏制结果备注附件</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          class="m-c-body m-c-upload clearfix" style="border: 1px solid #dbdbdb;
+                                                border-width: 1px 0;
+                                                background: #fff;"
+                      >
+                        <ul class="upload-list">
+                          <li
+                              class="upload-btn" style="background: url(/MESCore/my_app/static/images/upload.png) no-repeat;
+                                                        background-size: 100%;
+                                                        float: left;width: 36px;height: 36px;"
+                          >
+                            <input
+                                type="file" data-value=""
+                                class="uploadImageZac Write-content-CheckFileList"
+                                style=" opacity: 0;position: relative;
+                                                            z-index: 100;
+                                                            width: 100%;
+                                                            height: 100%;"
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="footer"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">审批记录</p>
+              <div class="zaceLiuchengPencil" style="width: 60%;">
+
+              </div>
+            </div>
+          </div>
+
+          <div
+              class="bottom"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;display: none;"
+          >
+            <div class="headerAll">
+              <div>
+                <p class="TitieWebBPM" style="display: inline-block;">节点详情</p>
+                <button
+                    class="btn btn-default" type="button" id="lmvt-type-back" style="float: right;"
+                >
+                  <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                </button>
+              </div>
+              <div class="BasicTableDeatil">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >节点</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >节点名称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="TableContentBasicDeatil">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 详情界面 -->
+<div class="zace-cbd-contain zacePencilDone" style="display: none;">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <button type="button" id="commit_cancel" class="btn lmvt-def-btn ">
+            <span class="glyphicon " aria-hidden="true"></span>撤销
+          </button>
+          <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+            <span class="glyphicon " aria-hidden="true"></span>流程图
+          </button>
+
+        </div>
+
+        <span class="zace-header-title zace-title">生产遏制审批详情</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;">
+          <!-- <div class="zaceContent" style="margin: 0 auto;width: 900px;height: 25%;overflow:auto;">
+              <div class="zace-TitleDetailFirstPencil" style="height: auto;width: 100%;float: left;">
+
+              </div>
+              <div class="zace-TitleDetailSecondPencil" style="height: auto;width: 100%;float: left;">
+
+              </div>
+
+          </div>
+          <div class="zaceContent zaceLiuchengDetail"
+              style="margin: 0 auto;width: 900px;height: 70%;overflow:auto;">
+
+          </div> -->
+
+          <div
+              class="headerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">基础数据</p>
+              <div class="BasicTable">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >状态</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >待审批</span>
+                  </div>
+                </div>
+              </div>
+              <div class="BasicTableContentBasic">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middlefq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">业务数据</p>
+              <div class="BasicTableContentBusiness">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="footerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">审批记录</p>
+              <div class="zaceLiuchengPencil" style="width: 60%;">
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="bottom"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;display: none;"
+          >
+            <div class="headerAll">
+              <div>
+                <p class="TitieWebBPM" style="display: inline-block;">节点详情</p>
+                <button
+                    class="btn btn-default" type="button" id="lmvt-type-back" style="float: right;"
+                >
+                  <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                </button>
+              </div>
+              <div class="BasicTableDeatil">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >节点</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >节点名称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="TableContentBasicDeatil">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 多条发起 -->
+<div class="zace-cbd-contain Multiplefq" style="min-width:900px;display: none;" ;>
+
+  <div class="zace-tree-header" style="overflow:visible;">
+    <div class="femi-toolbar-self femi-lf">
+      <div class="btn-group" role="group">
+        <button type="button" id="lmvt-materialRecord-input" class="btn lmvt-def-btn">
+          <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+        </button>
+        <button type="button" style="display:none" class="btn lmvt-def-btn">
+          <input type="file" id="input-file"/>
+        </button>
+        <button type="button" id="zace-exportApproval-Submit" class="btn lmvt-danger-btn">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+        </button>
+      </div>
+
+    </div>
+
+    <div class="columns columns-right btn-group pull-right">
+      <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+        <input
+            type="text" id="zace-search-level"
+            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+            placeholder="请输入查询字符"
+        />
+      </button>
+      <button type="button" id="zace-searchZall-Zace" class="btn lmvt-def-btn">
+        <span class="glyphicon" aria-hidden="true"></span>筛选
+      </button>
+      <button type="button" id="zace-refresh-po" class="btn lmvt-def-btn">
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+      </button>
+      <!-- <button type="button" id="zace-searchZall-level" class="btn btn-default ">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+      </button> -->
+
+    </div>
+
+    <span class="zace-header-title">生产遏制发起</span>
+  </div>
+
+  <div class="zace-tree-body femi-contain-border">
+    <div class="femi-tb-scroll">
+      <table class="table   table-hover table-bordered table-partMultiple">
+        <thead>
+        <tr>
+          <th style="width: 3px">
+            <input
+                type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                value="{{functionID}}"
+            />
+          </th>
+          <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+          <th style="min-width: 50px" data-order="ID">序号</th>
+          <th style="min-width: 50px" data-order="PackgeNo">工件编码</th>
+          <th style="min-width: 50px" data-order="LineName">产线</th>
+          <th style="min-width: 50px" data-order="WorkShopName">车间</th>
+          <th style="min-width: 50px" data-order="EditorName">编辑者</th>
+          <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+        </tr>
+        </thead>
+        <tbody id="femi-riskLevel-tbody" class="table-color">
+        <tr>
+          <td>
+            <input
+                type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                value="{{functionID}}"
+            />
+          </td>
+          <td colspan="20">等待数据加载</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/ProductionContain.js"></script>
+</body>
+
+</html>

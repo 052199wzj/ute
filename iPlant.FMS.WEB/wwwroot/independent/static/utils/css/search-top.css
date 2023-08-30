@@ -1,0 +1,29 @@
+.ds-search-item-group{
+  padding: 10px;
+  display: inline-flex;
+  height: 50px;
+}
+.ds-search-item-lable{
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 35px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+}
+.ds-search-top{
+  height: 65px;
+  width: auto;
+  background-color: white;
+  margin:0px 5px;
+}
+.ds-search-btn-group button{
+  width: 80px;
+}
+.ds-search-item-group input{
+  width: 140px;
+   margin: 0 2px;
+   display: inline-block;
+   text-align: center;
+}

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>生产周报</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/report/weekReport.css" />
+</head>
+
+<body class="femi-font-size-middle" style="min-width: 1250px;">
+    <div class="zace-leftContain">
+        <div class="zzza zace-cbd-contain" style="min-width:900px">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+
+
+                        <button type="button" id="zace-search-search" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+
+
+                </div>
+                <span class="zace-header-title  " style="font-size: 28px;">生产信息周报</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll ">
+                    <div id="ReworkRecord" style="width: 30%;height:100%;float: left;background-color: white;border: 1px solid rgba(231, 216, 216, 0.123);z-index: 100;min-width: 350px;"></div>
+
+                    <!-- 右一 -->
+                    <div style="width: 40%;height:30%;float: left;z-index: 10;min-height: 290px;">
+                        <table class="table   table-hover table-bordered ">
+
+                            <thead style="background-color: #ABCCEC">
+                                <tr>
+                                   <!-- 只显示A级异常 -->
+                                    <th style="display: none;" style="min-width: 50px" data-order="WID">序号</th>
+                                    <th style="min-width: 60px" data-order="Name">名称</th>
+                                    <!-- <th style="min-width: 80px" data-order="DayNum">本日</th> -->
+                                    <!--<th style="min-width: 50px" data-order="WorkShopID">工区</th>-->
+                                    <th style="min-width: 80px" data-order="WeekNum">本周</th>
+                                    <th style="min-width: 80px" data-order="MontNum">本月</th>
+                                    <th  style="min-width: 60px" data-order="SumNum">年度累计</th>
+                                  
+                                   
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelBasic-tbody" class="table-color">
+                                <tr>
+                                    
+                                    <td colspan="6">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+                    <div id="NCRType" style="width: 30%;height:30%;float: left;border: 1px solid rgba(231, 216, 216, 0.123);z-index: 10;min-height: 290px;">
+
+
+                    </div>
+
+                    <!-- 右二 -->
+                    <div style="width: 70%;height:auto;float: left;z-index: 10;min-height: 100px;border: 1px solid bisque;">
+                        <table class="table   table-hover table-bordered ">
+
+                            <thead style="background-color: #ABCCEC">
+                                <tr>
+                                   <!-- 只显示A级异常 -->
+                                    <th style="display: none;" style="min-width: 50px" data-order="WID">序号</th>
+                                    <th style="min-width: 60px" data-order="CarNo">车编号</th>
+                                    <th style="min-width: 80px" data-order="ExcType">异常类型</th>
+                                    <!--<th style="min-width: 50px" data-order="WorkShopID">工区</th>-->
+                                    <th style="min-width: 80px" data-order="ExcDescription">异常描述</th>
+                                    <th style="min-width: 80px" data-order="CreateTime">异常时间</th>
+                                    <th style="min-width: 60px" data-order="Creator">发起人</th>
+                                    <th style="min-width: 60px" data-order="Editor">处理人</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelExcep-tbody" class="table-color">
+                                <tr>
+                                    
+                                    <td colspan="6">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                      <!-- 右三 -->
+                      <div id="Exception" style="width: 35%;height:30%;float: left;border: 1px solid rgba(231, 216, 216, 0.123);z-index: 10;min-height: 290px;">
+
+
+                    </div>
+
+                    <div id="ExceptionType"  style="width: 35%;height:30%;float: left;border: 1px solid rgba(231, 216, 216, 0.123);z-index: 10;min-height: 290px;">
+
+
+                    </div>
+
+                    <!-- <div id="main2" style="width: 600px;height:400px;"></div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/report/weekReport.js"></script>
+
+
+</body>
+
+</html>

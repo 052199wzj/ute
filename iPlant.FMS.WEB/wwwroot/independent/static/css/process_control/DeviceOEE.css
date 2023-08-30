@@ -1,0 +1,402 @@
+html {
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: calc(100% - 10px);
+	margin: 0;
+	padding: 0;
+	background-color: rgb(238, 238, 238);
+}
+
+/*公共样式-start*/
+.title {
+	font-size: 18px;
+	color: black;
+	width: 200px;
+	line-height: 40px;
+	cursor: default;
+	height: 57px;
+	margin: 20px 10px;
+	font-weight: bold;
+}
+
+.fxy-title {
+	font-family: STXinwei;
+	font-size: 20px;
+	color: black;
+	width: 200px;
+	line-height: 40px;
+	cursor: default;
+	height: 57px;
+	margin: 20px 10px;
+}
+
+th {
+	background-color: rgb(215, 215, 215);
+	border-color: rgb(233, 233, 233);
+	text-align: center;
+}
+
+td {
+	text-align: center;
+}
+
+.green {
+	color: rgb(112, 182, 3) !important;
+}
+
+.circle {
+	margin: auto;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: red !important;
+}
+
+.borders {
+	border: 1px solid rgb(233, 233, 233);
+	padding: 10px;
+}
+
+.font-red {
+	color: red;
+}
+
+.status {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.status-hue {
+	width: 10px;
+	height: 10px;
+	margin: 0;
+	border-radius: 50%;
+	background-color: #9b9b9b;
+	margin: 0 10px;
+}
+
+.StatusText {
+	margin: 0 10px;
+}
+
+[v-cloak] {
+	display: none;
+
+}
+
+.lmvt-def-btn {
+	color: #0ea9f7;
+	background-color: #ffffff;
+	border-color: #0ea9f7;
+	opacity: 0.8;
+}
+
+.no1 {
+	width: 20% !important;
+}
+
+.icon {
+	width: 10px;
+	text-align: center;
+	margin-right: 20px;
+}
+
+.icon > .arrows-right {
+	width: 100%;
+
+}
+
+.icon > .arrows-bottom {
+	-webkit-transform: rotate(90deg); /*Safari 4+,Google Chrome 1+ */
+	-moz-transform: rotate(90deg); /*Firefox 3.5+*/
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /*ie*/
+}
+
+/*公共样式-end*/
+
+/*固定搜索头部-start*/
+.fxy-head {
+	width: 100%;
+	height: 60px;
+	background-color: white;
+	margin-bottom: 5px;
+}
+
+/*固定搜索头部-end*/
+
+.fxy-body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: calc(100% - 65px);
+	overflow-y: auto;
+}
+
+#DeviceOee {
+	width: calc(100% - 10px);
+	height: 100%;
+	margin: 5px;
+	min-width: 1300px;
+	overflow-y: auto;
+}
+
+.fxy-statistical-table {
+	width: 100%;
+}
+
+/*搜索框-start*/
+.fxy-head > .fxy-search {
+	width: 100%;
+	padding: 13px 0;
+	display: flex;
+	justify-content: space-around;
+	background-color: white;
+}
+
+.Device-search {
+	margin-left: 20px;
+	width: 330px;
+}
+
+.Device-search > button {
+	margin-right: 10px;
+}
+
+.btn-info {
+	background-color: rgb(14, 169, 247);
+}
+
+.area {
+	width: 100% !important;
+}
+
+.area-style {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.date {
+	width: 50% !important;
+}
+
+.search-btn {
+	margin-left: 30px;
+}
+
+/*搜索框-end*/
+/*表格-start*/
+.fxy-table {
+	width: 100%;
+	background-color: white;
+	padding: 10px 10px 0 10px;
+}
+
+.fxy-table > .header {
+	width: 100%;
+	height: 42px;
+	display: flex;
+	background-color: rgb(215, 215, 215);
+	justify-content: space-around;
+	padding: 0 30px 0 10px;
+	font-size: 15px;
+}
+
+.fxy-table > .header > div {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+	line-height: 42px;
+	white-space: nowrap;
+}
+
+.fxy-table > .table-body {
+	width: 100%;
+	height: 400px;
+	text-align: center;
+	color: rgb(127, 127, 127);
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: white;
+}
+
+.fxy-table > .table-body::-webkit-scrollbar {
+	display: none;
+}
+
+.table-tr {
+	width: 100%;
+	border-bottom: 1px solid rgb(215, 215, 215);
+}
+
+.tr-top:hover {
+	background-color: #fcf5e7;
+}
+
+.tr-top {
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	white-space: nowrap;
+	display: flex;
+	cursor: pointer;
+}
+
+.tr-top > .content {
+	user-select: none;
+	width: calc(100% - 10px);
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.tr-top > .content > div {
+	width: 10%;
+}
+
+.tr-bottom {
+	user-select: none;
+	width: 80%;
+	margin: auto;
+	height: 0px;
+	background-color: rgb(242, 242, 242);
+	display: flex;
+	overflow: hidden;
+	transition: height 200ms;
+}
+
+.tr-bottom > div {
+	width: 20%;
+	line-height: 35px;
+}
+
+/*表格-end*/
+
+/*统计表-start*/
+.statistical-table {
+	width: 100%;
+	height: 330px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 5px;
+	background-color: white;
+}
+
+.statistical-table > div {
+	width: 32%;
+	height: 80%;
+}
+
+/*统计表-end*/
+
+/*停产-start*/
+.halt-production{
+	width: 100%;
+	height: 330px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 5px;
+	background-color: white;
+	padding: 20px;
+}
+.halt-production > div{
+	width: 100%;
+	height: 100%;
+}
+/*停产-end*/
+
+/*状态时长表-start*/
+.state {
+	width: 100%;
+	margin-top: 5px;
+	background-color: white;
+	flex: 1;
+}
+.state > .fxy-Status-title{
+	width: 100%;
+	display: flex;
+}
+.state > .fxy-Status-title span{
+	width: 50%;
+	display: inline-block;
+}
+.state .fxy-time-frequency{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+
+}
+.state .fxy-time-frequency > div{
+	width: 50%;
+	flex: 1;
+	margin-top: 10px;
+}
+#State-duration {
+	width: 100%;
+	height: 90%;
+}
+
+/*状态时长表-end*/
+
+
+/* 时间选择器样式 start */
+
+.input-date-box {
+	display: flex;
+	overflow: hidden;
+	margin-left: 20px;
+	width: 400px;
+	height: 34px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+}
+
+.input-date-box .label {
+	flex: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 12px;
+	height: 34px;
+	background-color: #eeeeee;
+	border-right: 1px solid #cccccc;
+	border-radius: 0 !important;
+	font-size: 14px;
+	font-weight: normal;
+	color: #555555;
+}
+
+.input-date-box .el-range-separator {
+	width: 23px !important;
+}
+
+.input-date-box .el-input__inner {
+	width: 100% !important;
+	height: 34px !important;
+	border: 0 !important;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+/* 时间选择器样式 end */
+.fzy-page{
+	min-width: 1200px;
+	min-height: 0;
+}
+.fzy-page .fzy-search-bar{
+	height: 50px;
+}
+.fzy-search-bar .el-date-editor--daterange{
+	padding: 0 10px;
+}
+.el-date-editor--daterange .el-range-separator{
+	width: 30px;
+}

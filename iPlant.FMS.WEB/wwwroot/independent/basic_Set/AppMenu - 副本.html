@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>APP端菜单设置</title>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link type="text/css" rel="stylesheet" href="../static/css/basicSet/AppMenu.css">
+</head>
+<body style="font-size: 12px;">
+<div class="lmvt-contain">
+  <div class="lmvt-contain-left femi-lf">
+    <div
+        class="femi-contain-border femi-border-contain"
+        style="height:100%"
+    >
+      <div class="femi-tree-head">
+        <strong>菜单树</strong>
+      </div>
+      <div class="femi-tree-body">
+        <div class="femi-tree-contain">
+          <ul id="roleTree" class="femi-left-tree treeview-famfamfam">
+            <span>等待数据加载</span>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lmvt-contain-right">
+    <div class="lmvt-contain-right-table">
+      <div class="femi-tb-head" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="lmvt-add-groupSearch" class="btn btn-default ">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>等级查询
+            </button>
+            <button
+                type="button" id="lmvt-add-group"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button
+                type="button" id="lmvt-change-group"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <button type="button" style="display:none" class="btn btn-default">
+              <input type="file" id="input-file">
+            </button>
+            <button
+                type="button" id="lmvt-change-photo"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>本地图片
+            </button>
+
+
+            <div class="btn-group">
+              <button
+                  type="button" class="btn btn-default dropdown-toggle"
+                  data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false"
+              >
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                <span class="caret"></span> <span class="sr-only">
+                                        Toggle Dropdown
+                                    </span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="device_status" id="lmvt-group-active">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>激活
+                  </a>
+                </li>
+                <li class="device_status" id="lmvt-group-forbid">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>禁用
+                  </a>
+                </li>
+                <li class="device_status" id="lmvt-group-delete">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>删除
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="lmvt-search-group"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            >
+          </button>
+          <div class="btn-group pull-right">
+            <button
+                type="button" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"
+            >
+              <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>组菜单
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="device_status" id="lmvt-module-menu">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>子菜单
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <p
+            class="femi-tb-title"
+            style="font-family: STXinwei; font-size: 20px; color: #00688b;"
+        >
+          APP菜单组视图
+        </p>
+      </div>
+      <div class="femi-contain-border femi-tb-border">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox"
+                    class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                >
+              </th>
+              <th style="min-width: 30px" data-title="ID">编号</th>
+              <th style="min-width: 50px" data-title="Name">名称</th>
+              <th style="min-width: 50px" data-title="Icon">图片</th>
+              <th style="min-width: 50px" data-title="OrderNum">显示顺序</th>
+              <th style="min-width: 50px" data-title="Grad">用户类型</th>
+              <th style="min-width: 50px" data-title="Active">状态</th>
+            </tr>
+            </thead>
+            <tbody class="lmvt-group-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="lmvt-contain-right-table-module" style="display:none">
+      <div class="femi-tb-head" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="lmvt-add-groupAddItem" class="btn btn-default ">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>复制
+            </button>
+            <button
+                type="button" id="lmvt-add-module"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button
+                type="button" id="lmvt-change-module"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <button type="button" style="display:none" class="btn btn-default">
+              <input type="file" id="input-fileModule">
+            </button>
+            <button
+                type="button" id="lmvt-change-photoModule"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>本地图片
+            </button>
+            <div class="btn-group">
+              <button
+                  type="button" class="btn btn-default dropdown-toggle"
+                  data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false"
+              >
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                <span class="caret"></span> <span class="sr-only">
+                                        Toggle Dropdown
+                                    </span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="device_status" id="lmvt-module-active">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>激活
+                  </a>
+                </li>
+                <li class="device_status" id="lmvt-module-forbidden">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>禁用
+                  </a>
+                </li>
+                <li class="device_status" id="lmvt-module-delete">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>删除
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="lmvt-search-module"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            >
+          </button>
+          <div class="btn-group pull-right">
+            <button
+                type="button" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"
+            >
+              <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>子菜单
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="device_status" id="lmvt-group-menu">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>组菜单
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <p
+            class="femi-tb-title"
+            style="font-family: STXinwei; font-size: 20px; color: #00688b;"
+        >
+          APP菜单子视图
+        </p>
+      </div>
+      <div class="femi-contain-border femi-tb-border lmvt-table-module">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox"
+                    class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                >
+              </th>
+              <th style="min-width: 30px" data-title="ID">编号</th>
+              <th style="min-width: 50px" data-title="Name">名称</th>
+              <th style="min-width: 50px" data-title="Url">模块链接</th>
+              <th style="min-width: 50px" data-title="Icon">图片</th>
+              <th style="min-width: 50px" data-title="GroupID">所属组</th>
+              <th style="min-width: 50px" data-title="OrderNum">显示顺序</th>
+              <th style="min-width: 50px" data-title="Grad">用户类型</th>
+              <th style="min-width: 50px" data-title="Active">状态</th>
+            </tr>
+            </thead>
+            <tbody class="lmvt-menuModule-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="lmvt-contain-right-table-itemson" style="display:none">
+      <div class="femi-tb-head" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="lmvt-itemson-module"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button
+                type="button" id="lmvt-itemson-module"
+                class="btn btn-default "
+            >
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <div class="btn-group">
+              <button
+                  type="button" class="btn btn-default dropdown-toggle"
+                  data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false"
+              >
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                <span class="caret"></span> <span class="sr-only">
+                                        Toggle Dropdown
+                                    </span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="device_status" id="lmvt-itemson-active">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>激活
+                  </a>
+                </li>
+                <li class="device_status" id="lmvt-itemson-forbidden">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>禁用
+                  </a>
+                </li>
+                <li class="device_status" id="lmvt-itemson-delete">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>删除
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="lmvt-search-group"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            >
+          </button>
+          <button
+              type="button" id="lmvt-itemson-back"
+              class="btn btn-default "
+          >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>返回
+          </button>
+
+        </div>
+        <p
+            class="femi-tb-title"
+            style="font-family: STXinwei; font-size: 20px; color: #00688b;"
+        >
+          APP菜单子视图
+        </p>
+      </div>
+      <div class="femi-contain-border femi-tb-border lmvt-table-module">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox"
+                    class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                >
+              </th>
+              <th style="min-width: 30px" data-title="ID">编号</th>
+              <th style="min-width: 50px" data-title="Name">名称</th>
+              <th style="min-width: 50px" data-title="Url">模块链接</th>
+              <th style="min-width: 50px" data-title="Icon">图片</th>
+              <th style="min-width: 50px" data-title="GroupID">所属组</th>
+              <th style="min-width: 50px" data-title="Active">状态</th>
+            </tr>
+            </thead>
+            <tbody class="lmvt-itemson-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/AppMenu.js"></script>
+</body>
+</html>

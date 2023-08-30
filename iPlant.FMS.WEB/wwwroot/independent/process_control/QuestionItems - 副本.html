@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>预检问题项报表</title>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css"/>
+  <!--<link type="text/css" rel="stylesheet" href="../static/utils/js/bootstrap.min.js" />-->
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link type="text/css" rel="stylesheet" href="../static/css/process_control/QuestionItems.css"/>
+  <style type="text/css">
+      body {
+          background-color: white;
+      }
+  </style>
+
+</head>
+<body>
+<div class="femi-cbd-contain " style="min-width:1200px;">
+  <!-- 上部分 -->
+  <div class="up-info">
+    <!-- 任务详情 -->
+    <div class="call-right-info" style="padding:5px;display:none">
+      <div class="femi-contain-border" style="width:100%;height:100%;padding:10px;">
+        <div class="cby-contain-cbg" style="height:45px;">
+          <div class="femi-toolbar-self femi-rt">
+            <div class="btn-group" role="group">
+              <button type="button" id="cby-hidden-list" class="btn btn-default ">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+              </button>
+            </div>
+          </div>
+          <p class="cby-tb-title">问题项详情</p>
+        </div>
+        <div class="innerTab" style="width:100%;height:100%;margin-top:-45px;padding: 50px 10px 10px 10px;">
+          <div class="inner-div" style="height:100%;overflow:auto;">
+            <div class="call-info" style="">
+
+              <div class="call-info-header">
+                <p class="lmvt-myself">详情记录</p>
+              </div>
+
+              <div class="">
+                <div class="call-info-all" id="call-info-all">
+
+                </div>
+              </div>
+            </div>
+            <!--<div class="call-info" style="">
+
+                <div class="call-info-header">
+                    <p class="cby-toolbar-self">现场工艺</p>
+                </div>
+
+                <div class="">
+                    <div class="call-info-all" id="call-info-all">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="call-info-taskInformation" style="margin:13px 5px;"></div>
+            <div id="call-info-cancelInformation" style="margin:13px 5px;"></div>
+
+            <div class="" id="deal-info-all" style="height:67%;margin-top:5px;">
+
+                <div class="call-info-header" style="">
+                    <p class="cby-toolbar-self">处理信息</p>
+                </div>
+
+                <div style="overflow:auto;height:85%;">
+                    <div class="call-info-deal" id="call-info-deal">
+                        <ul class="deal-info-list"></ul>
+                    </div>
+                </div>
+
+            </div>-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- 异常任务列表 -->
+    <div class="task-table" style="min-width:800px;">
+      <div class="" style="width:100%;height:100%;padding:5px;">
+        <!-- 头部 -->
+        <div class="cby-contain-cbg">
+          <!-- 头部左侧 -->
+          <div class="femi-toolbar-self femi-lf">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default " id="call-info-right">
+                <span class="glyphicon glyphicon-italic" aria-hidden="true"></span>显示详情
+              </button>
+            </div>
+          </div>
+
+          <!-- 头部右侧 -->
+          <div class="femi-toolbar-self femi-rt">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default " style="padding: 0">
+                <input
+                    type="text" id="cby-search-text-ledger"
+                    style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                    placeholder="请输入查询字符"
+                />
+              </button>
+              <button type="button" id="cby-search-ledgerZace" class="btn btn-default ">
+                <span class="glyphicon" aria-hidden="true"></span>筛选
+              </button>
+              <button type="button" id="cby-search-ledger" class="btn btn-default ">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+              </button>
+              <button type="button" class="btn btn-default " id="call-zace-refreshro">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+              </button>
+            </div>
+          </div>
+          <!-- 头部标题 -->
+          <p class="cby-tb-title">问题项报表</p>
+        </div>
+        <!-- 表格 -->
+        <div class="femi-contain-border call-info-body">
+          <div class="femi-tb-scroll">
+            <table class="table table-hover table-bordered" style="margin-bottom:0px;">
+              <thead>
+              <tr>
+                <th style="width: 3px">
+                  <input
+                      type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}"
+                  />
+                </th>
+                <th style="min-width: 50px" data-order="ID">序号</th>
+                <th style="min-width: 50px" data-order="LineName">修程</th>
+                <th style="min-width: 50px" data-order="CustomName">局段</th>
+                <th style="min-width: 50px" data-order="ProductNo">车型</th>
+                <th style="min-width: 50px" data-order="CarNumber">车号</th>
+
+                <!-- <th style="min-width: 50px" data-order="IPTItemName">名称</th> -->
+                <th style="min-width: 80px" data-order="FirstItemName">一级项点</th>
+                <th style="min-width: 80px" data-order="SeconfItemName">二级项点</th>
+                <th style="min-width: 80px" data-order="ThirdItemName">三级项点</th>
+                <th style="min-width: 80px" data-order="FourItemName">四级项点</th>
+                <th style="min-width: 80px" data-order="FiveItemName">五级项点</th>
+                <th style="min-width: 50px" data-order="Status">状态</th>
+                <th style="min-width: 60px" data-order="PreCheckName">预检人</th>
+                <th style="min-width: 80px" data-order="PreCheckTime">预检时间</th>
+                <!--<th style="min-width: 50px" data-order="Status">状态</th>-->
+              </tr>
+              </thead>
+              <tbody id="lmvt-problem-tbody" class="table-color">
+              <tr style="">
+                <td colspan="15">等待数据加载</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<!--<script src="../static/utils/js/jquery-3.1.1.js"></script>-->
+<script type="text/javascript" src="../static/js/process_control/QuestionItems.js"></script>
+</body>
+</html>

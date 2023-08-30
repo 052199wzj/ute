@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DMSTimeOutConfig xmlns@xsd="http://www.w3.org/2001/XMLSchema" xmlns@xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <DeviceMaintain>43200</DeviceMaintain>
+  <SpareMaintain>43200</SpareMaintain>
+  <DeviceCheck>43200</DeviceCheck>
+  <DeviceRepair>43200</DeviceRepair>
+  <SpareRepair>43200</SpareRepair>
+  <DeviceLedger>43200</DeviceLedger>
+  <SpareLedger>43200</SpareLedger>
+</DMSTimeOutConfig>

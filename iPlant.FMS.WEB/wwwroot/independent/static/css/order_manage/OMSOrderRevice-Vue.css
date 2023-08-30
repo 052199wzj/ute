@@ -1,0 +1,87 @@
+
+
+
+/*工单总览*/
+.order-status-overview {
+	height: 45px;
+	background-color: #ffffff;
+	margin-top: 5px;
+}
+
+.order-status-overview > .card {
+	margin-left: 20px;
+}
+
+.order-status-overview > .card .circle {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+}
+
+.order-status-overview > .card .label {
+	font-weight: 500;
+	font-size: 14px;
+	color: #000000;
+}
+
+/*上传步骤条*/
+.progress-bar-box {
+	margin: 0 auto;
+	width: 800px;
+	height: 120px;
+	background-color: transparent;
+}
+
+.progress-bar-box .node {
+	flex: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50px;
+}
+
+.progress-bar-box .node img {
+	width: 50px;
+	height: 50px;
+}
+
+.progress-bar-box .node span {
+	overflow: auto;
+	width: 50px;
+	height: 20px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #000000;
+}
+
+.progress-bar-box .bar {
+	flex: 1;
+	margin-bottom: 20px;
+	height: 3px;
+	background-color: #dddddd;
+}
+
+.progress-bar-box .bar.show {
+	background-color: #1296db;
+}
+
+/*上传数据总览*/
+
+.data-overview {
+	height: 36px;
+	font-size: 18px;
+	line-height: 34px;
+}
+
+.data-overview .text{
+	margin-right: 20px;
+}
+
+.data-overview .text span{
+	font-weight: 700;
+	font-size: 22px;
+}
+
+.data-overview .text  .green {color: green !important}
+
+.data-overview .text  .red {color: red !important}

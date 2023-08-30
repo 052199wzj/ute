@@ -1,0 +1,24 @@
+div.femi-header {
+	height: 35px;
+	width: 100%;
+	min-width:900px; 
+	background-color: GhostWhite; 
+}
+.femi-header-title {
+	font-family: STXinwei;
+	font-size: 20px;
+	width:200px;
+	line-height: 35px;
+	color: #00688B; 
+	cursor:default;
+	margin: 0px;
+	text-align:center;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+}
+.femi-table{
+	padding-top:0px;
+	padding-bottom:0px;
+	background-color: GhostWhite;
+} 

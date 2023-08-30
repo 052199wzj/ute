@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>排班信息列表</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/SCHShiftWorkerSetting.css" />
+</head>
+<body class="femi-font-size-middle">
+    <div class="zace-cbd-contain">
+        <div class="zzza zace-cbd-contain">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">                                           
+                        <!--<div class="zace-text">
+                            <div style="float:left;width:auto;height:30px">
+                                <span class="zzzz">
+                                    车间：
+                                </span>
+                            </div>
+                            <div style="float:left;width:auto;height:30px">
+                                <label for="workshop_select"></label>
+                                <select id="workshop_select" class="selectpicker bla bla bli form-control" data-live-search="true">
+                                    <option value="0" selected>无</option>
+                                </select>
+                            </div> 
+                        </div>-->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true" id="workShopChoose">
+                                    车间选择
+                                </span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu workshop-items"></ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true" id="lineChoose">
+                                    产线选择
+                                </span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu line-items"></ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true" id="moduleChoose">
+                                    职能选择
+                                </span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu module-items"></ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true" id="templateChoose">
+                                   模板选择
+                                </span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu template-items"></ul>
+                        </div>
+
+                        <button type="button" id="zace-search-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                      
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" id="zace-add-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                    </button>
+                    <button type="button" id="zace-edit-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                    </button>
+                    <button type="button" id="zace-eye-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>排班记录
+                    </button>
+
+                </div>
+
+                <span class="zace-header-title">排班信息列表</span>
+            </div>
+
+            <div class="zace-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>               
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="ShiftID">班次</th>
+                                <th style="min-width: 50px" data-order="Factory">工厂</th>
+                                <th style="min-width: 50px" data-order="BusinessUnit">事业部</th>
+                                <th style="min-width: 50px" data-order="WorkShop">车间</th>
+                                <th style="min-width: 50px" data-order="Line">产线</th>
+                                <th style="min-width: 50px" data-order="ModuleID">职能类别</th>
+                                <th style="min-width: 50px" data-order="FunctionName">组名称</th>
+                                <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                             
+                                <!--<th style="min-width: 50px" data-order="TemplateID">模板</th>-->                         
+                                <th style="min-width: 50px" data-order="WorkerID"> 人员</th>
+                                <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                <!--<th style="min-width: 50px" data-order="Editor">编辑者</th>
+                                <th style="min-width: 50px" data-order="EditTime ">编辑时间</th>
+                                <th style="min-width: 50px" data-order="Auditor">审核人</th>
+                                <th style="min-width: 50px" data-order="AuditTime">审核时间</th>
+                                <th style="min-width: 50px" data-order="Status">状态</th>-->
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevel-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="12">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/SCHShiftWorkerSetting.js"></script>
+</body>
+</html>

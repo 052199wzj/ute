@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>一次性合格率</title>
+    <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/jquery.treeview.css" rel="stylesheet" type="text/css">
+    <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/qualityManage/OneTimePassRate.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="OneTimePassRate-body" class="fzy-page">
+
+        <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+
+        <div class="fzy-search-bar">
+            <div class="input-select-box input-box-300">
+                <div class="label">产品编号</div>
+                <el-select v-model="searchData.ProductID" multiple clearable filterable placeholder="请选择">
+                    <el-option v-for="item in selectOptions.ProductList"
+                               :key="item.ID"
+                               :label="item.ProductNo + '  ' +item.ProductName"
+                               :value="item.ID"></el-option>
+                </el-select>
+            </div>
+
+            <div class="input-select-box input-box-200">
+                <div class="label">查询方式</div>
+                <el-select v-model="searchData.StatType" placeholder="请选择">
+                    <el-option v-for="item in  selectOptions.StatTypeList"
+                               :key="item.ID"
+                               :label="item.Name"
+                               :value="item.ID"></el-option>
+                </el-select>
+            </div>
+
+            <div class="input-date-box input-box-400">
+                <div class="label">上料时间</div>
+                <el-date-picker v-model="searchData.StartTime"
+                                :type="pickerOptions.type"
+                                :format="pickerOptions.format"
+                                :clearable="false"
+                                @change="pickerChange">
+                </el-date-picker>
+                <span style="margin: auto;">至</span>
+                <el-date-picker v-model="searchData.EndTime"
+                                :type="pickerOptions.type"
+                                :format="pickerOptions.format"
+                                :clearable="false"
+                                @change="pickerChange">
+                </el-date-picker>
+            </div>
+
+            <div class="button-box">
+                <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                    查询
+                </button>
+
+                <button class="btn lmvt-def-btn"
+                        type="button"
+                        @click="emptyClick">
+                    <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+                    重置
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class="fzy-page-center-box">
+            <div class="fzy-page-center-title-bar">
+                <div class="left">
+                    <span class="fzy-title">一次性合格率列表</span>
+                </div>
+            </div>
+            <el-table :data="tableData"
+                      size="mini"
+                      border
+                      height="270">
+                <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+                <el-table-column label="产品编号" property="ProductNo" align="center"></el-table-column>
+                <el-table-column label="产品名称" property="ProductName" align="center"></el-table-column>
+                <el-table-column label="日期" property="StrDate" align="center"></el-table-column>
+                <el-table-column label="一次性合格数" property="OneTimePassNum" align="center"></el-table-column>
+                <el-table-column label="上料总数" property="FeedingNum" align="center"></el-table-column>
+                <el-table-column label="成品数量" property="Num" align="center"></el-table-column>
+                <el-table-column label="不合格数" property="NGNum" align="center"></el-table-column>
+                <el-table-column label="合格数" property="OKNum" align="center"></el-table-column>
+                <el-table-column label="一次性合格率" align="center" width="150px">
+                    <template slot-scope="scope">
+                        <el-progress :text-inside="true" :stroke-width="24" :percentage="scope.row.OneTimePassRate" status="success"></el-progress>
+                    </template>
+                </el-table-column>
+                <el-table-column label="合格率" align="center" width="150px">
+                    <template slot-scope="scope">
+                        <el-progress :text-inside="true" :stroke-width="24" :percentage="scope.row.PassRate" status="success"></el-progress>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <div class="fzy-divider"></div>
+
+            <div class="fzy-statistical-box">
+                <div class="fzy-statistical-echarts"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/utils/require.js" type="text/javascript"></script>
+    <script src="../static/js/qualityManage/OneTimePassRate.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+﻿
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color:#fff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/*==========上下布局===========*/
+
+.mouse-move-contain {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%; 
+    overflow@auto;
+}
+
+
+    .mouse-move-contain .mouse-move-middle-contain {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 3px;
+        /*background-color: red;*/
+    }
+
+    .mouse-move-contain .mouse-move-left-contain {
+        width: 100%;
+        height: 100%;
+        padding-right: 3px;
+        /*background-color: red;*/
+    }
+
+
+    .mouse-move-contain .mouse-move-expander {
+        width: 100%;
+        height: 3px;
+        bottom: 0px;
+        left: 0px;
+        background-color: #999;
+        position: absolute;
+        z-index: 100;
+    }
+
+        .mouse-move-contain .mouse-move-expander.move-horizontal {
+            width: 100%;
+            height: 3px;
+            bottom: 0px;
+            left: 0px;
+            background-color: #999;
+            position: absolute;
+        }
+
+        .mouse-move-contain .mouse-move-expander.move-vertical {
+            width: 3px;
+            height: 100%;
+            bottom: 0px;
+            left: 100%;
+            background-color: #999;
+            position: absolute;
+        }
+
+        .mouse-move-contain .mouse-move-expander.move-horizontal@hover {
+            cursor: n-resize;
+        }
+
+        .mouse-move-contain .mouse-move-expander.move-vertical@hover {
+            cursor: e-resize;
+        }
+
+    .mouse-move-contain .mouse-move-bottom {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+        bottom: 0px;
+        height: auto;
+        padding: 0px;
+        /*background: orange;*/
+    }
+
+
+
+    .mouse-move-contain .mouse-move-middle {
+        height: 40px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /*text-align: center;*/
+    }
+
+
+    .mouse-move-contain .mouse-move-right {
+        width: auto;
+        position: absolute;
+        left: 300px;
+        right: 0px;
+        height: 100%;
+        padding: 0px;
+        /*background: orange;*/
+    }
+
+
+
+    .mouse-move-contain .mouse-move-left {
+        height: 100%;
+        width: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /*text-align: center;*/
+    }
+
+
+/*==========左右布局===========*/
+/*   
+
+
+.mouse-move-containLR .mouse-move-left-contain {
+  
+}
+
+
+.mouse-move-containLR .mouse-move-expanderLR {
+    width: 3px;
+    height: 100%;
+    bottom: 0px;
+    right: 0px;
+    background-color: #999;
+    position: absolute;
+}
+
+    .mouse-move-containLR .mouse-move-expanderLR@hover {
+        cursor: e-resize;
+    }
+
+*/
+
+
+
+.zace-cbd-contain{
+	height: 100%;	
+    width:100%;
+     padding: 0;
+    margin: 0;
+}
+
+.zace-tree-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+    overflow: hidden;
+}
+
+.zace-tree-body {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+
+}
+.zace-tree-bodyOne {
+    width: 100%;
+    height: 100%;
+    margin-top: -5px;
+    padding: 0px 10px 0px 10px;
+
+}
+
+.zace-tree-header .femi-toolbar-self {
+    height:34px;
+}
+
+.zace-tree-header .btn-group {
+    height:34px;
+}
+
+.zace-tree-header .btn-default {
+    height:34px;
+}
+
+
+.zace-tree-header .zace-left {
+    padding-right:0px;
+}
+
+.zace-header-title {  
+    /*font-family: STXinwei;
+	font-size: 20px;
+    color: #00688B;
+	width:200px;
+	line-height: 40px;
+	cursor@default;
+	margin: 0px;
+	text-align@center;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;*/
+    font-family: STXinwei;
+	font-size: 20px;
+    color: #00688B;
+	width:200px;
+	line-height: 40px;
+	cursor@default;
+	text-align@center;
+    margin@auto;
+    height:40px;
+}
+
+.zace-headerleft-title {
+    font-size: 20px;
+    color: #000000;
+    font-family: STXinwei;
+    line-height: 40px;
+    cursor: default;
+    text-align: left;
+    margin: auto;
+    height: 40px;
+}
+.ConditiontextLeft {
+    color: #00688B;
+}
+/*.zace-zace-zace{
+
+    margin-top:-5px;
+}*/
+.zace-schedule-text {
+    padding-top: 5px;
+}
+.zace-schedule-text  span{
+    text-align@center;
+    vertical-align@middle;
+    font-size:16px;
+}
+
+
+
+
+div.zace-text {
+    display@inline;
+    /*float@left;*/
+    margin-left:5px;
+    height:30px;
+}
+
+div.zace-text span{
+    text-align@center;
+    vertical-align@middle;
+    /*font-family:8px;*/
+    
+}
+.zzzz{
+    /*padding:5px;*/
+     text-align@center;
+    vertical-align@middle;
+}
+.zace-cbd-containHead{
+
+    height:45px;
+    width:100%;
+    /*background-color@blue;*/
+}
+.zace-bottom-zace{
+
+    width: 100%;
+    height: 100%;
+    /*margin-top: -45px;
+    padding: 50px 2px 2px 2px;*/
+
+}
+
+.zace-cbd-containPart{
+
+    height:100%;
+    width:100%;
+}
+.zace-cbd-containPoint{
+
+    height:100%;
+    width:100%;
+}
+
+.zace-femiClass{
+    height:100%;
+
+}
+
+.zace-leftContain{
+
+    width: 100%;
+    height: 100%;  
+    padding: 5px;
+
+
+}
+
+.lmvt-gantt {
+    width: 100%;
+    height: 100%;
+}
+
+.left-middle-left {
+    width: auto;
+    height: 100%;
+    overflow: auto;
+    /*float@left;*/
+    /*background-color@red;*/
+}
+.lmvt-container-gantt {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*float@left;*/
+    /*background-color@red;*/
+}
+.lmvt-bord {
+    width: 100%;
+    height: 100%;
+}
+.right-middle-right {
+    width: 400px;
+    height: 100%;
+    overflow: auto;
+    float: right;
+    /*background-color@green;*/
+}
+
+.middleContain{
+     width: 100%;	
+	height: 100%;
+
+}
+.zace-orderTaskLine,.zace-orderSchedule,.zace-orderTablePartShow,.zace-orderTablePartShowItem,.lmvt-container-gantt{
+
+    height:100%;
+    width:100%;
+}
+
+.left-middle-leftItem {
+    width: auto;
+    height: 100%;
+    overflow: auto;
+    /*float@left;*/
+    /*background-color@red;*/
+}
+.lmvt-container-gantt {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*float@left;*/
+    /*background-color@red;*/
+}
+
+.right-middle-rightItem{
+     width: 400px;	
+	height: 100%;
+    overflow@auto;
+    float@right;
+   /*background-color@green;*/
+}

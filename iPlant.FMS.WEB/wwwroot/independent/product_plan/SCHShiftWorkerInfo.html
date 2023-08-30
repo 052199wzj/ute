@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>排班信息列表</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/SCHShiftWorkerInfo.css" />
+</head>
+<body class="femi-font-size-middle">
+    <div class="zace-cbd-contain">
+        <div class="zzza zace-cbd-contain">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">                    
+                        <button class="btn btn-default" type="button" id="zace-search-Detail">
+                            <span class="glyphicon glyphicon-eye-open"></span>详情
+                        </button>
+
+                        <button class="btn btn-default" type="button" id="zace-search-refresh">
+                            <span class="glyphicon glyphicon-refresh"></span>刷新
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                  
+
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="femi-search-text-ledger"
+                               style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                               placeholder="请输入查询字符" />
+                    </button>
+                    <button class="btn btn-default" type="button" id="zace-search-user">
+                        <span class="glyphicon glyphicon-search"></span>查询
+                    </button>       
+                </div>
+
+                <span class="zace-header-title">排班记录表</span>
+            </div>
+
+            <div class="zace-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>                                             
+                                <th style="min-width: 50px" data-order="ID">编号</th>                               
+                                <th style="min-width: 50px" data-order="ModuleName">职能</th>
+                                <th style="min-width: 50px" data-order="ShiftID">班次</th>                                                        
+                                <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>                               
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevel-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="5">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="zzzb zace-cbd-contain" style="display:none">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" type="button" id="zace-return-Detail">
+                            <span class="glyphicon glyphicon-arrow-left"></span>返回
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                  
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="femi-search-text-ledgerItem"
+                               style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                               placeholder="请输入查询字符" />
+                    </button>
+                    <button class="btn btn-default" type="button" id="zace-search-userItem">
+                        <span class="glyphicon glyphicon-search"></span>查询
+                    </button>
+                </div>
+
+                <span class="zace-header-title">排班详细表</span>
+            </div>
+
+            <div class="zace-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="ShiftID">班次</th>
+                                <!--<th style="min-width: 50px" data-order="Factory">工厂</th>-->
+                                <th style="min-width: 50px" data-order="BusinessUnit">事业部</th>
+                                <th style="min-width: 50px" data-order="WorkShop">车间</th>
+                                <th style="min-width: 50px" data-order="Line">产线</th>
+                                <th style="min-width: 50px" data-order="ModuleID">职能</th>
+                                <th style="min-width: 50px" data-order="FunctionName">组名称</th>
+                                <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                             
+                                <!--<th style="min-width: 50px" data-order="TemplateID">模板</th>-->
+                                <th style="min-width: 50px" data-order="WorkerID"> 人员</th>
+                                <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevelItem-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="12">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/SCHShiftWorkerInfo.js"></script>
+</body>
+</html>

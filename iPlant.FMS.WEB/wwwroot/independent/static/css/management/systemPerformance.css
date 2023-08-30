@@ -1,0 +1,31 @@
+#systemPerformance{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 1400px;
+    height: 100%;
+    margin: 0;
+    padding: 5px;
+    background-color: rgb(238, 238, 238);
+}
+.fxy-heard{
+    background-color: white;
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.fxy-content{
+    display: flex;
+    min-height: 250px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+.search-text{
+    font-size: 16px;
+    font-weight: bold;
+}

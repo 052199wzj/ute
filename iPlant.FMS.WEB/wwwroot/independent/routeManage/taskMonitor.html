@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>流程设计</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/routeManage/taskMonitor.css" />
+</head>
+<body>  
+    <div class="cby-cbd-contain" style="min-width:1300px">
+        <!-- 树 -->
+        <div class="femi-left femi-lf cby-tree-remove">
+            <div class="femi-contain-border femi-border-contain">
+                <div class="femi-tree-head">
+                    <div class="columns columns-right btn-group pull-right">
+                        <button class="btn btn-default" type="button" id="cby-add-treeItem">
+                            <span class="glyphicon glyphicon-plus"></span>新增
+                        </button>
+                        <button class="btn btn-default" type="button" id="cby-refresh-treeItem">
+                            <span class="glyphicon glyphicon-refresh"></span>刷新
+                        </button>
+                    </div>
+                    <span style="font-size: 14px;"class="cby-header-title">流程分类树</span>
+                </div>
+                <div class="femi-tree-body ">
+                    <div class="femi-tree-contain">
+                        <ul id="routeTree" class="femi-left-tree treeview-famfamfam"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--任务表 -->
+        <div class="femi-full-bd" style="min-width:1000px" id="cby-task-table">
+            <div class="femi-bd-half-left femi-contain-border" style="margin-right: -2px; ">
+                <div class="cby-tree-header" style="overflow:visible;">
+                    <div class="btn-group cby-left" role="group"> 
+                        <!-- <button type="button" id="cby-add-table" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button> -->
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="cby-aroundSearch-table" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                        </button>
+                        <button class="btn btn-default" type="button" id="">
+                            <span class="glyphicon glyphicon-search"></span>查询
+                        </button>
+                    </div>
+                    <span class="cby-header-title" id="">任务表</span>
+                </div>
+                <div class="cby-tree-body">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered line-limit-length">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    
+                                    <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ProcessInstanceId">实例编号</th>
+                                    <th style="min-width: 50px" data-order="processInstanceCode">单据号</th>
+                                    <th style="min-width: 50px" data-order="Status">任务状态</th>
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <th style="min-width: 50px" data-order="AssigneeName">执行人</th>
+                                    <th style="min-width: 50px" data-order="CREATERName">创建人</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                    <th style="min-width: 150px" data-order="">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cby-tbody-taskTable" class="table-color">
+                                <tr>
+                                    <!-- <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td> -->
+                                    <td colspan="13">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="table-part">
+
+                </div>
+            </div>
+            </div>
+            
+        <!-- 干预记录表 -->
+        <div class="femi-full-bd" style="min-width:1000px" id="cby-record-table">
+            <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                <div class="cby-tree-header" style="overflow:visible;">
+                    <div class="btn-group cby-left" role="group"> 
+                        <button type="button" id="cby-return-recordTable" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>返回
+                        </button>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="cby-aroundSearch-recordTable" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                        </button>
+                        <button class="btn btn-default" type="button" id="">
+                            <span class="glyphicon glyphicon-search"></span>查询
+                        </button>
+                    </div>
+                    <span class="cby-header-title" id="">干预记录表</span>
+                </div>
+                <div class="cby-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <!-- <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th> -->
+                                    <!-- <th style="min-width: 50px" data-order="">操作</th> -->
+                                    <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="InitialPeople">初始人</th>
+                                    <th style="min-width: 50px" data-order="IntervenePeople">被指派人</th>
+                                    <th style="min-width: 50px" data-order="InterveneTime">创建时间</th>
+                                    <th style="min-width: 50px" data-order="Remark">备注</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cby-tbody-moveRecordTable" class="table-color">
+                                <tr>
+                                    <!-- <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td> -->
+                                    <td colspan="13">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/routeManage/taskMonitor.js"></script>
+</body>
+</html>

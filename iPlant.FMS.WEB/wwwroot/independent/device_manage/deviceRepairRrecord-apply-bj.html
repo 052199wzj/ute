@@ -1,0 +1,499 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>备件维修日志</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/bootstrap.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet"
+          href="../static/css/deviceManage/deviceRepairRrecord-apply-bj.css">
+
+</head>
+<body>
+    <div class="lmvt-container">
+        <div class="zzzb lmvt-container-system zace-right-XQ" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="cby-ledger"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title">维修申请详情</span>
+                </div>
+                <div id="bbb"></div>
+                <div class="Typetable-task1 lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-task1" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzf lmvt-container-system zace-right" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-Device-YC"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title">保养项</span>
+                </div>
+
+                <div class="Typetable1 lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered table-part">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="Name">保养名</th>
+                                    <th style="min-width: 50px" data-order="CareItems">注意事项</th>
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-BYlist" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="5">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzza lmvt-container-device zace-Apply">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <!--Apply 所有列表  DSH 我的申请  SP我的审批  QR我的确认-->
+                        <!--<button type="button" id="zace-Device-Rrecord"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>设备维修日志
+                        </button>-->
+
+                        <button type="button" id="zace-Device-task"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>维修记录
+                        </button>
+                        <button type="button" id="zace-Device-search"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                        <button type="button" id="zace-export-Device-Apply"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Device-Apply"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>所有列表
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-right">
+
+                                <li class="device_property" id="zace-All-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>所有列表
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-SQ-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>我的申请
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-SP-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-right" aria-hidden="true"></span>我的审批
+                                    </a>
+                                </li>
+                                <!--<li class="device_property" id="zace-QR-Device-Apply">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的确认
+                                </a>
+                            </li>-->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <span class="lmvt-header-title">备件维修申请单</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part" id="deviceePart-All">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 60px" data-order="ID">编号</th>
+                                    <th style="min-width: 60px" data-order="ApplyNo">申请单号</th>
+                                    <th style="min-width: 60px" data-order="FactoryID">工厂</th>
+                                    <th style="min-width: 60px" data-order="BusinessUnitID">部门</th>
+                                    <th style="min-width: 60px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 60px" data-order="LineID">产线</th>
+                                    <th style="min-width: 60px" data-order="ModelID">备件型号</th>
+                                    <th style="min-width: 60px" data-order="LedgerID">备件编码</th>
+                                    <th style="min-width: 80px" data-order="TypeID">模板名</th>
+                                    <!--<th style="min-width: 80px" data-order="RepairItemOptions">维修项列表</th>-->
+                                    <th style="min-width: 60px" data-order="ApplicantID">申请人</th>
+                                    <th style="min-width: 60px" data-order="ApplicantTime">申请时间</th>
+                                    <th style="min-width: 60px" data-order="TaskTime">任务时刻</th>
+                                    <th style="min-width: 60px" data-order="ApproverID">审批人</th>
+                                    <th style="min-width: 60px" data-order="ApproverTime">审批时间</th>
+                                    <!--<th style="min-width: 60px" data-order="RepairmanID">维修人</th>-->
+                                    <!--<th style="min-width: 60px" data-order="ConfirmTime">确认时间</th>
+                                    <th style="min-width: 60px" data-order="ConfirmID">确认人</th>-->                                   
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+                                    <th style="min-width: 50px" data-order="Reason">理由</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+                                    <!--<th style="min-width: 50px" data-order="DSType">DSType</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-Apply" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="18">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzc lmvt-container-device zace-DSH" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-add-Device-DSH"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>申请
+                        </button>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-left">
+
+                                <!--<li class="device_property" id="zace-DSH-Device-DSH">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>待审核
+                                </a>
+                            </li>-->
+
+                                <li class="device_property" id="zace-chexiao-Device-DSH">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>撤销
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-edit-Device-DSH">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li class="device_property" id="zace-export-Device-DSH">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <button type="button" id="zace-XQ-DSH"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看详情
+                        </button>
+                        <button type="button" id="zace-BYlist-DSH"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>维修项
+                        </button>
+                        <!--<button type="button" id="zace-BYlist-refresh"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button>-->
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Device-DSH"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的申请
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-right">
+
+                                <li class="device_property" id="zace-All-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>所有列表
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-SQ-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>我的申请
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-SP-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-right" aria-hidden="true"></span>我的审批
+                                    </a>
+                                </li>
+                                <!--<li class="device_property" id="zace-QR-Device-Apply">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的确认
+                                </a>
+                            </li>-->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <span class="lmvt-header-title">备件维修申请单</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part" id="deviceePart-Apply">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 60px" data-order="ID">编号</th>
+                                    <th style="min-width: 60px" data-order="ApplyNo">申请单号</th>
+                                    <th style="min-width: 60px" data-order="FactoryID">工厂</th>
+                                    <th style="min-width: 60px" data-order="BusinessUnitID">部门</th>
+                                    <th style="min-width: 60px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 60px" data-order="LineID">产线</th>
+                                    <th style="min-width: 60px" data-order="ModelID">备件型号</th>
+                                    <th style="min-width: 60px" data-order="LedgerID">备件编码</th>
+                                    <th style="min-width: 80px" data-order="TypeID">模板名</th>
+                                    <!--<th style="min-width: 80px" data-order="RepairItemOptions">维修项列表</th>-->
+                                    <th style="min-width: 60px" data-order="ApplicantID">申请人</th>
+                                    <th style="min-width: 60px" data-order="ApplicantTime">申请时间</th>
+                                    <th style="min-width: 60px" data-order="TaskTime">任务时刻</th>
+                                    <th style="min-width: 60px" data-order="ApproverID">审批人</th>
+                                    <th style="min-width: 60px" data-order="ApproverTime">审批时间</th>
+                                    <!--<th style="min-width: 60px" data-order="RepairmanID">维修人</th>-->
+                                    <!--<th style="min-width: 60px" data-order="ConfirmTime">确认时间</th>
+                                   <th style="min-width: 60px" data-order="ConfirmID">确认人</th>-->
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+                                    <th style="min-width: 50px" data-order="Reason">理由</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+                                    <!--<th style="min-width: 50px" data-order="DSType">DSType</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-DSH" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="18">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzd lmvt-container-device zace-SP" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+                        <button type="button" id="zace-YSH-Device-SP"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>审核
+                        </button>
+                        <button type="button" id="zace-YSH-Device-FSP"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>反审核
+                        </button>
+                        <button type="button" id="zace-BH-Device-SP"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>驳回
+                        </button>
+
+                        <button type="button" id="zace-export-Device-SP"
+                                class="btn btn-default">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Device-SP"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <!--<button type="button" id="zace-export-Device-SP"
+                            class="btn btn-default">
+                        <span class="glyphicon glyphicon-share" aria-hidden="true"></span>导出
+                    </button>-->
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的审批
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-right">
+
+                                <li class="device_property" id="zace-All-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>所有列表
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-SQ-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>我的申请
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-SP-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-right" aria-hidden="true"></span>我的审批
+                                    </a>
+                                </li>
+                                <!--<li class="device_property" id="zace-QR-Device-Apply">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的确认
+                                </a>
+                            </li>-->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <span class="lmvt-header-title">备件维修申请单</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part" id="deviceePart-SP">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 60px" data-order="ID">编号</th>
+                                    <th style="min-width: 60px" data-order="ApplyNo">申请单号</th>
+                                    <th style="min-width: 60px" data-order="FactoryID">工厂</th>
+                                    <th style="min-width: 60px" data-order="BusinessUnitID">部门</th>
+                                    <th style="min-width: 60px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 60px" data-order="LineID">产线</th>
+                                    <th style="min-width: 60px" data-order="ModelID">备件型号</th>
+                                    <th style="min-width: 60px" data-order="LedgerID">备件编码</th>
+                                    <th style="min-width: 80px" data-order="TypeID">模板名</th>
+                                    <!--<th style="min-width: 80px" data-order="RepairItemOptions">维修项列表</th>-->
+                                    <th style="min-width: 60px" data-order="ApplicantID">申请人</th>
+                                    <th style="min-width: 60px" data-order="ApplicantTime">申请时间</th>
+                                    <th style="min-width: 60px" data-order="TaskTime">任务时刻</th>
+                                    <th style="min-width: 60px" data-order="ApproverID">审批人</th>
+                                    <th style="min-width: 60px" data-order="ApproverTime">审批时间</th>
+                                    <!--<th style="min-width: 60px" data-order="RepairmanID">维修人</th>-->
+                                    <!--<th style="min-width: 60px" data-order="ConfirmTime">确认时间</th>
+                                     <th style="min-width: 60px" data-order="ConfirmID">确认人</th>-->                                   
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+                                    <th style="min-width: 50px" data-order="Reason">理由</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+                                    <!--<th style="min-width: 50px" data-order="DSType">DSType</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-SP" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="18">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/deviceManage/deviceRepairRrecord-apply-bj.js"></script>
+
+</body>
+</html>

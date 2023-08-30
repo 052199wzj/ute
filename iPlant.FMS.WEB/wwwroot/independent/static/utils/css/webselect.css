@@ -1,0 +1,39 @@
+#Navigation ul li {
+  list-style: none;
+}
+#Navigation ul li a{
+ text-decoration : none;
+ color: #7abbfc;
+ background-color: transparent;
+ font-size: 20px;
+}
+.view .m-table .List_department{
+  padding-left: 0px;
+}
+.view .m-table .List_people{
+  padding-left: 0px;
+}
+.view .m-table .List_department li{
+  list-style: none;
+}
+.view .m-table .List_people li{
+  list-style: none;
+}
+.m-right-area a{
+  text-decoration : none;
+}
+.PersonSelection ul li {
+  float: left;
+  list-style: none;
+  border: 1px solid #7abbfc;
+}
+.PersonSelection ul li a{
+ text-decoration : none;
+ color: #7abbfc;
+ background-color: transparent;
+ font-size: 14px;
+}
+.SelectDate{
+  list-style: none;
+    margin-left: -40px;
+}

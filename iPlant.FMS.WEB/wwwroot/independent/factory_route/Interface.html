@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>性能日志</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_route/Interface.css" />
+</head>
+
+<body class="femi-font-size-middle">
+ 
+    <div class="zace-leftContain">
+        <div class="zzza zace-cbd-contain zace-left" style="min-width:900px">
+
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+
+                        <button type="button" id="zace-Device-searchface" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="zace-search-Device-item"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-Device-search" class="btn btn-default">
+                        <span class="" aria-hidden="true"></span>筛选
+                    </button>
+
+
+                </div>
+
+                <span class="zace-header-title  zace-titleText">接口日志</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll table-ZaceQTProcessRecord">
+                 
+                    <table class="table   table-hover table-bordered table-ZaceQTProcessRecordTable">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="width: 80px" data-order="ID">序号</th>
+                                <th style="min-width: 80px" data-order="ProjectName">服务名称</th>
+                                <!-- <th style="min-width: 20px" data-order="LoginID">登录人</th> -->
+                                <!-- <th style="min-width: 20px" data-order="CompanyID">公司名称</th> -->
+                                <th style="min-width: 50px" data-order="URI">路径</th>
+                                <th style="min-width: 50px" data-order="Method">方法</th>
+                                <th style="min-width: 80px;" data-order="Params">参数</th>
+                                <th style="min-width: 80px;" data-order="Result">结果</th>
+                                <!-- <th style="min-width: 80px" data-order="RequestTime">请求时间</th>
+                                <th style="min-width: 80px" data-order="ResponseTime">响应时间</th> -->
+                                <th style="min-width: 80px" data-order="RequestBody">请求头</th>
+                                <th style="min-width: 80px" data-order="IntervalTime">耗时(ms)</th>
+                                <th style="min-width: 60px" data-order="ResponseStatus">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="femi-Device-tbody-item" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </td>
+                                <td colspan="14">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+
+            </div>
+
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_route/Interface.js"></script>
+</body>
+
+</html>

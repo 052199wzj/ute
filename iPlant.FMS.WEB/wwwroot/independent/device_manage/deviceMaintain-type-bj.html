@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>备件保养模板</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/bootstrap.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/base.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/css/deviceManage/deviceMaintain-type-bj.css">
+
+</head>
+<body>
+    <div class="lmvt-container">
+        <div class="zzzb lmvt-container-system zace-right" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <!--<button type="button" id="zace-add-Device-Type_"
+                            class="btn lmvt-def-btn ">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>-->
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-edit-Device-TypeYC"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title">保养项</span>
+                </div>
+
+                <div class="Typetable1 lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <th style="min-width: 50px" data-order="ModelID">备件型号</th>
+                                    <th style="min-width: 50px" data-order="CareItem">注意事项</th>
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-Type_" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="11">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="zzzc lmvt-container-system zace-right-XQ" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="cby-edit-ledger-YINC"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title">保养模板详情</span>
+                </div>
+                <div id="bbb"></div>
+                <div class="Typetable-type lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-Regular1"class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="zzza lmvt-container-device zace-left">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-type-search-Type"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>保养项目
+                        </button>
+                        <button type="button" id="zace-add-Device-Type" class="btn lmvt-danger-btn">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        <!-- <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-left">
+
+                                <li class="device_property" id="zace-add-Device-Type">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li> -->
+                                <!--<li class="device_property" id="zace-delete-Device-Type">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                                    </a>
+                                </li>-->
+                                <!-- <li class="device_property" id="zace-edit-Device-Type">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li class="device_property" id="zace-active-Device-Type">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property" id="zace-remove-Device-Type">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div> -->
+                        <button type="button" id="zace-export-Device-Type"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn " style="padding: 0">
+                            <input type="text" id="zace-search-Device-Type"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+
+                        <div class="btn-group">
+                            <button type="button" id="zace-type-X"
+                                    class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>保养项
+                            </button>
+                            <!--<button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-right">
+
+                                <li class="device_property" id="zace-type-search-XQ">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>详情
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-type-X">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>保养项
+                                    </a>
+                                </li>
+
+                            </ul>-->
+
+                        </div>
+                    </div>
+
+                    <span class="lmvt-header-title">备件保养模板</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part" id="deviceSparePart1">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <!-- <th style="min-width: 50px" data-order="FactoryID">工厂</th> -->
+                                    <th style="min-width: 50px" data-order="BusinessUnitID">部门</th>
+                                    <th style="min-width: 50px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+                                    <th style="min-width: 50px" data-order="ModelID">备件型号</th>
+                                    <th style="min-width: 50px" data-order="MaintainOptions">可选项</th>
+                                    <th style="min-width: 50px" data-order="AgainInterval">间隔时间</th>
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">录入人</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">录入时刻</th>
+                                    <th style="min-width: 50px" data-order="EditorID">修改人</th>
+                                    <th style="min-width: 50px" data-order="EditTime">修改时刻</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                    <th style="max-width: 80px">操作</th>
+                                    <!--<th style="min-width: 50px" data-order="BaseID">基地</th>-->
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-Type" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="20">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script type="text/javascript" src="../static/utils/require.js"></script>
+	<script type="text/javascript" src="../static/js/deviceManage/deviceMaintain-type-bj.js"></script>
+
+</body>
+</html>

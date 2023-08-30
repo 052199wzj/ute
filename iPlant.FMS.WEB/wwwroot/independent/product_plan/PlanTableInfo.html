@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>月详情检修报表</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/PlanTableInfo.css" />
+</head>
+
+<body class="femi-font-size-middle " style="min-width:1200px">
+    <div class="zace-cbd-contain gante" style="">
+        <div class="zace-ganteAll right-middle-zace">
+
+            <div class="zace-leftContain">
+                <div class="lmvt-container-header-btn" style="">
+
+                    <div class="btn-group" role="group">
+                        
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>状态：<span class="lmvt-changeOption">全部</span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="" id="lmvt-doing">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>在修中
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="" id="lmvt-back">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>待回送
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="" id="lmvt-out">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已出厂
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="" id="lmvt-AllData">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>全部
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>修程：<span class="lmvt-changeLine">全部</span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="" id="lmvt-five">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>C5
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="" id="lmvt-six">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>C6
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="" id="lmvt-AllLine">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>全部
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <span style="font-size:30px;font-family: STXinwei;color: #00688B;">和谐型电力机车检修生产日报明细<span class="lmvt-Year">2020</span></span>
+                    <div class="columns columns-right btn-group pull-right">
+                        <!--<button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="alfie-search-Device-item" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                        </button>
+                        <button type="button" id="lmvt-LikeString-Search" class="btn btn-default ">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button>-->
+                        <button class="btn btn-default" type="button" id="lmvt-search">
+                            <span class="glyphicon glyphicon-search"></span>查询
+                        </button>
+                    </div>
+                </div>
+                <div class="lmvt-container-table" style="height: 100%;
+    float: left;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+    width: 100%;">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="lmvt-order-thead" style="background-color: aliceblue;">
+                                    <th colspan="2">台车</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-order-body table-color">
+                                <!--<tr style="">
+                        <td rowspan="9">1月</td>
+                        <td rowspan="3">C5</td>
+                        <td>计划完工</td>
+                    </tr>
+                    <tr style="">
+                        <td>实际完工</td>
+                    </tr>
+                    <tr style="">
+                        <td>落后计划</td>
+                    </tr>
+
+
+                    <tr>
+                        <td rowspan="3">C6</td>
+                        <td>计划完工</td>
+                    </tr>
+                    <tr style="">
+                        <td>实际完工</td>
+                    </tr>
+                    <tr style="">
+                        <td>落后计划</td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="3">C6</td>
+                        <td>计划完工</td>
+                    </tr>
+                    <tr style="">
+                        <td>实际完工</td>
+                    </tr>
+                    <tr style="">
+                        <td>落后计划</td>
+                    </tr>-->
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/PlanTableInfo.js"></script>
+
+</body>
+
+</html>

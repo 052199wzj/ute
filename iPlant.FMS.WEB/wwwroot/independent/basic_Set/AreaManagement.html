@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>区域管理</title>
+  <!-- <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap-switch.min.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/basicSet/AreaManagement.css"/>
+</head>
+
+<body class="femi-font-size-middle">
+<div class="zace-leftContain">
+  <div class="zace-cbd-contain">
+
+    <div
+        class="lmvt-container-device"
+        style="height: 100%;width: 100%;min-width: 1420px"
+    >
+
+      <div class="zace-tree-header zace-tree-header-one" style="overflow:visible;">
+        <!-- 头部查询 -->
+        <div class="lmvt-container-header-top" style="height: 45px;">
+          <div class="row" style="background: #fff;padding: 4px 3px 0px 0px">
+            <!-- 输入查询 -->
+            <div class="col-xs-2 " style="width:300px; margin-right: 20px">
+              <div class="input-group">
+                <span class="input-group-addon">输入查询</span>
+                <input
+                    type="text" class="form-control" placeholder="区域名称" id="alfie-query-Code"
+                    aria-describedby="basic-addon3"
+                >
+              </div>
+            </div>
+            <!-- 状态 -->
+            <div class="col-xs-2" style="width:250px;margin-right: 20px">
+              <div class="input-group">
+                <span class="input-group-addon" style="height: 10px">状态</span>
+                <div class="fzy-select-style">
+                  <select
+                      class="form-control selectpicker show-tick search-content-Status"
+                      data-actions-box="true" data-live-search="true" id="alfie-query-status"
+                  >
+                    <option value="-1" selected>全部</option>
+                    <option value="1">激活</option>
+                    <option value="2">关闭</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-2" style="width:150px;margin-right: 30px">
+
+              <button
+                  type="button" id="lmvt-search" class="btn lmvt-danger-btn lmvt-default-btn"
+                  style="border: 0"
+              >
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                查询
+              </button>
+              <button
+                  type="button" id="lmvt-reset"
+                  class="btn btn-default lmvt-default-btn lmvt-def-btn"
+              >
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                重置
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="zace-tree-body zace-tree-body-one">
+        <div
+            class="lmvt-container-header-bottom" style="height: 45px;
+                    text-align: center;overflow: visible;
+                    width: 100%"
+        >
+          <div style="float: left;"><span
+              style="font-family: STXinwei;
+                            font-size: 20px;
+                            color: black;
+                            width: 200px;
+                            line-height: 40px;
+                            cursor: default;
+                            text-align: center;
+                            margin: auto;
+                            height: 40px;
+                        "
+          >区域管理</span></div>
+          <!-- <div class="femi-toolbar-self femi-lf">
+              <div class="btn-group" role="group">
+
+              </div>
+          </div> -->
+          <div class="columns columns-right btn-group pull-right">
+            <button type="button" id="alfie-add-level" class="btn btn-default btn-defaultNew">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
+            </button>
+          </div>
+
+        </div>
+        <div class="femi-tb-scroll table-part" style="height:calc(100% - 45px)">
+          <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+              <!-- <th style="width: 3px">
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </th> -->
+              <th style="width: 80px;" data-order="ID">序号</th>
+              <th style="min-width: 50px" data-order="Code">区域编码</th>
+              <th style="min-width: 50px" data-order="Name">区域名称</th>
+              <th style="min-width: 50px" data-order="ParentName">上级区域名称</th>
+              <th style="min-width: 50px" data-order="OperatorName">操作人</th>
+              <th style="min-width: 50px" data-order="OperateTime">操作时间</th>
+              <th style="min-width: 50px" data-order="Remark">描述</th>
+              <th style="min-width: 50px" data-order="Active">状态</th>
+              <th style="min-width: 50px" data-order="Operate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="femi-Device-tbody-item" class="table-color">
+            <tr>
+              <td>
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </td>
+              <td colspan="18">等待数据加载...</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/AreaManagement.js"></script>
+</body>
+
+</html>

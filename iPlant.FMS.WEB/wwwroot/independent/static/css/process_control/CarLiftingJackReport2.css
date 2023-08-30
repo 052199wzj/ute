@@ -1,0 +1,703 @@
+html {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: calc(100% - 10px);
+    margin: 0;
+    padding: 0;
+    background-color: rgb(238, 238, 238);
+    min-width: 1000px;
+}
+
+.fzy-title {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: black;
+    cursor: default;
+}
+
+.fxy-right-content {
+    width: calc(100% - 10px);
+    height: 100%;
+    margin: 5px 5px 0 5px;
+    padding: 0 0 5px 0;
+    overflow-y: auto;
+    min-width: 1500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fxy-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    padding: 0 20px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+.fxy-head > .title {
+    font-size: 26px;
+    font-weight: bold;
+    color: rgb(133, 133, 133);
+}
+
+.green {
+    color: rgb(81, 211, 81);
+    font-weight: bold;
+}
+
+.red-font {
+    color: rgb(217, 0, 27);
+}
+
+.fxy-entirety {
+    width: 100%;
+    padding: 20px 0;
+    background-color: white;
+}
+
+.fxy-entirety > .title {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.fxy-carriage {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.fxy-carriage > .carriage-list {
+    width: 12%;
+    height: 260px;
+}
+
+.fxy-carriage > .carriage-list > .carriage {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fxy-carriage > .carriage-list > .carriage > .box {
+    width: 80%;
+    height: 70%;
+    border: 1px solid #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fxy-carriage > .carriage-list > .carriage > .wheel {
+    width: 80%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.fxy-carriage > .carriage-list > .carriage > .wheel > div {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.fxy-carriage > .carriage-list > .carriage > .wheel > div > div {
+    width: 28%;
+    height: 80%;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    margin: 0 5%;
+}
+
+.fxy-carriage > .carriage-list > .carriage > .wheel > .right {
+    flex-direction: row-reverse;
+}
+
+.fxy-carriage > .carriage-list > .light {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.carriage-list > .light > div {
+    width: 48%;
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.light > div > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top > .yellow,
+.bottom > .yellow {
+    width: 80%;
+    border: 10px solid yellow;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top > .yellow{
+    border-top: none;
+}
+.bottom > .yellow{
+    border-bottom: none;
+}
+
+.top > .yellow.error,
+.bottom > .yellow.error {
+    border-color: red;
+}
+
+.restError {
+    background-color: red;
+}
+
+.restError .top > .yellow,
+.restError .bottom > .yellow {
+    border-color: transparent !important;
+}
+
+
+.alarm-light {
+    border: 1px solid #000000;
+    width: 30px;
+    height: 30px;
+    margin: 10px 0;
+}
+
+.Reacttop {
+    width: 40px;
+    height: 0px;
+    margin-top: 15px;
+    margin-left: -5px;
+    border-bottom: 1px solid darkgray;
+    transform: rotate(
+            45deg
+    );
+}
+
+.Reactbottom {
+    width: 36px;
+    height: 1px;
+    margin-top: -1px;
+    margin-left: -4px;
+    border-bottom: 1px solid darkgray;
+    transform: rotate(
+            -45deg
+    );
+}
+
+.alarm-light.error {
+    background-color: red;
+}
+
+.alarm-light.error .Reacttop,
+.alarm-light.error .Reactbottom {
+    border-color: #ccc;
+}
+
+/*公共样式-start*/
+th {
+    background-color: rgb(215, 215, 215);
+    border-color: rgb(233, 233, 233);
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.circle {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(112, 182, 3) !important;
+}
+
+.gray {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    margin: 10px 0;
+}
+
+.borders {
+    border: 1px solid rgb(233, 233, 233);
+    padding: 10px;
+}
+
+.red {
+    background-color: red !important;
+}
+
+.green {
+    color: rgb(112, 182, 3) !important;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.lmvt-def-btn {
+    color: #0ea9f7;
+    background-color: #fff;
+    border-color: #0ea9f7;
+    opacity: 0.8;
+}
+
+.click {
+    display: flex;
+    justify-content: space-around;
+}
+
+.lookOver {
+    color: #0ea9f7;
+    cursor: pointer;
+}
+
+.status {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.status-click {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.status-hue {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #9b9b9b;
+    margin: 0 10px;
+}
+
+.fxy-search {
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    background-color: white;
+}
+
+.Device-search {
+    width: 21%;
+}
+
+.Device-search > button {
+    margin-right: 10px;
+}
+
+.btn-info {
+    background-color: rgb(14, 169, 247);
+}
+
+.area {
+    width: 100% !important;
+}
+
+.area-style {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date {
+    width: 50% !important;
+}
+
+.search-btn {
+    margin-left: 30px;
+    padding: 0;
+}
+
+.h-border {
+    border-bottom: 1px solid rgb(242, 242, 242);
+    padding: 20px;
+}
+
+.font-red {
+    color: red;
+}
+
+.pure-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #dddddd;
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial, sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td, .pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.pure-table td {
+    background-color: transparent;
+}
+
+.pure-table-bordered td {
+    border-bottom: 1px solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.pure-table-bordered tbody > tr:last-child > td {
+    border-bottom-width: 0;
+}
+
+.fixed-header-table {
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+}
+
+.fixed-header-table .pure-table {
+    width: 100%;
+}
+
+.fixed-header-table tbody tr:hover {
+    background-color: rgb(249, 196, 83);
+}
+
+.go-back {
+    margin: 15px 0 0 15px;
+}
+
+.fixed-header-table table {
+    background-color: rgb(215, 215, 215) !important;
+}
+
+.fixed-header-table table tbody {
+    display: block;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.fixed-header-table table thead, .fixed-header-table table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
+    text-align: center;
+}
+
+.fixed-header-table thead th, .fixed-header-table tbody td {
+    width: 50px;
+}
+
+.fixed-header-table table thead {
+    width: calc(100% - 1.2em); /*表头与表格垂直对齐*/
+}
+
+.fixed-header-table tr {
+    border-bottom: 1px solid rgb(233, 233, 233);
+    background-color: white;
+}
+
+.table-box {
+    width: 100%;
+    height: 100%;
+    padding: 0 ;
+}
+
+.parting {
+    width: 100%;
+    height: 0;
+    border-top: 5px solid rgb(242, 242, 242);
+    border-bottom: 5px solid rgb(242, 242, 242);
+    margin: 15px 0;
+
+}
+
+.gray {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+/*公共样式-end*/
+.moveche-vehicle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+/* 最上层标题-start */
+.fxy-move {
+    width: 49%;
+    height: 390px;
+    display: inline-block;
+}
+
+.fxy-move > .fxy-time {
+    margin: 1% 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.fxy-move .fxy-time > span {
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.fxy-move span > .glyphicon-record {
+    color: gray;
+}
+
+.fxy-move .fxy-time > .time-newdate {
+    font-size: 16px;
+}
+
+
+/* 最上层标题-end */
+
+
+/* 架车机模型-start */
+
+.fxy-move > .fxy-diagrammatic {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-around;
+    margin: 1% 0;
+}
+
+.fxy-move > .fxy-diagrammatic > .box {
+    width: 180px;
+    height: 300px;
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fxy-move .box > .warp {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.fxy-move .warp > .light {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fxy-move .light > .number {
+    width: 30%;
+    height: 20%;
+    font-size: 14px;
+    text-align: center;
+}
+
+.fxy-move .light > .yellow {
+    width: 70%;
+    height: 20%;
+    background-color: rgb(255, 255, 0);
+    border: 1px solid #000;
+}
+
+.fxy-move .light > .green {
+    width: 100%;
+    height: 35%;
+    background-color: rgb(112, 182, 3);
+    border: 1px solid #000;
+}
+
+.fxy-move .light > .white {
+    width: 50%;
+    height: 25%;
+    border: 1px solid #000;
+    background-color: white;
+}
+
+.fxy-move .box > .middle {
+    width: 80%;
+    height: 25%;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*表格*/
+
+
+/*安全螺母和承载螺母间隙及磨耗量*/
+.abrasion {
+    padding: 0;
+}
+
+.abrasion > .title {
+    font-size: 20px;
+}
+.abrasion  .fzy-page-center-box{
+    margin-top: 0;
+}
+
+
+.pure-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #dddddd;
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial, sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td, .pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+.pure-table tr:hover {
+    background-color: rgb(249, 196, 83);
+}
+.pure-table td {
+    background-color: transparent;
+    height: 100%;
+}
+
+.pure-table-bordered td {
+    border-bottom: 1px solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.pure-table-bordered tbody > tr:last-child > td {
+    border-bottom-width: 0;
+}
+
+
+/* 时间选择器样式 start */
+
+.input-date-box {
+    display: flex;
+    overflow: hidden;
+    width: 400px;
+    height: 34px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.input-date-box .label {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 34px;
+    background-color: #eeeeee;
+    border-right: 1px solid #cccccc;
+    border-radius: 0 !important;
+    font-size: 14px;
+    font-weight: normal;
+    color: #555555;
+}
+
+.input-date-box .el-range-separator {
+    width: 23px !important;
+}
+
+.input-date-box .el-input__inner {
+    width: 100% !important;
+    height: 34px !important;
+    border: 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* 时间选择器样式 end */
+.glyphicon{
+    margin-bottom: 5px;
+}
+.input-select-box .el-input__inner {
+    padding-bottom: 0;
+    padding-top: 0;
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DMSRunIntervalConfig xmlns@xsd="http://www.w3.org/2001/XMLSchema" xmlns@xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <DeviceMaintain>6000</DeviceMaintain>
+  <SpareMaintain>60000</SpareMaintain>
+  <DeviceCheck>60000</DeviceCheck>
+  <DeviceRepair>60000</DeviceRepair>
+  <SpareRepair>60000</SpareRepair>
+  <DeviceWarning>60000</DeviceWarning>
+  <SpareWarning>60000</SpareWarning>
+</DMSRunIntervalConfig>

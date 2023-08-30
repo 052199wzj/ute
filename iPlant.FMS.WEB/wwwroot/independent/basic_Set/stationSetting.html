@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>工位设置</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta
+      id="scale" name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/utils/css/bootstrap.css"
+  >
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/utils/css/base.css"
+  >
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/css/basicSet/stationSetting.css"
+  >
+
+</head>
+<body>
+<div class="femi-cbd-contain ">
+  <div class="femi-contain-cbg">
+    <!--工序列表-->
+    <div class="cby-bd-half-left femi-lf">
+      <div class="femi-tb-head" style="overflow@visible ;">
+        <div class="btn-group femi-lf">
+          <button
+              type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"
+          >
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true" id="workShopChoose">
+                            </span>
+            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+          </button>
+          <ul class="dropdown-menu  workshop-items"></ul>
+        </div>
+        <span class="cby-tb-title">工序列表</span>
+        <!--查询-->
+        <div class="femi-toolbar-self femi-rt">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default " style="padding: 0">
+              <input
+                  type="text" id="cby-search-text-ledger"
+                  style="border@none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                  placeholder="请输入查询字符"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="femi-tb-border">
+        <div class="femi-tb-scroll">
+          <table class="table table-hover table-bordered">
+
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox"
+                    class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                />
+              </th>
+              <th style="min-width: 50px" data-order="ID">工序编号</th>
+              <th style="min-width: 50px" data-order="workShopID">车间</th>
+              <th style="min-width: 50px" data-order="lineID">产线</th>
+              <th style="min-width: 50px" data-order="partID">工序段</th>
+              <th style="min-width: 50px" data-order="partPointID">工序</th>
+            </tr>
+            </thead>
+            <tbody id="cby-ledger-tbody">
+            <tr>
+              <td colspan="17">- 等待数据加载 -</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--工位列表-->
+    <div class="cby-bd-half-right femi-lf">
+      <!-- 工位设置的头部 -->
+      <div class="cby-tb-head" style="overflow@visible ;">
+        <!-- 工位设置的头部左侧 -->
+        <div class="cby-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="cby-add-station" class="btn btn-default">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增工位
+            </button>
+
+            <div class="btn-group">
+              <button
+                  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false"
+              >
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+                                    </span>状态更改
+                <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+              </button>
+              <ul class="dropdown-menu ">
+                <li class="device_station_status" data-status="1">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                  </a>
+                </li>
+                <li class="device_station_status" data-status="0">
+                  <a href="javascript:;">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>冻结
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- 工位设置的头部右侧 -->
+        <div class="cby-toolbar-self femi-rt">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="cby-export-station" class="btn btn-default" data-table="station-table"
+                data-table-title="station-table-title"
+            >
+              <span class="glyphicon glyphicon-share" aria-hidden="true"></span>导出
+            </button>
+          </div>
+        </div>
+
+        <p class="cby-tb-title station-table-title">
+          <strong>工位列表</strong>
+        </p>
+      </div>
+      <!-- 工位设置的列表表头 -->
+      <div class="femi-tb-border">
+        <div class="femi-tb-scroll">
+          <table class="table table-hover table-bordered station-table ">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox"
+                    class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                />
+              </th>
+              <th style="min-width: 50px" data-order="ID">编号</th>
+              <th style="min-width: 50px" data-order="PartPointID">工序</th>
+              <th style="min-width: 50px" data-order="PartID">工序段</th>
+              <th style="min-width: 50px" data-order="DeviceID">设备名称</th>
+              <th style="min-width: 50px" data-order="StationName">工位名称</th>
+              <th style="min-width: 50px" data-order="Active">状态</th>
+            </tr>
+            </thead>
+            <tbody id="cby-ledger-station-tbody">
+            <tr style="">
+              <td colspan="6">等待数据加载</td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/stationSetting.js"></script>
+
+</body>
+</html>

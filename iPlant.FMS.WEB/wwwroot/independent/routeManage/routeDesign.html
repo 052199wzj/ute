@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>流程设计</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/routeManage/routeDesign.css" />
+</head>
+<body> 
+    <div class="iplant-tool-contain">
+        <div class="iplant-tool-right" style="display:none">
+            <!--版本管理-->
+            <!-- <div class="lmvt-container-type" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="femi-hide-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                        <button type="button" id="femi-add-type" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                    </div>
+                    <p class="lmvt-header-title" id="lmvt-header-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-30px;margin-left:200px">版本列表</p>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 150px" data-order="">操作</th>
+                                    <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                    <th style="min-width: 50px" data-order="id_">流程定义ID</th>
+                                    <th style="min-width: 50px" data-order="name_">流程名称</th>
+                                    <th style="min-width: 50px" data-order="version_">版本</th>
+                                    <th style="min-width: 50px" data-order="status">状态</th>
+                                    <th style="min-width: 50px" data-order="description">描述</th>
+                                    <th style="min-width: 50px" data-order="deployTime">部署时间</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplier-type table-color" id="cby-tbody-visionTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="cby-cbd-contain iplant-tool-center" style="min-width:1300px;margin-left:0px;margin-right:0px;">
+            <!-- 树 -->
+            <div class="femi-left femi-lf cby-tree-remove">
+                <div class="femi-contain-border femi-border-contain">
+                    <div class="femi-tree-head">
+                        <div class="columns columns-right btn-group pull-right">
+                            <button class="btn btn-default" type="button" id="cby-add-treeItem">
+                                <span class="glyphicon glyphicon-plus"></span>新增
+                            </button>
+                            <button class="btn btn-default" type="button" id="cby-refresh-treeItem">
+                                <span class="glyphicon glyphicon-refresh"></span>刷新
+                            </button>
+                        </div>
+                        <span style="font-size: 14px;"class="cby-header-title">流程分类树</span>
+                    </div>
+                    <div class="femi-tree-body ">
+                        <div class="femi-tree-contain">
+                            <ul id="routeTree" class="femi-left-tree treeview-famfamfam"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 表 -->
+            <div class="femi-full-bd" style="min-width:1000px" id="cby-table">
+                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <div class="btn-group cby-left" role="group"> 
+                            <!-- <button type="button" id="cby-add-table" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button> -->
+                            <button type="button" id="cby-show-all-table" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看全部
+                            </button>
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <button type="button" class="btn btn-default " style="padding: 0">
+                                <input type="text" id="cby-aroundSearch-table" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                            </button>
+                            <button class="btn btn-default" type="button" id="">
+                                <span class="glyphicon glyphicon-search"></span>查询
+                            </button>
+                        </div>
+                        <span class="cby-header-title" id="">流程定义表</span>
+                    </div>
+                    <div class="cby-tree-body femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox"
+                                                   class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                   value="{{functionID}}" />
+                                        </th>
+                                        
+                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                        <th style="min-width: 50px" data-order="id_">定义编号</th>
+                                        <th style="min-width: 50px" data-order="name_">定义名称</th>
+                                        <!-- <th style="min-width: 50px" data-order="key_">定义标识</th> -->
+                                        <th style="min-width: 50px" data-order="TreeName">定义分类</th>
+                                        <!-- <th style="min-width: 50px" data-order="version_">版本号</th> -->
+                                        <th style="min-width: 50px" data-order="modelName">模型名称</th>
+                                        <th style="min-width: 50px" data-order="deployTime">部署时间</th>
+                                        <th style="min-width: 150px" data-order="">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-tbody-designTable" class="table-color">
+                                    <tr>
+                                        <!-- <td>
+                                            <input type="checkbox" class="femi-tb-checkbox"
+                                                   style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                        </td> -->
+                                        <td colspan="13">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--流程图-->
+                <div id="cby-route-charf" class="cby-charf-down" style="overflow: auto;">
+                    <div class="femi-contain-border" style="min-width:1000px;overflow: auto;">
+                        <div class="cby-tree-header" style="overflow:visible;">
+                            <div class="btn-group cby-left" role="group"> 
+                                
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+                                
+                                <button class="btn btn-default" type="button" id="cby-return-table">
+                                    <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                                </button>
+                            </div>
+                            <span class="cby-header-title" id="">流程图</span>
+                        </div>
+                        <div style="overflow: auto;">
+    
+                            <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+                        </div>
+                    </div>
+                </div>
+                <!--明细-->
+                <div id="cby-route-detail" class="cby-charf-down femi-contain-border" style="overflow: auto;">
+                    <!--流程定义信息-->
+                    <div class="" style="min-width:1000px;overflow: auto;">
+                        <div class="cby-tree-header" style="overflow:visible;">
+                            <div class="btn-group cby-left" role="group">
+    
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+    
+                                <button class="btn btn-default" type="button" id="cby-return-table">
+                                    <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                                </button>
+                            </div>
+                            <span class="cby-header-title" id="">流程定义信息</span>
+                        </div>
+                        <div class="cby-tree-body">
+                            <div class="femi-tb-scroll">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th> -->
+                                            <th style="min-width: 150px" data-order="">操作</th>
+                                            <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                            <th style="min-width: 50px" data-order="ID_">编号</th>
+                                            <th style="min-width: 50px" data-order="NAME_">名称</th>
+                                            <th style="min-width: 50px" data-order="KEY_">标识</th>
+                                            <th style="min-width: 50px" data-order="VERSION_">版本</th>
+                                            <th style="min-width: 50px" data-order="CodDESCRIPTION_e">描述</th>
+                                            <th style="min-width: 50px" data-order="TreeName">流程分类</th>
+                                            <!-- <th style="min-width: 50px" data-order="ISUSE">是否使用</th> -->
+                                            <!-- <th style="min-width: 50px" data-order="CREATERName">创建人</th> -->
+                                            <th style="min-width: 50px" data-order="TIME">创建时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cby-tbody-designTable" class="table-color">
+                                        <tr>
+                                            <!-- <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td> -->
+                                            <td colspan="13">等待数据加载</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--更新信息-->
+                    <div class="" style="min-width:1000px;overflow: auto;">
+                        <div class="cby-tree-header" style="overflow:visible;">
+                            <div class="btn-group cby-left" role="group">
+    
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+                            </div>
+                            <span class="cby-header-title" id="">更新信息</span>
+                        </div>
+                        <div class="cby-tree-body">
+                            <div class="femi-tb-scroll">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th> -->
+                                            <th style="min-width: 150px" data-order="">操作</th>
+                                            <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                            <th style="min-width: 50px" data-order="ID_">编号</th>
+                                            <th style="min-width: 50px" data-order="NAME_">名称</th>
+                                            <th style="min-width: 50px" data-order="KEY_">标识</th>
+                                            <th style="min-width: 50px" data-order="VERSION_">版本</th>
+                                            <th style="min-width: 50px" data-order="CodDESCRIPTION_e">描述</th>
+                                            <th style="min-width: 50px" data-order="TreeName">流程分类</th>
+                                            <!-- <th style="min-width: 50px" data-order="ISUSE">是否使用</th> -->
+                                            <!-- <th style="min-width: 50px" data-order="CREATERName">创建人</th> -->
+                                            <th style="min-width: 50px" data-order="TIME">创建时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cby-tbody-designTable" class="table-color">
+                                        <tr>
+                                            <!-- <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td> -->
+                                            <td colspan="13">等待数据加载</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--版本管理-->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width: 800px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                版本管理
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="femi-full-bd" style="width: 765px;" id="cby-table">
+                                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                                    <div class="lmvt-container-header-btn">
+                                        <div class="btn-group" role="group">
+                                            <!-- <button type="button" id="femi-hide-property1" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                                            </button> -->
+                                            <!-- <button type="button" id="femi-add-type" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                            </button> -->
+                                        </div>
+                                        <p class="lmvt-header-title" id="lmvt-header-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-10px;text-align: center;">版本列表</p>
+                                    </div>
+                                    <div class="lmvt-container-table-basic femi-contain-border">
+                                        <div class="femi-tb-scroll table-part">
+                                            <table class="table table-hover table-bordered">
+                                                <thead class="cby-thead-style">
+                                                    <tr>
+                                                        <th style="width: 3px">
+                                                            <input type="checkbox"
+                                                                   class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                                   value="{{functionID}}" />
+                                                        </th>
+                                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                                        <th style="min-width: 50px" data-order="id_">流程定义ID</th>
+                                                        <th style="min-width: 50px" data-order="name_">流程名称</th>
+                                                        <th style="min-width: 50px" data-order="version_">版本</th>
+                                                        <th style="min-width: 50px" data-order="status">状态</th>
+                                                        <!-- <th style="min-width: 50px" data-order="description">描述</th> -->
+                                                        <th style="min-width: 50px" data-order="deployTime">部署时间</th>
+                                                        <th style="min-width: 150px" data-order="">操作</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="lmvt-supplier-type table-color" id="cby-tbody-visionTable"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="cby-cancer-publish">关闭
+                            </button>
+                            <!-- <button type="button" class="btn btn-primary" id="cby-sure-publish">
+                                确定
+                            </button> -->
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+        </div>
+        <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;">
+            <div id="innerdiv" style="position:absolute;">
+                <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src="" />
+            </div>
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/routeManage/routeDesign.js"></script>
+</body>
+</html>

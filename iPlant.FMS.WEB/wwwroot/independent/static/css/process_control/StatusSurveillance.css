@@ -1,0 +1,379 @@
+[v-cloak]{
+    display: none;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(238, 238, 238);
+}
+th{
+    background-color: rgb(215,215,215);
+    border-color: rgb(233,233,233);
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+.fixed-table-header{
+    background-color: rgb(215,215,215);
+}
+.fixed-table-container{
+    overflow: hidden;
+}
+.fxy-search{
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    background-color: white;
+}
+.Device-search{
+    width: 18%;
+}
+.Device-search > button{
+    margin: 0 10px;
+}
+.btn-info{
+    background-color: rgb(14, 169, 247);
+}
+.area{
+    width: 100% !important;
+}
+.area-style{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.date{
+    width: 50% !important;
+}
+.search-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*设备监视-start*/
+.equipment-drawing {
+    position: relative;
+    top: 15%;
+    left: 23%;
+    width: 350px;
+    height: 250px;
+    z-index: 999;
+    background-color: rgb(238, 238, 238);
+    box-shadow: 4px 4px 9px #a79f9f;
+    display: none;
+}
+
+.equipment-drawing > img {
+    width: 100%;
+    height: 100%;
+}
+
+#fxy-StatusSurveillance {
+    height: 100%;
+    width: 100%;
+}
+.fxy-Device-All{
+    width: 100%;
+    height: 100%;
+    margin-top: 5px;
+    background-color: white;
+    min-width: 1600px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start
+}
+.fxy-Device {
+    width: 317px;
+    height: 200px;
+    border: 5px solid rgb(215, 215, 215);
+    padding: 10px;
+    border-radius: 3%;
+    margin: 10px;
+
+}
+
+.fxy-Device > .top {
+    width: 100%;
+    height: 60%;
+    display: flex;
+}
+
+.fxy-Device > .top > img {
+    width: 30%;
+    height: 80%;
+    border-radius: 10%;
+}
+
+.fxy-Device > .top > .title {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fxy-Device > .top > .title > p {
+    width: 100%;
+    margin:0 0 0 10px;
+}
+.fxy-Device > .top > .title > p{
+    font-size: 16px;
+    color: rgb(102, 102, 102);
+    height: 50%;
+    padding-right: 5px;
+}
+.fxy-Device > .top > .title > p:nth-child(3){
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.fxy-Device > .top > .title > p:nth-child(4) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+}
+.fxy-Device > .top > .title > p:nth-child(4) > button{
+    background-color: rgb(204, 204, 204);
+    border: none;
+    border-radius: 5px;
+}
+
+.fxy-Device > .bottom {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.fxy-Device > .bottom > .icon {
+    width: 30%;
+    height: 100%;
+    color: rgb(204, 204, 204);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+.fxy-Device > .bottom > div > .glyphicon {
+    font-size: 16px;
+}
+
+.fxy-Device > .bottom > div > .text {
+    font-size: 14px;
+}
+
+.fxy-Device > .bottom > div:hover {
+    color: #000;
+}
+
+.alarm-number {
+    width: 8%;
+    height: 8%;
+    position: relative;
+    left: 84%;
+    top: 3%;
+    z-index: 10;
+}
+
+.badge {
+    background-color: rgb(248, 4, 4);
+}
+
+/*设备监视-end*/
+
+/*设备详情-start*/
+.fxy-particulars {
+    width: 100%;
+    height: 100%;
+}
+
+.tag-vessel {
+    border: none;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 8px solid rgb(242, 242, 242);
+}
+
+.tag-vessel > .go-back {
+    margin-left: 50%;
+}
+
+.tag-vessel > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+.tag-vessel > li > a {
+    color: rgb(153, 153, 153);
+    font-weight: bold;
+}
+
+.tag-vessel > .active {
+    border-bottom: 3px solid rgb(0, 121, 254);
+}
+
+.active > a {
+    border: none !important;
+
+}
+
+.tag-vessel > li:not(.active) > a:hover {
+    color: rgb(0, 121, 254);
+    background-color: white;
+    border: none;
+}
+
+/*参数信息-start*/
+.tab-content {
+    height: calc(100% - 70px);
+}
+
+.tab-content > div {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.tab-content > div::-webkit-scrollbar {
+    display: none;
+}
+
+.parameter {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.deviceName-deviceActive {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.deviceName {
+    width: 40%;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.deviceActive {
+    width: 10%;
+    font-size: 16px;
+}
+
+.device-parameter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.device-parameter > span {
+    width: 20%;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.device-img {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.device-img > img {
+    width: 60%;
+    height: 100%;
+}
+
+/*参数信息-end*/
+
+/*异常信息-start*/
+.alarm-statistics {
+    width: 100%;
+    height: 240px;
+    border-top: 1px solid rgb(242, 242, 242);
+    border-bottom: 1px solid rgb(242, 242, 242);
+    padding: 10px 20px;
+    display: flex;
+    margin-top: 30px;
+}
+
+.alarm-statistics > .title {
+    width: 30%;
+    height: 100%;
+    font-size: 14px;
+}
+.alarm-statistics > .title >p:nth-child(1) {
+    font-size: 24px;
+}
+.alarm-statistics > .title >p:nth-child(2) {
+    margin-top: 5%;
+}
+.alarm-statistics > .title >p >span {
+    font-size: 24px;
+}
+.alarm-statistics > #pie-chart{
+    width:1300px;
+    height:240px;
+}
+.alarm-now{
+    width: 100%;
+    padding: 0 20px;
+}
+.alarm-history{
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 10px;
+    height: 330px;
+
+}
+/*异常信息-end*/
+
+/*状态信息-start*/
+
+#status{
+    padding: 0 20px 10px 20px;
+}
+#device-status{
+    width: 1600px;
+    height:315px;
+    margin-top: 20px;
+}
+/*状态信息-end*/
+
+
+/*维修信息-start*/
+
+
+
+/*维修信息-end*/
+
+
+
+/*设备详情-end*/

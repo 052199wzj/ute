@@ -1,0 +1,50 @@
+#systemLog{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 5px 0;
+    background-color: rgb(238, 238, 238);
+    display: flex;
+}
+.fxy-left{
+    width: 20%;
+    height: 100%;
+    background-color: white;
+    margin: 0 5px;
+}
+.fxy-right{
+    width: calc(80% - 15px);
+    height: 100%;
+    background-color: white;
+    margin-right: 5px;
+}
+.fxy-left-heard{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.fxy-terr{
+    overflow: auto;
+}
+.fxy-log-name{
+    font-size: 16px;
+}
+.fxy-right-heard{
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+}
+.fxy-right-heard > div{
+    line-height: 50px;
+}
+.fxy-right-title{
+    color: #5ae0e0;
+    font-size: 24px;
+    text-align: center;
+}
+.fxy-right .logContent{
+    font-size: 18px;
+}

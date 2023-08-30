@@ -1,0 +1,38 @@
+﻿body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.lmvt-container {
+    height: 100%;
+    width: 100%;
+    padding: 3px 5px;
+}
+
+.lmvt-container-header-btn {
+    height: 45px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    text-align: center;
+}
+
+.lmvt-container-table {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+
+.lmvt-container-main-exception {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.lmvt-container-typt-exception {
+    float: right;
+    width: 42%;
+    height: 100%;
+}

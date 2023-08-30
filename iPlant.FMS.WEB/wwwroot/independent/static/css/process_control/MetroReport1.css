@@ -1,0 +1,694 @@
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Arial !important;
+  font-size: 14px !important;
+}
+#contain {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border-top: 5px solid rgb(238,238,238);
+}
+.imgDiv1 {
+  background-image: url(../../images/Metro/back.png);
+  position: relative;
+  height: calc(100% - 68px);
+  width: 100%;
+  top: -34px;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+#app {
+  margin: 0 auto;
+  position: relative;
+  /* background-image: url(../../images/Metro/back.png); */
+  background-repeat: no-repeat;
+  /* background-size: 100%; */
+  /* background-size: 100%; */
+  /* overflow: auto; */
+  width: 1366px;
+  /* height: calc(100% - 66px); */
+  height: 768px;
+  background-size: 100% auto;
+  /* background-size:auto 100%; */
+  background-attachment: fixed;
+  background-color: #CCCCCC;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+.imgDiv {
+  /* src: url(../../images/Metro/back.png); */
+  position: relative;
+  height: calc(100% - 66px);
+  width: 100%;
+  top: -34px;
+  z-index: 0;
+}
+.app-top {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  z-index: 2;
+  position: relative;
+  font-size: 12px;
+}
+.general{
+  margin-top: 30px;
+}
+.app-sed-switch {
+  /* width: 100%;
+    height: 20px; */
+  clear: both;
+  margin: 0 5px;
+}
+.app-sed-heght {
+  /* width: 100%;
+    height: 20px; */
+  clear: both;
+  margin: 0 5px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+.circle {
+  display: block;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  margin: 2px 2px;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+}
+.circle-red {
+  display: block; 
+  border-radius: 50%; 
+  height: 20px; 
+  width: 20px; 
+  margin: 2px 2px; 
+  border: 1px solid red;
+  background-color: red;
+}
+.circle-green {
+  display: block; 
+  border-radius: 50%; 
+  height: 20px; 
+  width: 20px; 
+  margin: 2px 2px; 
+  border: 1px solid green;
+  background-color: green;
+}
+.circle-yellow {
+  display: block; 
+  border-radius: 50%; 
+  height: 20px; 
+  width: 20px; 
+  margin: 2px 2px; 
+  border: 1px solid yellow;
+  background-color: yellow;
+}
+
+.circle-large {
+  display: block;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  margin: 2px 2px;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+  /* background-color: green; */
+}
+.circle-large-red {
+  display: block; 
+  border-radius: 50%; 
+  height: 20px; 
+  width: 20px; 
+  margin: 2px 2px; 
+  border: 1px solid red;
+  background-color: red;
+  /* background-color: green; */
+}
+
+.circle-large-yellow {
+  display: block; 
+  border-radius: 50%; 
+  height: 20px; 
+  width: 20px; 
+  margin: 2px 2px; 
+  border: 1px solid yellow;
+  background-color: yellow;
+}
+.circle-large-green {
+  display: block; 
+  border-radius: 50%; 
+  height: 20px; 
+  width: 20px; 
+  margin: 2px 2px; 
+  border: 1px solid green;
+  background-color: green;
+}
+.circle-min {
+  display: block;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  margin: 2px 2px;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+}
+.circle-min-green {
+  display: block;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  margin: 2px 2px;
+  border: 1px solid green;
+  background-color: green;
+}
+.circle-min-red {
+  display: block;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  margin: 2px 2px;
+  border: 1px solid red;
+  background-color: red;
+}
+.circle-big {
+  display: block;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  margin: 2px 2px;
+  border: 1px solid darkgray;
+  background-color: darkgray;
+}
+.circle-big-green {
+  display: block;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  margin: 2px 2px;
+  border: 1px solid green;
+  background-color: green;
+}
+.circle-big-red {
+  display: block;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  margin: 2px 2px;
+  border: 1px solid red;
+  background-color: red;
+}
+.circlePosition {
+  position: absolute;
+}
+.circleTextMa {
+  margin: 3px 0px;
+}
+.circleCircleMa {
+  margin: 0px 2px;
+}
+.circleText {
+  font-family: Arial !important;
+  font-size: 14px !important;
+  font-weight: 1000;
+  color: #6D000E;
+}
+.circleOne {
+  top: 135px;
+  left: 29px;
+}
+.circleTwo {
+  top: 135px;
+  left: 628px;
+}
+.circleThree {
+  top: 135px;
+  left: 790px;
+}
+.circleFour {
+  top: 135px;
+  left: 1227px;
+}
+.circleFive {
+  top: 211px;
+  left: 42px;
+}
+.circleSix {
+  top: 211px;
+  left: 808px;
+}
+.circleSeven {
+  top: 211px;
+  left: 1244px;
+}
+.circle-Active {
+  background-color: green;
+}
+.circle-forbidden {
+  background-color: red;
+}
+.flex-column {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.flex-row {
+  flex-direction: row;
+}
+.app-float {
+  float: left;
+}
+.flex-itemContain {
+  flex: 1;
+  /* display: flex;
+    align-items: center;
+    justify-content: center; */
+  padding: 2px;
+  margin: 2px 5px;
+  background-color: aliceblue;
+  font-weight: 1000;
+}
+.flex-css {
+  display: flex;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+ul > li {
+  position: relative;
+  width: 10px;
+  height: 12px;
+  border-bottom: 2px solid black;
+  border-left: 2px solid transparent;
+}
+ul > li + li {
+  border-left-color: black;
+}
+ul > li > a {
+  display: block;
+  position: absolute;
+  height: 12px;
+  line-height: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 4px;
+}
+ul > li > h7 {
+  display: block;
+  position: absolute;
+  height: 12px;
+  line-height: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 4px;
+  color: black;
+}
+.app-top-sed-mode {
+  width: 100%;
+  display: flex;
+  /* float: left; */
+  /* height: 100%; */
+  /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+.backOne {
+  position: absolute;
+  top: 311px;
+  left: 402px;
+  z-index: 10;
+}
+.backTwo {
+  position: absolute;
+  top: 311px;
+  left: 474px;
+  z-index: 10;
+}
+.backThree {
+  position: absolute;
+  top: 311px;
+  left: 545px;
+  z-index: 10;
+}
+.backFour {
+  position: absolute;
+  top: 311px;
+  left: 617px;
+  z-index: 10;
+}
+.backFive {
+  position: absolute;
+  top: 311px;
+  left: 688px;
+  z-index: 10;
+}
+.backSix {
+  position: absolute;
+  top: 311px;
+  left: 756px;
+  z-index: 10;
+}
+.backSeven {
+  position: absolute;
+  top: 311px;
+  left: 955px;
+  z-index: 10;
+}
+.backEight {
+  position: absolute;
+  top: 311px;
+  left: 1024px;
+  z-index: 10;
+}
+.backOneReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 400px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backOneWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backTwoReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 471px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backTwoWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backThreeReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 541px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backThreeWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backFourReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 613px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backFourWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backFiveReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 685px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backFiveWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backSixReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 753px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backSixWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backSevenReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 951px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backSevenWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.backEightReact {
+  position: absolute;
+  height: 86px;
+  width: 30px;
+  top: 272px;
+  left: 1020px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.backEightWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.waterHeaterReact {
+  left: 730px;
+  width: 110px;
+  height: 60px;
+  top: 416px;
+  position: absolute;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.waterHeaterWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  height: 24px;
+  /* z-index: 0; */
+}
+.saveWaterReact-left {
+  position: absolute;
+  height: 110px;
+  width: 33px;
+  top: 646px;
+  left: 23px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.saveWaterReactWater-left {
+  width: 100%;
+  background-color: cornflowerblue;
+  /* z-index: 0; */
+  height:  20px;
+}
+.saveWaterReact-right {
+  position: absolute;
+  height: 86px;
+  width: 92px;
+  top: 651px;
+  left: 56px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.saveWaterReactWater-right {
+  width: 100%;
+  background-color: cornflowerblue;
+  height:  0px;
+  /* z-index: 0; */
+}
+.desilterReact {
+  position: absolute;
+  height: 86px;
+  width: 221px;
+  top: 652px;
+  left: 154px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.desilterReactWater {
+  width: 100%;
+  background-color: cornflowerblue;
+  /* z-index: 0; */
+}
+.industrialCatalysisReact{
+  position: absolute;
+  height: 86px;
+  width: 115px;
+  top: 652px;
+  left: 382px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.industrialCatalysisWater{
+  width: 100%;
+  height: 24px;
+  background-color: cornflowerblue;
+  /* z-index: 0; */
+}
+.backWaterReact{
+  position: absolute;
+  height: 86px;
+  width: 119px;
+  top: 652px;
+  left: 502px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.backWaterReactWater{
+  width: 100%;
+  height: 15.4px;
+  background-color: cornflowerblue;
+  /* z-index: 0; */
+}
+.cleanWaterReact{
+  position: absolute;
+  height: 86px;
+  width: 85px;
+  top: 652px;
+  left: 626px;
+  /* background-color: cornflowerblue; */
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cleanWaterReactWater{
+  width: 100%;
+  height: 15.4px;
+  background-color: cornflowerblue;
+  /* z-index: 0; */
+}
+.waterHeater {
+  position: absolute;
+  top: 428px;
+  left: 773px;
+  z-index: 10;
+}
+.saveWater {
+  position: absolute;
+  top: 691px;
+  left: 65px;
+  z-index: 10;
+}
+.desilter {
+  position: absolute;
+  top: 679px;
+  left: 246px;
+  z-index: 10;
+}
+.industrialCatalysis {
+  position: absolute;
+  top: 679px;
+  left: 415px;
+  z-index: 10;
+}
+.backWater {
+  position: absolute;
+  top: 679px;
+  left: 565px;
+  z-index: 10;
+}
+.cleanWater {
+  position: absolute;
+  top: 679px;
+  left: 659px;
+  z-index: 10;
+}
+.app-top-fiv-top {
+  height: 100%;
+  padding: 2px 4px;
+}
+.app-top-fiv-bottom {
+  height: 40px;
+  padding: 2px 4px;
+  overflow-y: auto;
+}
+.flex-itemContain1 {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  margin: 2px;
+  background-color: aliceblue;
+  font-weight: 1000;
+}

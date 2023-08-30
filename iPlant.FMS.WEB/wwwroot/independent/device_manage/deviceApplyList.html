@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>设备申请单</title>
+    <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/deviceManage/deviceApplyList.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="femi-font-size-middle">
+    <div class="lmvt-container">
+        <div class="lmvt-container-system">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group">
+                    <button id="lmvt-table-basic-add-templet" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-import"></span>导入
+                    </button>
+                    <button class="btn lmvt-def-btn" style="display:none" type="button">
+                        <input id="input-file" type="file"/>
+                    </button>
+                    <button id="lmvt-table-basic-active-basic" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-export"></span>导出
+                    </button>
+                    <button id="femi-add-property" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>申请
+                    </button>
+                    <button
+		                    id="femi-edit-property" class="btn lmvt-def-btn "
+		                    type="button"
+                    >
+                        <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>修改
+                    </button>
+                    <button id="recall-decide" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-download"></span>撤销
+                    </button>
+                    <button id="get" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-upload"></span>提交
+                    </button>
+                    <button id="femi-decide" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-check"></span>通过审核
+                    </button>
+                    <button id="recall-confirm" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-new-window"></span>驳回
+                    </button>
+                    <button id="femi-confirm" class="btn lmvt-def-btn" type="button">
+                        <span aria-hidden="true" class="glyphicon glyphicon-saved"></span>确认
+                    </button>
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <!--<div class="btn-group">
+                        <button type="button" class="btn lmvt-def-btn dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>所有列表
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+
+                            <li class="device_status" id="myApply">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open"
+                                          aria-hidden="true"></span>我的申请
+                                </a>
+                            </li>
+                            <li class="device_status" id="myDecide">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open"
+                                          aria-hidden="true"></span>我的审批
+                                </a>
+                            </li>
+                            <li class="device_status" id="myConfirm">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open"
+                                          aria-hidden="true"></span>我的确认
+                                </a>
+                            </li>
+                        </ul> 
+                    </div>-->
+                    <button class="btn lmvt-def-btn " style="padding: 0" type="button">
+                        <input
+		                        id="femi-search-text-ledger" placeholder="请输入查询字符"
+		                        style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+		                        type="text"
+                        />
+                    </button>
+                    <button id="lmvt-left-check" class="btn lmvt-def-btn" type="button">
+                        <span class="glyphicon glyphicon-search"></span>查询
+                    </button>
+                </div>
+                <p
+		                class="lmvt-header-title"
+		                style=" font-family: STXinwei;font-size: 20px;color: #00688b;position:relative;left:60%;top:-28px;z-index:-1;width:150px"
+                >设备申请单</p>
+            </div>
+
+            <div class="lmvt-container-table-basic femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input
+		                                    class="femi-tb-checkbox"
+		                                    style="margin: 1px 0px 1px" type="checkbox"
+		                                    value="{{functionID}}"
+                                    />
+                                </th>
+                                <th data-order="ID" style="min-width: 50px">序号</th>
+                                <th data-order="ApplyNo" style="min-width: 50px">申请单</th>
+                                <th data-order="ModelID" style="min-width: 50px">设备型号</th>
+                                <th data-order="BusinessUnitID " style="min-width: 50px">部门</th>
+                                <th data-order="WorkShopID" style="min-width: 50px">车间</th>
+                                <th data-order="LineID" style="min-width: 50px">产线</th>
+                                <th data-order="ApplicantID " style="min-width: 50px">申请人</th>
+                                <th data-order="ApplicantTime " style="min-width: 50px">申请时刻</th>
+                                <th data-order="ApproverID " style="min-width: 50px">审批人</th>
+                                <th data-order="ApproverTime " style="min-width: 50px">审批时刻</th>
+                                <th data-order="ConfirmID" style="min-width: 50px">确认人</th>
+                                <th data-order="ConfirmTime  " style="min-width: 50px">确认时刻</th>
+                                <th data-order="Status " style="min-width: 50px">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-system-body table-color"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+	    <!--<div class="lmvt-container-apply" style="display:none">
+					<div class="lmvt-container-header-btn">
+							<div class="btn-group" role="group">
+
+									<button type="button" id="femi-add-property" class="btn lmvt-def-btn">
+											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>申请
+									</button>
+									<button type="button" id="femi-edit-property"
+													class="btn lmvt-def-btn ">
+											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+									</button>
+									<button type="button" id="recall-decide" class="btn lmvt-def-btn">
+											<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>撤销
+									</button>
+									<button type="button" id="get" class="btn lmvt-def-btn">
+											<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>提交
+									</button>
+
+							</div>
+							<div class="columns columns-right btn-group pull-right">
+									<div class="btn-group">
+											<button type="button" class="btn lmvt-def-btn dropdown-toggle"
+															data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+													<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的申请单
+													<span class="caret"></span> <span class="sr-only">
+															Toggle
+															Dropdown
+													</span>
+											</button>
+											<ul class="dropdown-menu">
+													<li class="device_status" id="spareApply">
+															<a href="javascript:;">
+																	<span class="glyphicon glyphicon-eye-open"
+																				aria-hidden="true"></span>所有列表
+															</a>
+													</li>
+
+													<li class="device_status" id="myDecide">
+															<a href="javascript:;">
+																	<span class="glyphicon glyphicon-eye-open"
+																				aria-hidden="true"></span>我的审批
+															</a>
+													</li>
+													<li class="device_status" id="myConfirm">
+															<a href="javascript:;">
+																	<span class="glyphicon glyphicon-eye-open"
+																				aria-hidden="true"></span>我的确认
+															</a>
+													</li>
+											</ul>
+									</div>
+									<button type="button" class="btn lmvt-def-btn " style="padding: 0">
+											<input type="text" id="femi-search-text-ledger1" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符" />
+									</button>
+									<button class="btn lmvt-def-btn" type="button" id="lmvt-left-check1">
+											<span class="glyphicon glyphicon-search"></span>查询
+									</button>
+							</div>
+
+							<p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;position: absolute;left:50%;top: 15px;">我的申请单</p>
+					</div>
+
+					<div class="lmvt-container-table-basic">
+							<div class="femi-tb-scroll">
+									<table class="table table-hover table-bordered">
+											<thead>
+													<tr>
+															<th style="width: 3px">
+																	<input type="checkbox"
+																				 class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+																				 value="{{functionID}}" />
+															</th>
+															<th style="min-width: 50px" data-order="ID">序号</th>
+															<th style="min-width: 50px" data-order="ApplyNo">申请单</th>
+															<th style="min-width: 50px" data-order="ModelID">设备型号</th>
+															<th style="min-width: 50px" data-order="BusinessUnitID ">部门</th>
+															<th style="min-width: 50px" data-order="LineID">产线</th>
+															<th style="min-width: 50px" data-order="ApplicantID ">申请人</th>
+															<th style="min-width: 50px" data-order="ApplicantTime ">申请时刻</th>
+															<th style="min-width: 50px" data-order="ApproverID ">审批人</th>
+															<th style="min-width: 50px" data-order="ApproverTime ">审批时刻</th>
+															<th style="min-width: 50px" data-order="ConfirmID">确认人</th>
+															<th style="min-width: 50px" data-order="ConfirmTime  ">确认时刻</th>
+															<th style="min-width: 50px" data-order="Status ">状态</th>
+													</tr>
+											</thead>
+											<tbody class="lmvt-apply-body table-color"></tbody>
+									</table>
+							</div>
+					</div>
+			</div>
+			<div class="lmvt-container-confirm" style="display:none">
+					<div class="lmvt-container-header-btn">
+							<div class="btn-group">
+									<button type="button" id="femi-confirm" class="btn lmvt-def-btn">
+											<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>确认
+									</button>
+
+							</div>
+									<div class="columns columns-right btn-group pull-right">
+											<div class="btn-group">
+													<button type="button" class="btn lmvt-def-btn dropdown-toggle"
+																	data-toggle="dropdown" aria-haspopup="true"
+																	aria-expanded="false">
+															<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的确认单
+															<span class="caret"></span> <span class="sr-only">
+																	Toggle
+																	Dropdown
+															</span>
+													</button>
+													<ul class="dropdown-menu">
+															<li class="device_status" id="spareApply">
+																	<a href="javascript:;">
+																			<span class="glyphicon glyphicon-eye-open"
+																						aria-hidden="true"></span>所有列表
+																	</a>
+															</li>
+															<li class="device_status" id="myApply">
+																	<a href="javascript:;">
+																			<span class="glyphicon glyphicon-eye-open"
+																						aria-hidden="true"></span>我的申请
+																	</a>
+															</li>
+															<li class="device_status" id="myDecide">
+																	<a href="javascript:;">
+																			<span class="glyphicon glyphicon-eye-open"
+																						aria-hidden="true"></span>我的审批
+																	</a>
+															</li>
+
+													</ul>
+											</div>
+											<button type="button" class="btn lmvt-def-btn " style="padding: 0">
+													<input type="text" id="femi-search-text-ledger2" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符" />
+											</button>
+											<button class="btn lmvt-def-btn" type="button" id="lmvt-left-check2">
+													<span class="glyphicon glyphicon-search"></span>查询
+											</button>
+									</div>
+									<p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;position: absolute;left:50%;top: 15px;">我的确认单</p>
+							</div>
+
+					<div class="lmvt-container-table-basic">
+							<div class="femi-tb-scroll">
+									<table class="table table-hover table-bordered">
+											<thead>
+													<tr>
+															<th style="width: 3px">
+																	<input type="checkbox"
+																				 class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+																				 value="{{functionID}}" />
+															</th>
+															<th style="min-width: 50px" data-order="ID">序号</th>
+															<th style="min-width: 50px" data-order="ApplyNo">申请单</th>
+															<th style="min-width: 50px" data-order="ModelID">设备型号</th>
+															<th style="min-width: 50px" data-order="BusinessUnitID ">部门</th>
+															<th style="min-width: 50px" data-order="LineID">产线</th>
+															<th style="min-width: 50px" data-order="ApplicantID ">申请人</th>
+															<th style="min-width: 50px" data-order="ApplicantTime ">申请时刻</th>
+															<th style="min-width: 50px" data-order="ApproverID ">审批人</th>
+															<th style="min-width: 50px" data-order="ApproverTime ">审批时刻</th>
+															<th style="min-width: 50px" data-order="ConfirmID">确认人</th>
+															<th style="min-width: 50px" data-order="ConfirmTime  ">确认时刻</th>
+															<th style="min-width: 50px" data-order="Status ">状态</th>
+													</tr>
+											</thead>
+											<tbody class="lmvt-confirm-body table-color"></tbody>
+									</table>
+							</div>
+					</div>
+			</div>
+			<div class="lmvt-container-decide" style="display:none">
+					<div class="lmvt-container-header-btn">
+							<div class="btn-group" role="group">
+							<button type="button" id="femi-decide" class="btn lmvt-def-btn">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>通过审核
+							</button>
+
+							<button type="button" id="recall-confirm" class="btn lmvt-def-btn">
+									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>驳回
+						 </button>
+
+							</div>
+							<div class="columns columns-right btn-group pull-right">
+									<div class="btn-group">
+											<button type="button" class="btn lmvt-def-btn dropdown-toggle"
+															data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+													<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的审核单
+													<span class="caret"></span> <span class="sr-only">
+															Toggle
+															Dropdown
+													</span>
+											</button>
+											<ul class="dropdown-menu">
+													<li class="device_status" id="spareApply">
+															<a href="javascript:;">
+																	<span class="glyphicon glyphicon-eye-open"
+																				aria-hidden="true"></span>所有列表
+															</a>
+													</li>
+													<li class="device_status" id="myApply">
+															<a href="javascript:;">
+																	<span class="glyphicon glyphicon-eye-open"
+																				aria-hidden="true"></span>我的申请
+															</a>
+													</li>
+													<li class="device_status" id="myConfirm">
+															<a href="javascript:;">
+																	<span class="glyphicon glyphicon-eye-open"
+																				aria-hidden="true"></span>我的确认
+															</a>
+													</li>
+											</ul>
+									</div>
+									<button type="button" class="btn lmvt-def-btn " style="padding: 0">
+											<input type="text" id="femi-search-text-ledger3" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符" />
+									</button>
+									<button class="btn lmvt-def-btn" type="button" id="lmvt-left-check3">
+											<span class="glyphicon glyphicon-search"></span>查询
+									</button>
+							</div>
+							<p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;position: absolute;left:50%;top: 15px;">我的审核单</p>
+					</div>
+
+					<div class="lmvt-container-table-basic">
+							<div class="femi-tb-scroll">
+									<table class="table table-hover table-bordered">
+											<thead>
+													<tr>
+															<th style="width: 3px">
+																	<input type="checkbox"
+																				 class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+																				 value="{{functionID}}" />
+															</th>
+															<th style="min-width: 50px" data-order="ID">序号</th>
+															<th style="min-width: 50px" data-order="ApplyNo">申请单</th>
+															<th style="min-width: 50px" data-order="ModelID">设备型号</th>
+															<th style="min-width: 50px" data-order="BusinessUnitID ">部门</th>
+															<th style="min-width: 50px" data-order="LineID">产线</th>
+															<th style="min-width: 50px" data-order="ApplicantID ">申请人</th>
+															<th style="min-width: 50px" data-order="ApplicantTime ">申请时刻</th>
+															<th style="min-width: 50px" data-order="ApproverID ">审批人</th>
+															<th style="min-width: 50px" data-order="ApproverTime ">审批时刻</th>
+															<th style="min-width: 50px" data-order="ConfirmID">确认人</th>
+															<th style="min-width: 50px" data-order="ConfirmTime  ">确认时刻</th>
+															<th style="min-width: 50px" data-order="Status ">状态</th>
+													</tr>
+											</thead>
+											<tbody class="lmvt-decide-body table-color"></tbody>
+									</table>
+							</div>
+					</div>
+			</div>-->
+        <script src="../static/utils/require.js" type="text/javascript"></script>
+        <script src="../static/js/deviceManage/deviceApplyList.js" type="text/javascript"></script>
+</body>
+
+</html>

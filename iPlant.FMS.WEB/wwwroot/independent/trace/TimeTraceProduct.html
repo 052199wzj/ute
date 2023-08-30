@@ -1,0 +1,1456 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>成品信息</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/trace/TimeTraceProduct.css" />
+</head>
+<body class="femi-font-size-middle">
+    <div class="zace-cbd-contain" style="min-width:1700px">
+        <div class="zzzOperatorPro zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-operatorListPro"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">操作人列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                   <!-- <th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="Operator">操作员</th>
+                                    <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                                    <th style="min-width: 50px" data-order="EventName">事件</th>
+                                    <th style="min-width: 50px" data-order="StationID">工位</th>
+                                    <th style="min-width: 50px" data-order="ResultID">结果</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">创建时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-operatorListPro-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzMaterialPro zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-materialListPro"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+                            <!--<button type="button" id="zace-open-materialListTracePro"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>物料成品
+                            </button>-->
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">物料列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <!--<th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">成品名称</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编码</th>
+                                    <th style="min-width: 50px" data-order="MaterialType">物料类型</th>
+                                    <!--<th style="min-width: 50px" data-order="StationName">工位</th>-->
+                                    <th style="min-width: 50px" data-order="UseNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="Count">用量</th>
+                                    <th style="min-width: 50px" data-order="UseTime">使用时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-materialListPro-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzParameterPro zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-parameterListPro"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+                    <span class="zace-header-title">参数列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ParentName">成品编码</th>
+                                    <th style="min-width: 50px" data-order="ParameterName">参数名</th>
+                                    <th style="min-width: 50px" data-order="Value">值</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-parameterlListPro-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="4">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="zzzOperator zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-operatorList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+                           
+
+                        </div>
+
+
+                    </div>
+
+                  
+
+                    <span class="zace-header-title">操作人列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                   <!-- <th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="Operator">操作员</th>
+                                    <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                                    <th style="min-width: 50px" data-order="EventName">事件</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="ResultID">结果</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">创建时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-operatorList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzMaterial zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-materialList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+                            <button type="button" id="zace-open-materialListTrace"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>批次号成品
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                 
+
+                    <span class="zace-header-title">物料列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <!--<th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">成品编码</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编码</th>
+                                    <th style="min-width: 50px" data-order="MaterialType">物料类型</th>
+                                    <!--<th style="min-width: 50px" data-order="StationName">工位</th>-->
+                                    <th style="min-width: 50px" data-order="UseNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="Count">用量</th>
+                                    <th style="min-width: 50px" data-order="UseTime">使用时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-materialList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzParameter zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-parameterList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>                   
+                    <span class="zace-header-title">参数列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ParentName">成品编码</th>
+                                    <th style="min-width: 50px" data-order="ParameterName">参数名</th>
+                                    <th style="min-width: 50px" data-order="Value">值</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-parameterlList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="4">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="zzzReOperator zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-ReoperatorList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+                            <button type="button" id="zace-open-PersonReoperatorList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>人员追溯
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">操作人列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                  <!--  <th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="Operator">操作员</th>
+                                    <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                                    <th style="min-width: 50px" data-order="EventName">事件</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="ResultID">结果</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">创建时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-ReoperatorList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzReMaterial zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-RematerialList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">物料列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <!--<th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编码</th>
+                                    <th style="min-width: 50px" data-order="MaterialType">物料类型</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="UseNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="Count">用量</th>
+                                    <th style="min-width: 50px" data-order="UseTime">使用时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-RematerialList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzSpare zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-spareList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                       
+                    </div>
+
+                    <span class="zace-header-title">备件列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="SpareName">备件名称</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">操作顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">操作时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-sparelList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="5">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="zzzDeviceReOperator zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-DeviceReoperatorList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+                            <button type="button" id="zace-open-PersonReoperatorListDevice"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>人员追溯
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">操作人列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                   <!-- <th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="Operator">操作员</th>
+                                    <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                                    <th style="min-width: 50px" data-order="EventName">事件</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="ResultID">结果</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">创建时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-DeviceReoperatorList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzDeviceReMaterial zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-DeviceRematerialList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">物料列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <!--<th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编码</th>
+                                    <th style="min-width: 50px" data-order="MaterialType">物料类型</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="UseNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="Count">用量</th>
+                                    <th style="min-width: 50px" data-order="UseTime">使用时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-DeviceRematerialList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzDeviceSpare zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-DevicespareList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                    </div>
+
+                    <span class="zace-header-title">备件列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="SpareName">备件名称</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">操作顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">操作时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-DevicesparelList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="5">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="zzzPersonReOperator zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-PersonReoperatorList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+                            <button type="button" id="zace-open-PersonReoperatorListDevicePerson"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>人员追溯
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">操作人列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                   <!-- <th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="Operator">操作员</th>
+                                    <th style="min-width: 50px" data-order="PositionName">岗位</th>
+                                    <th style="min-width: 50px" data-order="EventName">事件</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="ResultID">结果</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">创建时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-PersonReoperatorList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzPersonReMaterial zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-PersonRematerialList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <span class="zace-header-title">物料列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                   <!-- <th style="min-width: 50px" data-order="ParentType">类型</th>-->
+                                    <th style="min-width: 50px" data-order="ParentName">追溯名称</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编码</th>
+                                    <th style="min-width: 50px" data-order="MaterialType">物料类型</th>
+                                    <th style="min-width: 50px" data-order="StationName">工位</th>
+                                    <th style="min-width: 50px" data-order="UseNo">顺序</th>
+                                    <th style="min-width: 50px" data-order="Count">用量</th>
+                                    <th style="min-width: 50px" data-order="UseTime">使用时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-PersonRematerialList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzPersonSpare zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-close-PersonspareList"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                    </div>
+
+                    <span class="zace-header-title">备件列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ParentName">名称</th>
+                                    <th style="min-width: 50px" data-order="SpareName">备件名称</th>
+                                    <th style="min-width: 50px" data-order="OperateNo">操作顺序</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">操作时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-PersonsparelList-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="5">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="zzzRetrospect zace-cbd-contain zace-left" style="display:none;min-width:1000px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" id="zace-Retrospect-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>详情
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-Reoperator-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-user"
+                                                  aria-hidden="true"></span>操作员
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-Rematerial-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-credit-card"
+                                                  aria-hidden="true"></span>物料
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-spare-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-wrench"
+                                                  aria-hidden="true"></span>备件
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <button type="button" id="zace-Retrospect-device"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>设备追溯表
+                            </button>
+                            <!--<button type="button" id="zace-Retrospect-operator"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>人员追溯表
+                            </button>-->
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Restrospect"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-searchZall-Restrospect"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>筛选
+                        </button>
+
+                    </div>
+
+                    <span class="zace-header-title">追溯列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="PDEName">成品编号</th>
+                                    <th style="min-width: 50px" data-order="WorkshopName">车间</th>
+                                    <th style="min-width: 50px" data-order="LineName">产线</th>
+                                    <th style="min-width: 50px" data-order="PartName">工段</th>
+                                    <th style="min-width: 50px" data-order="PartPointName">工序</th>
+                                    <th style="min-width: 50px" data-order="StationName"> 工位</th>
+                                    <th style="min-width: 50px" data-order="DeviceName">设备名称</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单编号</th>
+                                    <th style="min-width: 50px" data-order="ProductNo">产品编号</th>
+                                    <th style="min-width: 50px" data-order="RouteID">工艺路线</th>
+                                    <th style="min-width: 50px" data-order="Result">结果</th>
+                                    <th style="min-width: 50px" data-order="PushTime">开工时间</th>
+                                    <th style="min-width: 50px" data-order="PullTime">结束时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Restrospect-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="zzzTrace zace-cbd-contain zace-left" style="min-width:1000px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" id="zace-Retrospect-open"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>追溯
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>详情
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-operator-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-user"
+                                                  aria-hidden="true"></span>操作员
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-material-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-credit-card"
+                                                  aria-hidden="true"></span>物料
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-parameter-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-bookmark"
+                                                  aria-hidden="true"></span>参数
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-trace"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-SearchProduct-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>正追溯查询
+                        </button>
+                        <button type="button" id="zace-SearchProduct-levelReBack"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>反追溯查询
+                        </button>
+                    </div>
+
+                    <span class="zace-header-title">成品列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="PDENo">成品编号</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单编号</th>
+                                    <th style="min-width: 50px" data-order="ProductNo">产品编号</th>
+                                    <th style="min-width: 50px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+                                    <th style="min-width: 50px" data-order="Result"> 结果</th>
+                                    <th style="min-width: 50px" data-order="PushTime">开工时间</th>
+                                    <th style="min-width: 50px" data-order="PullTime">完工时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-timeTrace-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="10">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzTracePro zace-cbd-contain zace-left" style="min-width:1000px;display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" id="zace-RetrospectPro-close"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                            <button type="button" id="zace-RetrospectPro-open"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>追溯
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>详情
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-operatorPro-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-user"
+                                                  aria-hidden="true"></span>操作员
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-materialPro-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-credit-card"
+                                                  aria-hidden="true"></span>物料
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-parameterPro-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-bookmark"
+                                                  aria-hidden="true"></span>参数
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-tracePro"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-SearchProductPro-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+
+                    <span class="zace-header-title">成品列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="PDENo">成品编号</th>
+                                    <th style="min-width: 50px" data-order="BatchNo">批次号</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单编号</th>
+                                    <th style="min-width: 50px" data-order="ProductNo">产品编号</th>
+                                    <th style="min-width: 50px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+                                    <th style="min-width: 50px" data-order="Result"> 结果</th>
+                                    <th style="min-width: 50px" data-order="PushTime">开工时间</th>
+                                    <th style="min-width: 50px" data-order="PullTime">完工时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-timeTracePro-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="10">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzDeviceRetrospect zace-cbd-contain zace-left" style="display:none;min-width:1000px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" id="zace-DeviceRetrospect-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>详情
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-DeviceReoperator-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-user"
+                                                  aria-hidden="true"></span>操作员
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-DeviceRematerial-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-credit-card"
+                                                  aria-hidden="true"></span>物料
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-Devicespare-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-wrench"
+                                                  aria-hidden="true"></span>备件
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!--<button type="button" id="zace-Retrospect-device"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>设备追溯表
+                        </button>-->
+                            <!--<button type="button" id="zace-Retrospect-operator"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>人员追溯表
+                        </button>-->
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-DeviceRestrospect"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-searchZall-DeviceRestrospect"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>筛选
+                        </button>
+
+                    </div>
+
+                    <span class="zace-header-title">设备追溯列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="PDEName">成品编号</th>
+                                    <th style="min-width: 50px" data-order="WorkshopName">车间</th>
+                                    <th style="min-width: 50px" data-order="LineName">产线</th>
+                                    <th style="min-width: 50px" data-order="PartName">工段</th>
+                                    <th style="min-width: 50px" data-order="PartPointName">工序</th>
+                                    <th style="min-width: 50px" data-order="StationName"> 工位</th>
+                                    <th style="min-width: 50px" data-order="DeviceName">设备名称</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单编号</th>
+                                    <th style="min-width: 50px" data-order="ProductNo">产品编号</th>
+                                    <th style="min-width: 50px" data-order="RouteID">工艺路线</th>
+                                    <th style="min-width: 50px" data-order="Result">结果</th>
+                                    <th style="min-width: 50px" data-order="PushTime">开工时间</th>
+                                    <th style="min-width: 50px" data-order="PullTime">结束时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-DeviceRestrospect-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+         
+        <div class="zzzPersonRetrospect zace-cbd-contain zace-left" style="display:none;min-width:1000px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" id="zace-PersonRetrospect-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>详情
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-PersonReoperator-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-user"
+                                                  aria-hidden="true"></span>操作员
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-PersonRematerial-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-credit-card"
+                                                  aria-hidden="true"></span>物料
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-Personspare-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-wrench"
+                                                  aria-hidden="true"></span>备件
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!--<button type="button" id="zace-Retrospect-device"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>设备追溯表
+                        </button>-->
+                            <!--<button type="button" id="zace-Retrospect-operator"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>人员追溯表
+                        </button>-->
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-PersonRestrospect"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-searchZall-PersonRestrospect"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>筛选
+                        </button>
+
+                    </div>
+
+                    <span class="zace-header-title">人员追溯列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="PDEName">成品编号</th>
+                                    <th style="min-width: 50px" data-order="WorkshopName">车间</th>
+                                    <th style="min-width: 50px" data-order="LineName">产线</th>
+                                    <th style="min-width: 50px" data-order="PartName">工段</th>
+                                    <th style="min-width: 50px" data-order="PartPointName">工序</th>
+                                    <th style="min-width: 50px" data-order="StationName"> 工位</th>
+                                    <th style="min-width: 50px" data-order="DeviceName">设备名称</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单编号</th>
+                                    <th style="min-width: 50px" data-order="ProductNo">产品编号</th>
+                                    <th style="min-width: 50px" data-order="RouteID">工艺路线</th>
+                                    <th style="min-width: 50px" data-order="Result">结果</th>
+                                    <th style="min-width: 50px" data-order="PushTime">开工时间</th>
+                                    <th style="min-width: 50px" data-order="PullTime">结束时间</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-PersonRestrospect-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/trace/TimeTraceProduct.js"></script>
+</body>
+</html>

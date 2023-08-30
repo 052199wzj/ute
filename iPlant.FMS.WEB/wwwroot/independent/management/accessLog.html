@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>访问日志</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="access-log-body" class="fzy-page">
+
+  <div class="fzy-search-bar">
+    <!--用户-->
+    <div class="input-select-box input-box-200">
+      <div class="label">用户</div>
+      <el-select v-model="searchData.UserID" placeholder="请选择">
+        <el-option label="全部" value=""></el-option>
+        <el-option
+            v-for="item in  selectOptions.user"
+            :key="item.ID"
+            :label="item.Name"
+            :value="item.ID"
+        ></el-option>
+      </el-select>
+    </div>
+    <!--工程名称-->
+    <div class="input-select-box input-box-300">
+      <div class="label">工程名称</div>
+      <el-select v-model="searchData.ProjectName" placeholder="请选择">
+        <el-option label="全部" value=""></el-option>
+        <el-option
+            v-for="item in  selectOptions.projectName"
+            :key="item.ID"
+            :label="item.Name"
+            :value="item.ID"
+        ></el-option>
+      </el-select>
+    </div>
+    <!--日期-->
+    <div class="input-date-box input-box-300">
+      <div class="label" v-cloak>
+        日期
+      </div>
+      <el-date-picker
+          ref="test"
+          v-model="searchData.timeSection"
+          end-placeholder="结束日期"
+          range-separator="至"
+          :clearable="false"
+          start-placeholder="开始日期"
+          type="daterange"
+          value-format="yyyy-MM-dd"
+      >
+      </el-date-picker>
+    </div>
+    <!--响应状态-->
+    <div class="input-select-box input-box-200">
+      <div class="label">响应码</div>
+      <el-select
+          v-model="searchData.ResponseStatus" placeholder="请选择" allow-create filterable
+          default-first-option
+      >
+        <el-option label="全部" value=""></el-option>
+        <el-option
+            v-for="item in  selectOptions.responseStatus"
+            :key="item"
+            :label="item"
+            :value="item"
+        ></el-option>
+      </el-select>
+    </div>
+    <!--响应时长-->
+    <div class="input-select-box input-box-200">
+      <div class="label">响应时长</div>
+      <el-input
+          v-model.number="searchData.IntervalMin"
+          placeholder=""
+          @change="IntervalInput"
+      >
+      </el-input>
+      <span style="margin: auto">至</span>
+      <el-input
+          v-model.number="searchData.IntervalMax"
+          placeholder=""
+          @change="IntervalInput"
+      >
+      </el-input>
+    </div>
+    <!--按钮-->
+    <div class="button-box">
+
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClick"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+
+    </div>
+  </div>
+
+  <div class="fzy-page-center-box">
+    <div class="fzy-page-center-title-bar">
+      <div class="left">
+        <span class="fzy-title">系统访问日志</span>
+      </div>
+    </div>
+
+    <el-table
+        :data="tableData"
+        size="mini"
+        border
+        current-row-key="Code"
+        height="calc(100% - 45px)"
+    >
+      <el-table-column label="行号" type="index" width="50" align="center"></el-table-column>
+      <el-table-column
+          label="访问者" property="LoginID" :formatter="formatterUser" width="150"
+          align="center"
+      ></el-table-column>
+      <el-table-column label="工程名称" property="ProjectName" width="120" align="center"></el-table-column>
+      <el-table-column label="访问路径" property="URI" min-width="100"></el-table-column>
+      <el-table-column label="访问方式" property="Method" width="90" align="center"></el-table-column>
+      <el-table-column
+          label="参数" property="Params" min-width="150"
+          :formatter="formatterParams"
+      ></el-table-column>
+      <el-table-column label="请求时刻" property="RequestTime" width="150" align="center"></el-table-column>
+      <el-table-column label="响应时刻" property="ResponseTime" width="150" align="center"></el-table-column>
+      <el-table-column label="请求体" property="RequestBody"></el-table-column>
+      <el-table-column label="响应时长" property="IntervalTime" width="50" align="center"></el-table-column>
+      <el-table-column label="响应状态" property="ResponseStatus" width="50" align="center"></el-table-column>
+    </el-table>
+  </div>
+
+  <script src="../static/utils/require.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../static/js/management/accessLog.js"></script>
+</div>
+
+
+</body>
+</html>

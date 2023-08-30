@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/basicSet/kanbanTestL.css"/>
+
+
+</head>
+<body class="zace-font-size-large" style="min-width:100px">
+<!--html 100%   vw  vh-->
+<!--;background:url(ce2.jpg)-->
+
+<div
+    id="event"
+    style="width:100%;height:100%;color:white;background:url(../static/images/GZImg/bgL.png);background-size:100% 100%;"
+>
+  <!--异常table-->
+  <div class="lmvt-exc-contain" style="position:absolute;top:12vh;left:1vw;right:18vw;bottom:11vh">
+    <div class="femi-tb-scroll">
+      <table
+          class="TDTable grinding-table" style="width: 100%;max-width: 100%;background-color: transparent;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;"
+      >
+        <thead class="zace-colorHead">
+        <tr>
+          <!--<th style="width: 3px;display:none">
+              <input type="checkbox"
+                     class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                     value="{{functionID}}" />
+          </th>-->
+          <th style="min-width:50px" data-order="Name">台位名称</th>
+          <!-- <th style="min-width: 80px" data-order="Active">台位状态</th> -->
+          <th style="min-width: 80px" data-order="CarNo">车编号</th>
+          <!-- <th style="min-width: 80px" data-order="Num">异常数量</th> -->
+          <th style="min-width: 50px" data-order="Type">异常类型</th>
+          <th style="min-width: 50px" data-order="ResponseLevel">异常等级</th>
+          <th style="min-width: 100px" data-order="ExcTime">异常时间</th>
+          <th style="min-width: 50px" data-order="OperatorName">发起人</th>
+          <th style="min-width: 80px" data-order="EditName">处理人</th>
+        </tr>
+        </thead>
+        <tbody class="lmvt-exc-body">
+        <tr style="">
+          <td colspan="8">等待数据加载</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--异常台-->
+  <div class="lmvt-exc-div" style="position:absolute;top:12vh;right:1vw;left:83vw;bottom:1vh;height:41.8vh">
+    <!--名称-->
+    <div class="lmvt-exc-div-name " style="height:7vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:2vw;">
+      <div class="zace-colorHead" style="line-height: 7vh;background-color:#0E4477">&nbsp;&nbsp;台位异常统计</div>
+    </div>
+    <div
+        class="lmvt-exc-div-count-exc zace-colorBg"
+        style="height:33.4vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:5vw;overflow-y:auto;padding:0.5vw;background-color:#1C3771"
+    >
+      <div class="femi-tb-scroll">
+        <table
+            class="TDTableZacePlace grinding-table" style="width: 100%;max-width: 100%;background-color: transparent;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;"
+        >
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                <input type="checkbox"
+                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                       value="{{functionID}}" />
+            </th>-->
+            <th style="min-width:50px" data-order="PlaceName">台位</th>
+            <!-- <th style="min-width: 80px" data-order="Active">台位状态</th> -->
+            <th style="min-width: 50px" data-order="ExcNum">异常数量</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-excPlace-bodyExc">
+          <tr style="">
+            <td colspan="2">等待数据加载</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--空闲台-->
+  <div class="lmvt-exc-div" style="position:absolute;top:58vh;right:1vw;left:83vw;bottom:1vh;height:41.8vh">
+    <!--名称-->
+    <div
+        class="lmvt-exc-div-name"
+        style="vertical-align:central;height:7vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:0vw;"
+    >
+      <div class="zace-colorHead" style="line-height: 7vh;background-color:#0E4477">&nbsp;&nbsp;异常统计</div>
+    </div>
+    <div
+        class="lmvt-exc-div-count-empty zace-colorBg"
+        style="height:33.4vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:5vw;overflow-y:auto;padding:0.5vw;background-color:#1C3771"
+    >
+      <div class="femi-tb-scroll">
+        <table
+            class="TDTableZace grinding-table" style="width: 100%;max-width: 100%;background-color: transparent;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;"
+        >
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                <input type="checkbox"
+                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                       value="{{functionID}}" />
+            </th>-->
+            <th style="min-width:50px" data-order="ExcLevel">等级</th>
+            <!-- <th style="min-width: 80px" data-order="Active">台位状态</th> -->
+            <th style="min-width: 50px" data-order="ExcNum">数量</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-bodyExc">
+          <tr style="">
+            <td colspan="2">等待数据加载</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--logo-->
+  <div class="ShowLogo" style="left:4vw;top:1.7vh;position:absolute;height:10vh;width:5vh;display:none">
+
+    <img src="../static/images/GZImg/logo@2x.png" style="width:10vh;height:4vh;overflow:hidden"/>
+
+  </div>
+  <!--标题-->
+  <div
+      id="Div1Title"
+      style="width:29.5vw;height:4vh;left:35vw;top:1.7vh;position:absolute;line-height:4vh;text-align:center;overflow-x:auto;font-size:2.7vh"
+  >
+    广州电力机车MES系统异常状态监控
+  </div>
+  <!-- 颜色块 -->
+  <div style="position:absolute;width:42vw;height:11vh;top:89vh;left:20vw; text-align:center;overflow-x:auto;">
+    <div style="width:25%;height:100%;float:left;text-align:center;">
+      <div
+          style="float:left;margin-top:4.2vh;margin-left:3.0vw;width:4vw;height:4.75vh;background-color:#C51D1D;border-radius:10px;"
+      ></div>
+      <span style="float:left;margin-top:5.3vh;margin-left:0.5vw;">A等级</span>
+    </div>
+    <div style="width:25%;height:100%;float:left;">
+      <div
+          style="float:left;margin-top:4.2vh;margin-left:3.0vw;width:4vw;height:4.75vh;background-color:#EB3B3B;border-radius:10px;"
+      ></div>
+      <span style="float:left;margin-top:5.3vh;margin-left:0.5vw;">B等级</span>
+    </div>
+    <div style="width:25%;height:100%;float:left;">
+      <div
+          style="float:left;margin-top:4.2vh;margin-left:3.0vw;width:4vw;height:4.75vh;background-color:#F5B128;border-radius:10px;"
+      ></div>
+      <span style="float:left;margin-top:5.3vh;margin-left:0.5vw;">C等级</span>
+    </div>
+    <div style="width:25%;height:100%;float:left;">
+      <div
+          style="float:left;margin-top:4.2vh;margin-left:3.0vw;width:4vw;height:4.75vh;background-color:#1c7171;border-radius:10px;"
+      ></div>
+      <span style="float:left;margin-top:5.3vh;margin-left:0.5vw;">D等级</span>
+    </div>
+  </div>
+  <div
+      style="position:absolute;width:4vw;height:3vh;top:95vh;left:77vw; text-align:center;overflow-x:auto;border-radius:10px;"
+  >
+    <div style="width:100%;height:100%;text-align:center;font-size: 2vh" id="ShowPage">
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<!-- <div id="DivChange" style="width:1vw;cursor:pointer;height:1vh;left:0vw;top:0vh;position:absolute;">
+</div> -->
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/kanbanTestL.js"></script>
+<script>
+
+    function place(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        //alert("当前位置：X轴" + x + " Y轴" + y + "");
+    }
+</script>
+
+
+</body>
+</html>

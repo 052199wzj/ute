@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEXCOptionItem xmlns@xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns@xsd="http://www.w3.org/2001/XMLSchema">
+  <EXCOptionItem>
+    <ID>1</ID>
+    <Name>通知</Name>
+  </EXCOptionItem>
+  <EXCOptionItem>
+    <ID>2</ID>
+    <Name>紧急</Name>
+  </EXCOptionItem>
+  <EXCOptionItem>
+    <ID>3</ID>
+    <Name>严重</Name>
+  </EXCOptionItem>
+</ArrayOfEXCOptionItem>

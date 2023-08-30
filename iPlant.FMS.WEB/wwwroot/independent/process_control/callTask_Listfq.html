@@ -1,0 +1,582 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title> 异常</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/callTask_Listfq.css"/>
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/reset.min.css">
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css"/>
+</head>
+
+<body class="femi-font-size-middle" style="min-width: 1280px;padding-top: 5px;">
+
+<!-- 发起 -->
+<div class="zace-cbd-contain zacePlanSend" style="height: 100% ;width: auto;">
+  <div class="ds-search-top">
+    <div class="ds-search-top-contain" data-show-mode="0">
+      <div class="btn-group ds-search-item-group">
+        <div class="ds-search-item-lable">时间段</div>
+        <input id="lmvt-startTime" readonly class="form-control width200" placeholder="请选择开始时间">
+        <input id="lmvt-endTime" readonly class="form-control width200" placeholder="请选择结束时间">
+      </div>
+      <div class="ds-search-item-group">
+        <div class="ds-search-item-lable">发起人</div>
+        <input
+            readonly class="search-content-UpFlowID form-control" style="width: 150px;" data-value=""
+            placeholder="请选择发起人" data-toggle="modal" data-target="#myModal"
+        >
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">异常等级</div>
+        <select
+            id="slpkRespondLevel_search" readonly class="selectpicker search-content-RespondLevel"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">异常类型</div>
+        <select
+            id="slpkExceptionType_search" readonly class="selectpicker search-content-ExceptionType"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group ds-search-btn-group">
+        <button type="button" id="lmvt-search" class="btn lmvt-danger-btn lmvt-default-btn">
+          查询
+        </button>
+        <button type="button" id="lmvt-reset" class="btn btn-default lmvt-default-btn lmvt-def-btn">
+          重置
+        </button>
+        <button
+            type="button" id="lmvt-resetZK" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+            style="display: none;"
+        >
+          展开<img src="../static/images/checkbox/下拉箭头.png" style="width: 15px;height: 15px;">
+        </button>
+        <button
+            type="button" id="lmvt-resetSQ" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+            style="display: none;"
+        >
+          收起<img src="../static/images/checkbox/上拉箭头.png" style="width: 15px;height: 15px;">
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="zace-leftContain ds-contain-middle" style="height: calc(100% - 65px);">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+            <input
+                type="text" id="zace-search-send"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button type="button" id="zace-searchSend" class="btn   lmvt-def-btn">
+            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>筛选
+          </button>
+          <button type="button" id="zace-refresh-Send" class="btn  lmvt-def-btn">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+          </button>
+          <button type="button" id="applySingle" class="btn  lmvt-def-btn">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起申请
+          </button>
+        </div>
+
+        <span class="zace-header-title zace-title"> 异常列表</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered table-part table-partApprovalRecord">
+
+            <thead>
+            <tr>
+              <!-- <th style="width: 3px">
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </th> -->
+              <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+              <th style="min-width: 50px" data-order="Code">单据编号</th>
+              <th style="min-width: 50px" data-order="RespondLevelName">异常等级</th>
+              <th style="min-width: 50px" data-order="ExceptionTypeName">异常类型</th>
+              <th style="min-width: 50px" data-order="UpFlowName">发起人</th>
+              <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+              <th style="min-width: 50px" data-order="SubmitTime">操作时间</th>
+              <th style="min-width: 50px" data-order="StatusText">状态</th>
+              <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+            </tr>
+            </thead>
+            <tbody id="femi-zacePlanSend-tbody" class="table-color">
+            <tr>
+              <!-- <td>
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </td> -->
+              <td colspan="12">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+    id="outerdiv"
+    style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;"
+>
+  <div id="innerdiv" style="position:absolute;">
+    <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src=""/>
+  </div>
+</div>
+<!-- 流程图 -->
+<div id="cby-route-charf-ontask" class="cby-charf-down cby-route-charf " style="display:none">
+  <div class="" style="min-width:1000px">
+    <div class="cby-tree-header" style="overflow:visible;">
+      <div class="btn-group cby-left lmvt-def-btn" role="group">
+
+      </div>
+      <div class="columns columns-right btn-group pull-right">
+
+        <button class="btn lmvt-def-btn" type="button" id="cby-return-ontask">
+          <span class="glyphicon glyphicon-eye-open"></span>隐藏
+        </button>
+      </div>
+      <span class="cby-header-title" id="">流程图</span>
+    </div>
+    <div style="overflow: auto;">
+
+      <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+    </div>
+  </div>
+</div>
+
+<!-- 处理界面 -->
+<div class="zace-cbd-contain zacePencil" style="display: none;">
+
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn  lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+          </div>
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <div class="btn-group" role="group">
+
+            <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+              <span class="glyphicon " aria-hidden="true"></span>流程图
+            </button>
+          </div>
+        </div>
+
+        <span class="zace-header-title zace-title BPM-title"> 异常处理信息</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;">
+          <div
+              class="header"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">基础数据</p>
+              <div class="BasicTable">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >状态</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >待审批</span>
+                  </div>
+                </div>
+              </div>
+              <div class="BasicTableContentBasic">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middle Businessfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">业务数据</p>
+              <div class="BasicTableContentBusiness">
+                <div class="BasicTable" style="display: flow-root;">
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="middleFill"
+              style="width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;min-height: 150px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">填写数据</p>
+              <div class="BasicTableContentFillIn" style="height: max-content;">
+                <div class="BasicTable" style="display: flow-root;">
+                  <div class="TempTable Write-Control-StationID TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-StationID"
+                    >异常地点</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkStationID" class="selectpicker Write-content-StationID"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-StationType TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-StationType"
+                    >异常地点类型</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <input
+                          class="Write-content-StationType"
+                          style="width: 100%;height: 100%;border: 0;" data-value=""
+                          placeholder="" readonly="readonly" value=""
+                      />
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-StationNo TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-StationNo"
+                    >异常编码</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <input
+                          class="Write-content-StationNo"
+                          style="width: 100%;height: 100%;border: 0;" data-value=""
+                          placeholder="" readonly="readonly" value=""
+                      />
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-OnSite TempTableContent  Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-OnSite"
+                    >是否到场</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkOnSite" class="selectpicker Write-content-OnSite"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-StationCheck TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-StationCheck"
+                    >异常编码验证</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;">
+                      <input
+                          class="Write-content-StationCheck"
+                          style="width: 100%;height: 100%;border: 0;" data-value=""
+                          placeholder="" value=""
+                      />
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-RemarkApproval TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-RemarkApproval"
+                    >备注</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;">
+                      <input
+                          class="Write-content-RemarkApproval"
+                          style="width: 100%;height: 100%;border: 0;" data-value=""
+                          placeholder="" value=""
+                      />
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-ImageListApproval TempTableContent Img">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-ImageListApproval"
+                    >备注附件</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          class="m-c-body m-c-upload clearfix" style="border: 1px solid #dbdbdb;
+                                                border-width: 1px 0;
+                                                background: #fff;"
+                      >
+                        <ul class="upload-list">
+                          <li
+                              class="upload-btn" style="background: url(/MESCore/my_app/static/images/upload.png) no-repeat;
+                                                        background-size: 100%;
+                                                        float: left;width: 36px;height: 36px;"
+                          >
+                            <input
+                                type="file" data-value=""
+                                class="uploadImageZac Write-content-ImageListApproval"
+                                style=" opacity: 0;position: relative;
+                                                            z-index: 100;
+                                                            width: 100%;
+                                                            height: 100%;"
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="BasicTableTeam" style="display: none;">
+                  <div class="m-c-head">
+                    <div class="scrapItem">异常类型选择</div>
+                    <div class="icon icon-add" data-toggle="modal" data-target="#myModalSelect">
+                    </div>
+                  </div>
+                  <div
+                      class="BasicTableTeamContent" style="display: flow-root;
+                                        width: 100%;"
+                  >
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="footer"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">审批记录</p>
+              <div class="zaceLiuchengPencil" style="width: 60%;">
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="bottom"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;display: none;"
+          >
+            <div class="headerAll">
+              <div>
+                <p class="TitieWebBPM" style="display: inline-block;">节点详情</p>
+                <button
+                    class="btn btn-default" type="button" id="lmvt-type-back" style="float: right;"
+                >
+                  <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                </button>
+              </div>
+              <div class="BasicTableDeatil">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >节点</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >节点名称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="TableContentBasicDeatil">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 详情界面 -->
+<div class="zace-cbd-contain zacePencilDone" style="display: none;">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <button type="button" id="commit_cancel" class="btn lmvt-def-btn ">
+            <span class="glyphicon " aria-hidden="true"></span>撤销
+          </button>
+          <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+            <span class="glyphicon " aria-hidden="true"></span>流程图
+          </button>
+
+        </div>
+
+        <span class="zace-header-title zace-title">异常审批详情</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;">
+          <div
+              class="headerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">基础数据</p>
+              <div class="BasicTable">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >状态</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >待审批</span>
+                  </div>
+                </div>
+              </div>
+              <div class="BasicTableContentBasic">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="middlefq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">业务数据</p>
+              <div class="BasicTableContentBusiness">
+                <div class="BasicTable" style="display: flow-root;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="footerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">审批记录</p>
+              <div class="zaceLiuchengPencil" style="width: 60%;">
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="bottom"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;display: none;"
+          >
+            <div class="headerAll">
+              <div>
+                <p class="TitieWebBPM" style="display: inline-block;">节点详情</p>
+                <button
+                    class="btn btn-default" type="button" id="lmvt-type-back" style="float: right;"
+                >
+                  <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                </button>
+              </div>
+              <div class="BasicTableDeatil">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >节点</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >节点名称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="TableContentBasicDeatil">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+    class="modal fade" id="myModalSelect" tabindex="-1" role="dialog" aria-labelledby="myModalLabelSelect"
+    data-backdrop="static"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">异常类型选择</h4>
+      </div>
+      <div class="modal-bodySelect">
+        <ul class="modalSelect">
+
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="Confirm">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+    class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    data-backdrop="static"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">查询</h4>
+      </div> -->
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/callTask_Listfq.js"></script>
+</body>
+
+</html>

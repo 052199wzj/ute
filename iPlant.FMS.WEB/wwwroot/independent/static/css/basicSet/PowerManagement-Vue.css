@@ -1,0 +1,38 @@
+
+.center-box {
+	display: flex;
+	overflow: hidden;
+	width: 100%;
+	padding: 0 !important;
+	min-width: 100% !important;
+	background-color: #eeeeee !important;
+}
+
+.center-box .fzy-page-center-box {
+	margin: 0 !important;
+	height: 100%;
+}
+
+.center-box .fzy-page-center-box.left {
+	flex: none;
+	width: 15%;
+	transition: width 300ms;
+}
+
+.center-box .fzy-page-center-box.right {
+	flex: none;
+	margin-left: 5px !important;
+	width: calc(85% - 5px);
+}
+
+
+.jurisdiction-name{
+	cursor: pointer;
+}
+.jurisdiction-name.check{
+	color: #0ea9f7;
+}
+
+
+
+

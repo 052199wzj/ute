@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>布局</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/MakeOrderLOCO.css" />
+</head>
+
+<body class="femi-font-size-middle " style="min-width:1200px">
+    <div class="zace-cbd-contain tableZace">
+        <div class="zace-cbd-containPart  zace-orderPlanCondition lmvt-top">
+            <div class="right-middle-right zace-condition">
+
+                <!-- 排程条件-->
+                <div class="top-zace" style="height: 100%;width: 100%;">
+                    <div class="zace-leftContain">
+                        <div class="zace-tree-header" style="overflow:visible;">
+                            <div class="femi-toolbar-self femi-lf">
+                                <!-- <button type="button" id="zace-aotu-orderPlan" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>排程
+                                </button> -->
+
+
+                            </div>
+
+                            <div class="columns columns-right btn-group pull-right">
+                                <div class="btn-group" role="group">
+                                 
+                                    <!--<button type="button" id="zace-edit-condition"
+                                            class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </button>-->
+                                    <!--<button type="button" id="zace-exit-orderPlan"
+                                            class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>退出
+                                    </button>-->
+                                </div>
+
+                            </div>
+
+                            <p class="zace-header-title">排程条件</p>
+                        </div>
+
+                        <!-- <div class="zace-tree-body femi-contain-border zace-pripoty"> -->
+                        <div class="zace-tree-body femi-contain-border ">
+                            <div class="femi-tb-scroll zace-condition-select">
+                                <div class="zace-selectDayTime" style="width: 100%;height: 30px;margin-bottom: 10px;">
+                                    开始日期:<input type="date"   style="width: 288px;margin-left: 10px"/>
+
+                                </div>
+                                <div class="zace-selectDay" style="width: 100%;height: 30px;margin-bottom: 10px;">
+                                    排程天数:<input type="number"  value="7" style="width: 288px;margin-left: 10px"/>
+
+                                </div>
+
+                                <!-- <div class="zace-select" style="width: 100%;height: 30px;margin-bottom: 10px;">
+                                    <select id="zace-selectOptions" style="width: 349px;height: 100%;">
+                                       
+                                    </select>
+
+                                </div> -->
+                               
+                                <div class="zace-input" style="width: 100%;height: auto;">
+                                    <div class="content-zace" style="height:30px;width:100%">
+                                        <input type="checkbox" value="1" data-index="0" /><span
+                                            style="font-size: 14px;margin-left: 10px">进车时间</span>
+                                        <a><img class="zace-downImage" src="../static/images/down.png"
+                                                height="23px" width="23px" style="float: right;" /> </a>
+                                        <a><img class="zace-upImage" src="../static/images/up.png" height="23px"
+                                                width="23px" style="float: right;" /></a>
+                                    </div>
+
+
+                                </div>
+                                <div class="zace-input" style="width: 100%;height: auto;">
+                                    <div class="content-zace lineSelect" style="height:30px;width:100%">
+                                        <input type="checkbox" value="2" data-index="1"  /><span
+                                            style="font-size: 14px;margin-left: 10px">修程</span>
+                                        <a><img class="zace-downImage" src="../static/images/down.png"
+                                                height="23px" width="23px" style="float: right;" /> </a>
+                                        <a><img class="zace-upImage" src="../static/images/up.png" height="23px"
+                                                width="23px" style="float: right;" /></a>
+
+                                    </div>
+                                    <div class="zace-input-line femi-tb-scroll femi-contain-border"
+                                        style="margin:5px 10px 20px 5px;height:400px;width:350px;display:none">
+                                      <!-- 修程明细 -->
+
+                                    </div>
+                                </div>
+
+
+                                <div class="zace-input" style="width: 100%;height: auto;">
+                                    <div class="content-zace" style="height:30px;width:100%">
+                                        <input type="checkbox" value="3" data-index="2" /><span
+                                            style="font-size: 14px;margin-left: 10px">预计完工时刻</span style="font-size:
+                                                14px;margin-left: 10px">
+                                        <a><img class="zace-downImage" src="../static/images/down.png"
+                                                height="23px" width="23px" style="float: right;" /> </a>
+                                        <a><img class="zace-upImage" src="../static/images/up.png" height="23px"
+                                                width="23px" style="float: right;" /></a>
+                                    </div>
+                                </div>
+                                <div class="zace-input" style="width: 100%;height: auto;">
+                                    <div class="content-zace customerSelect" style="height:30px;width:100%">
+                                        <input type="checkbox" value="4" data-index="3" /><span
+                                            style="font-size: 14px;margin-left: 10px">局段</span>
+                                        <a><img class="zace-downImage" src="../static/images/down.png"
+                                                height="23px" width="23px" style="float: right;" /> </a>
+                                        <a><img class="zace-upImage" src="../static/images/up.png" height="23px"
+                                                width="23px" style="float: right;" /></a>
+                                    </div>
+                                    <div class="zace-input-customer femi-tb-scroll femi-contain-border"
+                                        style="margin:5px 10px 20px 5px;height:400px;width:350px;display:none">
+
+                                       <!-- 局段明细 -->
+
+                                    </div>
+                                </div>
+                                <div class="zace-input" style="width: 100%;height: auto;">
+                                    <div class="content-zace productSelect" style="height:30px;width:100%">
+                                        <input type="checkbox" value="5" data-index="4" /><span
+                                            style="font-size: 14px;margin-left: 10px">车型</span>
+                                        <a><img class="zace-downImage" src="../static/images/down.png"
+                                                height="23px" width="23px" style="float: right;" /> </a>
+                                        <a><img class="zace-upImage" src="../static/images/up.png" height="23px"
+                                                width="23px" style="float: right;" /></a>
+                                    </div>
+                                    <div class="zace-input-product femi-tb-scroll femi-contain-border"
+                                        style="margin:5px 10px 20px 5px;height:400px;width:350px;display:none">
+
+                                       <!-- 车型明细 -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 条件顺序-->
+                <div class="bottom-zace-condition" style="height: 60%;width: 100%;display: none;">
+
+                    <div class="zace-leftContain">
+                        <div class="zace-tree-header" style="overflow:visible;">
+                            <div class="femi-toolbar-self femi-lf">
+                                <div class="btn-group" role="group">
+                                    <button type="button" id="zace-aotu-detail" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>详情
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+                                <div class="btn-group" role="group">
+                                    <button type="button" id="zace-ImpUp-detail" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                                    </button>
+                                    <button type="button" id="zace-ImpDown-detail" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="zace-header-title">条件顺序</p>
+                        </div>
+                        <div class="zace-tree-body femi-contain-border">
+                            <div class="femi-tb-scroll">
+                                <table class="table   table-hover table-bordered">
+
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 3px">
+                                                <input type="checkbox" class="femi-tb-checkbox"
+                                                    style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                            </th>
+                                            <!--<th style="min-width: 50px" data-title="ID">序号</th>-->
+                                            <th style="min-width: 50px" data-title="ID">序号</th>
+                                            <th style="min-width: 50px" data-title="Name">名称</th>
+                                            <th style="min-width: 50px" data-title="Priority">顺序</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="femi-orderMakeAll-condition" class="table-color"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--详情顺序-->
+                <div class="bottom-zace-detail" style="height: 60%;width: 100%;display: none">
+
+                    <div class="zace-leftContain">
+                        <div class="zace-tree-header" style="overflow:visible;">
+                            <div class="femi-toolbar-self femi-lf">
+                                <div class="btn-group" role="group">
+                                    <button type="button" id="zace-export-detail" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+                                <div class="btn-group" role="group">
+                                    <!-- <button type="button" id="zace-up-detail" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                                    </button>
+                                    <button type="button" id="zace-down-detail" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                                    </button> -->
+                                    <button type="button" id="zace-down-pencil" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="zace-header-title zace-ConditionDetail">优先级</p>
+                        </div>
+                        <div class="zace-tree-body femi-contain-border">
+                            <div class="femi-tb-scroll">
+                                <table class="table   table-hover table-bordered">
+
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 3px">
+                                                <input type="checkbox" class="femi-tb-checkbox"
+                                                    style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                            </th>
+                                            <!--<th style="min-width: 50px" data-title="ID">序号</th>-->
+                                            <th style="min-width: 50px" data-title="ID">序号</th>
+                                            <th style="min-width: 50px" data-title="Name">名称</th>
+                                            <th style="min-width: 50px" data-title="Priority">优先级</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="femi-orderMakeAll-Priority" class="table-color"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="left-middle-left  zace-orderAll" style="min-width:600px;">
+                <div class="zace-leftContain">
+                    <div class="zace-tree-header" style="overflow:visible;">
+                        <div class="femi-toolbar-self femi-lf">
+                            <div class="btn-group" role="group">
+                                <button type="button" id="zace-search-orderPlan" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询订单
+                                </button>
+                            </div>
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <div class="btn-group" role="group">
+                                <button type="button" id="zace-aotu-orderPriority" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>订单优先级
+                                </button>
+                            </div>
+                        </div>
+                        <p class="zace-header-title">订单列表</p>
+                    </div>
+                    <div class="zace-tree-body femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table   table-hover table-bordered">
+
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width: 60px" data-title="OrderNo">订单号</th>
+                                        <th style="min-width: 50px" data-title="CustomID">局段</th>
+                                        <th style="min-width: 50px" data-title="LineID">修程</th>                                  
+                                        <th style="min-width: 50px" data-title="ProductID">车型</th>
+                                        <th style="min-width: 50px" data-title="ProductNo">车号</th>                                    
+                                        <th style="min-width: 80px" data-title="PlanReceiveDate">计划进厂</th>
+                                        <th style="min-width: 80px" data-order="PlanFinishDate">预计完工</th>
+                                        <th style="min-width: 50px" data-order="Status">状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="femi-orderMakeAll-tbody" class="table-color"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="zace-cbd-contain orderPriority left-middle-left" style="display: none;">
+                <div class="zace-orderAllPriority">
+                    <div class="zace-leftContain">
+                        <div class="zace-tree-header" style="overflow:visible;">
+                            <div class="femi-toolbar-self femi-lf">
+                                <div class="btn-group" role="group">
+                                    <button type="button" id="zace-aotu-upZ" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>上移
+                                    </button>
+                                    <button type="button" id="zace-aotu-downZ" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>下移
+                                    </button>
+                                </div>
+        
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+                                <div class="btn-group" role="group">
+                                    <button type="button" id="zace-aotu-exportPriority" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>订单
+                                    </button>
+        
+                                    <button type="button" id="zace-aotu-orderPlan" class="btn btn-default ">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>排程
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="zace-header-title">订单优先级列表</p>
+                        </div>
+                        <div class="zace-tree-body femi-contain-border">
+                            <div class="femi-tb-scroll">
+                                <table class="table   table-hover table-bordered">
+        
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 3px">
+                                                <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                    value="{{functionID}}" />
+                                            </th>
+                                            <th style="min-width: 50px" data-title="OrderNo">订单号</th>
+                                            <th style="min-width: 50px" data-title="CustomID">局段</th>
+                                            <th style="min-width: 50px" data-title="LineID">修程</th>                                  
+                                            <th style="min-width: 50px" data-title="ProductID">车型</th>
+                                            <th style="min-width: 50px" data-title="ProductNo">车号</th>                                    
+                                            <th style="min-width: 80px" data-title="PlanReceiveDate">计划进厂</th>
+                                            <th style="min-width: 80px" data-order="PlanFinishDate">预计完工</th>
+                                            <th style="min-width: 50px" data-order="Status">状态</th>
+                                         
+                                        </tr>
+                                    </thead>
+                                    <tbody id="femi-orderPriority-tbody" class="table-color"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="zace-leftContain lmvt-border" style="">
+                <div class="zace-tree-bodyOne femi-contain-border">
+                    <div class="lmvt-container-gantt" style="overflow :auto">
+                        <div class="lmvt-gantt">
+
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+    </div>
+
+
+  
+    <div class="zace-cbd-contain gante" style="display: none;">
+        <div class="zace-orderAllPriorityShow left-middle-zace">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                          
+                        </div>
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-table-ganttZClose" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <p class="zace-header-title">订单优先级列表</p>
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                 
+                                    <th style="min-width: 60px" data-title="OrderNo">订单号</th>                                                                                                  
+                                    <th style="min-width: 50px" data-title="ProductNo">车号</th>   
+                                    <th style="min-width: 80px" data-order="PlanFinishDate">预计完工</th>                                 
+                                
+                                </tr>
+                            </thead>
+                            <tbody id="femi-orderPriorityShow-tbody" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zace-ganteAll right-middle-zace" >
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-export-gantt" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>返回
+                            </button>
+                            <button type="button" id="zace-table-ganttZace" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>计划表
+                            </button>
+                            <button type="button" id="zace-table-ganttZOpen" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>订单优先级
+                            </button>
+                            <div class="btn-group" role="group">
+                                <button type="button" id="zace-aotu-confirmSta" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>固定工位
+                                </button>
+                            </div>
+
+                           
+
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-aotu-checked" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>检查冲突
+                            </button>
+                            
+                            <button type="button" id="zace-export-saved" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                            </button>
+
+                            <button type="button" id="zace-table-searchPartNo" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>筛选
+                            </button>
+
+                            <button type="button" id="zace-table-searchEffect" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>影响条件
+                            </button>
+
+                            
+
+                         
+                        </div>
+                    </div>
+                    <p class="zace-header-title">周计划</p>
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="lmvt-container-gantt" style="overflow :auto">
+                        <div class="lmvt-gantt">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="zace-cbd-contain ganteTable" style="display: none;">
+       
+        
+        <div class="zace-ganteAllTable "  style="width: 100%;height: 100%;display: none;">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button data-table="table-zaceWeekClose" data-module="table-zaceWeekClose"
+                            table-class="table-zaceWeekClose" type="button" class="btn btn-default tableConfig">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        </button>
+                            <button type="button" id="zace-table-ganttExport" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                            </button>
+
+                            <button type="button" id="zace-table-gantt" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>甘特图
+                            </button>
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <div class="btn-group" role="group">
+
+                        </div>
+                    </div>
+                    <p class="zace-header-title">周计划计划表</p>
+                </div>
+                <div class="zace-tree-body femi-contain-border" style="">
+                    <div class="femi-tb-scroll part-plan-div">
+                        <table class="table   table-hover table-bordered table-day-export table-zaceWeekClose">
+
+                            <thead>
+
+                            </thead>
+                            <tbody class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/MakeOrderWeekLOCO.js"></script>
+
+</body>
+
+</html>

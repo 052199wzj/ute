@@ -1,0 +1,135 @@
+﻿body {
+    height:100%;
+    width:100%;
+    padding:0;
+    margin:0;
+}
+.lmvt-container {
+    height:100%;
+    width:100%;
+    padding:3px 5px;
+}
+.lmvt-header-title{
+    font-family: STXinwei;font-size: 20px;color: #C7001A;position: absolute;left: 50%;transform: translate(-50%);
+}
+.lmvt-container-header-btn {
+    height: 45px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    text-align: center;
+    position: relative;
+}
+.lmvt-container-table {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-main-encoding {
+    float:left;
+    width:100%;
+    height:100%;
+    /* //padding-left: 20px; */
+}
+.lmvt-container-type-encoding {
+    float: right;
+    width: 80%;
+    height: 100%;
+    /* padding-left: 20px; */
+}
+.lmvt-container-tab-encoding{
+    float:left;
+    width:20%;
+    height:100%;
+    padding-right: 20px;
+}
+
+.lmvt-container-form{
+    float:left;
+    width:20%;
+    height:100%;
+    padding-right: 10px;
+}
+.lmvt-container-certificate{
+    float:right;
+    width:30%;
+    height:100%;
+    padding-left: 10px;
+}
+.row{
+    padding: 0px;
+    margin: 0px;
+}
+.row:hover{
+    cursor: pointer;
+}
+
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.lmvt-tab-delete:hover{
+    cursor: pointer;
+}
+.lmvt-edit:hover{
+    cursor: pointer;
+}
+.lmvt-danger-btn{
+    background-color:#C7001A;
+    opacity:0.8;
+    color: #fff;
+}
+
+.lmvt-def-btn{
+    color: #C7001A;
+    background-color: #fff;
+    border-color: #C7001A;
+    opacity:0.8;
+}
+.control-label{
+    width: 33%;
+}
+.form-right{
+    width: 60%;
+    padding-left: 0px;
+}
+.form-content{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
+.radio-inline{
+    padding-top: 0px !important;
+}
+/* #lmvt-sort{
+    color: #409EFF;
+}
+#lmvt-sort:hover{
+    cursor: pointer;
+} */
+
+.lmvt-type-do{
+    color: #409EFF;
+}
+
+.lmvt-type-do:hover{
+    cursor: pointer;
+}
+
+.lmvt-not-allowed{
+    color: darkgrey;
+}
+.lmvt-not-allowed:hover{
+    cursor: not-allowed;
+}
+
+.lmvt-type-allowed-delete{
+    color: #FF0000;
+}
+.lmvt-type-allowed-delete:hover{
+    cursor: pointer;
+}

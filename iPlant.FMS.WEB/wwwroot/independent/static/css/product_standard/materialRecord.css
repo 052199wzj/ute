@@ -1,0 +1,97 @@
+﻿body {
+    height:100%;
+    padding:5px;
+    margin:0;
+ /*   min-width: 1300px;*/
+}
+.zzza{
+/*	 border:1px solid red;*/
+	 width:100%;
+	 float: left;
+}
+.zzzb{
+	width: 35%;
+	float: left;
+}
+.femi-font-size-large {
+    font-size:14px;
+}
+
+.femi-font-size-biglarge {
+    font-size:16px;
+}
+
+.femi-font-size-middle {
+    font-size:12px;
+}
+
+ .femi-font-size-small {
+    font-size:10px;
+}
+
+.zace-cbd-contain{
+    height: 100%;	
+    background: #fff;
+}
+
+.zace-tree-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+    /*overflow: hidden;*/
+}
+
+.zace-tree-body {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+
+}
+
+.zace-tree-header .femi-toolbar-self {
+    height:34px;
+}
+
+.zace-tree-header .btn-group {
+    height:34px;
+}
+
+.zace-tree-header .btn-default {
+    height:34px;
+}
+
+
+.zace-tree-header .zace-left {
+    padding-right:0px;
+}
+
+.zace-header-title {  
+    font-family: STXinwei;
+	font-size: 20px;
+    color: #00688B;
+	width:200px;
+	line-height: 40px;
+	cursor:default;
+	text-align:center;
+    margin:auto;
+    height:40px;
+}
+/*.lmvt-tb-show {
+    background-color:#abccec !important;
+
+}
+.lmvt-tb-show thead{
+     background-color:rgba(172, 190, 208, 0.8) ;
+
+
+}
+.zace-bodyColor > tr:nth-child(odd){
+
+    background-color:white;
+}
+.zace-bodyColor tr:nth-child(even){
+    background-color:#e3e9ef;
+}*/
+

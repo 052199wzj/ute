@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>设备使用记录</title>
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/deviceManage/allRecond.css" />
+</head>
+<body class="femi-font-size-middle">
+        <div class="iplant-tool-contain">
+            <div class="iplant-tool-right" style="display:none;">
+                <div class="lmvt-container-apply" style="display:none">
+                    <div class="lmvt-container-header-btn">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" id="hide" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                            </button>
+                        </div>
+                        <p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;margin-top:-30px;margin-left:200px">备件列表</p>
+                    </div>
+                    <div class="lmvt-container-table-basic femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox"
+                                                   class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                   value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width: 50px" data-order="ID">序号</th>
+                                        <th style="min-width: 50px" data-order="ModelNo">备件型号</th>
+                                        <th style="min-width: 50px" data-order="OperatorID">录入人</th>
+                                        <th style="min-width: 50px" data-order="OperatorTime">录入时刻</th>
+                                        <th style="min-width: 50px" data-order="Active">状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="lmvt-apply-body table-color"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div class="iplant-tool-center lmvt-container-system">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group">
+
+                        <button type="button" id="lmvt-table-basic-add-templet" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+                        </button>
+                        <button type="button" style="display:none" class="btn lmvt-def-btn">
+                            <input type="file" id="input-file" />
+                        </button>
+                        <button type="button" id="lmvt-table-basic-active-basic" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn " style="padding: 0">
+                            <input type="text" id="femi-search-text-ledger" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符" />
+                        </button>
+                        <button class="btn lmvt-def-btn" type="button" id="lmvt-left-check">
+                            <span class="glyphicon glyphicon-search"></span>查询
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title" style="font-family: STXinwei;font-size: 20px;color: #C7001A !important;;width: 200px;line-height: 40px;cursor: default;height: 40px;margin-left: 30%;">设备使用记录</span>
+                </div>
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered" id="recondList">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 40px" data-order="SpareLedgerID">设备编码</th>
+                                    <th style="min-width: 50px" data-order="StartTime  ">开始时刻</th>
+                                    <th style="min-width: 50px" data-order="EndTime ">结束时刻</th>
+                                    <th style="min-width: 50px" data-order="ProcessingMin ">加工时长</th>
+                                    <th style="min-width: 50px" data-order="ProcessingPartsNum ">加工个数</th>
+                                    <!--<th style="min-width: 50px" data-order="Used ">是否正在使用</th>-->
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-system-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/deviceManage/allRecond.js"></script>
+</body>
+</html>

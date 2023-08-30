@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>产品追溯</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/LOCOOrder.css" />
+</head>
+
+<style>
+    /* .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        vertical-align: middle !important;
+    } */
+</style>
+
+<body class="femi-font-size-middle">
+    <div id="lmvt-vueApp" class="zace-cbd-contain">
+
+        <div v-show="GradeISShow" class="zace-leftContain">
+
+            <div class="ds-search-top" style="margin: 0 0 5px;">
+                <div class="ds-search-top-contain" data-show-mode="0">
+
+                    <!-- <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">车间</div>
+                        <select v-model="WorkShopID" id="WorkShopSelect" readonly class="form-control width200"
+                            placeholder="车间">
+                            <option v-for="item in WorkShopList" :value="item.ID">{{item.Name}}</option>
+                        </select>
+                    </div> -->
+
+                    <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">电容包编码</div>
+                        <!-- <select data-live-search="true" data-none-selected-text="请选择" v-model="ProductNo"
+                            id="ProductNoSelect" class="form-control width200" placeholder="规格型号"></select> -->
+                        <input id="ProductNoSelect" v-model="ProductNo" class="form-control width200"
+                            placeholder="电容包编码">
+                    </div>
+
+                    <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">时间段</div>
+                        <input id="lmvt-startTime" v-model="StartTime" readonly class="form-control width200"
+                            placeholder="请选择开始时间">
+                        <input id="lmvt-endTime" v-model="EndTime" readonly class="form-control width200"
+                            placeholder="请选择结束时间">
+                    </div>
+
+                    <div class="btn-group ds-search-item-group ds-search-btn-group" role="group">
+                        <button type="button" @click="Search" id="lmvt-search"
+                            class="btn lmvt-danger-btn lmvt-default-btn">
+                            查询
+                        </button>
+                        <button type="button" @click="reset" id="lmvt-reset"
+                            class="btn btn-default lmvt-default-btn lmvt-def-btn">
+                            重置
+                        </button>
+                        <button type="button" id="lmvt-resetZK" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                            style="display: none;">
+                            展开<img src="../static/images/checkbox/下拉箭头.png" style="width: 15px;height: 15px;">
+                        </button>
+                        <button type="button" id="lmvt-resetSQ" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                            style="display: none;">
+                            收起<img src="../static/images/checkbox/上拉箭头.png" style="width: 15px;height: 15px;">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="zzza zace-cbd-contain ds-contain-middle" style="min-width:900px;height: calc(100% - 70px);">
+
+
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <!-- <button type="button" @click="MonAdd" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button> -->
+                            <!--<button type="button" @click="ERPSourceShow" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>订单同步
+                            </button> -->
+                            <!-- <button type="button" id="zace-edit-levelOrder" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button> -->
+                            <!-- <button type="button" id="zace-edit-levelOrderSearch" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>订单列表
+                            </button> -->
+
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <!-- <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevel" type="text" id="zace-search"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入筛选字符" />
+                        </button>
+                        <button @click="searchlevelProGrade" type="button" id="zace-search-levelPro"
+                            class="btn lmvt-def-btn">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button> -->
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input type="text" id="zace-search-level"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelPro" type="button" id="zace-search-level-pro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+
+                    </div>
+
+                    <span class="zace-header-title">自动线检测数据列表</span>
+                </div>
+                <!-- style="margin-top: -90px; padding: 95px 10px 15px;" -->
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-bordered table-partApprovalCheck">
+                            <thead>
+                                <tr>
+                                    <th style="max-width: 50px;width: 50px;" data-order="WID">序号</th>
+
+                                    <!-- <th style="min-width: 60px" data-order="WorkShopName">车间</th> -->
+                                    <th style="min-width: 60px" data-order="workPieceID">电容包编码</th>
+                                    <th style="min-width: 60px" data-order="deviceName">检测设备</th>
+
+                                    <!-- <th style="min-width: 60px" data-order="itemDescription">检测项目</th> -->
+                                    <!-- <th style="min-width: 60px" data-order="itemValue">检测结果</th> -->
+                                    <th style="min-width: 60px" data-order="tsample">检测时间</th>
+                                    <!-- <th style="min-width: 60px" data-order="ModulePartNo">模组号</th>
+                                    <th style="min-width: 60px" data-order="BoxNo">大箱号</th> -->
+
+                                    <!-- <th v-for="item in GradeTitle" style="min-width: 60px" data-order="BoxNo">{{item}}
+                                    </th> -->
+
+                                    <!-- <th style="min-width: 60px" data-order="CreateTime">创建日期</th>
+                                    <th style="min-width: 60px" data-order="EditorID">编辑人</th>
+                                    <th style="min-width: 60px" data-order="EditTime">编辑日期</th>
+
+                                    <th style="min-width: 60px" data-order="Active">状态</th>
+                                    <th style="min-width: 60px" data-order="Remark">分类说明</th> -->
+                                    <th style="min-width: 80px" data-order="handle">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelOrder-tbodyMon" class="table-color">
+                                <tr v-for="item in Grade">
+
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="workPieceID" :data-value=item.workPieceID>{{item.workPieceID}}</td>
+                                    <td data-title="deviceName" :data-value=item.deviceName>{{item.deviceName}}
+                                    </td>
+                                    <!-- <td data-title="itemDescription" :data-value=item.itemDescription>
+                                        {{item.itemDescription}}</td> -->
+                                    <!-- <td data-title="itemValue" :data-value=item.itemValue>{{item.itemValue}}</td> -->
+                                    <td data-title="tsample" :data-value=item.tsample>{{item.tsample}}</td>
+                                    <!-- 
+                                    <td data-title="ModulePartNo" :data-value=item.ModulePartNo>
+                                        {{item.ModulePartNo}}</td>
+                                    <td data-title="BoxNo" :data-value=item.BoxNo>
+                                        {{item.BoxNo}}</td> -->
+
+                                    <td :data-value=item.ID>
+                                        <div class="row">
+                                            <div @click.stop="getOrderInfo(item.WID,item.ModulePartNo)"
+                                                class="col-md-12 lmvt-lookinfo">
+                                                详情
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div v-show="GradeItemISShow" class="lmvt-MonInfo zace-leftContain">
+
+            <div class="lmvt-left-checkInfo"
+                style="width:25%;float: left;height: 100%;float: left;background-color: #FFF;">
+
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <span class="zace-header-title" style="width: 300px;">{{OrderView}}-电容包检测数据</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <form role="form" style="padding: 5px;overflow: auto;">
+
+                        <div v-for="item in CheckInfoList" class="row">
+                            <div class="form-group" style="margin-bottom: 5px;">
+                                <div class="input-group" style="display: flex;">
+                                    <div class="input-group-addon" style="width: 40%;">{{item.name}}</div>
+                                    <div class="form-control" style="width: 60%;">{{item.value}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="zzza zace-cbd-contain ds-contain-middle" style="width:75%;height: 100%;float: right;float: right;
+            padding-left: 10px;">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <!-- <button type="button" @click="MonInfoAdd" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button> -->
+                            <!--<button type="button" @click="ERPSourceShow" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>订单同步
+                            </button> -->
+                            <!-- <button type="button" id="zace-edit-levelOrder" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button> -->
+                            <button @click="back" type="button" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>返回
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input type="text" id="zace-search-level"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelPro" type="button" id="zace-search-level-pro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+                    </div> -->
+                    <span class="zace-header-title" style="width: 500px;">{{OrderView}}-单体列表</span>
+
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-bordered table-partApproval">
+                            <thead>
+                                <tr>
+                                    <th style="min-width:50px" data-order="WID">序号</th>
+
+                                    <!-- <th style="min-width:50px" data-order="ModuleNo">模组编号</th> -->
+                                    <th style="min-width:50px" data-order="CasketOne">小箱号</th>
+                                    <th style="min-width:50px" data-order="CasketTwo">区别码</th>
+                                    <th style="min-width:50px" data-order="CasketThree">小箱号+区别码</th>
+                                    <th style="min-width: 50px" data-order="ProductNo">产品型号</th>
+                                    <th style="min-width: 50px" data-order="ACResistance">AC内阻</th>
+                                    <th style="min-width: 50px" data-order="DCResistance">DC内阻</th>
+                                    <th style="min-width: 50px" data-order="Capacity">容量</th>
+                                    <th style="min-width: 50px" data-order="SelfDischarge">自放电</th>
+                                    <th style="min-width: 50px" data-order="Gears">档位</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelOrder-tbody" class="table-color">
+                                <tr v-for="item in GradeItem">
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+
+                                    <!-- <td data-title="ModuleNo" :data-value=item.ModuleNo>{{item.ModuleNo}}</td> -->
+                                    <td data-title="CasketOne" :data-value=item.CasketOne>{{item.CasketOne}}</td>
+
+                                    <td data-title="CasketTwo" :data-value=item.CasketTwo>
+                                        {{item.CasketTwo}}</td>
+
+                                    <td data-title="CasketThree" :data-value=item.CasketThree>{{item.CasketThree}}</td>
+                                    <td data-title="ProductNo" :data-value=item.ProductNo>{{item.ProductNo}}</td>
+
+                                    <td data-title="ACResistance" :data-value=item.ACResistance>
+                                        {{item.ACResistance}}</td>
+
+                                    <td data-title="DCResistance" :data-value=item.DCResistance>{{item.DCResistance}}
+                                    </td>
+                                    <td data-title="Capacity" :data-value=item.Capacity>{{item.Capacity}}</td>
+
+                                    <td data-title="SelfDischarge" :data-value=item.SelfDischarge>
+                                        {{item.SelfDischarge}}</td>
+                                    <td data-title="Gears" :data-value=item.Gears>{{item.Gears}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/AutoMationCheck.js"></script>
+</body>
+
+</html>

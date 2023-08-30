@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>修程信息</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/basicSet/permissionConfig.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+</head>
+
+<body>
+<div class="femi-bd-contain">
+  <div class="femi-left femi-lf">
+    <div class="femi-contain-border femi-border-contain">
+      <div class="femi-tree-head">
+        <button
+            type="button" id="femi-tree-update" style="float: right;padding: 5px 10px;margin-top:-5px "
+            class="btn btn-default "
+        ><span
+            class="glyphicon glyphicon-repeat"
+            aria-hidden="true"
+        ></span>更新
+        </button>
+        <strong>权限树</strong>
+
+      </div>
+      <div class="femi-tree-body">
+        <div class="femi-tree-contain">
+          <ul id="roleTree" class="femi-left-tree treeview-famfamfam"><span>等待数据加载</span>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="femi-full-bd">
+    <div class="femi-bd-half-left " style="margin-right: -2px; ">
+      <div class="femi-tb-head">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-add-level" class="btn btn-default ">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+            <button type="button" id="zace-edit-level" class="btn btn-default ">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            </button>
+            <button type="button" id="zace-active-level" class="btn btn-default ">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+            </button>
+            <button type="button" id="zace-disable-level" class="btn btn-default ">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+            </button>
+            <button type="button" id="zace-quxiao" class="btn btn-default ">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>取消
+            </button>
+            <!-- <button type="button" id="zace-refresh-po" class="btn btn-default ">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+            </button> -->
+            <!-- <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                    <span class="caret"></span> <span class="sr-only">
+                        Toggle
+                        Dropdown
+                    </span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="device_status" id="zace-active-level">
+                        <a href="javascript:;">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                        </a>
+                    </li>
+                    <li class="device_status" id="zace-disable-level">
+                        <a href="javascript:;">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                        </a>
+                    </li>
+                </ul>
+            </div> -->
+          </div>
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="zace-search-level"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button type="button" id="zace-Device-search" class="btn btn-default">
+            <span class="" aria-hidden="true"></span>筛选
+          </button>
+          <button type="button" id="zace-searchZall-level" class="btn btn-default ">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+          </button>
+
+        </div>
+        <span class="lmvt-header-title">流程步骤配置列表</span>
+      </div>
+
+      <div class="femi-contain-border femi-tb-border">
+
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered">
+
+            <thead>
+            <tr>
+              <th style="width: 3px"><input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              /></th>
+              <th style="min-width: 50px" data-order="ID">序号</th>
+              <th style="min-width: 50px" data-order="FlowType">流程名称</th>
+              <th style="min-width: 50px" data-order="StepEnum">步骤名称</th>
+              <th style="min-width: 50px" data-order="StepOrder">步骤顺序</th>
+              <th style="min-width: 50px" data-order="RoleName">权限名称</th>
+              <th style="min-width: 50px" data-order="Active">状态</th>
+            </tr>
+            </thead>
+            <tbody id="femi-riskLevel-tbody" class="table-color">
+            <tr>
+              <td>
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </td>
+              <td colspan="8">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/permissionConfig.js"></script>
+</body>
+
+</html>

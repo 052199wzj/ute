@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>产线工艺</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/monitor_quality/recordOrderID.css" />
+</head>
+
+<body>
+
+    <div class="zace-cbd-contain zace-BomItem" style="min-width:1300px">
+
+        <div class="femi-left femi-lf">
+            <div class="femi-contain-border femi-border-contain">
+                <div class="femi-tree-head">
+                    <div class="btn-group" role="group" style="float: right; margin-top:-5px ">
+
+                        <button type="button" id="zace-tree-part" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button>
+                    </div>
+                    <strong style="font-size: 14px;">车号</strong>
+
+                </div>
+                <div class="femi-tree-body ">
+                    <div class="femi-tree-contain">
+                        <ul id="areaTree" class="femi-left-tree treeview-famfamfam"></ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="femi-full-bd  zzzArea" style="min-width:1000px">
+            <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                <div class="zace-tree-header" style="overflow:visible;">
+
+                    <div class="btn-group zace-left" role="group">
+                        <button type="button" id="zace-add-bomItem" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+
+
+                     
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" 
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-shaixuan-table" class="btn btn-default ">
+                            <span class="glyphicon glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+
+                    <span class="zace-header-title" id="zace-spanTextChange">详情</span>
+
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table   table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <!-- <th style="min-width: 50px" data-order="WID">序号</th> -->
+                                    <th style="min-width: 50px" data-order="LineID">修程</th>
+                                    <th style="min-width: 50px" data-order="ProductID">车型</th>
+                                    <!-- <th style="min-width: 50px" data-order="CustomerID">局段</th> -->
+                                    <th style="min-width: 50px" data-order="LevelID">层级</th>
+                                    <!--<th style="min-width: 50px" data-order="BOMID">BOM编号</th>-->
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <th style="min-width: 50px" data-order="Code">编码</th>
+
+                                    <th  class='partModeDe' style="min-width: 50px" data-order="StandardPeriod">标准工艺周期</th>
+                                    <th class='partModeDe' style="min-width: 50px" data-order="ActualPeriod">工位工时</th>
+                                
+
+                                    <th class='partPointModeDe' style="min-width: 50px;display: none;" data-order="StandardPeriod">标准作业时间</th>
+                                    <th class='partPointModeDe' style="min-width: 50px;display: none;" data-order="ActualPeriod">工序工时</th>
+                                    <th class='partPointModeDe' style="min-width: 50px;display: none;" data-order="DefaultOrder">工序序号</th>
+
+                                    <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                    <!-- <th style="min-width: 50px" data-order="Editor">编辑者</th>
+                                    <th style="min-width: 50px" data-order="EditTime">编辑时间</th> -->
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-bomItem-tbody" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/monitor_quality/recordOrderID.js"></script>
+</body>
+
+</html>

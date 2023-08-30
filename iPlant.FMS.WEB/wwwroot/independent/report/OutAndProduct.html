@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>生产信息报表</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/report/OutAndProduct.css" />
+</head>
+
+<body class="femi-font-size-middle" style="min-width: 1250px;">
+    <div id="lmvt-vueApp" class="zace-cbd-contain">
+
+        <div class="zzza zace-cbd-contain" style="min-width:900px;padding: 5px;">
+            <div class="ds-search-top" style="margin: 0 0 5px;">
+                <div class="ds-search-top-contain" data-show-mode="0">
+
+                    <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">时间段</div>
+                        <input id="lmvt-startTime" v-model="StartTime" readonly class="form-control width200"
+                            placeholder="请选择开始时间">
+                        <input id="lmvt-endTime" v-model="EndTime" readonly class="form-control width200"
+                            placeholder="请选择结束时间">
+                    </div>
+
+                    <div class="btn-group ds-search-item-group ds-search-btn-group" role="group">
+                        <button type="button" @click="Search" id="lmvt-search"
+                            class="btn lmvt-danger-btn lmvt-default-btn">
+                            查询
+                        </button>
+                        <button type="button" @click="reset" id="lmvt-reset"
+                            class="btn btn-default lmvt-default-btn lmvt-def-btn">
+                            重置
+                        </button>
+                        <button type="button" id="lmvt-resetZK" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                            style="display: none;">
+                            展开<img src="../static/images/checkbox/下拉箭头.png" style="width: 15px;height: 15px;">
+                        </button>
+                        <button type="button" id="lmvt-resetSQ" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                            style="display: none;">
+                            收起<img src="../static/images/checkbox/上拉箭头.png" style="width: 15px;height: 15px;">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="zace-tree-body" style="min-width:900px;height: calc(100% - 70px);margin-top:0;padding:0">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <span class="zace-header-title">生产信息报表</span>
+                </div>
+
+                <div id="barsDemo" class="zace-tree-body femi-contain-border">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/report/OutAndProduct.js"></script>
+
+
+</body>
+
+</html>

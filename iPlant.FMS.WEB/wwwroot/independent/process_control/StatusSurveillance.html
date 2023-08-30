@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备状态监视</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../static/css/process_control/StatusSurveillance.css">
+</head>
+<body>
+
+<div id="fxy-StatusSurveillance" class="fzy-page">
+
+  <div class="fzy-search-bar">
+    <div class="input-select-box input-box-300">
+      <div class="label">区域</div>
+      <el-select v-model="areaID" clearable placeholder="请选择">
+        <el-option
+            v-for="item in areaList"
+            :key="item.ID"
+            :label="item.Name"
+            :value="item.ID"
+        >
+        </el-option>
+      </el-select>
+    </div>
+
+    <div class="input-select-box input-box-200">
+      <div class="label">状态</div>
+      <el-select v-model="status" clearable placeholder="请选择">
+        <el-option label="关机" value="0"></el-option>
+        <el-option label="开机" value="1"></el-option>
+        <el-option label="运行" value="2"></el-option>
+        <el-option label="停止" value="4"></el-option>
+        <el-option label="急停" value="8"></el-option>
+        <el-option label="报警" value="16"></el-option>
+        <el-option label="手动" value="32"></el-option>
+        <el-option label="自动" value="64"></el-option>
+        <el-option label="预留" value="128"></el-option>
+      </el-select>
+    </div>
+
+    <div class="button-box">
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="reset"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+
+
+  </div>
+  <div class="fxy-Device-All">
+    <div v-cloak class="fxy-Device" v-for="(item,index) in list" :style="{ borderColor:item.colour}">
+      <div class="top">
+        <img
+            :src="item.ImageIcon||'../static/images/logpng/暂无图片.png'" @mouseover="mouseOver($event,index)"
+            @mouseleave="mouseLeave(index)"
+        >
+        <div class="title">
+          <p>{{item.DeviceName}}</p>
+          <p>{{item.DeviceNo}}</p>
+          <p>({{item.AreaNo}}){{item.PositionText}}</p>
+          <P>
+                    <span :style="{color:item.colour}">
+                        {{item.StatusText}}
+                    </span>
+            <button v-show="item.visualShow" @click="visual(item)">监视</button>
+          </P>
+        </div>
+      </div>
+      <div class="alarm-number">
+        <span class="badge" v-if="!(item.AlarmCount===0)">{{item.AlarmCount}}</span>
+      </div>
+      <div class="bottom">
+        <div class="icon" @click="particulars(item.DeviceID,'parameter')">
+          <span class="glyphicon glyphicon-wrench"></span>
+          <span class="text">参数详情</span>
+        </div>
+        <div class="icon" @click="particulars(item.DeviceID,'status')">
+          <span class="glyphicon glyphicon-certificate"></span>
+          <span class="text">状态记录</span>
+        </div>
+        <div class="icon" @click="particulars(item.DeviceID,'alarm')">
+          <span class="glyphicon glyphicon-bell"></span>
+          <span class="text">报警记录</span>
+        </div>
+      </div>
+      <div class="equipment-drawing">
+        <img :src="item.ImageIcon" alt="">
+      </div>
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/StatusSurveillance.js"></script>
+</body>
+</html>

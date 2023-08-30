@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>权限设置</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link type="text/css" rel="stylesheet" href="../static/css/basicSet/privilegemanagement.css">
+
+</head>
+
+<body>
+<div class="lmvt-container">
+  <div class="zzzb lmvt-container-system zace-right" style="width: 40%;">
+    <div class="zace-bg">
+      <div class="lmvt-container-header-btn">
+        <div class="btn-group" role="group">
+          <button type="button" id="zace-Device-addsh" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+          </button>
+          <button type="button" id="zace-Device-trash" class="btn btn-default">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+          </button>
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" id="zace-edite" class="btn btn-default">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+          </button>
+        </div>
+        <span class="lmvt-header-title" id="Sub-Tb-title">流程列表</span>
+      </div>
+      <div class="Typetable lmvt-container-table-basic femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </th>
+              <th style="min-width: 50px" data-order="ID">序号</th>
+              <th style="min-width: 50px" data-order="FlowName">节点名称</th>
+              <th style="min-width: 50px" data-order="OperatorAuthorName">操作权限名称</th>
+              <th style="min-width: 50px" data-order="Type">权限类型</th>
+            </tr>
+            </thead>
+            <tbody id="femi-Device-tbody-time" class="table-color">
+            <tr>
+              <td>
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </td>
+              <td colspan="4">等待数据加载</td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="zzza lmvt-container-Regular zace-left" style="width: 60%;">
+    <div class="zace-bg">
+      <div class="lmvt-container-header-btn">
+        <div class="btn-group" role="group">
+          <!-- <button type="button" id="zace-search" class="btn btn-default">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看返修
+          </button> -->
+          <div class="btn-group" role="group">
+            <button
+                type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"
+            >
+              <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>模块选择
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu  pull-left">
+
+              <li class="device_property" id="zace-Device-Ratio">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>不合格评审
+                </a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li class="device_property" id="zace-Device-Ratio-Value">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>返修
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- <button type="button" id="zace-item" class="btn btn-default">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看节点
+          </button> -->
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="zace-search-Device-item"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+
+        </div>
+
+        <span class="lmvt-header-title">权限设置</span>
+      </div>
+
+      <div class="lmvt-container-table-basic femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table
+              class="table table-hover table-bordered deviceinfo-table table-part"
+              id="deviceSparePart1"
+          >
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </th>
+              <th style="min-width: 50px" data-order="ID">编号</th>
+              <th style="min-width: 50px" data-order="FunctionID">节点号</th>
+              <th style="min-width: 50px" data-order="FunctionName">节点名称</th>
+              <th style="min-width: 50px" data-order="ModeName">类型</th>
+            </tr>
+            </thead>
+            <tbody id="femi-Device-tbody-item" class="table-color">
+            <tr>
+              <td>
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </td>
+              <td colspan="6">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/privilegemanagement.js"></script>
+
+</body>
+
+</html>

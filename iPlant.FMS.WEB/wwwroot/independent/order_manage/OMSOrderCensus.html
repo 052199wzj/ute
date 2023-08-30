@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>工单统计</title>
+  <!-- <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap-switch.min.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/order_manage/OMSOrderCensus.css"/>
+</head>
+
+<body class="femi-font-size-middle" style="min-width: 1450px;">
+<div class="OrderAll" style="height: 100%;width: 100%;">
+  <div class="TopHeader" style="padding: 5px;">
+    <div
+        class="Top"
+        style="height: 60px;width: calc(100% - 10px);background-color: #fff;padding-top: 10px;width: 100%;"
+    >
+      <!-- 头部查询 -->
+      <div class="lmvt-container-header-top" style="height: 45px;">
+        <div class="row" style="background: #fff;padding: 4px 3px 0px 0px">
+          <!-- 输入查询 -->
+          <div class="col-xs-2 " style="width:280px;margin-left: 20px;">
+
+            <div class="input-group">
+              <span class="input-group-addon">输入查询</span>
+              <input
+                  type="text" class="form-control" placeholder="工单编号" id="alfie-query-Code"
+                  aria-describedby="basic-addon3"
+              >
+            </div>
+          </div>
+          <!-- 作业名称 -->
+          <div class="col-xs-2 " style="width:280px;margin-left: 20px">
+
+            <div class="input-group">
+              <span class="input-group-addon">作业名称</span>
+              <input
+                  type="text" class="form-control" placeholder="作业名称" id="alfie-query-WorkName"
+                  aria-describedby="basic-addon3"
+              >
+            </div>
+          </div>
+          <!-- 状态 -->
+          <div class="col-xs-2 " style="width:280px;margin-left: 20px">
+
+            <div class="input-group">
+              <span class="input-group-addon" style="height: 10px">工单状态</span>
+              <div class="fzy-select-style">
+                <select
+                    class="selectpicker show-tick search-content-Status"
+                    data-actions-box="true" data-live-search="true" id="alfie-query-status"
+                    multiple
+                >
+                  <option value="-1" selected>全部</option>
+                  <option value="1">已保存</option>
+                  <!--<option value="2">已制定</option>-->
+                  <!--<option value="3">已下达</option>-->
+                  <option value="4">已开工</option>
+                  <option value="5">已完工</option>
+                  <option value="6">暂停中</option>
+                  <!--<option value="7">已入库</option>-->
+                  <option value="8">已上传</option>
+                  <option value="9">已关闭</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-2 " style="width:320px;margin-left: -30px">
+
+            <div class="input-group">
+              <span class="input-group-addon">输入查询</span>
+              <div class="fzy-date-style">
+                <input
+                    type="text" id="lmvt-startTime-Send"
+                    style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;width: 100px;"
+                    placeholder="请选择开始时间"
+                />
+                <input
+                    type="text" id="lmvt-endTime-Send"
+                    style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;width: 100px;"
+                    placeholder="请选择结束时间"
+                />
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-xs-2" style="width:150px;margin-left: 30px">
+
+            <button
+                type="button" id="lmvt-search" class="btn lmvt-danger-btn lmvt-default-btn"
+                style="border: 0"
+            >
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              查询
+            </button>
+            <button type="button" id="lmvt-reset" class="btn btn-default lmvt-default-btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+              重置
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="Top" style="height: 130px;width: auto;background-color: #fff;margin-top: 5px;">
+      <div class="ds-top-item">
+        <div class="DIVDate">
+          <div class="DIVDateTop"><span class="badge lmvt-bule"> </span>全部工单</div>
+          <div class="DIVDateContent  AllOrderNum">-</div>
+        </div>
+      </div>
+      <div class="ds-top-item">
+        <div class="DIVDate">
+          <div class="DIVDateTop"><span class="badge lmvt-green"> </span>完工数</div>
+          <div class="DIVDateContent CompletedNum">-</div>
+        </div>
+      </div>
+      <div class="ds-top-item">
+        <div class="DIVDate">
+          <div class="DIVDateTop"><span class="badge lmvt-red"> </span>关闭数</div>
+          <div class="DIVDateContent CloseNum">-</div>
+        </div>
+      </div>
+      <div class="ds-top-item">
+        <div class="DIVDate">
+          <div class="DIVDateTop"><span class="badge lmvt-yellow"> </span> 最大逾期时间</div>
+          <div class="DIVDateContent MaxdelayNum">-</div>
+        </div>
+
+      </div>
+      <div class="ds-top-item">
+        <div class="DIVDate">
+          <div class="DIVDateTop"><span class="badge lmvt-yellow"> </span>平均逾期时间</div>
+          <div class="DIVDateContent AveragedelayNum">-</div>
+        </div>
+
+      </div>
+      <div class="ds-top-item">
+        <div class="DIVDate">
+          <div class="DIVDateTop"><span class="badge lmvt-green"> </span>完工率</div>
+          <div class="DIVDateContent Percentage">-</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="zace-leftContain" style="position: absolute;  height: calc(100% - 205px);    padding: 0px 5px 5px 5px;">
+    <div class="zace-cbd-contain">
+
+      <div
+          class="lmvt-container-device"
+          style="background-color: white;padding: 3px;height: 100%;width: 100%;min-width: 1440px"
+      >
+
+        <div class="zace-tree-header zace-tree-header-one" style="overflow:visible;">
+          <!-- 头部查询 -->
+
+
+          <div
+              class="lmvt-container-header-bottom" style="height: 45px;
+                    text-align: center;overflow: visible;
+                    width: 100%"
+          >
+            <div style="float: left;"><span
+                style="font-family: STXinwei;
+                            font-size: 20px;
+                            color: black;
+                            width: 200px;
+                            line-height: 40px;
+                            cursor: default;
+                            text-align: center;
+                            margin: auto;
+                            height: 40px;
+                        "
+            >工单统计</span></div>
+            <!-- <div class="femi-toolbar-self femi-lf">
+            <div class="btn-group" role="group">
+
+            </div>
+        </div> -->
+            <div class="columns columns-right btn-group pull-right">
+
+              <!-- <button type="button" id="alfie-add-level" class="btn btn-default btn-defaultNew">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
+              </button> -->
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="zace-tree-body zace-tree-body-one" style="height: 100%">
+          <div class="femi-tb-scroll table-part" style="height: 100%">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="width: 80px;" data-order="ID">序号</th>
+                <th style="min-width: 50px" data-order="PartNo">车号</th>
+                <th style="min-width: 50px" data-order="Customer">路线号</th>
+                <th style="min-width: 50px" data-order="OrderNo">工单编号</th>
+                <th style="min-width: 50px" data-order="AuditTime">下达时间</th>
+                <th style="min-width: 50px" data-order="WorkName">作业名称</th>
+                <th style="min-width: 50px" data-order="TeamName">作业班组</th>
+                <th style="min-width: 50px" data-order="PlanReceiveDate">计划日期</th>
+                <th style="min-width: 50px" data-order="OverTimeText">逾期时间</th>
+                <th style="min-width: 50px" data-order="Status">订单状态</th>
+                <th style="width: 150px" data-order="Operate">操作</th>
+              </tr>
+              </thead>
+              <tbody id="femi-Device-tbody-item" class="table-color">
+              <tr>
+                <td>
+                  <input
+                      type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}"
+                  />
+                </td>
+                <td colspan="18">等待数据加载...</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- 详情界面 -->
+<div class="zace-cbd-contain zacePencilDone" style="display: none;">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+          </div>
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <!-- <button type="button" id="commit_cancel" class="btn lmvt-def-btn ">
+          <span class="glyphicon " aria-hidden="true"></span>撤销
+      </button>
+      <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+          <span class="glyphicon " aria-hidden="true"></span>流程图
+      </button> -->
+
+        </div>
+
+        <span class="zace-header-title zace-title">工单详情</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;overflow-x: hidden;">
+          <div
+              class="headerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;height: 150px;"
+          >
+            <div style="margin-left: 20%;" class="OrderDetail">
+
+            </div>
+          </div>
+          <div
+              class="middlefq"
+              style="overflow: hidden;width: 100%;background-color: white;padding-bottom: 20px; height: 590px"
+          >
+            <div
+                class="middlefqHeader"
+                style="color: red;height: 80px;font-size: 20px;clear: both;border-bottom: 1px solid #ddd;"
+            >
+              <div
+                  class="middlefqHeaderleft"
+                  style="display: inline-block;height: 60px;float: left;padding: 25px;"
+              >
+                <img src="../static/images/checkbox/警告.png" style="width: 25px;height: 25px;">
+                当前工单状态：<span class="StausText">执行中</span>
+              </div>
+              <div
+                  class="middlefqHeaderright"
+                  style="display: inline-block;height: 60px;float: right;padding: 25px;"
+              >
+                <div class="btn-group zace-button" role="group">
+                  <button type="button" id="commit_cancel" class="btn lmvt-def-btn ">
+                    <span class="glyphicon " aria-hidden="true"></span>修改工单加工详情
+                  </button>
+                  <button
+                      type="button" id="commit_upload"
+                      class="btn   commit_route lmvt-def-btn"
+                  >
+                    <span class="glyphicon " aria-hidden="true"></span>信息上传
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="middlefqContent" style="clear: both;">
+              <div style="width: 90%;margin-left: 6%;">
+                <div class="middlefqContentBasic" style="width: 1450px;">
+                  <div
+                      class="middlefqContentTitle"
+                      style="font-size: 16px;padding: 25px 25px 5px 10px;"
+                  >
+                    基本信息:
+                  </div>
+                  <div
+                      class="middlefqContentTable middlefqContentTableBasic" style="font-size: 16px;
+                                            padding: 0px 25px 25px 10px;
+                                        clear: both;"
+                  >
+
+                  </div>
+                </div>
+              </div>
+              <div style="margin-left: 6%;width: 1425px;">
+                <div class="middlefqContentTable" style="margin-top: 20px;clear: both;">
+                  <div
+                      class="middlefqContentTitle"
+                      style="font-size: 16px;    padding: 20px 25px 25px 10px;"
+                  >
+                    部件检修明细:
+                  </div>
+                  <div>
+                    <div class="zace-tree-body zace-tree-body-one">
+                      <div class="femi-tb-scroll table-part">
+                        <table class="table table-hover table-bordered">
+                          <thead>
+                          <tr>
+                            <th style="width: 80px;" data-order="ID">序号</th>
+                            <th style="min-width: 50px" data-order="Code">部件编码</th>
+                            <th style="min-width: 50px" data-order="StartTime">开工时间
+                            </th>
+                            <th style="min-width: 50px" data-order="FinshTime">完工时间
+                            </th>
+                            <th style="min-width: 50px" data-order="CreateName">填报人
+                            </th>
+                            <th style="min-width: 50px" data-order="WorkerName">作业人员
+                            </th>
+                            <th style="min-width: 50px" data-order="WorkTime">作业时长
+                            </th>
+                            <th style="min-width: 50px" data-order="Picture">部件图片
+                            </th>
+                            <th style="min-width: 50px" data-order="Parameter">加工参数
+                            </th>
+                          </tr>
+                          </thead>
+                          <tbody id="femi-parts-tbody-item" class="table-color">
+                          <tr>
+                            <td>
+                              <input
+                                  type="checkbox" class="femi-tb-checkbox"
+                                  style="margin: 1px 0px 1px"
+                                  value="{{functionID}}"
+                              />
+                            </td>
+                            <td colspan="18">等待数据加载...</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/order_manage/OMSOrderCensus.js"></script>
+</body>
+
+</html>

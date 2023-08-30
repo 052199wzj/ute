@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>资质管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_model/QualificationSearch.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/basicSet/MessageCenter.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div class="zace-cbd-contain" style="min-width:1300px">
+
+        <div class="zzza zace-cbd-contain zace-left" style="min-width:950px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <input style="float: left;width: 140px;" id="lmvt-DTAddedStart" type="text"
+                                class="form-control width200" placeholder="证书添加开始时间">
+                            <input style="float: left;width: 140px;" id="lmvt-DTAddedEnd" type="text"
+                                class="form-control width200" placeholder="证书添加结束时间">
+                            <input style="float: left;width: 140px;" id="lmvt-DTValidUntilStart" type="text"
+                                class="form-control width200" placeholder="证书失效开始时间">
+                            <input style="float: left;width: 140px;" id="lmvt-DTValidUntilEnd" type="text"
+                                class="form-control width200" placeholder="证书失效结束时间">
+                        <button type="button" id="lmvt-search" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-add-level" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>增加
+                        </button>
+                        <button type="button" id="zace-delete-level" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>撤销
+                        </button>
+                        <button type="button" style="display:none" class="btn btn-default">
+                            <input type="file" id="input-file" multiple>
+                        </button>
+                    </div>
+                    <span class="zace-header-title">个人证书</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered grinding-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="WID">行号</th>
+                                    <th style="min-width: 50px" data-order="EmployeeName">姓名</th>
+                                    <th style="min-width: 50px" data-order="EmployeeDepartmentName">部门</th>
+                                    <th style="min-width: 80px" data-order="CertificationName">证书名称</th>
+                                    <th style="min-width: 80px" data-order="CertificationNo">证书编号</th>
+                                    <th style="min-width: 120px" data-order="DTAdded">添加日期</th>
+                                    <th style="min-width: 50px" data-order="DTValidUntil">有效期至</th>
+                                    <th style="min-width: 120px" data-order="AuthorizerInfoName">授权人</th>
+                                    <th style="min-width: 60px" data-order="QualificationStatus">证书状态</th>
+                                    <th style="min-width: 80px" data-order="Certificationdetail">证书详情</th>
+                                    <th style="min-width: 50px" data-order="">操作</th>
+                                    <button type="button" style="display:none" class="btn btn-default">
+                                        <input type="file" id="input-updatefile">
+                                    </button>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevel-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="cby-route-charf-apply" class="cby-charf-down cby-route-charf" style="display:none">
+            <div class="" style="min-width:1000px">
+                <div class="cby-tree-header" style="overflow:visible;">
+                    <div class="btn-group cby-left" role="group">ss
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button class="btn btn-default" type="button" id="cby-return-table">
+                            <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="cby-header-title" id="">证书图片</span>
+                </div>
+                <div style="overflow: auto;">
+                    <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="outerdiv"
+        style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;">
+        <div id="innerdiv" style="position:absolute;">
+            <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src="" />
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_model/QualificationSearch.js"></script>
+</body>
+
+</html>

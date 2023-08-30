@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/process_control/LntegralCarLiftingMachine2.css">
+  <title>整体式地下架车机组</title>
+
+</head>
+
+<body>
+
+<div class="fxy-right-content" id="fxy-app" v-cloak>
+  <!-- 最上层标题 -->
+  <div class="fxy-time" v-cloak>
+    <span v-text="StartingUp.DeviceNo+StartingUp.DeviceName"></span>
+    <span>状态：<span class="glyphicon glyphicon-record" :style="StartingUp.bgColor" aria-hidden="true"></span><span
+        class="StatusText" v-text="StartingUp.StatusText"
+    ></span></span>
+    <span>状态时间：<span v-text="StartingUp.StatusTime"></span> </span>
+    <span>持续状态时长：<span v-text="duration"></span></span>
+    <span class="time-newdate"><span v-text="newDate"></span></span>
+  </div>
+  <!--    整体式架车机-->
+  <div class="fxy-entirety">
+    <div class="fxy-carriage">
+
+      <div
+          v-for="i in 8"
+          class="carriage-list"
+      >
+        <div class="carriage">
+          <div class="box">
+            <span v-text="i+'号车'"></span>
+          </div>
+          <div class="wheel">
+            <div class="left">
+              <div></div>
+              <div></div>
+            </div>
+            <div class="right">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+        <div class="light">
+
+          <el-tooltip :disabled="!statusOverview[(i-1)*2].rest.length">
+
+            <template slot="content">
+              <p v-for="item in statusOverview[(i-1)*2].rest">{{item}}</p>
+            </template>
+
+            <div
+                class="left"
+                :class="{restError:statusOverview[(i-1)*2].rest.length}"
+            >
+              <div class="top">
+                <span v-text="(i-1)*2+1+'.2'"></span>
+                <el-tooltip :disabled="!statusOverview[(i-1)*2].ch.length">
+
+                  <template slot="content">
+                    <p v-for="item in statusOverview[(i-1)*2].ch">{{item}}</p>
+                  </template>
+
+                  <div class="yellow" :class="{error:statusOverview[(i-1)*2].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!statusOverview[(i-1)*2].bh2.length">
+                        <div slot="content">
+                          <p v-for="item in statusOverview[(i-1)*2].bh2">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error: statusOverview[(i-1)*2].bh2.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+              </div>
+              <div class="bottom">
+                <el-tooltip :disabled="!statusOverview[(i-1)*2].ch.length">
+
+                  <template slot="content">
+                    <p v-for="item in statusOverview[(i-1)*2].ch">{{item}}</p>
+                  </template>
+
+                  <div class="yellow" :class="{error:statusOverview[(i-1)*2].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!statusOverview[(i-1)*2].bh1.length">
+                        <div slot="content">
+                          <p v-for="item in statusOverview[(i-1)*2].bh1">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error:statusOverview[(i-1)*2].bh1.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+                <span v-text="(i-1)*2+1+'.1'"></span>
+              </div>
+            </div>
+          </el-tooltip>
+
+          <el-tooltip :disabled="!statusOverview[(i-1)*2+1].rest.length">
+
+            <template slot="content">
+              <p v-for="item in statusOverview[(i-1)*2+1].rest">{{item}}</p>
+            </template>
+
+            <div
+                class="left"
+                :class="{restError:statusOverview[(i-1)*2+1].rest.length}"
+            >
+              <div class="top">
+                <span v-text="(i-1)*2+2+'.2'"></span>
+                <el-tooltip :disabled="!statusOverview[(i-1)*2+1].ch.length">
+                  <template slot="content">
+                    <p v-for="item in statusOverview[(i-1)*2+1].ch">{{item}}</p>
+                  </template>
+                  <div class="yellow" :class="{error:statusOverview[(i-1)*2+1].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!statusOverview[(i-1)*2+1].bh2.length">
+                        <div slot="content">
+                          <p v-for="item in statusOverview[(i-1)*2+1].bh2">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error:statusOverview[(i-1)*2+1].bh2.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+              </div>
+
+              <div class="bottom">
+                <el-tooltip :disabled="!statusOverview[(i-1)*2+1].ch.length">
+                  <template slot="content">
+                    <p v-for="item in statusOverview[(i-1)*2+1].ch">{{item}}</p>
+                  </template>
+
+                  <div class="yellow" :class="{error:statusOverview[(i-1)*2+1].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!statusOverview[(i-1)*2+1].bh1.length">
+                        <div slot="content">
+                          <p v-for="item in statusOverview[(i-1)*2+1].bh1">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error:statusOverview[(i-1)*2+1].bh1.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+                <span v-text="(i-1)*2+2+'.1'"></span>
+              </div>
+            </div>
+          </el-tooltip>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    系统工作状态-->
+  <div class="fxy-Real-time-Status">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th style="width:auto;">系统工作状态</th>
+        <th style="width:auto;">编组工作状态</th>
+        <th style="width:auto;">车体联控</th>
+        <th style="width:auto;">转向架联控</th>
+        <th style="width:auto;">单控模式</th>
+        <th style="width:auto;">电气控制柜上的急停</th>
+        <th style="width:auto;">电源相序故障</th>
+        <th style="width:auto;">车体同步控制故障</th>
+        <th style="width:auto;">转向架同步控制故障</th>
+        <th style="width:auto;">上升接触器状态</th>
+        <th style="width:auto;">下降接触器状态</th>
+      </tr>
+      </thead>
+      <tbody class="table-color">
+      <tr>
+        <td>
+          <div :class="{green:info.SystemState}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:info.GandUpState}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:info.CarControl}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:info.BogieControl}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:info.SingleControl}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.ElectricScram}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.PowerFailure}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.CarSynchronization}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.BogieSynchronous}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.UpStatus}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.DeclineStatus}" class="gray"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--        部位-->
+  <div class="fxy-part">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th style="width:auto;">部位</th>
+        <th style="width:auto;">上限位</th>
+        <th style="width:auto;">下限位</th>
+        <th style="width:auto;">预加载高度（m'm）</th>
+        <th style="width:auto;">实际最高高度（mm）</th>
+        <th style="width:auto;">实际最低高度(mm)</th>
+        <th style="width:auto;">实际高度偏差(mm)</th>
+        <th style="width:auto;">加载最高(mm)</th>
+        <th style="width:auto;">加载最低(mm)</th>
+        <th style="width:auto;">加载偏差(mm)</th>
+        <th style="width:auto;">全部下限位</th>
+      </tr>
+      </thead>
+      <tbody class="table-color">
+      <tr>
+        <td>
+          车体
+        </td>
+        <td>
+          <div :class="{circle:info.CarUpperLimit}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.CarLowerLimit}" class="gray"></div>
+        </td>
+        <td>
+          <span v-text="info.PreloadingHeight1"></span>
+        </td>
+        <td>
+          <span v-text="info.ActualMaximumHeight1"></span>
+        </td>
+        <td>
+          <span v-text="info.ActualMinimumHeight1"></span>
+        </td>
+        <td>
+          <span v-text="info.ActualHeightDeviation1"></span>
+        </td>
+        <td>
+          <span v-text="info.LoadTheHighest1"></span>
+        </td>
+        <td>
+          <span v-text="info.LoadTheLowest1"></span>
+        </td>
+        <td>
+          <span v-text="info.LoadDeviation1"></span>
+        </td>
+        <td>
+          <div :class="{circle:info.CarAllLowerLimit}" class="gray"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          转向架
+        </td>
+        <td>
+          <div :class="{circle:info.BogieUpperLimit}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:info.BogieLowerLimit}" class="gray"></div>
+        </td>
+        <td>
+          <span v-text="info.PreloadingHeight2"></span>
+        </td>
+        <td>
+          <span v-text="info.ActualMaximumHeight2"></span>
+        </td>
+        <td>
+          <span v-text="info.ActualMinimumHeight2"></span>
+        </td>
+        <td>
+          <span v-text="info.ActualHeightDeviation2"></span>
+        </td>
+        <td>
+          <span v-text="info.LoadTheHighest2"></span>
+        </td>
+        <td>
+          <span v-text="info.LoadTheLowest2"></span>
+        </td>
+        <td>
+          <span v-text="info.LoadDeviation2"></span>
+        </td>
+        <td>
+          <div :class="{circle:info.BogieAllLowerLimit}" class="gray"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--    高度/限位切换-->
+  <div class="fxy-button">
+    <!-- Single button -->
+    <div class="btn-group">
+      <button
+          type="button" class="btn btn-default lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"
+      >
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{changName}} <span
+          class="caret"
+      ></span>
+      </button>
+      <ul class="dropdown-menu pull-right">
+        <li @click="switchover(0)"><a><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          高度</a></li>
+        <li @click="switchover(1)"><a><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          限位</a></li>
+        <li @click="switchover(2)"><a><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          螺母</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--    整体架车机高度-->
+  <div class="fxy-height" v-show="change[0].bool">
+    <!--        支架起升高度-->
+    <div class="altitude borders">
+      <p class="title">支架起升高度（mm）</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['Height_BH' + i + '_1'] }}</td>
+          <td>{{ info['Height_BH' + i + '_2'] }}</td>
+          <td>{{ info['Height_CH' + i ]}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        安全螺母和承载螺母间隙及磨耗量-->
+    <div class="abrasion borders">
+      <p class="title">安全螺母和承载螺母间隙及磨耗量（mm）</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1间隙</th>
+          <th style="width:auto;">BH2间隙</th>
+          <th style="width:auto;">CH间隙</th>
+          <th style="width:auto;">BH1磨耗量</th>
+          <th style="width:auto;">BH2磨耗量</th>
+          <th style="width:auto;">CH磨耗量</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['Interval_BH' + i + '_1'] }}</td>
+          <td>{{ info['Interval_BH' + i + '_2'] }}</td>
+          <td>{{ info['Interval_CH' + i ]}}</td>
+          <td>{{ info['Abrasion_CH' + i ]}}</td>
+          <td>{{ info['Abrasion_CH' + i ]}}</td>
+          <td>{{ info['Abrasion_CH' + i ]}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        安全螺母故障-->
+    <div class="jam-nut borders">
+      <p class="title">安全螺母故障</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['JamNutBreakdown_BH' + i + '_1'] }}</td>
+          <td>{{ info['JamNutBreakdown_BH' + i + '_2'] }}</td>
+          <td>{{ info['JamNutBreakdown_CH' + i ]}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        工作螺母故障-->
+    <div class="work-nut borders">
+      <p class="title">工作螺母故障</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['WorkNutBreakdown_BH' + i + '_1'] }}</td>
+          <td>{{ info['WorkNutBreakdown_BH' + i + '_2'] }}</td>
+          <td>{{ info['WorkNutBreakdown_CH' + i ]}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--    整体架车机限位-->
+  <div class="fxy-Limit" v-show="change[1].bool">
+    <!--        限位报警-->
+    <div class="Limit-alarm borders">
+      <p class="title">限位报警</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1上</th>
+          <th style="width:auto;">BH2上</th>
+          <th style="width:auto;">CH上</th>
+          <th style="width:auto;">BH1上上</th>
+          <th style="width:auto;">BH2上上</th>
+          <th style="width:auto;">CH上上</th>
+          <th style="width:auto;">BH1下</th>
+          <th style="width:auto;">BH2下</th>
+          <th style="width:auto;">CH下</th>
+          <th style="width:auto;">BH1下下</th>
+          <th style="width:auto;">BH2下下</th>
+          <th style="width:auto;">CH下下</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+
+          <td>{{ info['Ceiling_BH' + i + '_1'] }}</td>
+          <td>{{ info['Ceiling_BH' + i + '_2'] }}</td>
+          <td>{{ info['Ceiling_CH' + i ] }}</td>
+
+          <td>{{ info['UpCeiling_BH' + i + '_1'] }}</td>
+          <td>{{ info['UpCeiling_BH' + i + '_2'] }}</td>
+          <td>{{ info['UpCeiling_CH' + i ] }}</td>
+
+          <td>{{ info['LowerLimit_BH' + i + '_1'] }}</td>
+          <td>{{ info['LowerLimit_BH' + i + '_2'] }}</td>
+          <td>{{ info['LowerLimit_CH' + i ] }}</td>
+
+          <td>{{ info['DownLowerLimit_BH' + i + '_1'] }}</td>
+          <td>{{ info['DownLowerLimit_BH' + i + '_2'] }}</td>
+          <td>{{ info['DownLowerLimit_CH' + i ] }}</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        压力检测&急停-->
+    <div class="pressure borders">
+      <p class="title">压力检测&急停</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1压力</th>
+          <th style="width:auto;">BH2压力</th>
+          <th style="width:auto;">BH2坑急停</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['PressureAlarm_BH' + i + '_1'] }}</td>
+          <td>{{ info['PressureAlarm_BH' + i + '_2'] }}</td>
+          <td>{{ info['EmergencyStop_BH'+i] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--    整体架车机螺母-->
+  <div class="fxy-nut" v-show="change[2].bool">
+    <!--        安全螺母故障-->
+    <div class="jam-nut borders">
+      <p class="title">安全螺母故障</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['JamNutBreakdown_BH' + i + '_1'] }}</td>
+          <td>{{ info['JamNutBreakdown_BH' + i + '_2'] }}</td>
+          <td>{{ info['JamNutBreakdown_CH' + i] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        工作螺母故障-->
+    <div class="work-nut borders">
+      <p class="title">工作螺母故障</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['WorkNutBreakdown_BH' + i + '_1'] }}</td>
+          <td>{{ info['WorkNutBreakdown_BH' + i + '_2'] }}</td>
+          <td>{{ info['WorkNutBreakdown_CH' + i] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        电机超温报警-->
+    <div class="overheat borders">
+      <p class="title">电机超温报警</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['Overheat_BH' + i + '_1'] }}</td>
+          <td>{{ info['Overheat_BH' + i + '_2'] }}</td>
+          <td>{{ info['Overheat_CH' + i] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        电机超流报警-->
+    <div class="hyperflow borders">
+      <p class="title">电机超流报警</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1</th>
+          <th style="width:auto;">BH2</th>
+          <th style="width:auto;">CH</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr v-for="i in 16" :key="i">
+          <td>{{ i }}</td>
+          <td>{{ info['SuperFluid_BH' + i + '_1'] }}</td>
+          <td>{{ info['SuperFluid_BH' + i + '_2'] }}</td>
+          <td>{{ info['SuperFluid_CH' + i] }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<!--<script type="text/javascript" src="../static/utils/js/jquery-3.1.1.js"></script>-->
+<!--&lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"-->
+<!--        crossorigin="anonymous"></script>-->
+
+<script type="text/javascript" src="../static/js/process_control/LntegralCarLiftingMachine2.js"></script>
+</body>
+
+</html>

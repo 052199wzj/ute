@@ -1,0 +1,499 @@
+div.femi-modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+}
+
+    div.femi-modal-backdrop.in {
+        filter: alpha(opacity = 50);
+        opacity: .5;
+    }
+
+div.femi-modal {
+    width: 150px;
+    height: 90px;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1050;
+    background: url(../../images/web-loading.gif) center center no-repeat;
+    background-size: 100%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+
+    div.femi-modal div {
+        height: 90px;
+    }
+
+html, body {
+    margin: 0px;
+    height: 100%;
+}
+
+body {
+    font-family: Times New Roman,微软雅黑;
+    min-width: 900px;
+    padding: 0px;
+    font-size: 12px;
+    overflow: auto;
+    cursor: default;
+}
+
+
+.femi-scroll {
+    overflow: auto;
+    /*自动出现滚动条，如果要出现竖直滚动条则改成：overflow-y:auto，如果横向出现滚动条则改成：overflow-x:auto*/
+    scrollbar-face-color: #00aff0; /*滚动条凸出部分的颜色(前景色),包括两端的方形按钮、水平或竖直滑动的滑块的颜色*/
+    scrollbar-track-color: #bee1eb;
+    /*滚动条的背景颜色,如果省略的话将出现虚点，颜色将采用face-color的颜色*/
+    scrollbar-arrow-color: #00aff0; /*按钮(上下或者左右可以点击使滑块滚动的方形按钮)上三角箭头的颜色*/
+    scrollbar-3dlight-color: #0F0;
+    /*滚动条亮边的颜色,形成3D效果，有层次感，肉眼观察在滚动条左边及上边出现一条有色线（竖直方向滚动）*/
+    scrollbar-darkshadow-color: #00F; /*滚动条强阴影的颜色,肉眼观察出现滚动条下边及右边*/
+    scrollbar-highlight-color: #F0F;
+    /*滚动条空白部分的颜色,肉眼观察改变不明显，具体颜色改变出现在左边和上边空白处，介于face-color效果与3dlingt-color效果之间有个空白颜色（默认为白色）。此外，滚动条前景色有种凹陷的感觉，周边线条颜色凸起*/
+    scrollbar-shadow-color: #006600;
+    /*立体滚动条阴影的颜色，具体出现在滑块及方形按钮的右边及下边，形成阴影效果，颜色介于face-color效果和darkshadow-color效果之间，不是很明显*/
+    scrollbar-base-color: #00aff0;
+    /*滚动条的基本颜色,当前面7个效果出现时，滚动条基本颜色设置肉眼很难观察到，如果不设置前面7个效果,系统将根据base-color自动设置，其中前景色，背景色(虚点表示)颜色一致，其他效果(阴影以黑色填充),没有什么要求时，建议不设置此效果*/
+    /*
+	scrollbar-face-color:#F00;
+	scrollbar-track-color:#FFF;
+	scrollbar-arrow-color:#FFF;
+	这3个效果建议必须设置
+	*/
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #bee1eb;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00aff0;
+    border-radius: 3px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #9c3;
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background-color: #00aff0;
+        border-radius: 3px;
+    }
+
+
+
+
+
+.femi-lf {
+    float: left;
+}
+
+.femi-rt {
+    float: right;
+}
+
+
+.table tr th, .table tr td, .table caption {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.femi-contain-border {
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 15px;
+    -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+}
+
+.femi-tb-border {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 15px 10px;
+}
+
+.femi-tb-head {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+    overflow: hidden;
+}
+
+.femi-tb-scroll {
+    height: 100%;
+    overflow: auto;
+}
+
+.modal .modal-femi-alarm {
+    width: 100%;
+    padding: 5px 15px;
+    color: red;
+}
+
+.propertyGrid {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    overflow: auto;
+}
+
+
+.femi-cbd-contain {
+    height: 100%;
+}
+
+    .femi-cbd-contain .femi-contain-cbg {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+
+.femi-tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+    .femi-tooltip .femi-tooltip-content.femi-top {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 150%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+        .femi-tooltip .femi-tooltip-content.femi-top:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+
+    .femi-tooltip .femi-tooltip-content.femi-bottom {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 150%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+        .femi-tooltip .femi-tooltip-content.femi-bottom:after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent black transparent;
+        }
+
+.tooltip:hover .femi-tooltip-content {
+    visibility: visible;
+}
+
+
+.femi-font-size-large {
+    font-size: 14px;
+}
+
+.femi-font-size-biglarge {
+    font-size: 16px;
+}
+
+.femi-font-size-middle {
+    font-size: 12px;
+}
+
+.femi-font-size-small {
+    font-size: 10px;
+}
+
+.femi-font-size-little {
+    font-size: 8px;
+}
+
+.iplant-tool-middle {
+    padding: 50px 0px 25px 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px; 
+    box-sizing: border-box; /*IE9以上*/
+    -webkit-box-sizing: border-box; /*Safari3.2+*/
+    -o-box-sizing: border-box; /*Opera9.6*/
+    -ms-box-sizing: border-box; /*IE8*/
+    -moz-box-sizing: border-box; /*Firefox3.5+*/
+}
+
+
+.iplant-tool-header {
+    position: relative;
+    top: -100%;
+    width: 100%;
+    height: 50px; 
+}
+
+.iplant-tool-bottom {
+    position: relative;
+    top: -75px;
+    width: 100%;
+    height: 25px; 
+}
+
+
+.iplant-tool-contain {
+    width: 100%;
+    height: 100%;
+}
+
+.iplant-tool-left {
+    float: left;
+    height: 100%;
+    width: 200px; 
+}
+
+.iplant-tool-right {
+    float: right;
+    height: 100%;
+    width: 300px; 
+}
+
+.iplant-tool-center {
+    width: auto;
+    margin-left: 200px;
+    margin-right: 300px;
+    height: 100%; 
+}
+
+.table-select {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background-color: #f5f5f5;
+    z-index: 1000;
+}
+
+    .table-select .table-select-drop {
+        height: auto;
+        width: auto;
+        overflow: hidden;
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+
+        .table-select .table-select-drop .table-select-drop-in {
+            height: 32px;
+            width: 100%;
+            overflow: hidden;
+            margin: 0px;
+            padding: 0px 25px 0px 0px;
+        }
+
+            .table-select .table-select-drop .table-select-drop-in input {
+                margin: 0px;
+                height: 32px;
+                width: 100%;
+                padding: 0px 0px 0px 10px;
+                line-height: 32px;
+                border: none;
+            }
+
+            .table-select .table-select-drop .table-select-drop-in .table-select-drop-right {
+                float: right;
+                position: relative;
+                line-height: 32px;
+                top: -30px;
+                left: 20px;
+                cursor: pointer;
+            }
+
+    .table-select .table-select-view {
+        height: auto;
+        width: 100%;
+        padding: 2px 3px;
+        overflow: auto;
+        min-height: 46px;
+        max-height: 600px;
+        background-color: #f5f5f5;
+        z-index: 1000;
+    }
+table thead{
+    font-size:14px;
+}
+.lmvt-tb-show thead{
+     background-color:#ABCCEC !important;
+
+}
+.table-color > tr:nth-child(odd){
+
+    background-color:transparent;
+}
+.table-color > tr:nth-child(even){
+    background-color:#e9f4ff;
+}
+
+
+.table-color > tr.tbody_tr_odd{ 
+    background-color:transparent;
+}
+
+.table-color > tr.tbody_tr_even{  
+    background-color:#e9f4ff;
+}
+
+
+/*.lmvt-tb-show thead{
+      background-color:rgba(172, 190, 208, 0.8) ;
+     font-size:14px;
+
+}
+.table-color > tr:nth-child(odd){
+
+    background-color:white;
+}
+.table-color tr:nth-child(even){
+    background-color:#e3e9ef;
+}*/
+
+ /* .cby-paging-body{
+    border:1px solid red;
+    text-align:center;
+     float:right; 
+} 
+.cby-paging{
+    list-style:none;
+    display:flex;
+    flex-direction:row;
+}
+.cby-paging li {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: -7px;
+    margin-right: 15px;
+}
+    
+.cby-paging li img {
+    width: 20px;
+    height: 20px;
+}
+.cby-paging li input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background-color: #e9f4ff;
+    padding-top: 2px;
+}
+
+.cby-change-page {
+    width: 70px;
+    height: 30px;
+    background-color: #cbcdd063;
+    border: 1px solid #9a8f8f66;
+    border-radius: 4px;
+}
+.cby-change-onepage {
+    width: 85px;
+    height: 30px;
+    background-color: #cbcdd063;
+    border: 1px solid #9a8f8f66;
+    border-radius: 4px;
+}
+.cby-front-page button {
+    width: 70px;
+    height: 30px;
+    background-color: #cbcdd063;
+    border: 1px solid #9a8f8f66;
+    border-radius: 4px;
+}
+.cby-next-page button {
+    width: 70px;
+    height: 30px;
+    background-color: #cbcdd063;
+    border: 1px solid #9a8f8f66;
+    border-radius: 4px;
+} */
+
+.cby-paging{
+    list-style:none;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+.cby-paging li {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: -7px;
+    margin-right: 15px;
+}
+    
+.cby-paging li img {
+    width: 20px;
+    height: 20px;
+}
+.cby-paging li input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background-color: #e9f4ff;
+    padding-top: 2px;
+}
+.cby-front-page button, .cby-next-page button {
+    width: 60px;
+    height: 30px;
+    background-color: #cbcdd063;
+    border: 1px solid #9a8f8f66;
+    border-radius: 4px;
+}

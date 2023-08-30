@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>工艺流程图</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link type="text/css" rel="stylesheet"
+          href="../static/css/factory_route/FabricationRoute.css">
+</head>
+<body>
+    <div class="femi-bd-contain">
+        <!-- tree -->
+        <div class="cby-left femi-lf ">
+            <div class="femi-contain-border cby-border-contain">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="tree" class="glyphicon glyphicon-tree-conifer" aria-hidden="true">部门工艺树</span>
+                        <span class="caret"></span> <span class="sr-only">
+                            Toggle
+                            Dropdown
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu ">
+                        <li id="department-route-tree">
+                            <a href="javascript:;">
+                                <span class="" aria-hidden="true">部门工艺树</span>
+                            </a>
+                        </li>
+                        <li id="factory-route-tree">
+                            <a href="javascript:;">
+                                <span class="" aria-hidden="true">工厂工艺树</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="femi-tree-body" id="departmentTree">
+                    <div class="femi-tree-contain">
+                        <ul id="DepartmentTree" class="cby-left-tree treeview-famfamfam">
+                            <span>等待数据加载</span>
+                        </ul>
+                    </div>
+                </div>
+                <div class="femi-tree-body" id="factoryTree">
+                    <div class="femi-tree-contain">
+                        <ul id="FactoryTree" class="cby-left-tree treeview-famfamfam">
+                            <span>等待数据加载</span>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 流程图 -->
+        <div class="cby-full-bd ">                    
+                <div class="cby-bd-half-left cby-border-contain" style="margin-right: -2px; " id="ChartRoute">
+                    <!--<div class="femi-tb-head" style="overflow:visible ;">
+                        <p class="cby-tb-title">
+                            <strong>工艺路线图</strong>
+                        </p>-->
+                        <!--<div style="float: right; margin-right: 20px;font-size: 16px">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:;" id="editChart" style="padding: 7.5px 15px" role="button">修改</a></li>
+                    <li><a href="javascript:;" id="deleteChart" style="padding: 7.5px 15px" role="button">删除</a></li>
+                </ul>
+            </div>-->
+                        <!--<div id="ChartPartPoint">
+                        </div>
+                    </div>-->
+                    <div class="zace-tree-header">
+                        <!--<div class="femi-toolbar-self femi-lf">
+                            <div class="btn-group" role="group">
+
+                                <button type="button" id="returnChart"
+                                        class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-share" aria-hidden="true"></span>返回
+                                </button>
+
+                            </div>
+
+                        </div>-->
+
+
+
+                        <span class="zace-header-title zace-titleZ">工艺路线图</span>
+                    </div>
+
+                    <div class="zace-tree-body" >
+                        <div class="left-contain femi-tb-scroll">
+
+                            <div id="ChartPartPoint">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+      
+
+       
+    </div>
+
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_route/FabricationRoute.js"></script>
+</body>
+</html>

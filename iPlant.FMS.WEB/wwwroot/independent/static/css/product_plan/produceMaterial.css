@@ -1,0 +1,83 @@
+﻿.lmvt-container {
+    width: 100%;
+    height: 100%;
+    padding:3px 5px;
+}
+.lmvt-container-main {
+    width: 100%;
+    height: 100%;
+}
+.lmvt-container-surport {
+    width: 100%;
+    height: 100%;
+}
+.lmvt-container-supplement {
+    width: 100%;
+    height: 100%;
+}
+.lmvt-container-produce {
+    width: 100%;
+    height: 48%;
+    margin-top:10px;
+}
+.lmvt-container-supplement-plan {
+    width: 100%;
+    height: 100%;
+}
+.lmvt-container-header-btn {
+    height: 45px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    text-align: center;
+}
+.lmvt-container-table-main {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-table-main {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-table-produce {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-table-surport {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-table-supplement {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-table-supplement-main {
+    width: auto;
+    height: 50%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+.lmvt-container-table-supplement-position {
+    width: 100%;
+    height: 100%;
+    padding: 50px 10px 5px 10px;
+    margin-top: -45px;
+}
+.lmvt-container-supplement-position {
+    height:50%;
+    width:100%;
+    padding:10px 0 10px 0;
+}
+.lmvt-container-supplement-first {
+    height:100%;
+    width:100%;
+}

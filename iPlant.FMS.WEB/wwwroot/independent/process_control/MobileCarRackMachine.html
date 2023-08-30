@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/process_control/MobileCarRackMachine.css">
+  <title>移动架车机</title>
+
+</head>
+
+<body>
+
+<div class="fxy-right-content" id="fxy-app" v-cloak>
+  <!-- 最上层标题 -->
+  <div class="fxy-time" v-cloak>
+    <span v-text="deviceData.DeviceNo+deviceData.DeviceName"></span>
+    <span>状态：
+            <span class="glyphicon glyphicon-record" :style="{color:deviceData.colour}" aria-hidden="true"></span>
+            <span class="StatusText" v-text="deviceData.StatusText"></span>
+        </span>
+    <span>状态时间：<span v-text="deviceData.StatusTime"></span> </span>
+    <span>持续状态时长：<span>{{deviceData.Duration | time_H}}</span></span>
+    <span class="time-newdate"><span v-text="newdate"></span></span>
+    <!--        <button class="btn btn-default" @click="General">转到通用界面</button>-->
+  </div>
+  <!-- 架车机 -->
+  <div class="fxy-diagrammatic">
+    <div class="box">
+      <div class="warp">
+        <div class="light">
+          <div class="number">1.1</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[0].content">
+            <div slot="content"><span v-html="alarmData[0].content"></span></div>
+            <button class="white" :class="{red:alarmData[0].content.length}"></button>
+          </el-tooltip>
+        </div>
+        <div class="light">
+          <div class="number">1.2</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[1].content">
+            <div slot="content"><span v-html="alarmData[1].content"></span></div>
+            <button class="white" :class="{red:alarmData[1].content.length}"></button>
+          </el-tooltip>
+        </div>
+      </div>
+
+      <div class="middle">
+        <span>1号车</span>
+      </div>
+      <div class="warp">
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[2].content">
+            <div slot="content"><span v-html="alarmData[2].content"></span></div>
+            <button class="white" :class="{red:alarmData[2].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">1.3</div>
+        </div>
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[3].content">
+            <div slot="content"><span v-html="alarmData[3].content"></span></div>
+            <button class="white" :class="{red:alarmData[3].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">1.4</div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="warp">
+        <div class="light">
+          <div class="number">2.1</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[4].content">
+            <div slot="content"><span v-html="alarmData[4].content"></span></div>
+            <button class="white" :class="{red:alarmData[4].content.length}"></button>
+          </el-tooltip>
+        </div>
+        <div class="light">
+          <div class="number">2.2</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[5].content">
+            <div slot="content"><span v-html="alarmData[5].content"></span></div>
+            <button class="white" :class="{red:alarmData[5].content.length}"></button>
+          </el-tooltip>
+        </div>
+      </div>
+
+      <div class="middle">
+        <span>2号车</span>
+      </div>
+      <div class="warp">
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[6].content">
+            <div slot="content"><span v-html="alarmData[6].content"></span></div>
+            <button class="white" :class="{red:alarmData[6].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">2.3</div>
+        </div>
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[7].content">
+            <div slot="content"><span v-html="alarmData[7].content"></span></div>
+            <button class="white" :class="{red:alarmData[7].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">2.4</div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="warp">
+        <div class="light">
+          <div class="number">3.1</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[8].content">
+            <div slot="content"><span v-html="alarmData[8].content"></span></div>
+            <button class="white" :class="{red:alarmData[8].content.length}"></button>
+          </el-tooltip>
+        </div>
+        <div class="light">
+          <div class="number">3.2</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[9].content">
+            <div slot="content"><span v-html="alarmData[9].content"></span></div>
+            <button class="white" :class="{red:alarmData[9].content.length}"></button>
+          </el-tooltip>
+        </div>
+      </div>
+
+      <div class="middle">
+        <span>3号车</span>
+      </div>
+      <div class="warp">
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[10].content">
+            <div slot="content"><span v-html="alarmData[10].content"></span></div>
+            <button class="white" :class="{red:alarmData[10].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">3.3</div>
+        </div>
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[11].content">
+            <div slot="content"><span v-html="alarmData[11].content"></span></div>
+            <button class="white" :class="{red:alarmData[11].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">3.4</div>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="warp">
+        <div class="light">
+          <div class="number">4.1</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[12].content">
+            <div slot="content"><span v-html="alarmData[12].content"></span></div>
+            <button class="white" :class="{red:alarmData[12].content.length}"></button>
+          </el-tooltip>
+        </div>
+        <div class="light">
+          <div class="number">4.2</div>
+          <div class="yellow"></div>
+          <div class="green"></div>
+          <el-tooltip placement="bottom" :manual="!alarmData[13].content">
+            <div slot="content"><span v-html="alarmData[13].content"></span></div>
+            <button class="white" :class="{red:alarmData[13].content.length}"></button>
+          </el-tooltip>
+        </div>
+      </div>
+
+      <div class="middle">
+        <span>4号车</span>
+      </div>
+      <div class="warp">
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[14].content">
+            <div slot="content"><span v-html="alarmData[14].content"></span></div>
+            <button class="white" :class="{red:alarmData[14].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">4.3</div>
+        </div>
+        <div class="light">
+          <el-tooltip placement="top" :manual="!alarmData[15].content">
+            <div slot="content"><span v-html="alarmData[15].content"></span></div>
+            <button class="white" :class="{red:alarmData[15].content.length}"></button>
+          </el-tooltip>
+          <div class="green"></div>
+          <div class="yellow"></div>
+          <div class="number">4.4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--架车机实时状态-->
+  <div class="fxy-Real-time-Status">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th style="width:auto;">系统工作状态</th>
+        <th style="width:auto;">编组工作状态</th>
+        <th style="width:auto;">车体联控</th>
+        <th style="width:auto;">转向架联控</th>
+        <th style="width:auto;">单控模式</th>
+        <th style="width:auto;">电气控制柜上的急停</th>
+        <th style="width:auto;">电源相序故障</th>
+        <th style="width:auto;">车体同步控制故障</th>
+        <th style="width:auto;">转向架同步控制故障</th>
+        <th style="width:auto;">上升接触器状态</th>
+        <th style="width:auto;">下降接触器状态</th>
+      </tr>
+      </thead>
+      <tbody class="table-color">
+      <tr>
+        <td>
+          <div :class="{green:parameter.SystemState}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.GandUpState}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.CarControl}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.BogieControl}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.SingleControl}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{red:parameter.ElectricScram}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{red:parameter.PowerFailure}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{red:parameter.CarSynchronization}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{red:parameter.BogieSynchronous}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.UpStatus}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.DeclineStatus}" class="gray"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--        部位-->
+  <div class="fxy-part">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th style="width:auto;">部位</th>
+        <th style="width:auto;">上限位</th>
+        <th style="width:auto;">下限位</th>
+        <th style="width:auto;">预加载高度（m'm）</th>
+        <th style="width:auto;">实际最高高度（mm）</th>
+        <th style="width:auto;">实际最低高度(mm)</th>
+        <th style="width:auto;">实际高度偏差(mm)</th>
+        <th style="width:auto;">加载最高(mm)</th>
+        <th style="width:auto;">加载最低(mm)</th>
+        <th style="width:auto;">加载偏差(mm)</th>
+        <th style="width:auto;">全部下限位</th>
+      </tr>
+      </thead>
+      <tbody class="table-color">
+      <tr>
+        <td>
+          车体
+        </td>
+        <td>
+          <div :class="{green:parameter.CarUpperLimit}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.CarLowerLimit}" class="gray"></div>
+        </td>
+        <td>
+          {{parameter.PreloadingHeight1}}
+        </td>
+        <td>
+          {{parameter.ActualMaximumHeight1}}
+        </td>
+        <td>
+          {{parameter.ActualMinimumHeight1}}
+        </td>
+        <td>
+          {{parameter.ActualHeightDeviation1}}
+        </td>
+        <td>
+          {{parameter.LoadTheHighest1}}
+        </td>
+        <td>
+          {{parameter.LoadTheLowest1}}
+        </td>
+        <td>
+          {{parameter.LoadDeviation1}}
+        </td>
+        <td>
+          <div :class="{green:parameter.CarAllLowerLimit}" class="gray"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          转向架
+        </td>
+        <td>
+          <div :class="{green:parameter.BogieUpperLimit}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{green:parameter.BogieLowerLimit}" class="gray"></div>
+        </td>
+        <td>
+          {{parameter.PreloadingHeight2}}
+        </td>
+        <td>
+          {{parameter.ActualMaximumHeight2}}
+        </td>
+        <td>
+          {{parameter.ActualMinimumHeight2}}
+        </td>
+        <td>
+          {{parameter.ActualHeightDeviation2}}
+        </td>
+        <td>
+          {{parameter.LoadTheHighest2}}
+        </td>
+        <td>
+          {{parameter.LoadTheLowest2}}
+        </td>
+        <td>
+          {{parameter.LoadDeviation2}}
+        </td>
+        <td>
+          <div :green="{green:parameter.BogieAllLowerLimit}" class="gray"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--    高度/限位切换-->
+  <div class="fxy-button">
+    <!-- Single button -->
+    <div class="btn-group">
+      <button
+          type="button" class="btn btn-default lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"
+      >
+        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{bo.name}} <span
+          class="caret"
+      ></span>
+      </button>
+      <ul class="dropdown-menu pull-right">
+        <li @click="switchover(0)"><a><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          高度</a></li>
+        <li @click="switchover(1)"><a><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          限位</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--    安全螺母和承载螺母间隙及磨耗量&&支架起升高度-->
+  <div class="fxy-abrasion-altitude" v-show="bo.bool">
+    <!--        安全螺母和承载螺母间隙及磨耗量-->
+    <div class="abrasion borders">
+      <p class="title">安全螺母和承载螺母间隙及磨耗量（mm）</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1间隙</th>
+          <th style="width:auto;">BH2间隙</th>
+          <th style="width:auto;">BH3间隙</th>
+          <th style="width:auto;">BH4间隙</th>
+          <th style="width:auto;">BH1磨耗量</th>
+          <th style="width:auto;">BH2磨耗量</th>
+          <th style="width:auto;">BH3磨耗量</th>
+          <th style="width:auto;">BH4磨耗量</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr>
+          <td>1</td>
+          <td>{{parameter.IntervalBH1_1}}</td>
+          <td>{{parameter.IntervalBH1_2}}</td>
+          <td>{{parameter.IntervalBH1_3}}</td>
+          <td>{{parameter.IntervalBH1_4}}</td>
+          <td>{{parameter.AbrasionBH1_1}}</td>
+          <td>{{parameter.AbrasionBH1_2}}</td>
+          <td>{{parameter.AbrasionBH1_3}}</td>
+          <td>{{parameter.AbrasionBH1_4}}</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>{{parameter.IntervalBH2_1}}</td>
+          <td>{{parameter.IntervalBH2_2}}</td>
+          <td>{{parameter.IntervalBH2_3}}</td>
+          <td>{{parameter.IntervalBH2_4}}</td>
+          <td>{{parameter.AbrasionBH2_1}}</td>
+          <td>{{parameter.AbrasionBH2_2}}</td>
+          <td>{{parameter.AbrasionBH2_3}}</td>
+          <td>{{parameter.AbrasionBH2_4}}</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>{{parameter.IntervalBH3_1}}</td>
+          <td>{{parameter.IntervalBH3_2}}</td>
+          <td>{{parameter.IntervalBH3_3}}</td>
+          <td>{{parameter.IntervalBH3_4}}</td>
+          <td>{{parameter.AbrasionBH3_1}}</td>
+          <td>{{parameter.AbrasionBH3_2}}</td>
+          <td>{{parameter.AbrasionBH3_3}}</td>
+          <td>{{parameter.AbrasionBH3_4}}</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>{{parameter.IntervalBH4_1}}</td>
+          <td>{{parameter.IntervalBH4_2}}</td>
+          <td>{{parameter.IntervalBH4_3}}</td>
+          <td>{{parameter.IntervalBH4_4}}</td>
+          <td>{{parameter.AbrasionBH4_1}}</td>
+          <td>{{parameter.AbrasionBH4_2}}</td>
+          <td>{{parameter.AbrasionBH4_3}}</td>
+          <td>{{parameter.AbrasionBH4_4}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--        支架起升高度-->
+    <div class="altitude borders">
+      <p class="title">支架起升高度（mm）</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1高度</th>
+          <th style="width:auto;">BH2高度</th>
+          <th style="width:auto;">BH3高度</th>
+          <th style="width:auto;">BH4高度</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr>
+          <td>1</td>
+          <td>{{parameter.HeightBH1_1}}</td>
+          <td>{{parameter.HeightBH1_2}}</td>
+          <td>{{parameter.HeightBH1_3}}</td>
+          <td>{{parameter.HeightBH1_4}}</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>{{parameter.HeightBH2_1}}</td>
+          <td>{{parameter.HeightBH2_2}}</td>
+          <td>{{parameter.HeightBH2_3}}</td>
+          <td>{{parameter.HeightBH2_4}}</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>{{parameter.HeightBH3_1}}</td>
+          <td>{{parameter.HeightBH3_2}}</td>
+          <td>{{parameter.HeightBH3_3}}</td>
+          <td>{{parameter.HeightBH3_4}}</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>{{parameter.HeightBH4_1}}</td>
+          <td>{{parameter.HeightBH4_2}}</td>
+          <td>{{parameter.HeightBH4_3}}</td>
+          <td>{{parameter.HeightBH4_4}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--    电机温度（°c）、电流值（A）&超限报警-->
+  <div class="fxy-electricity borders" v-show="bo.bool">
+    <p class="title">电机温度（°c）、电流值（A）&超限报警</p>
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th style="width:auto;">支架号</th>
+        <th style="width:auto;">BH1温度值</th>
+        <th style="width:auto;">BH2温度值</th>
+        <th style="width:auto;">BH3温度值</th>
+        <th style="width:auto;">BH4温度值</th>
+        <th style="width:auto;">BH1电流值</th>
+        <th style="width:auto;">BH2电流值</th>
+        <th style="width:auto;">BH3电流值</th>
+        <th style="width:auto;">BH4电流值</th>
+        <th style="width:auto;">BH1温度超限</th>
+        <th style="width:auto;">BH2温度超限</th>
+        <th style="width:auto;">BH3温度超限</th>
+        <th style="width:auto;">BH4温度超限</th>
+        <th style="width:auto;">BH1电流超限</th>
+        <th style="width:auto;">BH2电流超限</th>
+        <th style="width:auto;">BH3电流超限</th>
+        <th style="width:auto;">BH4电流超限</th>
+      </tr>
+      </thead>
+      <tbody class="table-color">
+      <tr>
+        <td>1</td>
+        <td>{{parameter.TemperatureBH1_1}}</td>
+        <td>{{parameter.TemperatureBH1_2}}</td>
+        <td>{{parameter.TemperatureBH1_3}}</td>
+        <td>{{parameter.TemperatureBH1_4}}</td>
+        <td>{{parameter.ElectricityBH1_1}}</td>
+        <td>{{parameter.ElectricityBH1_2}}</td>
+        <td>{{parameter.ElectricityBH1_3}}</td>
+        <td>{{parameter.ElectricityBH1_4}}</td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH1_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH1_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH1_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH1_4}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH1_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH1_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH1_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH1_4}" class="gray"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>{{parameter.TemperatureBH2_1}}</td>
+        <td>{{parameter.TemperatureBH2_2}}</td>
+        <td>{{parameter.TemperatureBH2_3}}</td>
+        <td>{{parameter.TemperatureBH2_4}}</td>
+        <td>{{parameter.ElectricityBH2_1}}</td>
+        <td>{{parameter.ElectricityBH2_2}}</td>
+        <td>{{parameter.ElectricityBH2_3}}</td>
+        <td>{{parameter.ElectricityBH2_4}}</td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH2_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH2_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH2_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH2_4}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH2_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH2_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH2_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH2_4}" class="gray"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>{{parameter.TemperatureBH3_1}}</td>
+        <td>{{parameter.TemperatureBH3_2}}</td>
+        <td>{{parameter.TemperatureBH3_3}}</td>
+        <td>{{parameter.TemperatureBH3_4}}</td>
+        <td>{{parameter.ElectricityBH3_1}}</td>
+        <td>{{parameter.ElectricityBH3_2}}</td>
+        <td>{{parameter.ElectricityBH3_3}}</td>
+        <td>{{parameter.ElectricityBH3_4}}</td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH3_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH3_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH3_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH3_4}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH3_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH3_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH3_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH3_4}" class="gray"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>{{parameter.TemperatureBH4_1}}</td>
+        <td>{{parameter.TemperatureBH4_2}}</td>
+        <td>{{parameter.TemperatureBH4_3}}</td>
+        <td>{{parameter.TemperatureBH4_4}}</td>
+        <td>{{parameter.ElectricityBH4_1}}</td>
+        <td>{{parameter.ElectricityBH4_2}}</td>
+        <td>{{parameter.ElectricityBH4_3}}</td>
+        <td>{{parameter.ElectricityBH4_4}}</td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH4_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH4_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH4_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OverheatBH4_4}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH4_1}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH4_2}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH4_3}" class="gray"></div>
+        </td>
+        <td>
+          <div :class="{circle:parameter.OvercurrentBH4_4}" class="gray"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--    安全螺母和承载螺母间隙及磨耗量（mm）/支架起升高度（mm）/电机温度（°c）、电流值（A）&超限报警-->
+  <div class="fxy-limit" v-show="!bo.bool">
+    <!--        安全螺母和承载螺母间隙及磨耗量（mm）-->
+    <div class="wear borders">
+      <div class="abrasion">
+        <p class="title"> 安全螺母和承载螺母间隙及磨耗量（mm）</p>
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th style="width:auto;">支架号</th>
+            <th style="width:auto;">BH1间隙</th>
+            <th style="width:auto;">BH2间隙</th>
+            <th style="width:auto;">BH1磨耗量</th>
+            <th style="width:auto;">BH2磨耗量</th>
+          </tr>
+          </thead>
+          <tbody class="table-color">
+          <tr>
+            <td>1</td>
+            <td>{{parameter.Interval2BH1_1}}</td>
+            <td>{{parameter.Interval2BH1_2}}</td>
+            <td>{{parameter.Abrasion2BH1_1}}</td>
+            <td>{{parameter.Abrasion2BH1_2}}</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>{{parameter.Interval2BH2_1}}</td>
+            <td>{{parameter.Interval2BH2_2}}</td>
+            <td>{{parameter.Abrasion2BH2_1}}</td>
+            <td>{{parameter.Abrasion2BH2_2}}</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>{{parameter.Interval2BH3_1}}</td>
+            <td>{{parameter.Interval2BH3_2}}</td>
+            <td>{{parameter.Abrasion2BH3_1}}</td>
+            <td>{{parameter.Abrasion2BH3_2}}</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>{{parameter.Interval2BH4_1}}</td>
+            <td>{{parameter.Interval2BH4_2}}</td>
+            <td>{{parameter.Abrasion2BH4_1}}</td>
+            <td>{{parameter.Abrasion2BH4_2}}</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>{{parameter.Interval2BH5_1}}</td>
+            <td>{{parameter.Interval2BH5_2}}</td>
+            <td>{{parameter.Abrasion2BH5_1}}</td>
+            <td>{{parameter.Abrasion2BH5_2}}</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>{{parameter.Interval2BH6_1}}</td>
+            <td>{{parameter.Interval2BH6_2}}</td>
+            <td>{{parameter.Abrasion2BH6_1}}</td>
+            <td>{{parameter.Abrasion2BH6_2}}</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>{{parameter.Interval2BH7_1}}</td>
+            <td>{{parameter.Interval2BH7_2}}</td>
+            <td>{{parameter.Abrasion2BH7_1}}</td>
+            <td>{{parameter.Abrasion2BH7_2}}</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>{{parameter.Interval2BH8_1}}</td>
+            <td>{{parameter.Interval2BH8_2}}</td>
+            <td>{{parameter.Abrasion2BH8_1}}</td>
+            <td>{{parameter.Abrasion2BH8_2}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--        支架起升高度（mm）-->
+    <div class="height borders">
+      <div class="abrasion">
+        <p class="title"> 支架起升高度（mm）</p>
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th style="width:auto;">支架号</th>
+            <th style="width:auto;">BH1</th>
+            <th style="width:auto;">BH2</th>
+          </tr>
+          </thead>
+          <tbody class="table-color">
+          <tr>
+            <td>1</td>
+            <td>{{parameter.Height2BH1_1}}</td>
+            <td>{{parameter.Height2BH1_2}}</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>{{parameter.Height2BH2_1}}</td>
+            <td>{{parameter.Height2BH2_2}}</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>{{parameter.Height2BH3_1}}</td>
+            <td>{{parameter.Height2BH3_2}}</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>{{parameter.Height2BH4_1}}</td>
+            <td>{{parameter.Height2BH4_2}}</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>{{parameter.Height2BH5_1}}</td>
+            <td>{{parameter.Height2BH5_2}}</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>{{parameter.Height2BH6_1}}</td>
+            <td>{{parameter.Height2BH6_2}}</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>{{parameter.Height2BH7_1}}</td>
+            <td>{{parameter.Height2BH7_2}}</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>{{parameter.Height2BH8_1}}</td>
+            <td>{{parameter.Height2BH8_2}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--        电机温度（°c）、电流值（A）&超限报警-->
+    <div class="overrun borders">
+      <p class="title">电机温度（°c）、电流值（A）&超限报警</p>
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+          <th style="width:auto;">支架号</th>
+          <th style="width:auto;">BH1温度值</th>
+          <th style="width:auto;">BH2温度值</th>
+          <th style="width:auto;">BH1电流值</th>
+          <th style="width:auto;">BH2电流值</th>
+          <th style="width:auto;">BH1温度超限</th>
+          <th style="width:auto;">BH2温度超限</th>
+          <th style="width:auto;">BH1电流超限</th>
+          <th style="width:auto;">BH2电流超限</th>
+        </tr>
+        </thead>
+        <tbody class="table-color">
+        <tr>
+          <td>1</td>
+          <td>{{parameter.Temperature2BH1_1}}</td>
+          <td>{{parameter.Temperature2BH1_2}}</td>
+          <td>{{parameter.Electricity2BH1_1}}</td>
+          <td>{{parameter.Electricity2BH1_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH1_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH1_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH1_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH1_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>{{parameter.Temperature2BH2_1}}</td>
+          <td>{{parameter.Temperature2BH2_2}}</td>
+          <td>{{parameter.Electricity2BH2_1}}</td>
+          <td>{{parameter.Electricity2BH2_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH2_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH2_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH2_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH2_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>{{parameter.Temperature2BH3_1}}</td>
+          <td>{{parameter.Temperature2BH3_2}}</td>
+          <td>{{parameter.Electricity2BH3_1}}</td>
+          <td>{{parameter.Electricity2BH3_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH3_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH3_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH3_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH3_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>{{parameter.Temperature2BH4_1}}</td>
+          <td>{{parameter.Temperature2BH4_2}}</td>
+          <td>{{parameter.Electricity2BH4_1}}</td>
+          <td>{{parameter.Electricity2BH4_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH4_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH4_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH4_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH4_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>{{parameter.Temperature2BH5_1}}</td>
+          <td>{{parameter.Temperature2BH5_2}}</td>
+          <td>{{parameter.Electricity2BH5_1}}</td>
+          <td>{{parameter.Electricity2BH5_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH5_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH5_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH5_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH5_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>{{parameter.Temperature2BH6_1}}</td>
+          <td>{{parameter.Temperature2BH6_2}}</td>
+          <td>{{parameter.Electricity2BH6_1}}</td>
+          <td>{{parameter.Electricity2BH6_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH6_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH6_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH6_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH6_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>{{parameter.Temperature2BH7_1}}</td>
+          <td>{{parameter.Temperature2BH7_2}}</td>
+          <td>{{parameter.Electricity2BH7_1}}</td>
+          <td>{{parameter.Electricity2BH7_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH7_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH7_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH7_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH7_2}" class="gray"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>{{parameter.Temperature2BH8_1}}</td>
+          <td>{{parameter.Temperature2BH8_2}}</td>
+          <td>{{parameter.Electricity2BH8_1}}</td>
+          <td>{{parameter.Electricity2BH8_2}}</td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH8_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overheat2BH8_2}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH8_1}" class="gray"></div>
+          </td>
+          <td>
+            <div :class="{circle:parameter.Overcurrent2BH8_2}" class="gray"></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/MobileCarRackMachine.js"></script>
+</body>
+
+</html>

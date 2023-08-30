@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>在线库存</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link type="text/css" rel="stylesheet"
+          href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet"
+          href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet"
+          href="../static/css/product_plan/onlineInventory.css">
+
+</head>
+<body>
+    <!-- 设备列表主体 -->
+    <div class="zace-cbd-contain  zzza">
+        <div class="zace-tree-header" style="overflow:visible;">
+            <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                    
+                    <button type="button" id="zace-search-user"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                   
+                    <button type="button" id="zace-export-user"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="columns columns-right btn-group pull-right">
+                
+            </div>
+
+            <p class="zace-header-title">在线库存</p>
+        </div>
+        <div class="zace-tree-body">
+            <div class="femi-tb-scroll">
+                <table class="table   table-hover table-bordered tableStock">
+
+                    <thead>
+                        <tr>
+                            <th style="width: 3px">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>
+                            <th style="min-width: 50px" data-order="ID">序号</th>
+                            <th style="min-width: 50px" data-order="LineName">产线</th>
+                            <th style="min-width: 50px" data-order="PartName">工段</th>
+                            <th style="min-width: 50px" data-order="PartPointName">工序</th>
+                            <th style="min-width: 50px" data-order="MaterialName">物料名</th>
+                            <th style="min-width: 50px" data-order="MaterialNo">物料号</th>
+                            <th style="min-width: 50px" data-order="FQTYOutStock">入站数</th>
+                            <th style="min-width: 50px" data-order="FQTYInStock">出战数</th>
+                            <th style="min-width: 50px" data-order="FQTYOnSite">在线数</th>
+                            <th style="min-width: 50px" data-order="FQTYInventroy">盘点数</th>
+                            <th style="min-width: 50px" data-order="InventroyTime">盘点时刻</th>
+                            <th style="min-width: 50px" data-order="SubmitTime">更新时刻</th>
+
+                            <!-- <th style="min-width: 50px" data-title="DepartureDate">离职时间</th>-->
+                        </tr>
+                    </thead>
+                    <tbody id="femi-userInStock-tbody" class="table-color"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="zace-cbd-contain  zzzb" style="display:none">
+        <div class="zace-tree-header" style="overflow:visible;">
+            <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                   
+                    <button type="button" id="zace-search-userPro"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+
+                    <button type="button" id="zace-export-userPro"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="columns columns-right btn-group pull-right">
+                
+            </div>
+
+            <p class="zace-header-title">库存明细</p>
+        </div>
+        <div class="zace-tree-body">
+            <div class="femi-tb-scroll">
+                <table class="table   table-hover table-bordered tablePro">
+
+                    <thead>
+                        <tr>
+                            <th style="width: 3px">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>
+                            <th style="min-width: 50px" data-order="ID">序号</th>
+                            <th style="min-width: 50px" data-order="Name">姓名</th>
+                            <th style="min-width: 50px" data-order="LoginName">用户名</th>
+                            <th style="min-width: 50px" data-order="DepartmentID">部门</th>
+                            <th style="min-width: 50px" data-order="Position">岗位</th>
+
+                            <!-- <th style="min-width: 50px" data-title="DepartureDate">离职时间</th>-->
+                        </tr>
+                    </thead>
+                    <tbody id="femi-user-tbody" class="table-color"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/onlineInventory.js"></script>
+
+</body>
+</html>

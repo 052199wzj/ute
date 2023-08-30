@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>对比Bom</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/report/CompareSettingBom.css" />
+</head>
+
+<body>
+
+    <div class="zace-cbd-contain zace-BomItem" style="min-width:1300px">
+
+        <div class="femi-full-bd zzzArea" style="min-width:1000px">
+            <div class="zace-tree-header" style="overflow:visible;">
+
+                <div class="btn-group zace-left" role="group">
+                    <button type="button" id="zace-exportApproval-level" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+                   
+                    <div class="btn-group" >
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>切换
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">                        
+                            <li class="device_status" id="zace-delete-bomItemAll">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>全部
+                                </a>
+                            </li>
+                            <li class="device_status" id="zace-active-bomItemPart">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>差异项
+                                </a>
+                            </li>                            
+                        </ul>
+
+                    </div>    
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-shaixuan-table" class="btn btn-default ">
+                        <span class="glyphicon glyphicon" aria-hidden="true"></span>筛选
+                    </button>
+                    <button type="button" id="zace-shaixuan-refresh" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                    </button>  
+                </div>
+
+                <span class="zace-header-title" id="zace-spanTextChange">BOM对比</span>
+
+            </div>
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll table-part">
+                    <table class="table   table-hover table-bordered table-partApprovalBom">
+                        <thead>
+                            <tr>    
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>                           
+                                <th style="min-width: 50px" data-order="WID">序号</th>
+                                <th style="min-width: 50px" data-order="BOMNoA">BOM版本_1</th>
+                                <th style="min-width: 50px" data-order="BOMNoB">BOM版本_2</th>
+                                <th style="min-width: 80px" data-order="BOMType">BOM类型</th>
+                                <th style="min-width: 50px" data-order="Remark">Bom备注</th>
+                                <th style="min-width: 50px" data-order="PlaceID">工位编号</th>
+                                <th style="min-width: 50px" data-order="PartPointName">工序名称</th>
+                            
+                                <th style="min-width: 50px" data-order="MaterialNo">物料编号</th>
+                                <th style="min-width: 50px" data-order="MaterialName">物料名称</th> 
+                                <th style="min-width: 50px" data-order="UnitText">单位</th>
+                                <th style="min-width: 50px" data-order="MaterialNumber">数量</th>
+                                <th style="min-width: 50px" data-order="ReplaceType">必换偶换</th>    
+                                <th style="min-width: 80px" data-order="OutsourceType">必修偶修</th>                                                       
+                                <th style="min-width: 50px" data-order="CompareRemark">差异备注</th>
+                                <th style="min-width: 50px" data-order="IsSame">差异类别</th>                                                                                                                                                            
+                            </tr>
+                        </thead>
+                        <tbody id="femi-bomItem-tbody" ></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="femi-full-bd  zzzArea" style="min-width:1000px">
+            <div class="femi-bd-half-left ">
+                <div class="zace-tree-header" style="overflow:visible;">
+
+                    <div class="btn-group zace-left" role="group">
+                        <div class="btn-group" >
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>切换
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">                        
+                                <li class="device_status" id="zace-delete-bomItemAllRight">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>全部
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-active-bomItemPartRight">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>差异项
+                                    </a>
+                                </li>                            
+                            </ul>
+    
+                        </div>    
+                    
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-shaixuan-tablePoint" class="btn btn-default ">
+                            <span class="glyphicon glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+
+                    <span class="zace-header-title" id="zace-spanTextChange">工序对比</span>
+
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table   table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                   
+                                    <th style="min-width: 50px" data-order="WID">序号</th>
+                                    <th style="min-width: 50px" data-order="PlaceID">工位编号</th>
+                                    <th style="min-width: 50px" data-order="PartPointName">工序名称</th>
+                                
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>                              
+                                    <th style="min-width: 50px" data-order="Remark">备注</th>
+                                    <th style="min-width: 50px" data-order="IsSame">差异类别</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody id="femi-bomItemPoint-tbody" ></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/report/CompareSettingBom.js"></script>
+</body>
+
+</html>

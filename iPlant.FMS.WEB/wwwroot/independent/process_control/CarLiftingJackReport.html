@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>架车机</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/CarLiftingJackReport1.css"/>
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/reset.min.css">
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css"/>
+</head>
+
+<body class="femi-font-size-middle">
+<!-- 第一层容器 -->
+<div id="contain">
+
+  <!-- 容器flex布局 -->
+  <div id="app">
+    <!-- 设备状态一览 -->
+    <div class="DeviceTop">
+
+      <div class="app-top-mode flex-itemContain flex-column">
+        <div>万顷沙检修库临修线设备状态一览：</div>
+      </div>
+      <div class="app-top-sed flex-itemContain flex-row">
+
+        <div class="app-sed-switch flex-row DefaultText">
+          <div class="">设备数量:6</div>
+        </div>
+        <div class="app-sed-switch flex-row ActiveText">
+          <div class="">开机:4</div>
+        </div>
+        <div class="app-sed-switch flex-row ActiveText">
+          <div class="">关机:1</div>
+        </div>
+        <div class="app-sed-switch flex-row ForbiddenText">
+          <div class="">故障:1</div>
+        </div>
+
+      </div>
+      <div class="app-top-sld flex-itemContain flex-row">
+
+        <div class="app-sed-switch flex-row ActiveText">
+          <div class="">开机率:66.6%</div>
+        </div>
+        <div class="app-sed-switch flex-row DefaultText">
+          <div class="">关机率:16.6%
+          </div>
+        </div>
+        <div class="app-sed-switch flex-row ForbiddenText">
+          <div class="">故障率:16.6%</div>
+        </div>
+
+
+      </div>
+      <div class="app-top-fur flex-itemContain flex-row">
+
+        2021-03-25 14:48:38
+      </div>
+
+    </div>
+    <!-- 车辆容器 -->
+    <div class="AllMetroComtain">
+
+    </div>
+
+    <!-- 顶部flex布局 -->
+
+    <!-- 每辆机车情况 -->
+    <!--       <div class="MetroContain flex-row">
+
+    </div> -->
+    <!-- 车厢细节部门 -->
+    <!--   <div class="CarriageContain flex-row">
+
+    </div> -->
+    <!-- 架车机列表 -->
+    <div class="AllCar flex-row">
+      <div class="OneCar">
+        <div class="AllCarTop flex-column">
+          <div class="AllCarTopInfo flex-row">
+            <div class="app-top-mode flex-itemContain flex-row">
+              <div>1#移动式架车机</div>
+            </div>
+            <div class="app-top-sed flex-itemContain flex-row">
+
+              <div class="app-sed-switch">
+                <div class="">开机:</div>
+
+              </div>
+              <div class="app-sed-switch">
+                <figure class="circle app-float {{IsActiveCircle}}"></figure>
+
+              </div>
+            </div>
+
+            <div class="app-top-sed flex-itemContain flex-row">
+
+              <div class="btn-group" role="group">
+                <button type="button" class="btn lmvt-Active-btn">
+                  <span class="glyphicon glyphicon-eye-close" aria-hidden="true">查看详情</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div class="AllCarTimeInfo flex-row">
+            <div class="app-top-sed flex-itemContain flex-row">
+
+              <div class="app-sed-switch">
+                <div class="">开机时间:2021.03.25 08:45:26</div>
+                <div></div>
+              </div>
+
+            </div>
+            <div class="app-top-sed flex-itemContain flex-row">
+
+              <div class="app-sed-switch">
+                <div class="">持续开机时长:2021.03.25 08:45:26</div>
+                <div></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- 车轮？ -->
+        <div class="AllCarBottom flex-row">
+          <div class="CarContain flex-column">
+            <div class="CarShoeTop flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+            </div>
+            <div class="CarBody flex-row">
+              <div class="CarBodyContent flex-row">
+                1号车
+              </div>
+            </div>
+            <div class="CarShoeBottom flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+              </div>
+            </div>
+          </div>
+          <div class="CarContain flex-column">
+            <div class="CarShoeTop flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+            </div>
+            <div class="CarBody flex-row">
+              <div class="CarBodyContent flex-row">
+                1号车
+              </div>
+            </div>
+            <div class="CarShoeBottom flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+              </div>
+            </div>
+          </div>
+          <div class="CarContain flex-column">
+            <div class="CarShoeTop flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+            </div>
+            <div class="CarBody flex-row">
+              <div class="CarBodyContent flex-row">
+                1号车
+              </div>
+            </div>
+            <div class="CarShoeBottom flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+              </div>
+            </div>
+          </div>
+          <div class="CarContain flex-column">
+            <div class="CarShoeTop flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactTop"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactBottom"></div>
+              </div>
+            </div>
+            <div class="CarBody flex-row">
+              <div class="CarBodyContent flex-row">
+                1号车
+              </div>
+            </div>
+            <div class="CarShoeBottom flex-row">
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+
+              </div>
+              <div class="DoubleShoe flex-column">
+                <div class="ShoeReactBottom"></div>
+                <div class="ShoeReactMiddle"></div>
+                <div class="ShoeReactTop"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- 设备列表 -->
+    <div class="BodyTable flex-column">
+      <div class="BodyTableHeaderContain flex-row">
+        <div class="BodyTableHeader flex-row">
+          设备列表
+        </div>
+        <div class="BodyTableHeader flex-itemContain flex-row">
+
+        </div>
+
+      </div>
+
+      <div class="BodyTableBody">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th style="min-width:50px" data-order="WID">序号</th>
+            <th style="min-width:50px" data-order="Code">设备编号</th>
+            <th style="min-width:50px" data-order="Name">设备名称</th>
+            <th style="min-width:50px" data-order="Area">所属区域</th>
+            <th style="min-width: 50px" data-order="Team">使用班组</th>
+
+            <th style="min-width:50px" data-order="Status">状态</th>
+            <th style="min-width:50px" data-order="Remark">设备描述</th>
+            <th style="min-width: 50px" data-order="OpenTime">开机/故障时刻</th>
+
+            <th style="min-width:50px" data-order="SumTime">累计开机时长</th>
+            <th style="min-width:50px" data-order="OpenRa">开机率</th>
+            <th style="max-width:30px">操作</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-device-body table-color">
+          <tr style="">
+            <td colspan="20">等待数据加载</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- 起升高度表 -->
+    <div class="UpAndDownTable">
+
+    </div>
+    <!-- 安全螺母和承载螺母间隙表 -->
+    <div class="SaveTable">
+
+    </div>
+
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/CarLiftingJackReport.js"></script>
+</body>
+
+</html>

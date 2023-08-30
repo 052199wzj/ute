@@ -1,0 +1,99 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+.lmvt-container {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+   min-width:1700px;
+}
+#bbb{
+	width: 100%;
+	border-bottom: 1px solid gainsboro;
+    margin-top:-1px;
+}
+
+.lmvt-container-header-btn {
+    height: 45px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    text-align:center;
+}
+
+.lmvt-container-table-basic {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+}
+.zzza {
+    width:auto;
+    height: 100%
+}
+.zzzc {
+    width:auto;
+    height: 100%
+}
+.zzzd {
+    width:auto;
+    height: 100%
+}
+.zzzb {
+    width: 0px;
+    height: 100%;
+    float:right;
+    /*position:absolute;
+    top:0px;
+    right:0px;*/
+}
+
+.zzze {
+    width: 0px;
+    height: 100%;
+    float:right;
+    /*position:absolute;
+    top:0px;
+    right:0px;*/
+}
+
+.zzzf {
+    width: 0px;
+    height: 100%;
+    float:right;
+    /*position:absolute;
+    top:0px;
+    right:0px;*/
+}
+
+.zzzg {
+    width: 0px;
+    height: 100%;
+    float:right;
+    /*position:absolute;
+    top:0px;
+    right:0px;*/
+}
+
+.btn-group{
+	float: left;
+}
+.zace-bg{
+     width: 100%;
+    height: 100%;
+    padding:5px;
+}
+.lmvt-header-title{
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #C7001A !important;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    height: 40px;
+}

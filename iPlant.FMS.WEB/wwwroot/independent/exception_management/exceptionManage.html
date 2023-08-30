@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>异常管理</title>
+
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/exception_management/exceptionManage.css" />
+</head>
+
+<body class="femi-font-size-middle" style="min-width:1600px">
+    <div class="lmvt-container">
+        <div class="lmvt-container-main-exception">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <!--<button type="button" id="lmvt-table-Search" class="btn btn-default">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>启用
+                    </button>-->
+                    <!-- <button type="button" id="lmvt-table-change" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                    </button> -->
+                    <!-- <button type="button" id="lmvt-type-zace" class="btn btn-default">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                    </button> -->
+
+                </div>
+
+                <div style="position: relative;">
+                    <span class="lmvt-header-title"
+                        style=" font-family: STXinwei;font-size: 20px;color: #00688b">异常地点</span>
+                </div>
+
+
+
+                <div class="columns columns-right btn-group pull-right">
+
+                    <!--<button class="btn btn-default" type="button" id="lmvt-type">
+                        <span class="glyphicon glyphicon-eye-open"></span>异常类型
+                    </button>-->
+
+
+                    <!-- <button class="btn btn-default" type="button" id="lmvt-rule">
+                        <span class="glyphicon glyphicon-eye-open"></span>异常规则
+                    </button> -->
+                    <button class="btn lmvt-def-btn" type="button" id="lmvt-station-type">
+                        <span class="glyphicon glyphicon-eye-open"></span>异常地点类型
+                    </button>
+                    <button type="button" id="lmvt-type-zace" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                    </button>
+                </div>
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered grinding-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:40px" data-order="WID">序号</th>
+                                <!-- <th style="min-width:50px" data-order="ID">序号</th> -->
+                                <th style="min-width: 60px" data-order="StationNo">地点编码</th>
+                                <th style="min-width: 60px" data-order="StationName">名称</th>
+                                <th style="min-width: 50px" data-order="StationType">类型</th>
+                                <!-- <th style="min-width: 50px" data-order="RelevancyType">关联名称</th>-->
+                                <!--<th style="min-width:50px" data-order="RelevancyID">关联ID</th>-->
+                                <th style="min-width: 50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width: 80px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 50px" data-order="EditorID">录入人</th>
+                                <th style="min-width: 80px" data-order="EditTime">录入时间</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width: 50px" data-title="">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-Station-body table-color" id="station-lei-table">
+                            <tr style="">
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </td>
+                                <td colspan="10">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="lmvt-container-typt-exception" style="display: none">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-type-add" class="btn lmvt-danger-btn">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>增加
+                    </button>
+                    <!-- <button type="button" id="lmvt-type-change" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                    </button> -->
+
+                    <!-- <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="lmvt-type-active">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>启用
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-type-stop">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <button class="btn lmvt-def-btn" type="button" id="lmvt-type-back">
+                        <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                    </button>
+                    <button type="button" id="lmvt-type-zacePlace" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                    </button>
+                </div>
+                <div style="position: relative;">
+                    <span class="lmvt-header-title"
+                        style=" font-family: STXinwei;font-size: 20px;color: #00688b">异常地点类型</span>
+                </div>
+
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered grinding-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:40px" data-order="WID">序号</th>
+                                <th style="min-width: 80px" data-order="Name">名称</th>
+                                <!-- <th style="min-width: 40px" data-order="RelevancyType">关联名称</th>-->
+                                <th style="min-width: 50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width: 60px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 50px" data-order="EditorID">录入人</th>
+                                <th style="min-width: 60px" data-order="EditTime">录入时间</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width: 50px" data-title="">操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-type-body table-color">
+                            <tr style="">
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </td>
+                                <td colspan="7">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/exception_management/exceptionManage.js"></script>
+</body>
+
+</html>

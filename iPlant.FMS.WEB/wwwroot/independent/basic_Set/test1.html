@@ -1,0 +1,49 @@
+﻿<html>
+<head>
+  <title></title>
+</head>
+
+<body>
+<div><input type="button" onclick="OpenDoc();" value="打开"></div>
+<div id="sad" width="1000" height="1000">
+  <object
+      classid="clsid:FF09E4FA-BFAA-486E-ACB4-86EB0AE875D5"
+      codebase="WebOffice.ocx#Version=2019,1,7,3"
+      id="WebOffice" width="900" height="500"
+  ></object>
+
+  <object
+      id="WebOffice" clsid="{FF09E4FA-BFAA-486E-ACB4-86EB0AE875D5}"
+      type="application/x-itst-activex"
+      width="100%" height="900"
+  ></object>
+</div>
+<script language="javascript">
+    var _sad = document.getElementById("sad");
+    //if (!!window.ActiveXObject || "ActiveXObject" in window) {
+    //    _sad.innerHTML=' <object classid="clsid:FF09E4FA-BFAA-486E-ACB4-86EB0AE875D5" codebase="WebOffice.ocx#Version=2019,1,7,3" id="WebOffice" width="900" height="500"></object>';
+    //}
+    //else {
+    //    _sad.innerHTML='<object id="WebOffice" CLSID="{FF09E4FA-BFAA-486E-ACB4-86EB0AE875D5}" TYPE="application/x-itst-activex"  width=100% height=900></object>';
+    //}
+    if (navigator.userAgent.indexOf("Chrome") > 0) {
+        s = "<object id='WebOffice1' type='application/x-itst-activex' align='baseline' border='0'"
+            + "style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT: 768px'"
+            + "clsid='{E77E049B-23FC-4DB8-B756-60529A35FAD5}'"
+            + "event_NotifyCtrlReady='WebOffice1_NotifyCtrlReady'>"
+            + "</object>";
+        _sad.innerHTML = s;
+    }
+
+    function OpenDoc() {
+        //取得WebOffice对象
+        var WebOffice = document.getElementById("WebOffice");
+
+
+        //通过对象WebOffice的Open方法打开个一个服务器文档
+        //此处服务器文档地址为：http://www.officectrl.com/officecs/temp/file1.doc
+        WebOffice.Open("http://192.168.1.251:8081/upload/excel/配料计划.xls", false, "Excel.Sheet");
+    }
+</script>
+</body>
+</html>

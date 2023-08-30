@@ -1,0 +1,833 @@
+﻿.btn-group {
+    float: left;
+}
+
+.lmvt-header-title {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    height: 40px;
+}
+
+.zace-right {
+    width: 0px;
+    height: 100%;
+    float: right;
+}
+
+.zace-bg {
+    width: 100%;
+    height: 100%;
+    padding: 0px 0px 0px 5px;
+}
+
+.zace-left {
+    width: auto;
+    height: 100%
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.femi-font-size-large {
+    font-size: 14px;
+}
+
+.femi-font-size-biglarge {
+    font-size: 16px;
+}
+
+.femi-font-size-middle {
+    font-size: 12px;
+}
+
+.femi-font-size-small {
+    font-size: 10px;
+}
+
+.zace-cbd-contain {
+    height: 100%;
+}
+
+.zace-tree-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    /*overflow: hidden;*/
+}
+
+.zace-tree-body {
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.btn-defaultNew {
+    background-color: #0ea9f7;
+    color: white;
+}
+
+.zace-tree-header .femi-toolbar-self {
+    height: 34px;
+}
+
+.zace-tree-header .btn-group {
+    height: 34px;
+}
+
+.zace-tree-header .btn-default {
+    height: 34px;
+}
+
+.zace-tree-header .zace-left {
+    padding-right: 0px;
+}
+
+.zace-time-header {
+    position: absolute;
+    width: 100%;
+    height: 440px;
+    left: 0;
+    top: 0;
+}
+
+.zace-time-footer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 10px;
+    right: 10px;
+    /*top: 450px;*/
+    bottom: 0px;
+}
+
+.zace-time-Headcontain {
+    height: 100%;
+    width: 100%;
+}
+
+.zace-time-leftzz {
+    position: absolute;
+    height: 100%;
+    width: 500px;
+    left: 10px;
+    top: 10px;
+    /*border:solid 1px red;*/
+}
+
+.zace-cicle-contain {
+    position: absolute;
+    height: 400px;
+    width: 500px;
+    left: 10px;
+    top: 50px;
+}
+
+.zace-column-contain {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    left: 10px;
+    top: 50px;
+}
+
+.zace-time-rightzz {
+    position: absolute;
+    /*width: 100%;*/
+    height: 100%;
+    left: 510px;
+    top: 10px;
+    right: 10px;
+    /*border:solid 1px green;*/
+}
+
+.zace-contain-border {
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+}
+
+.zace-zfooter {
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+}
+
+.zace-header-titleDe {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    text-align: center;
+    margin: auto;
+    height: 40px;
+}
+
+.zace-leftContain {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 头部查询样式 */
+
+.lmvt-container-header-top {
+    margin-bottom: 10px;
+}
+
+.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
+    width: 150px;
+}
+
+.bootstrap-select.btn-group,
+.bootstrap-select.btn-group[class*="span"] {
+    float: none;
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-left: 0;
+}
+
+.cby-downRoute-lists {
+    position: relative;
+}
+
+.td-contain {
+    display: flex;
+    flex-direction: row;
+    place-content: center space-around;
+}
+
+.td-contain-list {
+    font-size: 15px;
+    font-family: cursive;
+    color: rgb(45, 105, 145);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.cby-downRoute-list {
+    position: absolute;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid rgb(96, 125, 139);
+}
+
+.cby-downRoute-list {
+    list-style: none;
+    display: none;
+}
+
+.td-contain-list:hover {
+    color: red;
+}
+
+.row {
+    padding: 0px;
+    margin: 0px;
+}
+
+.row:hover {
+    cursor: pointer;
+}
+
+#nav {
+    position: relative;
+    list-style-type: none;
+    padding: 0px;
+}
+
+#nav li:hover {
+    background: #FFFFFF;
+}
+
+#nav li ul {
+    line-height: 24px;
+    background: #FFF;
+    list-style-type: none;
+    text-align: left;
+    left: -999em;
+    /* width: 132px; */
+    position: absolute;
+    top: -3px;
+    border-width: 1px;
+    /* border-top-style: none; */
+    /* border-right-style: solid; */
+    /* border-bottom-style: solid; */
+    /* border-left-style: solid; */
+    /* border-color: #003399; */
+    padding: 1px;
+    min-width: 160px;
+    padding: 5px 3px;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-color: #fff;
+    z-index: 200;
+    width: 90px;
+    min-width: 90px;
+    color: black;
+}
+
+
+/* #nav li ul a{display:block; width: 130px;text-align:left;padding-left:2px;} */
+
+#nav li ul li:link {
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    color: black;
+}
+
+#nav li ul li:visited {
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    color: black;
+}
+
+#nav li ul li:hover {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: normal;
+    background-color: rgb(245, 245, 245);
+    color: black;
+}
+
+#nav li:hover ul {
+    left: -5px;
+}
+
+#nav li.sfhover ul {
+    left: -5px;
+}
+
+
+/* 增加头部查询样式 */
+
+.zace-tree-header-one {
+    height: 45px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.zace-tree-header-people {
+    height: 108px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    margin-top: 32px;
+}
+
+.zace-tree-body-one {
+    width: 100%;
+    height: calc(100% - 62px);
+    border-color: #e5e5e5 #eee #eee;
+    border-width: 1px;
+}
+
+.zace-header-title {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: black;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    margin: 0px;
+    text-align: center;
+    /* position: absolute;
+	left: 50%;
+	margin-left: -100px; */
+}
+
+.badge {
+    margin-right: 10px;
+}
+
+.lmvt-activeBadge {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    padding: 7px 7px !important;
+}
+
+.lmvt-forbiddenBadge {
+    color: #fff !important;
+    background-color: gray !important;
+    padding: 7px 7px !important;
+}
+
+.alfie-btn-modify {
+    float: left;
+    color: #409EFF;
+    cursor: pointer;
+}
+
+.alfie-btn-use {
+    float: left;
+    color: #409EFF;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.alfie-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.col-xs-1,
+.col-sm-1,
+.col-md-1,
+.col-lg-1,
+.col-xs-2,
+.col-sm-2,
+.col-md-2,
+.col-lg-2,
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3,
+.col-xs-4,
+.col-sm-4,
+.col-md-4,
+.col-lg-4,
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5,
+.col-xs-6,
+.col-sm-6,
+.col-md-6,
+.col-lg-6,
+.col-xs-7,
+.col-sm-7,
+.col-md-7,
+.col-lg-7,
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8,
+.col-xs-9,
+.col-sm-9,
+.col-md-9,
+.col-lg-9,
+.col-xs-10,
+.col-sm-10,
+.col-md-10,
+.col-lg-10,
+.col-xs-11,
+.col-sm-11,
+.col-md-11,
+.col-lg-11,
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.row {
+    padding: 0px;
+    margin: 0px;
+}
+
+.row:hover {
+    cursor: pointer;
+}
+
+.lmvt-dblclick {
+    background-color: rgb(123, 241, 181) !important;
+}
+
+.lmvt-do-info {
+    color: #409EFF;
+}
+
+.lmvt-do-info:hover {
+    cursor: pointer;
+}
+
+.lmvt-do-active {
+    color: #52C41A;
+}
+
+.lmvt-do-active:hover {
+    cursor: pointer;
+}
+
+.lmvt-do-forbidden {
+    color: #FF0000;
+}
+
+.lmvt-do-forbidden:hover {
+    cursor: pointer;
+}
+
+.lmvt-allowed-delete {
+    color: #FF0000;
+}
+
+.lmvt-allowed-delete:hover {
+    cursor: pointer;
+}
+
+.lmvt-not-allowed-delete {
+    color: darkgrey;
+}
+
+.lmvt-not-allowed-delete:hover {
+    cursor: not-allowed;
+}
+
+.lmvt-do-warning {
+    color: #E9967A;
+}
+
+.lmvt-danger-btn {
+    background-color: #0ea9f7;
+    opacity: 0.8;
+    color: #fff;
+    border-left-color: #fff;
+}
+
+.lmvt-def-btn {
+    color: #0ea9f7;
+    background-color: #fff;
+    border-color: #0ea9f7;
+    opacity: 0.8;
+}
+
+.lmvt-badge {
+    margin-right: 10px;
+}
+
+.lmvt-activeBadge {
+    color: #fff !important;
+    background-color: #28a745 !important;
+    padding: 7px 7px !important;
+}
+
+.lmvt-forbiddenBadge {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    padding: 7px 7px !important;
+}
+
+.lmvt-warningBadge {
+    color: #fff !important;
+    background-color: #E9967A !important;
+    padding: 7px 7px !important;
+}
+
+.lmvt-defBadge {
+    color: #fff !important;
+    background-color: darkgray !important;
+    padding: 7px 7px !important;
+}
+
+.row {
+    padding: 0px;
+    margin: 0px;
+}
+
+.row:hover {
+    cursor: pointer;
+}
+
+#lmvt-nav {
+    position: relative;
+    list-style-type: none;
+    padding: 0px;
+    color: black;
+}
+
+#lmvt-nav li:hover {
+    background: #FFFFFF;
+}
+
+#lmvt-nav li ul {
+    line-height: 24px;
+    background: #FFF;
+    list-style-type: none;
+    text-align: left;
+    left: -999em;
+    /* width: 132px; */
+    position: absolute;
+    top: -3px;
+    border-width: 1px;
+    /* border-top-style: none; */
+    /* border-right-style: solid; */
+    /* border-bottom-style: solid; */
+    /* border-left-style: solid; */
+    /* border-color: #003399; */
+    padding: 1px;
+    min-width: 160px;
+    padding: 5px 3px;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    background-color: #fff;
+    z-index: 200;
+    width: 90px;
+    min-width: 90px;
+    color: black;
+}
+
+
+/* #nav li ul a{display:block; width: 130px;text-align:left;padding-left:2px;} */
+
+#lmvt-nav li ul li:link {
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    color: black;
+}
+
+#lmvt-nav li ul li:visited {
+    background-color: rgb(245, 245, 245);
+    text-decoration: none;
+    color: black;
+}
+
+#lmvt-nav li ul li:hover {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: normal;
+    background-color: rgb(245, 245, 245);
+    color: black;
+}
+
+#lmvt-nav li:hover ul {
+    left: -37px;
+}
+
+#lmvt-nav li.sfhover ul {
+    left: -37px;
+}
+
+.hitarea+div {
+    margin-right: 10px;
+}
+
+.modal-open {
+    overflow: auto !important;
+}
+
+
+/* Switch开关样式 */
+
+
+/* 必须是input为 checkbox class 添加 switch 才能实现以下效果 */
+
+
+/* input[type='checkbox'].switch{
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 10px;
+    transition: border-color .3s, background-color .3s;
+} 
+ input[type='checkbox'].switch::after {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height:1rem;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0, 0, 2px, #999;
+    transition:.4s;
+    top: 2px;
+    position: absolute;
+    left: 2px;
+    width: 15px;
+    height: 15px;
+}
+
+input[type='checkbox'].switch:checked {
+    background: #0ea9f7;
+} */
+
+
+/* 当input[type=checkbox]被选中时：伪元素显示下面样式 位置发生变化 */
+
+
+/* input[type='checkbox'].switch:checked::after {
+    content: '';
+    position: absolute;
+    left: 55%;
+    top: 2px;
+    width: 15px;
+    height: 15px;
+} */
+
+input[type='checkbox'].switchFalse {
+    outline: none;
+    /* appearance: none; */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 10px;
+    transition: border-color .3s, background-color .3s;
+}
+
+input[type='checkbox'].switchFalse::after {
+    content: '';
+    display: inline-block;
+    /* width: 1rem;
+    height: 1rem; */
+    border-radius: 50%;
+    background: #fff;
+    /* box-shadow: 0, 0, 2px, #999; */
+    transition: .4s;
+    top: 2px;
+    position: absolute;
+    left: 2px;
+    width: 15px;
+    height: 15px;
+}
+
+input[type='checkbox'].switchTrue {
+    background: #0ea9f7;
+}
+
+input[type='checkbox'].switchTrue {
+    outline: none;
+    /* appearance: none; */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    width: 40px;
+    height: 20px;
+    /* background: #ccc; */
+    border-radius: 10px;
+    transition: border-color .3s, background-color .3s;
+}
+
+input[type='checkbox'].switchTrue::after {
+    content: '';
+    position: absolute;
+    left: 55%;
+    top: 2px;
+    width: 15px;
+    height: 15px;
+}
+
+input[type='checkbox'].switchTrue::after {
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    transition: .4s;
+}
+
+.m-detail-title {
+    width: 100px;
+}
+
+.fxy-title {
+    height: 57px;
+    text-align: center;
+    overflow: visible;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.fxy-search {
+    background: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.fzy-select-style{
+    height: 34px;
+}
+.fzy-select-style .selectpicker, .fzy-select-style .btn {
+    border-radius: 0 4px 4px 0 !important;
+}
+
+
+.pure-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #dddddd;
+
+}
+
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial, sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.pure-table td, .pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: 14px;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+    text-align: center;
+}
+
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+.pure-table tr:hover {
+    background-color: rgb(249, 196, 83);
+}
+.pure-table td {
+    background-color: transparent;
+}
+
+.pure-table-bordered td {
+    border-bottom: 1px solid;
+    border-color: rgb(233, 233, 233);
+}
+
+.pure-table-bordered tbody > tr:last-child > td {
+    border-bottom-width: 0;
+}

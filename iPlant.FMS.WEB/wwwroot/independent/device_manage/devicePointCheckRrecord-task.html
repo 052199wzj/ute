@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>设备点检日志</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/bootstrap.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/base.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/css/deviceManage/devicePointCheckRrecord-task.css">
+
+</head>
+<body>
+    <div class="lmvt-container">
+        <!--//保养任务（我的详情）-->
+        <div class="zzzb lmvt-container-system" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="cby-edit-ledger-YINC"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title">点检任务详情</span>
+                </div>
+                <div id="bbb"></div>
+                <div class="Typetable-task lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered table-part">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-task-XQ" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--//保养任务（保养结果）-->
+        <div class="zzzc lmvt-container-system" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-Device-yinc"
+                                class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+
+                    </div>
+                    <span class="lmvt-header-title">点检结果</span>
+                </div>
+
+                <div class="Typetable1 lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered table-part">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="ItemID">点检项</th>
+                                    <!--<th style="min-width: 50px" data-order="TaskID">任务号</th>-->
+                                    <th style="min-width: 50px" data-order="Result">结果</th>
+                                    <th style="min-width: 50px" data-order="Reason">理由</th>
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+                                    <th style="min-width: 50px" data-order="TaskType">任务类型</th>
+                                    <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+                                    <th style="min-width: 50px" data-order="Resource">资源</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-Item" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="10">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--//保养任务（所有列表）-->
+        <div class="zzza lmvt-container-system">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-XQ"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看详情
+                        </button>
+                        <button type="button" id="zace-item-Device-DJResult"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>点检结果
+                        </button>
+                        <!--<button type="button" id="zace-edit-Device-apply"
+                            class="btn lmvt-def-btn ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>申请单
+                    </button>-->
+                        <!--<button type="button" id="zace-item-Device-CX"
+                            class="btn lmvt-def-btn ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>-->
+                        <button type="button" id="zace-export-Device-task"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn lmvt-def-btn " style="padding: 0">
+                            <input type="text" id="zace-search-Device-task"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>设备点检日志
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-right">
+
+                                <li class="device_property" id="zace-BY-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>设备保养日志
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-DJ-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>设备点检日志
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-WX-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>设备维修日志
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-BJBY-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>备件保养日志
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-BJWX-Device-Apply">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>备件维修日志
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="lmvt-header-title">设备点检记录</span>
+                </div>
+
+                <div class="Typetable1 lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered table-part-Record">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="DeviceName">设备号</th>
+                                    <th style="min-width: 50px" data-order="DeviceNo">设备编码</th>
+                                    <th style="min-width: 50px" data-order="WorkShopName">车间</th>
+                                    <th style="min-width: 50px" data-order="LineName">产线</th>
+                                    <th style="min-width: 50px" data-order="ModuleVersionID">点检模板</th>
+                                    <th style="min-width: 50px" data-order="OperatorName">操作员</th>
+                                    <th style="min-width: 50px" data-order="Result">结果</th>
+                                    <th style="min-width: 50px" data-order="ShiftID">班次</th>
+                                    <th style="min-width: 50px" data-order="ActiveTime">激活时刻</th>
+                                    <th style="min-width: 50px" data-order="SubmitTime">提交时刻</th>
+                                    <th style="min-width: 50px" data-order="ModeText">任务模式</th>
+                                    <th style="min-width: 50px" data-order="TypeText">任务类型</th>
+                                    <th style="min-width: 50px" data-order="Times">次数</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-task" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="22">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+
+	<script type="text/javascript" src="../static/utils/require.js"></script>
+	<script type="text/javascript" src="../static/js/deviceManage/devicePointCheckRrecord-task.js"></script>
+
+</body>
+</html>

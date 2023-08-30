@@ -1,0 +1,343 @@
+[v-cloak] {
+    display: none;
+}
+
+html {
+    height: 100%;
+    background-color: white;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    background-color: rgba(238, 238, 238, 1);
+}
+
+.fzy-table{
+    background-color: white;
+    padding: 10px;
+}
+.fzy-title {
+    display: inline-block;
+    font-family: STXinwei;
+    font-size: 20px;
+    margin: 10px;
+    color: black;
+    cursor: default;
+}
+
+.font-red {
+    color: #D9001B
+}
+
+.font-gray {
+    color: #999999
+}
+
+.font-green {
+    color: #51D351
+}
+
+.font-bold {
+    font-weight: bold
+}
+
+#fzy-accessLibrary {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#fzy-accessLibrary > div {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+
+
+th {
+    background-color: rgb(215, 215, 215);
+    border-color: rgb(233, 233, 233);
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+/* fxy-head start */
+
+.fxy-head {
+    flex: none;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    padding: 0 20px;
+    background-color: #fff;
+}
+
+.fxy-head > .title {
+    font-size: 26px;
+    font-weight: bold;
+    color: rgb(133, 133, 133);
+}
+
+/* fxy-head end */
+
+.fzy-scroll-box {
+    flex: 1;
+    height: 0;
+    overflow-y: auto;
+}
+
+/* district start */
+
+.fzy-district {
+    margin-top: 5px;
+    padding: 5px 0 5px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+}
+
+.fzy-district > .box {
+    display: flex;
+    flex-direction: column;
+    margin: 0 3px 6px;
+    padding: 2px;
+    box-sizing: border-box;
+    width: 250px;
+    height: 125px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.fzy-district > .box > .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.fzy-district > .box > .bottom {
+    flex: none;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* district end */
+
+/* fzu-distribution-img start */
+
+.fzy-distribution-img {
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+}
+
+/* fzu-distribution-img end */
+
+/* fzy-table start */
+
+/* 分页器 */
+.cby-paging-body {
+    margin: 0 !important;
+    background-color: #fff;
+}
+
+/* fzy-table end */
+
+/* device-history start */
+
+.fzy-top-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.back-btn {
+    margin: 5px;
+    height: 34px;
+    width: 80px;
+    background-color: #0ea9f7;
+    color: #fff !important;
+}
+
+.device-history {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* device-history end */
+
+.fxy-search {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    background-color: white;
+}
+
+.Device-search {
+    width: 21%;
+}
+
+.Device-search > button {
+    margin-right: 10px;
+}
+
+.btn-info {
+    background-color: rgb(14, 169, 247);
+}
+
+.btn-default {
+    color: #3ebaf9;
+    border-color: #3ebaf9;
+}
+
+.area {
+    width: 100% !important;
+}
+
+.area-style {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date {
+    width: 50% !important;
+}
+
+.search-btn {
+    margin-left: 30px;
+    padding: 0;
+}
+
+/* device-history end */
+
+
+/* 时间选择器样式 start */
+
+.input-date-box {
+    display: flex;
+    overflow: hidden;
+    width: 400px;
+    height: 34px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.input-date-box .label {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 34px;
+    background-color: #eeeeee;
+    border-right: 1px solid #cccccc;
+    border-radius: 0 !important;
+    font-size: 14px;
+    font-weight: normal;
+    color: #555555;
+}
+
+.input-date-box .el-range-separator {
+    width: 23px !important;
+}
+
+.input-date-box .el-input__inner {
+    width: 100% !important;
+    height: 34px !important;
+    border: 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* 时间选择器样式 end */
+
+.lookOver {
+    color: #0ea9f7;
+    cursor: pointer;
+}
+
+/*固定表头 start*/
+
+.fixed-header-table {
+    width: 100%;
+    padding: 15px;
+    font-size: 12px;
+
+}
+.fixed-header-table table {
+    width: 100%;
+    border: none !important;
+}
+
+.fixed-header-table tbody tr:hover {
+    background-color: rgb(249, 196, 83);
+}
+
+.fixed-header-table table {
+    background-color: rgb(215, 215, 215) !important;
+}
+
+.fixed-header-table table tbody {
+    display: block;
+    height: 300px;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.fixed-header-table table thead, .fixed-header-table table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; /**表格列的宽度由表格宽度决定，不由内容决定*/
+    text-align: center;
+    border-right: 1px solid rgb(233,233,233);
+}
+
+.fixed-header-table thead th{
+    background-color: #e0e0e0;
+}
+
+.fixed-header-table thead th, .fixed-header-table tbody td {
+    width: 50px;
+    border: none;
+    border-left: 1px solid rgb(233,233,233);
+}
+
+/*.fixed-header-table table thead {*/
+/*	width: calc(100% - 0.7em); !*表头与表格垂直对齐*!*/
+/*}*/
+
+.fixed-header-table tr {
+    border-bottom: 1px solid rgb(233, 233, 233);
+    background-color: white;
+}
+.fixed-header-table  tbody::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}
+
+.input-select-box .el-input__inner {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+/*固定表头 end*/

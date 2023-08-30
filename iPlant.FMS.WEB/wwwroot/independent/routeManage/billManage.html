@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>流程设计</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/routeManage/billManage.css" />
+</head>
+<body>  
+    <div class="iplant-tool-contain">
+        <div class="iplant-tool-right" style="display:none">
+            <div class="lmvt-container-supplier" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="femi-hide-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                        <button type="button" id="femi-add-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="cby-add-type" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>控件类型
+                        </button>
+                    </div>
+                    <p class="lmvt-header-title" id="lmvt-header-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-30px;margin-left:200px">控件</p>
+                </div>
+                <!-- 控件配置 -->
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ButtonId">控件标识</th>
+                                    <th style="min-width: 50px" data-order="ButtonName">控件名称</th>
+                                    <th style="min-width: 50px" data-order="WidgetTypeName">控件类型</th>
+                                    <th style="min-width: 50px" data-order="Remark">备注</th>
+                                    <th style="min-width: 50px" data-order="">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplier-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--控件类型-->
+            <div class="lmvt-container-type" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="femi-hide-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                        <button type="button" id="femi-add-type" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        
+                    </div>
+                    <p class="lmvt-header-title" id="lmvt-header-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-30px;margin-left:200px">控件类型</p>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <th style="min-width: 50px" data-order="">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplier-type table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cby-cbd-contain iplant-tool-center" style="min-width:1300px;margin-left:0px;margin-right:0px">
+            <!-- 树 -->
+            <div class="femi-left femi-lf cby-tree-remove">
+                <div class="femi-contain-border femi-border-contain">
+                    <div class="femi-tree-head">
+                        <div class="columns columns-right btn-group pull-right">
+                            <button class="btn btn-default" type="button" id="cby-add-treeItem">
+                                <span class="glyphicon glyphicon-plus"></span>新增
+                            </button>
+                            <button class="btn btn-default" type="button" id="cby-refresh-treeItem">
+                                <span class="glyphicon glyphicon-refresh"></span>刷新
+                            </button>
+                        </div>
+                        <span style="font-size: 14px;" class="cby-header-title">流程分类树</strong>
+                    </div>
+                    <div class="femi-tree-body ">
+                        <div class="femi-tree-contain">
+                            <ul id="routeTree" class="femi-left-tree treeview-famfamfam"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 表 -->
+            <div class="femi-full-bd" style="min-width:1000px" id="cby-table">
+                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <div class="btn-group cby-left" role="group">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span><span class="lmvt-changeOption">网页端</span>
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="" id="lmvt-app">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>移动端
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="" id="lmvt-web">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>PC端
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <button type="button" id="cby-add-billTable" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <!-- <button type="button" id="cby-add-type" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>控件类型
+                            </button> -->
+                            <button type="button" id="lmvt-all" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查看全部
+                            </button>
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <button type="button" class="btn btn-default " style="padding: 0">
+                                <input type="text" id="cby-searchBill-table" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                            </button>
+                            <button class="btn btn-default" type="button" id="">
+                                <span class="glyphicon glyphicon-search"></span>查询
+                            </button>
+                        </div>
+                        <span class="cby-header-title" id="">单据库</span>
+                    </div>
+                    <div class="cby-tree-body femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                        </th>
+                                        <!-- <th style="min-width: 150px" data-order="">操作</th> -->
+                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                        <th style="min-width: 50px" data-order="ID">编号</th>
+                                        <th style="min-width: 50px" data-order="Name">名称</th>
+                                        <th style="min-width: 50px" data-order="Type">类型</th>
+                                        <th style="min-width: 50px" data-order="Url">地址</th>
+                                        <th style="min-width: 50px" data-order="StartTime">创建时间</th>
+                                        <th style="min-width: 150px" data-order="">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-tbody-bliiTable" class="table-color">
+                                    <tr>
+                                        <!-- <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td> -->
+                                        <td colspan="13">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </div>
+     </div>
+        <script type="text/javascript" src="../static/utils/require.js"></script>
+        <script type="text/javascript" src="../static/js/routeManage/billManage.js"></script>
+</body>
+</html>

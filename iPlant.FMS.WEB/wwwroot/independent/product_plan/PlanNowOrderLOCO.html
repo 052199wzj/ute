@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>周排程</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/MakeOrderLOCO.css" />
+</head>
+
+<body class="femi-font-size-middle " style="min-width:1200px;padding: 5px;">
+    <div class="zace-cbd-contain tableZace">
+
+
+        <div class="zace-cbd-contain gante" style="display: block;">
+            <div class="zace-ganteAll right-middle-zace">
+
+                <div class="zace-leftContain" id="lmvt-gantTu"
+                    style="overflow :auto;height: 50%;padding:0px;padding-top: 3px">
+
+                    <div class="row supplier-row" style="width: 40%;padding-left: 10px;">
+
+                        <div class="col-xs-3" style="">
+
+                            <select style="width: 100%;" id="WorkShopSelect" type="text" class="form-control width"
+                                placeholder="车间选择"></select>
+
+                        </div>
+                        <div class="col-xs-3" style="padding-left: 2px;">
+                            <input style="width: 100%;background-color: #ffffff;" readonly="readonly" v-model="StartTime" id="lmvt-startTime" type="text"
+                                class="form-control width200" placeholder="开始时间">
+                        </div>
+                        <div class="col-xs-3" style="padding-left: 2px;">
+                            <input style="width: 100%;background-color: #ffffff;" readonly="readonly" v-model="EndTime" id="lmvt-endTime" type="text"
+                                class="form-control width200" placeholder="结束时间">
+                        </div>
+                        <div class="col-xs-3">
+
+                            <button type="button" @click="refresh" id="lmvt-search"
+                                class="btn lmvt-danger-btn lmvt-default-btn">
+                                查询
+                            </button>
+                            <button type="button" @click="reset" id="lmvt-reset"
+                                class="btn btn-default lmvt-default-btn lmvt-def-btn">
+                                重置
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="zace-tree-header" style="overflow:visible;">
+                        <div class="femi-toolbar-self femi-lf">
+                            <div class="btn-group" role="group">
+                                <!-- <button type="button" id="zace-export-gantt" class="btn lmvt-def-btn">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>返回
+                                </button> -->
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn lmvt-def-btn dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>排序方式
+                                        <span class="caret"></span> <span class="sr-only">
+                                            Toggle
+                                            Dropdown
+                                        </span>
+                                    </button>
+                                    
+                                    <ul class="dropdown-menu pull-left">
+                                        <li class="device_status" id="lmvt-changeType-part">
+                                            <a href="javascript:;">
+                                                <span class="glyphicon glyphicon-start" aria-hidden="true"></span>工序排序
+                                            </a>
+                                        </li>
+                                        <li class="device_status" id="lmvt-changeType-order">
+                                            <a href="javascript:;">
+                                                <span class="glyphicon glyphicon-start" aria-hidden="true"></span>订单排序
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <div class="btn-group" role="group">
+
+                                <!-- <button type="button" id="zace-aotu-checked" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>检查冲突
+                            </button> -->
+
+                                <button type="button" id="AutoPlanSetMonomer" class="btn lmvt-def-btn"
+                                    style="display: none;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>单体排程
+                                </button>
+
+                                <button type="button" id="AutoPlanSetModule" class="btn lmvt-def-btn"
+                                    style="display: none;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>模组排程
+                                </button>
+
+
+                            </div>
+                        </div>
+                        <p class="zace-header-title">生产计划</p>
+                    </div>
+
+                    <div class="zace-tree-body femi-contain-border" style="margin-top: -90px;
+                    padding: 95px 10px 15px 10px;">
+                        <div class="lmvt-container-gantt" style="overflow :auto;height: 100%;">
+                            <div class="lmvt-gantt">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lmvt-container-ganttTable" id="lmvt-gantTa"
+                    style="overflow :auto;height: 50%;overflow :auto;max-height: 70%;">
+                    <div class="zace-tree-header" style="">
+                        <div class="femi-toolbar-self femi-lf">
+                            <div class="btn-group" role="group">
+                                <!-- <button type="button" id="zace-export-gantt" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>隐藏
+                            </button> -->
+                            </div>
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <div class="btn-group" role="group">
+
+
+                            </div>
+                        </div>
+                        <p class="zace-header-title">生产计划日期对应计划数</p>
+                    </div>
+                    <div class="zace-tree-body femi-contain-border" style="">
+                        <div class="lmvt-ganttTable-body femi-tb-scroll">
+                            <table class="table table-bordered">
+                                <thead id="lmvt-tableHead">
+
+                                </thead>
+                                <tbody id="lmvt-tablebody" class="table-color">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="../static/utils/require.js"></script>
+        <script type="text/javascript" src="../static/js/product_plan/PlanNowOrderLOCO.js"></script>
+
+</body>
+
+</html>

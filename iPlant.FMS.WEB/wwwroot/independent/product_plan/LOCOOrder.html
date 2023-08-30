@@ -1,0 +1,719 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LOCO</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/LOCOOrder.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div id="lmvt-vueApp" class="zace-cbd-contain">
+        <div class="zace-leftContain">
+
+            <div v-show="ERPShow" class="zzzb zace-cbd-contain" style="min-width:900px;display: none;">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <div class="btn-group">
+                                <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>时间选择
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" @click="WeekTime(1)">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>一周之内
+                                        </a>
+                                    </li>
+                                    <li class="device_status" @click="WeekTime(2)">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>一月之内
+                                        </a>
+                                    </li>
+                                    <li class="device_status" @click="WeekTime(3)">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>一季之内
+                                        </a>
+                                    </li>
+                                    <li class="device_status" @click="WeekTime(4)">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>自定义
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button type="button" @click="LineChoose" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>产线绑定
+                            </button>
+
+                            <button type="button" @click="ERPback" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                        </div>
+                    </div>
+
+                    <span class="zace-header-title">ERP订单信息</span>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button @click="ERPOrderSava" type="button" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                        </button>
+
+                        <!-- <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevel" type="text" id="zace-search-level"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelPro" type="button" id="zace-search-level-pro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button> -->
+                    </div>
+
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered table-partOrderItem ">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <!-- <th style="min-width:50px;display: none;" data-order="ID">编号</th> -->
+                                    <th style="width: 60px" data-order="WID">序号</th>
+                                    <th style="min-width: 80px" data-order="OrderNo">订单号</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+
+                                    <th style="min-width: 50px" data-order="MaterialName">产品名称</th>
+                                    <th style="min-width: 50px" data-order="MaterialModel">型号</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料编码</th>
+                                    <th style="min-width: 50px" data-order="FQTY">计划数量</th>
+
+                                    <th style="min-width: 80px" data-order="PlanStartTime">预计开工</th>
+                                    <th style="min-width: 80px" data-order="PlanEndTime">预计完工</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+                                    <th style="min-width: 50px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-ERP-tbody" class="table-color">
+                                <tr v-for="item in ERPOrderList" data-color="">
+                                    <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                    </td>
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="OrderNo" :data-value=item.OrderNo>{{item.OrderNo}}</td>
+                                    <td data-title="LineID" :data-value=item.LineID>{{item.LineText}}</td>
+
+                                    <td data-title="MaterialName" :data-value=item.MaterialName>{{item.MaterialName}}
+                                    </td>
+                                    <td data-title="MaterialModel" :data-value=item.MaterialModel><a onmouseover="this.style.cursor='pointer'" @click="ProductHref">{{item.MaterialModel}}</a>
+                                    </td>
+                                    <td data-title="MaterialNo" :data-value=item.MaterialNo>{{item.MaterialNo}}
+                                    </td>
+                                    <td data-title="FQTY" :data-value=item.FQTY>
+                                        {{item.FQTY}}</td>
+
+                                    <!-- <td data-title="RouteID" :data-value=item.RouteID>{{item.RouteID}}</td> -->
+                                    <td data-title="PlanStartTime" :data-value=item.PlanStartTime>
+                                        {{item.PlanStartTime}}</td>
+                                    <td data-title="PlanEndTime" :data-value=item.PlanEndTime>
+                                        {{item.PlanEndTime}}</td>
+
+                                    <!-- <td data-title="RealReceiveDate" :data-value=item.RealReceiveDate>
+                                        {{item.RealReceiveDate}}</td>
+                                    <td data-title="TelegraphTime" :data-value=item.TelegraphTime>
+                                        {{item.TelegraphTime}}</td>
+                                    <td data-title="TelegraphRealTime" :data-value=item.TelegraphRealTime>
+                                        {{item.TelegraphRealTime}}</td>
+
+                                    <td data-title="RealStartDate" :data-value=item.RealStartDate>
+                                        {{item.RealStartDate}}</td>
+                                    <td data-title="RealFinishDate" :data-value=item.RealFinishDate>
+                                        {{item.RealFinishDate}}</td>
+                                    <td data-title=".RealSendDate" :data-value=item.RealSendDate>
+                                        {{item.RealSendDate}}</td>
+                                    
+                                    <td data-title="Remark" :data-value=item.Remark>{{item.Remark}}</td> -->
+                                    <td data-title="Status" :data-value=item.Status>{{item.StatusText}}</td>
+                                    <td data-value="{{item.ID}}">
+                                        <div class="row">
+                                            <div v-if="item.StatusText=='未保存'" @click="LineChooseOne(item.WID)"
+                                                class="col-md-12 lmvt-lookinfo">
+                                                产线绑定
+                                            </div>
+                                            <div v-else class="col-md-12 lmvt-not-allowed-delete">
+                                                产线绑定
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div v-show="GradeItemISShow" class="zzzb zace-cbd-contain" style="min-width:900px;display: none;">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" @click="addGradeItem" id="zace-add-levelOrder"
+                                class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+
+                            <!-- <button type="button" id="zace-open-routeLine" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>生产进度
+                            </button> -->
+
+
+                            <!-- <button type="button" id="zace-edit-level" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button> -->
+                            <!-- <button type="button" id="zace-received-level" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>收到电报
+                            </button> -->
+
+                            <button type="button" @click="cat" id="zace-edit-levelOrderSearchPro"
+                                class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出订单
+                            </button>
+
+
+
+                            <button type="button" @click="back" id="zace-return-levelOrder" class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                            <!-- <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-received-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>收到电报
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-received-factory">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>机车进厂
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-active-levelRoute">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>更改工艺BOP
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-active-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>启用
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-disable-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="device_status" id="zace-roro-Confirm">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>竣工确认
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-roro-LeaveSQ">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>出厂申请
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-roro-LeaveQR">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>出厂确认
+                                        </a>
+                                    </li>
+
+                                    <li role="separator" class="divider"></li>
+                                    <li class="device_status" id="zace-edit-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>查看
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-return-exportBomBasic">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>检查数据
+                                        </a>
+                                    </li>
+
+                                    <li class="device_status" id="zace-return-exportBom">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>台车Bom
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-return-exportMSSPart">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>台车部件
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-return-exporTimePoint">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>车辆生产概况
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-return-exportTurnDetail">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>车辆转序详情
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="javascript:;"><span class="glyphicon glyphicon-star"
+                                                aria-hidden="true"></span>机车预检</a>
+                                        <ul class="dropdown-menu">
+
+                                            <li class="device_status" id="zace-return-SegmentO">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span>段改要求项目
+                                                </a>
+                                            </li>
+                                            <li class="device_status" id="zace-return-ExceptionO">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span>异常信息汇总
+                                                </a>
+                                            </li>
+                                            <li class="device_status" id="zace-return-KeyPartO">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span>关键部件检查
+                                                </a>
+                                            </li>
+                                            <li class="device_status" id="zace-return-RecordO">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true"></span>预检控制记录
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="device_status" id="zace-return-PartProcessO">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>过程控制记录
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="device_status" id="zace-return-PartQTProcessO">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>机车质检记录
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div> -->
+
+                            <!-- <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出记录
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-Precheckactive-one">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>预检记录
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-active-one">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>生产过程检
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-disable-four">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>质量过程检
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-disable-two">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>质量终检
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-active-three">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>质量出厂检
+                                        </a>
+                                    </li>
+                                   
+                                   
+
+
+
+                                </ul>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                    <span class="zace-header-title">订单详情列表</span>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevel" type="text" id="zace-search-level"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelPro" type="button" id="zace-search-level-pro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+
+                        <button type="button" @click="AllOrder" class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>{{OrderView}}
+                        </button>
+                        <!-- <button type="button" id="zace-edit-levelZaceItem" class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button> -->
+                    </div>
+
+
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-partOrderItem1">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="width: 60px" data-order="WID">序号</th>
+                                    <th style="min-width: 80px" data-order="OrderNo">订单号</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+
+                                    <th style="min-width: 50px" data-order="ProductID">型号</th>
+                                    <th style="min-width: 50px" data-order="FQTYPlan">计划数量</th>
+
+
+                                    <th style="min-width: 70px" data-order="RouteID">工艺BOP</th>
+
+                                    <th style="min-width: 80px" data-order="PlanReceiveDate">ERP预计开工</th>
+                                    <th style="min-width: 80px" data-order="PlanFinishDate">ERP预计完工</th>
+
+                                    <!-- <th style="min-width: 80px" data-order="RealReceiveDate">计划开工</th>
+                                    <th style="min-width: 80px" data-order="TelegraphTime">计划完工</th> -->
+
+                                    <th style="min-width: 50px" data-order="TelegraphRealTime">预计交货日期</th>
+                                    <th style="min-width: 80px" data-order="RealStartDate">实际开工</th>
+                                    <th style="min-width: 80px" data-order="RealFinishDate">实际完工</th>
+                                    <!-- <th style="min-width: 50px" data-order="RealSendDate">交货日期</th> -->
+
+                                    <th style="min-width: 120px" data-title="Progress">生产进度</th>
+
+                                    <th style="min-width: 50px" data-order="Remark">备注</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+                                    <th style="min-width: 50px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevel-tbody" class="table-color">
+                                <tr v-for="item in GradeItem" data-color="">
+                                    <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                    </td>
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="OrderNo" :data-value=item.OrderNo>{{item.OrderNo}}</td>
+                                    <td data-title="LineID" :data-value=item.LineID>{{item.LineID}}</td>
+                                    <td data-title="ProductID" :data-value=item.ProductID>{{item.ProductID}}
+                                    </td>
+                                    <td data-title="FQTYPlan" :data-value=item.FQTYPlan>
+                                        {{item.FQTYPlan}}</td>
+                                    <td data-title="RouteID" :data-value=item.RouteID>
+                                        <a @click="hrefRoutePart(item.ID)" onmouseover="this.style.cursor='pointer';"
+                                            style="text-decoration:underline">{{item.RouteID}}</a>
+                                    </td>
+                                    <td data-title="PlanReceiveDate" :data-value=item.PlanReceiveDate>
+                                        {{item.PlanReceiveDate}}</td>
+                                    <td data-title="PlanFinishDate" :data-value=item.PlanFinishDate>
+                                        {{item.PlanFinishDate}}</td>
+                                    <!-- 
+                                    <td data-title="RealReceiveDate" :data-value=item.RealReceiveDate>
+                                        {{item.RealReceiveDate}}</td>
+                                    <td data-title="TelegraphTime" :data-value=item.TelegraphTime>
+                                        {{item.TelegraphTime}}</td> -->
+                                    <td data-title="TelegraphRealTime" :data-value=item.TelegraphRealTime>
+                                        {{item.TelegraphRealTime}}</td>
+
+                                    <td data-title="RealStartDate" :data-value=item.RealStartDate>
+                                        {{item.RealStartDate}}</td>
+                                    <td data-title="RealFinishDate" :data-value=item.RealFinishDate>
+                                        {{item.RealFinishDate}}</td>
+                                    <!-- <td data-title="RealSendDate" :data-value=item.RealSendDate>
+                                        {{item.RealSendDate}}</td> -->
+
+                                    <td data-title="Progress">
+                                        <div class="progress" style="margin-bottom: 0px;">
+                                            <div class="progress-bar progress-bar-success" role="progressbar"
+                                                :aria-valuenow=item.FQTYActual aria-valuemin="0"
+                                                :aria-valuemax=item.FQTYPlan
+                                                :style="{width:item.ProgressNow+'%','color':'black'}">
+                                                {{item.FQTYActual}}
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td data-title="Remark" :data-value=item.Remark>{{item.Remark}}</td>
+                                    <td data-title="Status" :data-value=StatusList[item.Status]>
+                                        {{StatusList[item.Status]}}</td>
+                                    <td :data-value=item.ID>
+                                        <div class="row">
+                                            <div @click.stop="reviseOrderInfo(item.ID)" class="col-md-4 lmvt-lookinfo">
+                                                修改
+                                            </div>
+
+                                            <div v-if="item.StatusIndex<2" @click.stop="deletOrderTableInfo(item.ID)"
+                                                class="col-md-4 lmvt-allowed-delete">删除</div>
+                                            <div v-else class="col-md-4 lmvt-not-allowed-delete">删除</div>
+
+                                            <div @click.stop=" " class="col-md-4 lmvt-lookinfo">
+                                                <UL id="lmvt-nav">
+                                                    <LI>更多
+                                                        <UL>
+                                                            <!-- <LI @click="productionProgress(item.ID)">生产进度</LI>
+                                                            <LI>导出记录</LI> -->
+                                                            <LI @click="resetRouteID(item.ID)">工艺BOP</LI>
+
+                                                            <LI v-if="item.Status!=1&&item.Status!=2"
+                                                                @click="gantInfo(item)">
+                                                                查看计划
+                                                            </LI>
+
+                                                            <LI v-else class="lmvt-not-allowed-delete">
+                                                                查看计划
+                                                            </LI>
+                                                        </UL>
+                                                    </LI>
+                                                </UL>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div v-show="GradeISShow" class="zzza zace-cbd-contain " style="min-width:900px;">
+                <div class="femi-tb-head" style="height: 45px;">
+                    <div class="row supplier-row" style="width: 40%;">
+
+                        <div class="col-xs-3" style="">
+
+                            <input style="width: 100%;" v-model="ComNo" type="text" class="form-control width200"
+                                placeholder="订单号">
+
+                        </div>
+                        <div class="col-xs-3" style="padding-left: 2px;">
+
+                            <input style="width: 100%;" v-model="ComStartTime" id="lmvt-startTime" type="text"
+                                class="form-control width200" placeholder="开始时间">
+                        </div>
+                        <div class="col-xs-3" style="padding-left: 2px;">
+                            <input style="width: 100%;" v-model="ComEndTime" id="lmvt-endTime" type="text"
+                                class="form-control width200" placeholder="结束时间">
+                        </div>
+                        <div class="col-xs-3">
+
+                            <button type="button" @click="refresh" id="lmvt-search"
+                                class="btn lmvt-danger-btn lmvt-default-btn">
+                                查询
+                            </button>
+                            <button type="button" @click="reset" id="lmvt-reset"
+                                class="btn btn-default lmvt-default-btn lmvt-def-btn">
+                                重置
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" @click="HandClick" id="zace-add-levelOrder"
+                                class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button type="button" @click="ERPSourceShow" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>订单同步
+                            </button>
+                            <!-- <button type="button" id="zace-edit-levelOrder" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button> -->
+                            <!-- <button type="button" id="zace-edit-levelOrderSearch" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>订单列表
+                            </button> -->
+
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevel" type="text" id="zace-search"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入筛选字符" />
+                        </button>
+                        <button @click="searchlevelProGrade" type="button" id="zace-search-levelPro"
+                            class="btn lmvt-def-btn">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button>
+                        <!-- <button type="button" id="zace-edit-levelZace" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                            </button> -->
+
+                    </div>
+
+                    <span class="zace-header-title">订单</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border" style="margin-top: -90px; padding: 95px 10px 15px;">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-partApproval">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="width: 80px" data-order="WID">序号</th>
+                                    <th style="min-width: 60px" data-order="No">编号</th>
+                                    <th style="min-width: 70px" data-order="WBSNo">订单号</th>
+                                    <!-- <th style="min-width: 70px" data-order="WBSNo">合同号</th> -->
+                                    <!-- <th style="min-width: 50px" data-order="FactoryID">产线</th> -->
+                                    <!-- <th style="min-width: 80px" data-order="CustomerID">客户</th> -->
+                                    <!-- <th style="min-width: 50px" data-order="BusinessUnitID">型号</th> -->
+                                    <th style="min-width: 80px" data-order="OrderCount">子订单数</th>
+                                    <!-- <th style="min-width: 80px" data-order="FQTYPlan">数量</th> -->
+                                    <!-- <th style="min-width: 50px" data-order="FQTYActual">实际数量</th> -->
+                                    <th style="min-width: 50px" data-order="ContactCode">备注</th>
+
+                                    <!-- <th style="min-width: 50px" data-order="Status">状态</th> -->
+                                    
+                                    <th style="min-width: 60px" data-order="Creator">创建者</th>
+                                    <th style="min-width: 80px" data-order="CreateTime">创建时间</th>
+
+                                    <th style="min-width: 80px" data-order="Handle">操作</th>
+                                    <!-- <th style="min-width: 50px" data-order="Auditor">审核人</th>
+                                    <th style="min-width: 50px" data-order="AuditTime">审核时间</th> -->
+
+                                    <!-- <th style="min-width: 50px" data-order="Active">启用</th> -->
+                                    <!-- <th style="min-width: 50px" data-order="Status">状态</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelOrder-tbody" class="table-color">
+                                <tr v-for="item in Grade">
+
+                                    <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+
+                                    </td>
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="No" :data-value=item.No>{{item.No}}</td>
+                                    <td data-title="WBSNo" :data-value=item.WBSNo>{{item.WBSNo}}</td>
+                                    <!-- <td data-title="item.FactoryID" :data-value="{{item.FactoryID}}">
+                                        {{item.FactoryID}}
+                                    </td> -->
+                                    <!-- <td data-title="CustomerID" :data-value=item.CustomerID>
+                                        {{item.CustomerID}}</td> -->
+
+                                    <!-- <td data-title="Status" :data-value=item.Status>{{item.Status}}
+                                    </td> -->
+
+                                    <td data-title="OrderCount" :data-value=item.OrderCount>{{item.OrderCount}}
+                                    </td>
+                                    <td data-title="ContactCode" :data-value=item.ContactCode>
+                                        {{item.ContactCode}}</td>
+                                    <td data-title="CreatorID" :data-value=item.CreatorID>
+                                        {{item.CreatorID}}
+                                    </td>
+                                    <td data-title="CreateTime" :data-value=item.CreateTime>
+                                        {{item.CreateTime}}</td>
+
+                                    <td :data-value=item.ID>
+                                        <div class="row">
+                                            <div @click.stop="getOrderInfo(item.ID)" class="col-md-4 lmvt-lookinfo">
+                                                详情
+                                            </div>
+                                            <div @click.stop="ChangeTableTR(item.ID)" class="col-md-4 lmvt-lookinfo">修改
+                                            </div>
+                                            <div v-if="item.FQTYPlan<=0" @click.stop="deleteTableInfo(item.ID)"
+                                                class="col-md-4 lmvt-allowed-delete">删除</div>
+                                            <div v-else class="col-md-4 lmvt-not-allowed-delete">删除</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div v-show="RouteISShow" class="zace-tree-header zace-line-route" style="overflow:visible;display: none;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-addLine-levelReturn" class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>关闭
+                        </button>
+                    </div>
+
+                </div>
+                <span class="zace-header-title zace-titleZ"></span>
+            </div>
+
+            <div v-show="DragLineISShow" id="DragLine" style=""></div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/js/base/Vue.js"></script>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+
+    <script type="text/javascript" src="../static/js/product_plan/LOCOOrder.js"></script>
+</body>
+
+</html>

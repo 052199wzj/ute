@@ -1,0 +1,57 @@
+.ds-tab-contain{
+        padding: 5px 0px 5px 0px; 
+        background-color: #eee;
+        height: 100%;
+        width: 100%;
+
+    }
+    .ds-tab-contain .ds-tab-head{ 
+        height: 40px;  
+    } 
+
+    .ds-tab-contain .ds-tab-body-contain{
+        background-color: #FFFFFF; 
+        height: calc( 100% - 40px);
+    } 
+    .ds-tab-contain .ds-tab-head .ds-tab-menu{
+        list-style: none; 
+        padding-left: 10px;
+        width: 100%;
+        height: 100%;
+        font-weight: bold; 
+    } 
+    .ds-tab-contain .ds-tab-head .ds-tab-menu .ds-tab-menu-item{
+      float: left;
+      line-height: 29px;
+      height: 40px;
+      border: solid #FFFFFF 1px ;
+      border-bottom: none;
+      min-width:100px;
+      max-width: 220px;
+      padding: 5px 10px; 
+      background-color: #F4F4F4; 
+    } 
+    .ds-tab-contain .ds-tab-head .ds-tab-menu .ds-tab-menu-item.active{
+      
+        background-color: #FFFFFF; 
+      
+        
+      } 
+    .ds-tab-contain .ds-tab-head .ds-tab-menu .ds-tab-menu-item svg{
+        height: 20px;
+        width: 20px;
+        vertical-align: middle;
+    }
+
+    .ds-tab-contain .ds-tab-body-contain .ds-tab-body{
+        display: none;
+        height: 100%;
+        width: 100%;
+        background-color: #EEEEEE;
+    }
+    .ds-tab-contain .ds-tab-body-contain .ds-tab-body.active{
+        display: block; 
+    }
+    .zace-leftContain{
+        padding-top: 0px;
+    }

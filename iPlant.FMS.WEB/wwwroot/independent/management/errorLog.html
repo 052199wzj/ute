@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>异常日志</title>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/management/errorLog.css">
+</head>
+<body>
+
+<div id="systemLog">
+  <div class="fxy-left flex-column">
+    <div class="fxy-left-heard">
+      log日志集
+    </div>
+    <div class="fxy-terr flex-1">
+      <el-tree
+          ref="tree"
+          :props="props"
+          node-key="CatalogID"
+          :show-checkbox="!safeMode"
+          @check-change="logCheckChange"
+          :data="logList"
+          @node-click="logNodeClick"
+      >
+                <span class="flex-a-center" slot-scope="row">
+
+                    <template v-if="row.data.IsCatalog">
+                      <svg
+                          t="1636017069294" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                          xmlns="http://www.w3.org/2000/svg" p-id="4739" width="20" height="20"
+                      ><path
+                          d="M848.8576 199.1936H415.7568c0-26.5728-21.5424-48.128-48.128-48.128H175.1424c-26.5728 0-48.128 21.5424-48.128 48.128V343.5648c0 26.5984 21.5424 48.1408 48.128 48.1408h673.728c26.5728 0 48.128-21.5424 48.128-48.1408v-96.2432c-0.0128-26.5856-21.5552-48.128-48.1408-48.128z"
+                          fill="#CCA352" p-id="4740"
+                      ></path><path
+                          d="M800.7424 247.3088H223.2576c-26.5728 0-48.128 21.5424-48.128 48.128v48.128c0 26.5984 21.5424 48.1408 48.128 48.1408h577.472c26.5728 0 48.128-21.5424 48.128-48.1408v-48.128c0-26.5728-21.5424-48.128-48.1152-48.128z"
+                          fill="#FFFFFF" p-id="4741"
+                      ></path><path
+                          d="M848.8576 295.4368H175.1424c-26.5728 0-48.128 21.5424-48.128 48.128v481.2544c0 26.5472 21.5424 48.128 48.128 48.128h673.728c26.5728 0 48.128-21.568 48.128-48.128V343.552c-0.0128-26.5728-21.5552-48.1152-48.1408-48.1152z"
+                          fill="#FFCC66" p-id="4742"
+                      ></path>
+                      </svg>
+                    </template>
+
+                    <template v-else>
+                        <svg
+                            t="1636077684565" class="icon" viewBox="0 0 1024 1024"
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="4056" width="16" height="16"
+                        ><path
+                            d="M279.272727 558.545455l465.454545 0 0 46.545455-465.454545 0 0-46.545455ZM279.272727 698.181818l465.454545 0 0 46.545455-465.454545 0 0-46.545455ZM279.272727 139.636364l279.272727 0 0 46.545455-279.272727 0 0-46.545455ZM279.272727 837.818182l465.454545 0 0 46.545455-465.454545 0 0-46.545455ZM279.272727 418.909091l465.454545 0 0 46.545455-465.454545 0 0-46.545455ZM861.789091 1024c0 0 22.574545 0 22.574545-22.760727L884.363636 204.8 681.239273 0 162.210909 0C162.210909 0 139.636364 0 139.636364 22.760727L139.636364 1001.192727C139.636364 1024 162.210909 1024 162.210909 1024L861.789091 1024zM186.181818 46.545455l465.454545 0 0 139.636364c0 46.545455 46.545455 46.545455 46.545455 46.545455l139.636364 0 0 744.727273L186.181818 977.454545 186.181818 46.545455zM279.272727 279.272727l465.454545 0 0 46.545455-465.454545 0 0-46.545455Z"
+                            p-id="4057"
+                        ></path></svg>
+                    </template>
+
+                    <span class="fxy-log-name" v-text="row.data.CatalogName"></span>
+                </span>
+      </el-tree>
+
+    </div>
+  </div>
+  <div class="fxy-right flex-column">
+    <div class="fxy-right-heard flex">
+      <div class="flex-none">
+        <button class="btn lmvt-danger-btn" v-if="safeMode" type="button" @click="safeMode = false">
+          <span aria-hidden="true" class="glyphicon glyphicon-log-out"></span>
+          进入安全模式
+        </button>
+        <button class="btn lmvt-danger-btn" v-if="!safeMode" type="button" @click="downloadLog">
+          <span aria-hidden="true" class="glyphicon glyphicon-save"></span>
+          下载
+        </button>
+        <button class="btn lmvt-danger-btn" v-if="!safeMode" type="button" @click="deleteLog">
+          <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+          删除
+        </button>
+        <button class="btn lmvt-danger-btn" v-if="!safeMode" type="button" @click="safeMode = true">
+          <span aria-hidden="true" class="glyphicon glyphicon-log-in"></span>
+          退出安全模式
+        </button>
+      </div>
+      <div class="fxy-right-title flex-1">
+        <span v-text="logInfo.CatalogName"></span>
+      </div>
+    </div>
+    <div class="logInfoContent flex-1 w-p-10 ov-y-a p-1">
+      <p class="logContent" v-for="item in logContent" v-text="item"></p>
+    </div>
+  </div>
+</div>
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script type="text/javascript" src="../static/js/management/errorLog.js"></script>
+</body>
+</html>

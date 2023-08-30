@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>检修</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/report/productionRepair.css" />
+</head>
+
+<body>
+    <div class="report-header">和谐型机车检修生产报表</div>
+    <div class="report-repair-middle" style="margin-left: 8px;">
+        <div class="zace-tree-header">
+            <!-- <div class="columns columns-right btn-group pull-right">
+                <button type="button" id="zace-hide" class="btn btn-default ">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>隐藏
+                </button>
+                <button type="button" id="zace-show" class="btn btn-default" style="display: none;">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>显示
+                </button>
+            </div> -->
+            <p class="zace-header-title"><span style="margin-left: 8px;">机车检修概况</span></p>
+        </div>
+        <div class="lmvt-container-table-basic femi-contain-border" style=" height: 100%;">
+            <div class="femi-tb-scroll">
+                <table class="table table-hover table-bordered deviceinfo-table table-part">
+
+                    <thead>
+
+                        <tr>
+                            <th style="width: 3px">
+                                <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                    value="{{functionID}}" />
+                            </th>
+                            <th style="width: 80px" data-order="ID">序号</th>
+                            <th style="min-width: 50px" data-order="LineName">修程</th>
+                            <th style="min-width: 20px" data-order="Enter">到厂</th>
+                            <th style="min-width: 20px" data-order="MonthFinsh">本月竣工</th>
+                            <th style="min-width: 50px" data-order="Finsh">累计竣工</th>
+                            <th style="min-width: 50px" data-order="AvgRepairPeriod">累计停时</th>
+                            <th style="min-width: 50px" data-order="AvgRepairPeriod">平均停时(天)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-color" id="detail">
+                        <td>
+                            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                value="{{functionID}}" />
+                        </td>
+                        <td colspan="20">等待数据加载</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="report-detai-bottom" style="padding-top: 5px;margin-left: 8px;">
+        <div class="zace-tree-header">
+
+            <div class="columns columns-right btn-group pull-right">
+                <button type="button" id="zace-search" class="btn btn-default ">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                </button>
+                <div class="btn-group" role="group">
+                    <!-- <select id="lmvt-select-Line" style="height: 34px; width: 70px;
+                font-size: 20px;text-align: center;border: 1px solid silver;"> -->
+                    <!-- <option value="1">C5</option><option value="2">C6</option> -->
+                    <!-- </select> -->
+
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                        <span class="glyphicon glyphicon-sort" aria-hidden="true" id="showText">全部</span>
+                        <span class="caret"></span> <span class="sr-only">
+                            Toggle
+                            Dropdown
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu  pull-left" id="Select">
+
+                        <!-- <li class="device_property" id="zace-Device-C5" data-value="{{}}">
+                            <a href="javascript:;">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>C5
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li class="device_property" id="zace-Device-C6">
+                            <a href="javascript:;">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>C6
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-default " style="padding: 0">
+                    <input type="text" id="zace-search-Device-item"
+                        style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                        placeholder="请输入查询字符" />
+                </button>
+                <button type="button" id="zace-Device-search" class="btn btn-default">
+                    <span class="" aria-hidden="true"></span>筛选
+                </button>
+                <button type="button" id="zace-Device-refresh" class="btn btn-default">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                </button>
+            </div>
+            <p class="zace-header-title"><span id="Year" style="margin-left: 8px;">2020</span>年和谐型机车<span id="NameCar"></span>检修生产报表</p>
+
+        </div>
+        <div class="lmvt-container-table-basic femi-contain-border" style=" height: 100%;">
+            <div class="femi-tb-scroll">
+
+                <table class="table table-hover table-bordered deviceinfo-table table-part" id="deviceSparePart1">
+
+                    <thead>
+
+                        <tr>
+                            <th style="width: 3px">
+                                <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                    value="{{functionID}}" />
+                            </th>
+                            <th style="width: 80px" data-order="ID">序号</th>
+                            <th style="min-width: 50px" data-order="ProductNo">车型</th>
+                            <th style="min-width: 20px" data-order="PartNo">车号</th>
+                            <th style="min-width: 20px" data-order="LineName">修程</th>
+                            <th style="min-width: 50px" data-order="Customer">配属局段</th>
+                            <!-- <th style="min-width: 50px" data-order="Customer">路局</th> -->
+                            <th style="min-width: 50px" data-order="RealReceiveDate">电报到厂日期</th>
+                            <th style="min-width: 50px" data-order="RealStartDate">实际开工日期</th>
+                            <th style="min-width: 50px" data-order="RealFinishDate">竣工日期</th>
+                            <th style="min-width: 50px" data-order="CallOutTimes">实际检修周期</th>
+                            <th style="min-width: 50px" data-order="CallTimes">电报停时</th>
+                        </tr>
+                    </thead>
+                    <tbody id="femi-Device-tbody-item" class="table-color">
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                    value="{{functionID}}" />
+                            </td>
+                            <td colspan="20">等待数据加载</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="lmvt-container">
+
+        <div class="zzza lmvt-container-Regular zace-left" style="width: 100%;">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-search" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>C5
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-left">
+
+                                <li class="device_property" id="zace-Device-Ratio">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>C5
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-Device-Ratio-Value">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>C6
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Device-item"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-Device-search" class="btn btn-default">
+                            <span class="" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+
+                    <span class="lmvt-header-title">和谐型机车检修生产报表</span>
+                </div>
+                <div style="height: 47px;width: 100%;clear: both;" id="head">
+                    
+                    <div style="margin-left: 12px;width: 10%;margin-top: 8px;text-align: left;font-size: 12px;border-bottom: 1px solid silver;color: #ABCCEC;"><span style="margin-left: 5px;
+                        font-size: 18px;"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>C5检修概况</span></div>
+                    <div style="margin-left: 12px;width: 98.6%;">
+                    <div style="width: 20%;">到厂:<span>40</span></div>
+                    <div style="width: 20%;">本月竣工:<span>22</span></div>
+                    <div style="width: 20%;">累计竣工:<span>33</span></div>
+                    <div style="width: 20%;">累计停时:<span>44</span></div> 
+                    <div style="width: 20%;">平均停时（天）:<span>55</span></div>
+                    </div>
+                    <div style="margin-left: 12px;width: 10%;margin-top: 8px;text-align: left;font-size: 12px;border-bottom: 1px solid silver;color: #ABCCEC;"><span style="margin-left: 5px;
+                        font-size: 18px;"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>C6检修概况</span></div>
+                    <div style="margin-left: 12px;width: 98.6%;">
+                    <div style="width: 20%;">到厂:<span>11</span></div>
+                    <div style="width: 20%;">本月竣工:<span>66</span></div>
+                    <div style="width: 20%;">累计竣工:<span>33</span></div>
+                    <div style="width: 20%;">累计停时:<span>222</span></div> 
+                    <div style="width: 20%;">平均停时（天）:<span>55</span></div>
+                    </div>
+                    <div style="margin-left: 12px;width: 98.6%;text-align: center;margin-top: 5px;font-family: STXinwei; font-size: 20px;color: #00688B;border-top: 1px solid silver;"><span>和谐型机车C5修检修生产列表<span></div>
+                </div>
+               
+            </div>
+
+        </div>
+
+    </div> -->
+
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/report/productionRepair.js"></script>
+</body>
+
+</html>

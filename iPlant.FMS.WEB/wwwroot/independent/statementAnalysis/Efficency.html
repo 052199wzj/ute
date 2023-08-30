@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备统计</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/statementAnalysis/Efficency.css">
+</head>
+<body>
+
+<div id="Efficency" class="fzy-page">
+  <div class="fzy-search-bar">
+
+    <div class="input-select-box input-box-200">
+      <div class="label">统计类型</div>
+      <el-select v-model="searchData.StatType" placeholder="请选择">
+        <el-option
+            v-for="item in  selectOptions.StatTypeList"
+            :key="item.ID"
+            :label="item.Name"
+            :value="item.ID"
+        ></el-option>
+      </el-select>
+    </div>
+
+    <div class="input-date-box input-box-400">
+      <div class="label">时间</div>
+      <el-date-picker
+          v-model="searchData.StartTime"
+          :type="pickerOptions.type"
+          :format="pickerOptions.format"
+          :clearable="false"
+          @change="timeSort"
+      >
+      </el-date-picker>
+      <span style="margin: auto;">至</span>
+      <el-date-picker
+          v-model="searchData.EndTime"
+          :type="pickerOptions.type"
+          :format="pickerOptions.format"
+          :clearable="false"
+          @change="timeSort"
+      >
+      </el-date-picker>
+    </div>
+
+    <!--<div class="input-select-box input-box-300">
+      <div class="label">区域</div>
+      <el-select v-model="searchData.AreaID" clearable filterable placeholder="请选择">
+        <el-option
+            v-for="item in  selectOptions.AreaList"
+            :key="item.ID"
+            :label="item.Name"
+            :value="item.ID"
+        ></el-option>
+      </el-select>
+    </div>
+
+    <div class="input-select-box input-box-300">
+      <div class="label">设备</div>
+      <el-select v-model="searchData.DeviceID" multiple clearable filterable placeholder="请选择">
+        <el-option-group
+            v-for="group in DeviceListShow"
+            :key="group.label"
+            :label="group.label"
+        >
+          <el-option
+              v-for="item in group.options"
+              :key="item.ID"
+              :label="item.Name"
+              :value="item.ID"
+          >
+            <span v-text="item.Name" style="float:left"></span>
+            <span v-text="item.Code" style="float:right;font-size: 11px;margin-right: 13px"></span>
+          </el-option>
+        </el-option-group>
+      </el-select>
+    </div>-->
+
+    <div class="input-cascader-box input-box-400">
+      <div class="label">设备</div>
+      <el-cascader
+          v-model="searchData.DeviceID"
+          :options="DeviceTree"
+          clearable
+          filterable
+          collapse-tags
+          :show-all-levels="false"
+          :props="{
+            multiple: true,
+            label:'Name',
+            value:'ID'
+          }"
+      ></el-cascader>
+    </div>
+
+    <div class="button-box">
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClick"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+
+  </div>
+
+  <div class="fzy-page-center-box">
+    <div class="fzy-page-center-title-bar">
+      <div class="left">
+                <span class="fzy-title">统计类型：</span>
+        <el-select v-model="chartObjectName" size="medium" @change="renderMyChart">
+          <el-option
+              v-for="item in chartOptionArr"
+              :label="item.label"
+              :value="item.value"
+          >
+          </el-option>
+        </el-select>
+
+      </div>
+    </div>
+
+    <div class="fzy-statistical-box">
+      <div class="fzy-statistical-echarts">
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script type="text/javascript" src="../static/js/statementAnalysis/Efficency.js"></script>
+
+</body>
+</html>

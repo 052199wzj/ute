@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>单体分档管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/LOCOOrder.css" />
+</head>
+
+<style>
+    /* .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        vertical-align: middle !important;
+    } */
+</style>
+
+<body class="femi-font-size-middle">
+    <div id="lmvt-vueApp" class="zace-cbd-contain">
+
+        <div v-show="GradeISShow" class="zace-leftContain">
+
+            <div class="ds-search-top" style="margin: 0 0 5px;">
+                <div class="ds-search-top-contain" data-show-mode="0">
+
+                    <!-- <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">车间</div>
+                        <select v-model="WorkShopID" id="WorkShopSelect" readonly class="form-control width200"
+                            placeholder="车间">
+                            <option v-for="item in WorkShopList" :value="item.ID">{{item.Name}}</option>
+                        </select>
+                    </div> -->
+
+                    <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">规格型号</div>
+                        <!-- <select data-live-search="true" data-none-selected-text="请选择" v-model="ProductNo"
+                            id="ProductNoSelect" class="form-control width200" placeholder="规格型号"></select> -->
+                        <input id="ProductNoSelect" v-model="ProductNo" class="form-control width200"
+                            placeholder="规格型号">
+                    </div>
+
+                    <!-- <div class="ds-search-item-group">
+                        <div class="ds-search-item-lable">时间段</div>
+                        <input id="lmvt-startTime" v-model="StartTime" readonly class="form-control width200"
+                            placeholder="请选择开始时间">
+                        <input id="lmvt-endTime" v-model="EndTime" readonly class="form-control width200"
+                            placeholder="请选择结束时间">
+                    </div> -->
+
+                    <div class="btn-group ds-search-item-group ds-search-btn-group" role="group">
+                        <button type="button" @click="Search" id="lmvt-search"
+                            class="btn lmvt-danger-btn lmvt-default-btn">
+                            查询
+                        </button>
+                        <button type="button" @click="reset" id="lmvt-reset"
+                            class="btn btn-default lmvt-default-btn lmvt-def-btn">
+                            重置
+                        </button>
+                        <button type="button" id="lmvt-resetZK" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                            style="display: none;">
+                            展开<img src="../static/images/checkbox/下拉箭头.png" style="width: 15px;height: 15px;">
+                        </button>
+                        <button type="button" id="lmvt-resetSQ" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                            style="display: none;">
+                            收起<img src="../static/images/checkbox/上拉箭头.png" style="width: 15px;height: 15px;">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="zzza zace-cbd-contain ds-contain-middle" style="min-width:900px;height: calc(100% - 70px);">
+
+
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" @click="MonAdd" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+
+                            <button @click="Import" class="btn lmvt-danger-btn" type="button" id="lmvt-left-check2">
+                                <span class="glyphicon glyphicon-import"></span>导入
+                            </button>
+
+                            <button @click="Export" class="btn lmvt-danger-btn" type="button" id="lmvt-left-check2">
+                                <span class="glyphicon glyphicon-export"></span>导出
+                            </button>
+
+                            <button type="button" style="display:none" class="btn btn-default">
+                                <input @change="InputFileClick($event)" type="file" id="input-file" />
+                            </button>
+                            <!--<button type="button" @click="ERPSourceShow" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>订单同步
+                            </button> -->
+                            <!-- <button type="button" id="zace-edit-levelOrder" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button> -->
+                            <!-- <button type="button" id="zace-edit-levelOrderSearch" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>订单列表
+                            </button> -->
+
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevel" type="text" id="zace-search"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入筛选字符" />
+                        </button>
+                        <button @click="searchlevelProGrade" type="button" id="zace-search-levelPro"
+                            class="btn lmvt-def-btn">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button>
+
+                    </div>
+
+                    <span class="zace-header-title">单体分档列表</span>
+                </div>
+                <!-- style="margin-top: -90px; padding: 95px 10px 15px;" -->
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-bordered table-hover table-partApprovalMon">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px;display: none;">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="WID">序号</th>
+                                    <th style="width: 150px;min-width: 150px" data-order="Code">分类标识</th>
+                                    <th style="min-width: 60px" data-order="Name">分类描述</th>
+                                    <th style="min-width: 60px" data-order="ProductType">单体类别</th>
+                                    <!-- <th style="min-width: 60px" data-order="ProductTypeCode">单体描述</th> -->
+                                    <th style="min-width: 60px" data-order="DrawingNo">图号</th>
+                                    <th style="min-width: 60px" data-order="ProductNo">规格型号</th>
+
+                                    <th style="min-width: 60px" data-order="Creator">创建人</th>
+                                    <th style="min-width: 60px" data-order="CreateTime">创建日期</th>
+                                    <th style="min-width: 60px" data-order="Editor">编辑人</th>
+                                    <th style="min-width: 60px" data-order="EditTime">编辑日期</th>
+
+                                    <th style="min-width: 60px" data-order="Active">状态</th>
+                                    <th style="min-width: 60px" data-order="Remark">分类说明</th>
+                                    <th style="min-width: 80px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelOrder-tbody" class="table-color">
+                                <tr v-for="item in Grade">
+
+                                    <th style="width: 3px;display: none;">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="Code" :data-value=item.Code>{{item.Code}} </td>
+                                    <td data-title="Name" :data-value=item.Name>{{item.Name}}</td>
+                                    <td data-title="ProductType" :data-value=item.ProductType>{{item.ProductType}}</td>
+                                    <!-- <td data-title="ProductTypeCode" :data-value=item.ProductTypeCode>{{item.ProductTypeCode}}</td> -->
+                                    <td data-title="DrawingNo" :data-value=item.DrawingNo>{{item.DrawingNo}}</td>
+                                    <td data-title="ProductNo" :data-value=item.ProductNo>{{item.ProductNo}}</td>
+
+                                    <td data-title="Creator" :data-value=item.Creator>{{item.Creator}}</td>
+                                    <td data-title="CreateTime" :data-value=item.CreateTime>{{item.CreateTime}}</td>
+
+                                    <td data-title="Editor" :data-value=item.Editor>{{item.Editor}}</td>
+                                    <td data-title="EditTime" :data-value=item.EditTime>{{item.EditTime}}</td>
+
+                                    <td data-title="Active" :data-value=item.Active>
+                                        <span class="badge lmvt-badge"
+                                            :class="[{ 'lmvt-defBadge': item.Active==0 }, { 'lmvt-activeBadge': item.Active==1 }, { 'lmvt-forbiddenBadge': item.Active==2 }]">{{item.Badge}}</span>{{ActiveType[item.Active]}}
+                                    </td>
+                                    <td data-title="Remark" :data-value=item.Remark>{{item.Remark}}</td>
+                                    <td :data-value=item.ID>
+                                        <div class="row">
+                                            <div @click.stop="getOrderInfo(item.ID,item.Code)"
+                                                class="col-md-4 lmvt-lookinfo">
+                                                详情
+                                            </div>
+                                            <div @click.stop="ChangeTableTR(item.ID)" class="col-md-4 lmvt-lookinfo">修改
+                                            </div>
+
+                                            <div class="col-md-4 lmvt-lookinfo">
+                                                <UL id="lmvt-nav">
+                                                    <LI>更多
+                                                        <UL>
+                                                            <LI v-if="item.Active==0"
+                                                                @click.stop="deleteTableInfo(item.ID)"
+                                                                class="lmvt-allowed-delete">删除</LI>
+                                                            <LI v-else class="lmvt-not-allowed-delete">删除</LI>
+
+                                                            <LI v-if="item.Active!=1" @click.stop="ActiveMon(item.ID,1)"
+                                                                class="lmvt-do-active">激活</LI>
+                                                            <LI v-else="item.Active==1"
+                                                                @click.stop="ActiveMon(item.ID,2)"
+                                                                class="lmvt-allowed-delete">禁用</LI>
+
+                                                            <!-- <LI v-if="item.Active==1" @click.stop="forMon(item.ID,2)"
+                                                                class="lmvt-allowed-delete">禁用</LI>
+                                                            <LI v-else class="lmvt-not-allowed-delete">禁用</LI> -->
+                                                        </UL>
+                                                    </LI>
+                                                </UL>
+                                            </div>
+
+                                            <!-- <div v-if="item.Active==0" @click.stop="deleteTableInfo(item.ID)"
+                                                class="col-md-4 lmvt-allowed-delete">删除</div>
+                                            <div v-else class="col-md-4 lmvt-not-allowed-delete">删除</div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div v-show="GradeItemISShow" class="lmvt-MonInfo zace-leftContain">
+
+            <div class="zzza zace-cbd-contain ds-contain-middle" style="">
+
+
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" @click="MonInfoAdd" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button type="button" @click="DeleteItemGrade" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>勾选删除
+                            </button>
+
+                            <button type="button" @click="ActiveGrade" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>勾选激活
+                            </button>
+                            <button type="button" @click="ForbiddenGrade" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>勾选禁用
+                            </button>
+
+                            <!-- <button type="button" id="zace-edit-levelOrder" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button> -->
+                            <button @click="back" type="button" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>返回
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button @click="ImportMonInfo" class="btn lmvt-danger-btn" type="button" id="lmvt-left-check2">
+                            <span class="glyphicon glyphicon-import"></span>导入
+                        </button>
+
+                        <button @click="ExportMonInfo" class="btn lmvt-danger-btn" type="button" id="lmvt-left-check2">
+                            <span class="glyphicon glyphicon-export"></span>导出
+                        </button>
+                        <button type="button" style="display:none" class="btn btn-default">
+                            <input @change="InputFileInfoClick($event)" type="file" id="input-fileMon" />
+                        </button>
+                        <!-- <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input type="text" id="zace-search-level"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelPro" type="button" id="zace-search-level-pro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button> -->
+                    </div>
+                    <span class="zace-header-title" style="width: 400px;">{{OrderView}}-单体分档规则</span>
+
+                </div>
+                <!-- style="margin-top: -90px; padding: 95px 10px 15px;" -->
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-bordered table-hover table-partApproval">
+                            <thead>
+                                <tr>
+
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+
+                                    <th style="min-width: 50px" data-order="WID">序号</th>
+
+                                    <th style="min-width: 60px" data-order="Name">单体分档</th>
+                                    <th style="min-width: 60px" data-order="Code">单体分级</th>
+
+                                    <th style="min-width: 60px">SD(mV)</th>
+
+                                    <th style="min-width: 60px;display: none;" data-order="StandardSDType">SD
+                                    </th>
+                                    <th style="min-width: 60px;display: none;" data-order="SDTop">SD</th>
+                                    <th style="min-width: 60px;display: none;" data-order="SDBottom">SD</th>
+                                    <th style="min-width: 60px;display: none;" data-order="StandardVolType">SD
+                                    </th>
+                                    <th style="min-width: 60px;display: none;" data-order="VolTop">SD</th>
+                                    <th style="min-width: 60px;display: none;" data-order="VolBottom">SD</th>
+                                    <th style="min-width: 60px;display: none;" data-order="StandardResistanceType">SD
+                                    </th>
+                                    <th style="min-width: 60px;display: none;" data-order="ResistanceTop">SD
+                                    </th>
+                                    <th style="min-width: 60px;display: none;" data-order="ResistanceBottom">SD
+                                    </th>
+
+                                    <th style="min-width: 60px">容量(F)</th>
+                                    <th style="min-width: 60px">内阻(mΩ)</th>
+
+                                    <th style="min-width: 60px">状态</th>
+
+                                    <th style="min-width: 60px">备注</th>
+                                    <!-- <th style="min-width: 60px" data-order="VolShow">容量</th>
+                                    <th style="min-width: 60px" data-order="ResistanceShow">内阻</th>
+                                    <th style="min-width: 60px" data-order="Remark">备注</th> -->
+                                    <!-- <th style="min-width: 60px" data-order="CreateTime">创建日期</th>
+                                    <th style="min-width: 60px" data-order="EditorID">编辑人</th>
+                                    <th style="min-width: 60px" data-order="EditTime">编辑日期</th>
+
+                                    <th style="min-width: 60px" data-order="Active">状态</th>
+                                    <th style="min-width: 60px" data-order="Remark">分类说明</th> -->
+                                    <th style="min-width: 80px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelOrder-tbodyMon" class="table-color">
+                                <tr v-for="item in GradeItem">
+
+                                    <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                    </td>
+
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+
+                                    <td data-title="ID" style="display: none;" :data-value=item.ID>{{item.ID}}</td>
+
+                                    <td data-title="Name" :data-value=item.Name>{{item.Name}}</td>
+                                    <td data-title="Code" :data-value=item.Code>{{item.Code}} </td>
+
+                                    <td data-title="SDShow" :data-value=item.SDShow>{{item.SDShow}}</td>
+
+                                    <td data-title="StandardSDType" style="display: none;"
+                                        :data-value=item.StandardSDType>{{item.StandardSDType}}</td>
+                                    <td data-title="SDTop" style="display: none;" :data-value=item.SDTop>{{item.SDTop}}
+                                    </td>
+                                    <td data-title="SDBottom" style="display: none;" :data-value=item.SDBottom>
+                                        {{item.SDBottom}}</td>
+                                    <td data-title="StandardVolType" style="display: none;"
+                                        :data-value=item.StandardVolType>{{item.StandardVolType}}</td>
+                                    <td data-title="VolTop" style="display: none;" :data-value=item.VolTop>
+                                        {{item.VolTop}}</td>
+                                    <td data-title="VolBottom" style="display: none;" :data-value=item.VolBottom>
+                                        {{item.VolBottom}}</td>
+                                    <td data-title="StandardResistanceType" style="display: none;"
+                                        :data-value=item.StandardResistanceType>{{item.StandardResistanceType}}</td>
+                                    <td data-title="ResistanceTop" style="display: none;"
+                                        :data-value=item.ResistanceTop>{{item.ResistanceTop}}</td>
+                                    <td data-title="ResistanceBottom" style="display: none;"
+                                        :data-value=item.ResistanceBottom>{{item.ResistanceBottom}}</td>
+
+
+                                    <td data-title="VolShow" :data-value=item.VolShow>{{item.VolShow}}</td>
+
+                                    <td data-title="ResistanceShow" :data-value=item.ResistanceShow>
+                                        {{item.ResistanceShow}}</td>
+
+                                    <td data-title="Active" :data-value=item.Active>
+                                        <span class="badge lmvt-badge"
+                                            :class="[{ 'lmvt-defBadge': item.Active==0 }, { 'lmvt-activeBadge': item.Active==1 }, { 'lmvt-forbiddenBadge': item.Active==2 }]">{{ActiveMenu[item.Active]}}</span>{{ActiveType[item.Active]}}
+                                    </td>
+
+                                    <td data-title="Remark" :data-value=item.Remark>{{item.Remark}}</td>
+                                    <td :data-value=item.ID>
+                                        <div class="row">
+                                            <div @click.stop="ChangeMonIn(item.ID)" class="col-md-6 lmvt-lookinfo">
+                                                修改
+                                            </div>
+                                            <!-- <div @click.stop="ChangeTableTR(item.ID)" class="col-md-4 lmvt-lookinfo">sha
+                                            </div> -->
+                                            <div v-if="item.Active==0" @click.stop="deleteMoInfo(item.ID)"
+                                                class="col-md-6 lmvt-allowed-delete">删除</div>
+                                            <div v-else class="col-md-6 lmvt-not-allowed-delete">删除</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/MonomerGearManage.js"></script>
+</body>
+
+</html>

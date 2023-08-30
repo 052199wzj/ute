@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>资质管理</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta
+      id="scale" name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/utils/css/bootstrap.css"
+  >
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/utils/css/base.css"
+  >
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/css/basicSet/aptitudeManage.css"
+  >
+</head>
+<body>
+<!--资质列表-->
+<div class="femi-cbd-contain " id="aptitudeTable">
+  <div class="femi-contain-cbg">
+    <!-- 资质设置的头部 -->
+    <div class="cby-tb-head" style="overflow:visible;">
+      <!-- 资质设置的头部左侧 -->
+      <div class="cby-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+          <button type="button" id="cby-add-aptitude" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增人员
+          </button>
+        </div>
+      </div>
+      <span class="cby-tb-title">资质列表</span>
+      <!-- 资质列表的头部右侧 -->
+      <div class="femi-toolbar-self femi-rt">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="cby-search-text-ledger"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button
+              type="button" id="cby-search-ledger"
+              class="btn btn-default "
+          >
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- 资质列表表格表头 -->
+    <div class="femi-tb-border">
+      <div class="femi-tb-scroll">
+        <table class="table table-hover table-bordered aptitude-table ">
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+              />
+            </th>
+            <th style="min-width: 50px" data-order="ID">编号</th>
+            <th style="min-width: 50px" data-order="DepartmentID">部门</th>
+            <th style="min-width: 50px" data-order="Position">岗位</th>
+            <th style="min-width: 50px" data-order="Name">姓名</th>
+            <th style="min-width: 50px" data-order="WorkShopID">车间</th>
+            <th style="min-width: 50px" data-order="LineID">产线</th>
+            <th style="min-width: 50px" data-order="PartID">工序段</th>
+            <th style="min-width: 50px" data-order="PartPointID">工序</th>
+            <th style="min-width: 50px" data-order="Active">状态</th>
+            <th style="min-width: 50px" data-order="Mode">模式</th>
+            <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+          </tr>
+          </thead>
+          <tbody id="cby-ledger-aptitude-tbody" class="table-color">
+
+          <tr style="">
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="11">等待数据加载</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!--人员表-->
+<div class="femi-cbd-contain " id="userTable">
+  <!--人员列表-->
+  <div class="femi-contain-cbg">
+    <!-- 人员列表头部 -->
+    <div class="cby-tb-head" style="overflow:visible ;">
+      <!-- 人员列表的头部左侧 -->
+      <div class="cby-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+          <!--按钮组-->
+          <div class="btn-group">
+            <button
+                type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"
+            >
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true" id="workShopChoose">车间选择
+                                </span>
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu workshop-items"></ul>
+          </div>
+          <div class="btn-group">
+            <button
+                type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"
+            >
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true" id="lineChoose">产线选择
+                                </span>
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu line-items"></ul>
+          </div>
+          <div class="btn-group">
+            <button
+                type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"
+            >
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true" id="partChoose">工序段选择
+                                </span>
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu part-items"></ul>
+          </div>
+          <div class="btn-group">
+            <button
+                type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-
+                expanded="false"
+            >
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true" id="partPointChoose">
+                                    工序选择
+                                </span>
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu partPoint-items"></ul>
+          </div>
+        </div>
+
+      </div>
+      <span class="cby-tb-title">人员选择列表</span>
+      <!-- 人员列表的头部右侧 -->
+      <div class="femi-toolbar-self femi-rt">
+        <div class="btn-group" role="group">
+          <button type="button" id="cby-return-aptitude" class="btn btn-default">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>返回
+          </button>
+          <button type="button" id="cby-save-aptitude" class="btn btn-default">
+            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+          </button>
+          <button type="button" class="btn btn-default " style="padding: 0">
+            <input
+                type="text" id="cby-searchUser-text-ledger"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button
+              type="button" id="cby-searchUser-ledger"
+              class="btn btn-default "
+          >
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- 人员列表表格表头 -->
+    <div class="femi-tb-border">
+      <div class="femi-tb-scroll">
+        <table class="table table-hover table-bordered employee-table ">
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+              />
+            </th>
+            <th style="min-width: 50px" data-title="ID">序号</th>
+            <th style="min-width: 50px" data-title="Name">姓名</th>
+            <th style="min-width: 50px" data-title="LoginName">用户名</th>
+            <th style="min-width: 50px" data-title="DepartmentID">部门</th>
+            <th style="min-width: 50px" data-title="Position">岗位</th>
+            <th style="min-width: 50px" data-title="Manager">职位</th>
+            <th style="min-width: 50px" data-title="CreateDate">创建时间</th>
+            <th style="min-width: 50px" data-title="Operator">操作员</th>
+            <th style="min-width: 50px" data-title="Phone">电话号码</th>
+            <th style="min-width: 50px" data-title="WeiXin">微信</th>
+            <th style="min-width: 50px" data-title="Email">邮箱</th>
+            <th style="min-width: 50px" data-title="PhoneMAC">MAC地址</th>
+            <th style="min-width: 50px" data-title="Active">状态</th>
+            <th style="min-width: 50px" data-title="DepartureDate">离职时间</th>
+
+          </tr>
+          </thead>
+          <tbody id="cby-ledger-employee-tbody" class="table-color">
+
+          <tr style="">
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="14">等待数据加载</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/aptitudeManage.js"></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>质量三检的记录</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta
+      id="scale" name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/utils/css/base.css"
+  />
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/css/basicSet/checkRecord.css"
+  />
+
+</head>
+<body>
+
+<div class="zace-cbd-contain  orderAll" style="min-width: 1300px;">
+  <div class="zace-leftContain">
+    <div class="zace-tree-header" style="overflow:visible;">
+      <div class="femi-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+
+        </div>
+
+      </div>
+
+      <div class="columns columns-right btn-group pull-right">
+        <button
+            type="button" id="femi-add-searchOrder"
+            class="btn btn-default "
+        ><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+        </button>
+
+        <button
+            type="button" id="femi-add-refresOrder"
+            class="btn btn-default "
+        ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+        </button>
+      </div>
+
+      <p class="zace-header-title">车辆作业列表</p>
+    </div>
+    <div class="zace-tree-body femi-contain-border">
+      <div class="femi-tb-scroll  table-part">
+        <table class="table   table-hover table-bordered">
+
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              />
+            </th>
+            <th style="width: 80px" data-title="iD">序号</th>
+            <th style="min-width: 50px" data-title="name">配属局段</th>
+
+            <th style="min-width: 50px" data-title="ownerID">修程</th>
+            <th style="min-width: 50px" data-title="createTime">车号</th>
+
+            <th style="min-width: 50px" data-title="active">订单号</th>
+            <th style="min-width: 50px" data-title="active">WBS编号</th>
+            <th style="min-width: 50px" data-title="active">进车时间</th>
+            <th style="min-width: 50px" data-title="active">预计完工时间</th>
+            <th style="min-width: 50px" data-title="active">实际完工时间</th>
+          </tr>
+          </thead>
+          <tbody id="femi-orderAll-tbody" class="table-color">
+          <tr>
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="9">等待数据加载</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="zace-cbd-contain  stationAll" style="display: none;min-width: 1300px;">
+  <div class="zace-leftContain">
+    <div class="zace-tree-header" style="overflow:visible;">
+      <div class="femi-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+
+        </div>
+
+      </div>
+
+      <div class="columns columns-right btn-group pull-right">
+        <button
+            type="button" id="femi-add-searchStation"
+            class="btn btn-default "
+        ><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+        </button>
+        <button
+            type="button" id="femi-add-refreshStation"
+            class="btn btn-default "
+        ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+        </button>
+      </div>
+
+      <p class="zace-header-title">工位任务列表</p>
+    </div>
+    <div class="zace-tree-body femi-contain-border">
+      <div class="femi-tb-scroll  table-part">
+        <table class="table   table-hover table-bordered">
+
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              />
+            </th>
+            <th style="width: 80px" data-title="iD">序号</th>
+            <th style="min-width: 50px" data-title="name">配属局段</th>
+
+            <th style="min-width: 50px" data-title="ownerID">修程</th>
+            <th style="min-width: 50px" data-title="active">订单号</th>
+            <th style="min-width: 50px" data-title="active">WBS编号</th>
+            <th style="min-width: 50px" data-title="createTime">车号</th>
+
+
+            <th style="min-width: 50px" data-title="active">工位</th>
+            <th style="min-width: 50px" data-title="active">责任班组</th>
+            <th style="min-width: 50px" data-title="active">开工时间</th>
+            <th style="min-width: 50px" data-title="active">完工时间</th>
+            <th style="min-width: 50px" data-title="active">状态</th>
+          </tr>
+          </thead>
+          <tbody id="femi-stationAll-tbody" class="table-color">
+          <tr>
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="11">等待数据加载</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="femi-bd-contain  itemAll" style="display: none;min-width: 1300px;">
+  <div class="femi-left femi-lf">
+    <div class="femi-tb-head">
+      <div class="femi-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+          <button
+              type="button" id="femi-add-userStation"
+              class="btn btn-default"
+          >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+          </button>
+        </div>
+      </div>
+
+      <div class="femi-toolbar-self femi-rt">
+        <div class="btn-group" role="group">
+          <button
+              type="button" id="femi-remove-userStation"
+              class="btn btn-default"
+          >
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+          </button>
+        </div>
+      </div>
+      <p class="femi-tb-title">
+        <strong>工位任务</strong>
+      </p>
+    </div>
+    <div class="femi-contain-border femi-tb-border">
+      <div class="femi-tb-scroll">
+        <table class="table   table-hover table-bordered">
+
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+              />
+            </th>
+            <th style="min-width: 50px" data-title="functionID">工位</th>
+            <th style="min-width: 50px" data-title="roleID">时间</th>
+          </tr>
+          </thead>
+          <tbody id="femi-role-userStation-tbody" class="table-color">
+          <tr style="">
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="2">等待数据加载</td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="femi-full-bd">
+    <div class="femi-bd-half-right femi-rt " id="role-user-contain">
+      <div class="femi-tb-head">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-add-user"
+                class="btn btn-default"
+            >
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+            </button>
+          </div>
+        </div>
+
+        <div class="femi-toolbar-self femi-rt">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-remove-user"
+                class="btn btn-default"
+            >
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+            </button>
+          </div>
+        </div>
+        <p class="femi-tb-title">
+          <strong>检验项详情</strong>
+        </p>
+      </div>
+      <div class="femi-contain-border femi-tb-border">
+        <div class="femi-tb-scroll">
+          <!-- <table class="table   table-hover table-bordered">
+
+              <thead>
+                  <tr>
+                      <th style="width: 3px">
+                          <input type="checkbox"
+                                 class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                      </th>
+                      <th style="min-width: 50px" data-title="functionID">项</th>
+                      <th style="min-width: 50px" data-title="roleID">权限名</th>
+                  </tr>
+              </thead>
+              <tbody id="femi-role-user-tbody" class="table-color">
+                  <tr style="">
+                      <td>
+                          <input type="checkbox" class="femi-tb-checkbox"
+                                 style="margin: 1px 0px 1px" value="{{functionID}}" />
+                      </td>
+                      <td colspan="2">等待数据加载</td>
+
+                  </tr>
+
+              </tbody>
+          </table> -->
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="femi-bd-half-left " style="margin-right: -2px; ">
+      <div class="femi-tb-head">
+        <!-- <p class="femi-tb-title"></p>
+             -->
+
+
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-add-role"
+                class="btn btn-default "
+            ><span
+                class="glyphicon glyphicon-plus"
+                aria-hidden="true"
+            ></span>新增
+            </button>
+            <button
+                type="button" id="femi-edit-role"
+                class="btn btn-default "
+            ><span
+                class="glyphicon glyphicon-pencil"
+                aria-hidden="true"
+            ></span>修改
+            </button>
+
+
+          </div>
+
+        </div>
+
+        <div class="femi-toolbar-self femi-rt">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-active-role"
+                class="btn btn-default "
+            ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+            </button>
+            <button
+                type="button" id="femi-disable-role"
+                class="btn btn-default"
+            ><span
+                class=" glyphicon glyphicon-remove"
+                aria-hidden="true"
+            ></span>禁用
+            </button>
+          </div>
+
+        </div>
+        <p class="femi-tb-title">
+          <strong>工序任务</strong>
+        </p>
+      </div>
+
+      <div class="femi-contain-border femi-tb-border">
+
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered">
+
+            <thead>
+            <tr>
+              <th style="width: 3px"><input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              /></th>
+              <th style="width: 80px" data-title="iD">序号</th>
+              <th style="min-width: 50px" data-title="name">工位</th>
+
+              <th style="min-width: 50px" data-title="ownerID">工序</th>
+              <th style="min-width: 50px" data-title="createTime">时间</th>
+
+              <th style="width: 80px" data-title="active">状态</th>
+            </tr>
+            </thead>
+            <tbody id="femi-role-tbody" class="table-color">
+            <tr>
+              <td>
+                <input
+                    type="checkbox" class="femi-tb-checkbox"
+                    style="margin: 1px 0px 1px" value="{{functionID}}"
+                />
+              </td>
+              <td colspan="5">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script
+    type="text/javascript"
+    src="../static/js/basicSet/checkRecord.js"
+></script>
+
+</body>
+</html>

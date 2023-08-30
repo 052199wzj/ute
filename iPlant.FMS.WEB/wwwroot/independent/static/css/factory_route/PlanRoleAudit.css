@@ -1,0 +1,148 @@
+﻿body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.femi-font-size-large {
+    font-size: 14px;
+}
+
+.femi-font-size-biglarge {
+    font-size: 16px;
+}
+
+.femi-font-size-middle {
+    font-size: 12px;
+}
+
+.femi-font-size-small {
+    font-size: 10px;
+}
+
+.alfie-cbd-contain {
+    height: 100%;
+}
+
+.alfie-tree-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+}
+
+.alfie-tree-body {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+
+.alfie-tree-header .femi-toolbar-self {
+    height: 34px;
+}
+
+.alfie-tree-header .btn-group {
+    height: 34px;
+}
+
+.alfie-tree-header .btn-default {
+    height: 34px;
+}
+
+.alfie-tree-header .alfie-left {
+    padding-right: 0px;
+}
+
+.alfie-header-title {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    text-align: center;
+    margin: auto;
+    height: 40px;
+}
+
+.alfie-time-header {
+    position: absolute;
+    width: 100%;
+    height: 440px;
+    left: 0;
+    top: 0;
+}
+
+.alfie-time-footer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 10px;
+    right: 10px;
+    bottom: 0px;
+}
+
+.alfie-time-Headcontain {
+    height: 100%;
+    width: 100%;
+}
+
+.alfie-time-leftzz {
+    position: absolute;
+    height: 100%;
+    width: 500px;
+    left: 10px;
+    top: 10px;
+}
+
+.alfie-cicle-contain {
+    position: absolute;
+    height: 400px;
+    width: 500px;
+    left: 10px;
+    top: 50px;
+}
+
+.alfie-column-contain {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    left: 10px;
+    top: 50px;
+}
+
+.alfie-time-rightzz {
+    position: absolute;
+    height: 100%;
+    left: 510px;
+    top: 10px;
+    right: 10px;
+}
+
+.alfie-contain-border {
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+}
+
+.alfie-zfooter {
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+}
+
+.alfie-header-title1 {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    text-align: center;
+    margin: auto;
+    height: 40px;
+}

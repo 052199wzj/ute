@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>工单跟踪</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/order_manage/OMSOrderRevice-Vue.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="order-revice-body" class="fzy-page">
+  <!--主页面-->
+  <div class="fzy-search-bar">
+
+    <el-input v-model="searchData.OrderNo" class="input-box-300" placeholder="工单编号">
+      <template slot="prepend">工单编号</template>
+    </el-input>
+
+    <div class="input-select-box input-box-300">
+      <div class="label">状态</div>
+      <el-select v-model="searchData.StatusList" multiple clearable placeholder="请选择">
+        <el-option label="已下达" value="3"></el-option>
+        <el-option label="已开工" value="4"></el-option>
+        <el-option label="已完工" value="5"></el-option>
+        <el-option label="暂停中" value="6"></el-option>
+        <el-option label="已关闭" value="9"></el-option>
+        <!--
+  <el-option label="已保存" value="1"></el-option>
+  <el-option label="已制定" value="2"></el-option>
+  <el-option label="已入库" value="7"></el-option>
+  <el-option label="已上传" value="8"></el-option>
+  -->
+      </el-select>
+    </div>
+
+    <div class="input-date-box" v-cloak>
+      <el-dropdown
+          trigger="click"
+          @command="timeTypeChange"
+
+      >
+        <div class="label" v-cloak>
+          <span v-text="timeType"></span>
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="计划日期" :disabled="timeType==='计划日期'">计划日期</el-dropdown-item>
+          <el-dropdown-item command="实际日期" :disabled="timeType==='实际日期'">实际日期</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+      <el-date-picker
+          ref="test"
+          v-model="searchData.timeSection"
+          end-placeholder="结束日期"
+          range-separator="至"
+          :clearable="false"
+          start-placeholder="开始日期"
+          type="daterange"
+          value-format="yyyy-MM-dd"
+      >
+      </el-date-picker>
+    </div>
+
+    <div class="button-box">
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClick"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+
+  </div>
+  <div class="order-status-overview flex-none flex-row">
+    <div
+        v-for="(item,index) in orderOverview(1)"
+        v-cloak
+        :key="index"
+        class="card flex-column flex-center"
+    >
+      <div class="flex-none flex-row flex-a-center">
+        <div :style="{background:item.color}" class="circle"></div>
+        <span class="label">{{ item.label }}</span>
+        <span
+            class="label number"
+            :style="{
+                            color: Number(item.value)?item.color:'',
+                            fontWeight: Number(item.value)?700:500,
+                        }"
+        >{{ item.value || '-' }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="fzy-page-center-box flex-column">
+    <div class="fzy-page-center-title-bar flex-none">
+      <div class="left">
+        <span class="fzy-title">工单跟踪</span>
+      </div>
+    </div>
+    <el-table
+        :data="tableData"
+        size="mini"
+        border
+        current-row-key="Code"
+        height="calc(100% - 45px)"
+    >
+
+      <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+      <el-table-column label="车号" property="PartNo" align="center"></el-table-column>
+      <el-table-column label="路线号" property="Customer" align="center"></el-table-column>
+      <el-table-column label="工单编号" property="OrderNo" align="center"></el-table-column>
+      <el-table-column label="下达时间" align="center" width="130px">
+        <template slot-scope="scope">
+          {{ scope.row.CreateTime | timeStr }}
+        </template>
+      </el-table-column>
+      <el-table-column label="工位名称" property="StationName" align="center" min-width="120px"></el-table-column>
+      <el-table-column label="作业名称" property="WorkName" align="center" min-width="120px"></el-table-column>
+      <el-table-column label="作业班组" property="TeamName" align="center"></el-table-column>
+      <el-table-column label="作业人员" property="WorkerName" align="center" min-width="120px"></el-table-column>
+
+      <el-table-column label="计划开工日期" align="center" width="80px">
+        <template slot-scope="scope">
+          {{ scope.row.PlanReceiveDate | dateStr }}
+        </template>
+      </el-table-column>
+      <el-table-column label="计划完工日期" align="center" width="80px">
+        <template slot-scope="scope">
+          {{ scope.row.PlanFinishDate | dateStr }}
+        </template>
+      </el-table-column>
+      <el-table-column label="实际开工时间" align="center" width="130px">
+        <template slot-scope="scope">
+          {{ scope.row.RealStartDate | timeStr }}
+        </template>
+      </el-table-column>
+      <el-table-column label="实际完工/叫停时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.RealFinishDate | timeStr }}
+        </template>
+      </el-table-column>
+      <el-table-column label="逾期时间" align="center" width="80px">
+        <template slot-scope="scope">
+          {{ scope.row.OverTimeText | timeStr }}
+        </template>
+      </el-table-column>
+
+
+      <el-table-column label="订单状态" align="center" width="80px">
+        <template slot-scope="scope">
+          {{ scope.row.Status | orderStatusStr }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" align="center" :width="isCheckRole ? '150px' : '120px'">
+        <template slot-scope="scope">
+
+          <div
+              class="lmvt-do-info lmvt-resetPencil"
+              :class="isCheckRole?'col-md-4':'col-md-12'"
+              @click="infoClick(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-list"></span>
+            详情
+          </div>
+
+          <el-dropdown
+              v-if="isCheckRole"
+              trigger="hover"
+              class="col-md-4"
+              @command="function(status){statusClick(scope.row,status)}"
+          >
+            <div class="lmvt-do-info lmvt-resetPencil" style="font-size: 12px">
+              <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+              状态
+            </div>
+            <el-dropdown-menu slot="dropdown">
+
+              <el-dropdown-item command="3" :disabled="statusIsDisabled(scope.row.Status,3)">已下达</el-dropdown-item>
+              <el-dropdown-item command="4" :disabled="statusIsDisabled(scope.row.Status,4)">已开工</el-dropdown-item>
+              <el-dropdown-item command="5" :disabled="statusIsDisabled(scope.row.Status,5)">已完工</el-dropdown-item>
+              <el-dropdown-item command="6" :disabled="statusIsDisabled(scope.row.Status,6)">暂停中</el-dropdown-item>
+              <el-dropdown-item command="9" :disabled="statusIsDisabled(scope.row.Status,9)">已关闭</el-dropdown-item>
+              <!--
+              <el-dropdown-item command="1" :disabled="statusIsDisabled(scope.row.Status,1)">已保存</el-dropdown-item>
+              <el-dropdown-item command="2" :disabled="statusIsDisabled(scope.row.Status,2)">已制定</el-dropdown-item>
+              <el-dropdown-item command="7" :disabled="statusIsDisabled(scope.row.Status,7)">已入库</el-dropdown-item>
+              <el-dropdown-item command="8" :disabled="statusIsDisabled(scope.row.Status,8)">已上传</el-dropdown-item>
+              -->
+            </el-dropdown-menu>
+
+          </el-dropdown>
+
+          <div
+              v-if="isCheckRole"
+              class="col-md-4 lmvt-do-info lmvt-delete fzy-text-btn"
+              :class="{forbidden:scope.row.Status !== 3}"
+              @click="removeClick(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+            删除
+          </div>
+        </template>
+      </el-table-column>
+
+    </el-table>
+  </div>
+</div>
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/order_manage/OMSOrderTrack-Vue.js" type="text/javascript"></script>
+</body>
+</html>

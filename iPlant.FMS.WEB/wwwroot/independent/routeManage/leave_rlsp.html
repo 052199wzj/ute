@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>流程设计</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/routeManage/leave_rlsp.css" />
+</head>
+<body>  
+    <div class="cby-cbd-contain" style="min-width:1300px">
+        <!-- 请假单 -->
+        <div class="femi-left femi-lf">
+            <div class="femi-contain-border femi-border-contain">
+                <div class="cby-div-up">
+                    <div class="cby-leave-outer">
+                        <div class="cby-div-head">
+                            <span class="cby-header-title">请假信息</span>
+                        </div>
+                        <div class="cby-leave-body">
+                            <div class="cby-leave-inner"id="cby-leave-inner">
+                                <div class="cby-leave-days cby-outer">
+                                    <label>请假天数</label>
+                                    <div><input type="text" placeholder="请输入请假天数" id="cby-leave-days" readonly="readonly"></div>
+                                </div>
+                                <div class="cby-leave-reason cby-outer">
+                                    <label>请假原因</label>
+                                    <div><input type="text" placeholder="请输入请假原因" id="cby-leave-reason" readonly="readonly"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cby-div-down">
+                    <div class="cby-div-head">
+                        <span class="cby-header-title">人力资源审批信息</span>
+                    </div>
+                    <div class="cby-leave-body">
+                        <div class="cby-leave-inner">
+                            <div class="cby-leave-days cby-outer">
+                                <label>审批结果</label>
+                                <div><input class="cby-leave-result" type="text" placeholder="请输入审批结果"></div>
+                            </div>
+                            <div class="cby-leave-reason cby-outer">
+                                <label>备注</label>
+                                <div><input class="cby-leave-remark" type="text" placeholder="请输入审批备注"></div>
+                            </div>
+                            <div class="cby-leave-submit cby-outer">
+                                <button id="cby-submit">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- 表 -->
+        <div class="femi-full-bd" style="min-width:1000px" id="cby-table">
+            <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                <div class="cby-tree-header" style="overflow:visible;">
+                    <span class="cby-header-title" id="">审批历史表</span>
+                </div>
+                <div class="cby-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <!-- <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th> -->
+                                    <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                    <th style="min-width: 50px" data-order="id">编号</th>
+                                    <th style="min-width: 50px" data-order="name">任务名称</th>
+                                    <th style="min-width: 50px" data-order="assignee">办理人</th>
+                                    <th style="min-width: 50px" data-order="taskDefinitionKey">任务标识</th>
+                                    <th style="min-width: 50px" data-order="createTime">创建时间</th>
+                                    <th style="min-width: 50px" data-order="endTime">结束时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cby-tbody-recordTable" class="table-color">
+                                <tr>
+                                    <!-- <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td> -->
+                                    <td colspan="13">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="cby-show-charf">
+
+                            <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="" width="811" height="256">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/routeManage/leave_rlsp.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>库位配置</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_route/StoreHousetable.css" />
+</head>
+
+<body class="">
+    <div class="lmvt-container">
+        <div class="zzza lmvt-container-Regular zace-left" style="width: 100%;">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="alfie-search-Device-item"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-searchZApproval-level-Search" class="btn btn-default ">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+
+                    <span class="lmvt-header-title">库位容量表</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part"
+                            id="deviceSparePart1">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="width: 80px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="Code">库位编码</th>
+                                    <th style="min-width: 20px" data-order="Name">库位名称</th>
+                                    <th style="min-width: 50px" data-order="Capacity">台位数量</th>
+                                    <th style="min-width: 50px" data-order="Length">实际长度(mm)</th>
+                                    <th style="min-width: 50px" data-order="UsableLength">可用长度(mm)</th>
+                                    <th style="min-width: 50px" data-order="ExecutionProgress">占用比</th>
+                                    <th style="min-width: 50px" data-order="Percentage">百分比</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-item" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="zzzb lmvt-container-system zace-left" style="width: 100%; display: none;">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="back" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                        </button>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="Device-item-search"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-Search" class="btn btn-default ">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title" id="Sub-Tb-title">车辆列表</span>
+                </div>
+                <div class="Typetable lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-part">
+                            <thead>
+                                <tr>
+                                    <!-- <th style="">
+
+                                    </th> -->
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+
+                                    <th style="width: 80px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="PartNo">车号</th>
+                                    <th style="min-width: 50px" data-order="CarTypeName">车辆类型名称</th>
+                                    <th style="min-width: 50px" data-order="Length">长度(mm)</th>
+                                    <th style="min-width: 20px" data-order="StockName">库位名称</th>
+                                    <th style="min-width: 50px" data-order="StationName">台位名称</th>
+                                    <!-- <th style="min-width: 50px" data-order="CarType">类型</th>
+                                    <th style="min-width: 50px" data-order="Status">是否绑定</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-itemCar" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="9">等待数据加载...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- <div class="alfie-cbd-contain">
+        <div class="zzza alfie-cbd-contain">
+            <div class="alfie-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <div class="btn-group">
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="alfie-search-Device-item"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-searchZApproval-level-Search" class="btn btn-default ">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                </div>
+
+                <span class="alfie-header-title">库位容量表</span>
+            </div>
+
+            <div class="alfie-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </th>
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="Code">库位编码</th>
+                                <th style="min-width: 20px" data-order="Name">库位名称</th>
+                                <th style="min-width: 50px" data-order="Capacity">台位数量</th>
+                                <th style="min-width: 50px" data-order="Length">实际长度(mm)</th>
+                                <th style="min-width: 50px" data-order="UsableLength">可用长度(mm)</th>
+                                <th style="min-width: 50px" data-order="ExecutionProgress">执行进度</th>
+                                <th style="min-width: 50px" data-order="Percentage">百分比</th>
+                            </tr>
+                        </thead>
+                        <tbody id="femi-Device-tbody-item" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="9">等待数据加载...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="zzzb alfie-cbd-contain" style="display: none;">
+            <div class="alfie-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <div class="btn-group">
+                            <button type="button" id="back" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="Device-item-search"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-Search" class="btn btn-default ">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                  
+                </div>
+
+                <span class="alfie-header-title">车辆列表</span>
+            </div>
+
+            <div class="alfie-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+                        <thead>
+                            <tr>
+                                <th style="">
+                                   
+                                </th>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </th>
+                               
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="PartNo">车号</th>
+                                <th style="min-width: 20px" data-order="StockName">库位名称</th>
+                                <th style="min-width: 50px" data-order="StationName">台位名称</th>
+                                <th style="min-width: 50px" data-order="Length">长度(mm)</th>
+                                <th style="min-width: 50px" data-order="CarType">类型</th>
+                                <th style="min-width: 50px" data-order="Status">是否绑定</th>
+                            </tr>
+                        </thead>
+                        <tbody id="femi-Device-tbody-itemCar" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="9">等待数据加载...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_route/StoreHousetable.js"></script>
+</body>
+
+</html>

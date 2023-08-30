@@ -1,0 +1,87 @@
+﻿div.femi-header {
+	height: 35px;
+	width: 100%;
+	min-width:900px; 
+	background-color: GhostWhite;
+    text-align:center;
+}
+.femi-header-title {
+	font-family: STXinwei;
+	font-size: 20px;
+	width:200px;
+	line-height: 35px;
+	color: #00688B; 
+	cursor:default;
+	margin: 0px;
+	text-align:center;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+}
+.femi-table{
+	padding-top:0px;
+	padding-bottom:0px; 
+} 
+.femi-header-nav{
+    display:inline;
+}
+.cby-tb-title {
+ 
+	font-size: 14px;
+	line-height: 35px;
+	color: #00688B; 
+	cursor:default;  
+	width: 250px;
+	text-align: center;
+	margin:auto;
+	height:35px;
+}
+.cby-left{
+	width: 300px;
+	padding: 5px 10px;  
+	height: 100%;
+}
+.cby-full-bd{ 
+	width: auto;
+	height: 100%
+}
+.cby-bd-half-left,.cby-bd-half-right{
+	
+	padding: 3px 5px;
+	height: 100%;
+	overflow: auto;
+}
+.cby-bd-half-left{
+	width:auto;
+}
+.cby-bd-half-right{
+	width: 300px;
+}
+.femi-bd-contain{
+	width: 100%;
+	height: 100%; 
+}
+.femi-toolbar-self{
+	font-size: 14px;  
+	background-color: white;
+}
+.femi-border-contain{
+	height: 100%;
+	padding-right: 5px;
+}
+.femi-tree-head{ 
+	padding-left: 20px;
+	height: 30px;
+}
+.femi-tree-body{
+	height: 100%;
+	margin-top: -30px;
+	padding-top: 30px;
+}
+.femi-tree-body .femi-tree-contain{
+	height: 100%;
+	overflow: auto;
+}
+.femi-tree-head button{
+    padding:3px,2px;
+}

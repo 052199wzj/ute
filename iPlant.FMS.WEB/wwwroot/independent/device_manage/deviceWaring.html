@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>预警</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/deviceManage/deviceWaring.css" />
+</head>
+<body class="femi-font-size-middle" style="min-width:1400px">
+  
+    <div class="zzzc zace-cbd-contain" style="min-width:1400px">
+        <div class="zace-tree-header" style="overflow:visible;">
+            <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">                                                    
+                    <button type="button" id="zace-open-TaskwarningZ"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>配置
+                    </button>
+
+
+                </div>
+
+            </div>
+
+            <div class="columns columns-right btn-group pull-right">
+                <button type="button" class="btn btn-default " style="padding: 0">
+                    <input type="text" id="zace-search-warning"
+                           style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                           placeholder="请输入查询字符" />
+                </button>
+                <button type="button" id="zace-search-warningZ"
+                        class="btn btn-default ">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                </button>
+            </div>
+
+            <span class="zace-header-title">库存预警信息</span>
+        </div>
+
+        <div class="zace-tree-body">
+            <div class="femi-tb-scroll">
+                <table class="table   table-hover table-bordered table-part">
+
+                    <thead>
+                        <tr>
+                            <th style="width: 3px">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>
+                            <th style="min-width: 50px" data-order="ID">序号</th>                         
+                            <th style="min-width: 50px" data-order="ModelNo">设备型号编码</th>
+                            <th style="min-width: 50px" data-order="WorkType">加工类型</th>
+                            <th style="min-width: 50px" data-order="SupplierName">供应商名称</th>
+                            <th style="min-width: 50px" data-order="SupplierModelNo">供应商编码</th>
+                            <th style="min-width: 50px" data-order="NeedNum">需求数量</th>
+                            <th style="min-width: 50px" data-order="StockNum">库存数量</th>
+                            <th style="min-width: 50px" data-order="WarningInterval">预警时长</th>
+                            <th style="min-width: 50px" data-order="WarningTime">预警时刻</th>
+                            <th style="min-width: 50px" data-order="ReplaceOptions">需替换设备</th>    
+                            <th style="min-width: 50px" data-order="ReplaceMinTime">最短替换时刻</th>
+                            <th style="min-width: 50px" data-order="DSType">类别</th>
+                            <th style="min-width: 50px" data-order="Active">激活</th>
+                        </tr>
+                    </thead>
+                    <tbody id="femi-warning-tbody" class="table-color">
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="femi-tb-checkbox"
+                                       style="margin: 1px 0px 1px" value="{{functionID}}" />
+                            </td>
+                            <td colspan="13">等待数据加载</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="zzzn zace-cbd-contain zace-right" style="display:none">
+        <div class="zace-leftContain">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="columns columns-right btn-group pull-right">
+
+                    <button type="button" id="zace-closePart-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>隐藏
+                    </button>
+
+                </div>
+
+                <span class="zace-header-title">维保项详情</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="Name">名称</th>
+                                <th style="min-width: 50px" data-order="SecondTime">所需时间</th>
+                                <th style="min-width: 50px" data-order="Comment">备注</th>
+                                <th style="min-width: 50px" data-order="Times">维保次数</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskAppplyResult-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="5">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zzzTimeSet zace-cbd-contain zace-right" style="display:none">
+        <div class="zace-leftContain">
+            <div class="zace-tree-header" style="overflow:visible;">
+
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-saved-TimeSet"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+
+                    <button type="button" id="zace-closeTimeSet-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>隐藏
+                    </button>
+
+                </div>
+
+                <span class="zace-header-title">时间配置</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border zace-timeSet-show">
+
+            </div>
+        </div>
+    </div>
+    <div class="zzzRunSet zace-cbd-contain zace-right" style="display:none">
+        <div class="zace-leftContain">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-saved-RunTime"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                        </button>
+
+                    </div>
+
+
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+
+                    <button type="button" id="zace-closeRunSet-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>隐藏
+                    </button>
+
+                </div>
+
+                <span class="zace-header-title">运行配置</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border  zace-runSet-show">
+
+            </div>
+        </div>
+    </div>
+    <div class="zzzm zace-cbd-contain zace-left" style="display:none;min-width:1000px">
+        <div class="zace-leftContain">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <!--<button type="button" id="zace-result-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>详情
+                        </button>-->
+                        <button type="button" id="zace-up-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>审批
+                        </button>
+                        <button type="button" id="zace-return-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>驳回
+                        </button>   
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>查看
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">                               
+                                <li class="device_status" id="zace-open-runSet">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>运行配置
+                                    </a>
+                                </li>                              
+                                <li class="device_status" id="zace-open-timeSet">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>时间配置
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-return-configSet">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>库存预警
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-result-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>维保项详情
+                                    </a>
+                                </li>
+                               
+
+                            </ul>
+                        </div>  
+                        <!--<button type="button" id="zace-open-runSet"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>运行配置
+                        </button>
+
+                        <button type="button" id="zace-open-timeSet"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>时间配置
+                        </button>
+                      
+                        <button type="button" id="zace-return-configSet"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>库存预警
+                        </button>-->                    
+                    </div>
+
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="zace-search-level"
+                               style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                               placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-searchQuery-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                  
+
+                </div>
+
+                <span class="zace-header-title">任务时间</span>
+            </div>
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="ApplyNo">申请单号</th>
+                                <th style="min-width: 50px" data-order="ModelID">设备</th>
+                                <th style="min-width: 50px" data-order="LedgerID">设备台账</th>
+                                <th style="min-width: 50px" data-order="TypeID">类型</th>
+                                <th style="min-width: 50px" data-order="Reason">理由</th>
+                                <th style="min-width: 50px" data-order="TaskTime">任务时刻</th>
+                                <th style="min-width: 50px" data-order="Status">状态</th>     
+                                <!--<th style="min-width: 50px" data-order="Factory">工厂</th>-->
+                                <th style="min-width: 50px" data-order="ApplicantID">申请人</th>
+                                <th style="min-width: 50px" data-order="ApplicantTime"> 申请时刻</th>      
+                                <!--<th style="min-width: 50px" data-order="WID">序号</th>-->                         
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskApplyLevel-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="10">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/deviceManage/deviceWaring.js"></script>
+</body>
+</html>

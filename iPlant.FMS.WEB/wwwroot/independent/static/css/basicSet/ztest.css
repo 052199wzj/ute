@@ -1,0 +1,49 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 14px;
+}
+ 
+.hide {
+    display: none;
+}
+ 
+input {
+    outline: none;
+}
+ 
+/* 模拟下拉框 */
+.select {
+    position: relative;
+    margin: 50px 0 0 100px;
+}
+ 
+.select .input_in input {
+    width: 188px;
+    height: 20px;
+    line-height: 20px;
+    padding: 10px 0 10px 10px;
+    border: 1px solid #d6d6d6;
+    cursor: pointer;
+}
+ 
+.select .city {
+    position: absolute;
+    top: 40px;
+    left: 0;
+}
+ 
+.select .city ul {
+    width: 198px;
+    border: 1px solid #d6d6d6;
+    border-top: none;
+}
+ 
+.select .city ul li {
+    padding-left: 10px;
+    width: 188px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}

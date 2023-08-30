@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>班组管理</title>
+
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/factory_model/TeamManage.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/webselect.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div class="lmvt-container">
+        <div class="lmvt-container-main-encoding">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf pull-left" role="group">
+                    <button type="button" id="lmvt-encoding-add" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                </div>
+                <span class="lmvt-header-title encodingTitle"
+                    style="font-family:STXinwei;font-size: 20px;color: #C7001A;position: absolute;left: 50%;transform: translate(-50%);">班组管理</span>
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group femi-lf pull-left LIList" role="group" >
+                        <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>当前模块:
+                            <span class="lmvt-changeMoName">生产</span>
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <!-- <li class="device_status" id="lmvt-model-All">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>全部
+                                </a>
+                            </li> -->
+                            <li class="device_status" id="lmvt-model-product" style="display: none;">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>生产
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-model-quality" style="display: none;">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>质量
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-model-technology" style="display: none;">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>工艺
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-model-store" style="display: none;">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>仓库
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-model-device" style="display: none;">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>设备
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-model-deviceJL" style="display: none;">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>计量
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                        <input v-on:keyup.enter="searchLevel" type="text" id="zace-search"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入筛选字符" />
+                    </button>
+                    <button @click="searchlevelProGrade" type="button" id="zace-search-levelPro"
+                        class="btn lmvt-def-btn">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                </div>
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered CodeTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="WID">编号</th>
+                                <th style="min-width:50px" data-order="Name">名称</th>
+                                <th style="min-width:50px" data-order="WorkShopID">车间</th>
+                                <th style="min-width:50px" data-order="DepartmentID">部门</th>
+                                <th style="min-width:50px" data-order="ModuleID">模块</th>
+                                <th style="min-width:50px" data-order="LeaderID">班组长</th>
+                                <th style="min-width:50px" data-order="MateID">班组成员</th>
+                                <th style="min-width:50px" data-order="Active">状态</th>
+                                <th style="min-width:50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width:50px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width:50px" data-order="EditorID">编辑人</th>
+                                <th style="min-width:50px" data-order="EditTime">编辑时间</th>
+                                <th style="max-width:50px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-encoding-body table-color">
+                            <tr style="">
+                                <td colspan="20">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="lmvt-container-main-Personnel" style="display: none;height: 100%;">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf pull-left" role="group">
+                    <button type="button" id="lmvt-Personnel-add" class="btn btn-danger" data-toggle="modal" data-target="#myModal" >
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                    <button type="button" id="lmvt-Personnel-back" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                    </button>
+                </div>
+                <span class="lmvt-header-title"
+                    style="font-family:STXinwei;font-size: 20px;color: #C7001A;position: absolute;left: 50%;transform: translate(-50%);">人员信息</span>
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                        <input v-on:keyup.enter="searchLevel" type="text" id="zace-searchPersonnel"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入筛选字符" />
+                    </button>
+                    <button @click="searchlevelProGrade" type="button" id="zace-search-Personnel"
+                        class="btn lmvt-def-btn">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                </div>
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered CodeTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="WID">编号</th>
+                                <th style="min-width:50px" data-order="Name">名称</th>
+                                <th style="min-width:50px" data-order="LeaderName">班组名称</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width:50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 50px" data-order="EditorID">编辑人</th>
+                                <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+                                <th style="max-width:50px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-Personnel-body table-color">
+                            <tr style="">
+                                <td colspan="20">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="lmvt-container-main-post" style="display: none;height: 100%;">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf pull-left" role="group">
+                    <button type="button" id="lmvt-post-add" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                    <button type="button" id="lmvt-post-back" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                    </button>
+                </div>
+                <span class="lmvt-header-title"
+                    style="font-family:STXinwei;font-size: 20px;color: #C7001A;position: absolute;left: 50%;transform: translate(-50%);">岗位信息</span>
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                        <input v-on:keyup.enter="searchLevel" type="text" id="zace-searchpost"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入筛选字符" />
+                    </button>
+                    <button @click="searchlevelProGrade" type="button" id="zace-search-levelProPost"
+                        class="btn lmvt-def-btn">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                </div>
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered CodeTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="ID">编号</th>
+                                <th style="min-width:50px" data-order="Name">名称</th>
+                                <th style="min-width:50px" data-order="TeamName">班组名称</th>
+                                <th style="min-width:50px" data-order="PartName">工序</th>
+                                <th style="min-width:50px" data-order="PartPointName">工步</th>
+                                <th style="min-width:50px" data-order="StationName">工位</th>
+                                <th style="min-width:50px" data-order="MateUserName">岗位人员</th>
+                                <!-- <th style="min-width:50px" data-order="GroupName">分组名称</th> -->
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width:50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 50px" data-order="EditorID">编辑人</th>
+                                <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+                                <th style="max-width:50px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-post-body table-color">
+                            <tr style="">
+                                <td colspan="20">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="femi-full-bd partAllStandard" style='display: none;padding: 5px;min-width: 1600px;'>
+            <div class="femi-bd-half-right femi-lf" id="role-user-contain">
+                <div class="femi-tb-head">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="lmvt-standardtable-Close" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true">返回</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="femi-toolbar-self femi-rt">
+                        <button type="button" id="lmvt-standardtable-refresh" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true">全部</span>
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title" style="font-family:STXinwei;font-size: 20px;color: #C7001A;">分组
+                    </span>
+                </div>
+                <div class="femi-contain-border femi-tb-border">
+                    <div style='height: 100%;overflow:auto;'>
+                        <ul id="standardItem" class="femi-left-tree treeview-famfamfam">
+                            等待。。
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="femi-bd-half-left ">
+                <div style="width:auto;height:100%">
+
+                    <div class="femi-tb-head" style="overflow: visible;">
+                        <div class="femi-toolbar-self femi-lf">
+                            <div class="btn-group" role="group">
+                                <!-- <button type="button" id="lmvt-standarditem-delete"
+									class="btn lmvt-danger-btn">
+									<span class="glyphicon glyphicon-trash"
+										aria-hidden="true"></span>删除项
+								</button> -->
+                                <button type="button" id="lmvt-standarditem-group" class="btn lmvt-def-btn">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增分组
+                                </button>
+                                <!-- <button type="button" id="lmvt-standarditem-add"
+									class="btn lmvt-def-btn">
+									<span class="glyphicon glyphicon-plus"
+										aria-hidden="true"></span>新增项
+								</button> -->
+
+                                <button type="button" style="display:none" class="btn btn-default">
+                                    <input type="file" id="input-file" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="femi-toolbar-self femi-rt">
+                            <div class="columns columns-right btn-group pull-right">
+                                <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                                    <input v-on:keyup.enter="searchLevel" type="text" id="zace-searchGroup"
+                                        style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                        placeholder="请输入筛选字符" />
+                                </button>
+                                <button @click="searchlevelProGrade" type="button" id="zace-search-levelProGroup"
+                                    class="btn lmvt-def-btn">
+                                    <span class="glyphicon " aria-hidden="true"></span>筛选
+                                </button>
+                            </div>
+                        </div>
+                        <span class="lmvt-header-title"
+                            style="font-family:STXinwei;font-size: 20px;color: #C7001A"><span
+                                class="zaceText"></span></span>
+                    </div>
+
+
+
+                    <div class="femi-contain-border femi-tb-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered standard-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width:50px" data-order="ID">编号</th>
+                                        <th style="min-width:50px" data-order="Name">名称</th>
+                                        <th style="min-width:50px" data-order="TeamName">班组名称</th>
+                                        <th style="min-width:50px" data-order="PartName">工序</th>
+                                        <th style="min-width:50px" data-order="PartPointName">工步</th>
+                                        <th style="min-width:50px" data-order="StationName">工位</th>
+                                        <th style="min-width:50px" data-order="MateUserName">岗位人员</th>
+                                        <!-- <th style="min-width:50px" data-order="GroupName">分组名称</th> -->
+                                        <th style="min-width: 50px" data-order="Active">状态</th>
+                                        <th style="min-width:50px" data-order="CreatorID">创建人</th>
+                                        <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                        <th style="min-width: 50px" data-order="EditorID">编辑人</th>
+                                        <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+                                        <th style="max-width:50px">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="zace-type-body table-color">
+                                    <tr style="">
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel" style="font-size: 20px;">查询</h4>
+            </div> -->
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_model/TeamManage.js"></script>
+</body>
+
+</html>

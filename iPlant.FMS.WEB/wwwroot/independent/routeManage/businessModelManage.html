@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>业务模型管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/routeManage/businessModelManage.css" />
+    <!-- <link rel="stylesheet" href="../static/utils/layui/css/layui.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/cross.css"> -->
+</head>
+<body>
+    <div class="iplant-tool-contain">
+        <div class="iplant-tool-right" style="display:none;height: 100%;padding: 3px 5px;">
+            <div class="lmvt-container-supplier" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="femi-hide-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <p class="lmvt-header-title cby-show-user-title" id="lmvt-header-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-30px;margin-left:160px">角色人员</p>
+                </div>
+                <!-- 人员列表 -->
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 80px" data-order="ID">编号</th>
+                                    <th style="min-width: 80px" data-order="Name">人员</th>
+                                    <!-- <th style="min-width: 50px" data-order="RoleName">角色名称</th> -->
+                                    <th style="min-width: 50px" data-order="Type">类型</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplier-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- 控件列表 -->
+            <div class="lmvt-container-widget" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="femi-hide-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <p class="lmvt-header-title" id="lmvt-widget-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-30px;margin-left:160px">隐藏控件列表</p>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll table-part">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ButtonId">控件标识</th>
+                                    <th style="min-width: 50px" data-order="ButtonName">控件名称</th>
+                                    <th style="min-width: 50px" data-order="WidgetTypeName">控件类型</th>
+                                    <th style="min-width: 50px" data-order="Remark">备注</th>
+                                    <th style="min-width: 50px" data-order="IsHide">是否隐藏</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-widget-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- 流程图 -->
+            <div class="lmvt-container-charf" style="display:none;height: 100%;">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="femi-hide-property1" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <p class="lmvt-header-title" id="lmvt-widget-title" style=" font-family: STXinwei;font-size: 17px;color: #00688b;margin-top:-30px;margin-left:160px">流程图</p>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border" id="cby-route-charf">
+                    <div style="height: 100%;overflow: auto;">
+                        <img style="margin: auto;" src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cby-cbd-contain iplant-tool-center" style="min-width:1300px;margin-left:0px;margin-right:0px">
+            <!-- 树 -->
+            <div class="femi-left femi-lf cby-tree-remove">
+                <div class="femi-contain-border femi-border-contain">
+                    <div class="femi-tree-head">
+                        <div class="columns columns-right btn-group pull-right">
+                            <button class="btn btn-default" type="button" id="cby-add-treeItem">
+                                <span class="glyphicon glyphicon-plus"></span>新增
+                            </button>
+                            <button class="btn btn-default" type="button" id="cby-refresh-treeItem">
+                                <span class="glyphicon glyphicon-refresh"></span>刷新
+                            </button>
+                        </div>
+                        <span style="font-size: 20px;" class="cby-header-title">流程分类树</span>
+                    </div>
+                    <div class="femi-tree-body ">
+                        <div class="femi-tree-contain">
+                            <ul id="routeTree" class="femi-left-tree treeview-famfamfam"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 表 -->
+            <div class="femi-full-bd" style="min-width:1000px" id="cby-table">
+                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <div class="btn-group cby-left" role="group">
+
+                            <!-- <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span><span class="lmvt-changeOption">PC端</span>
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="" id="lmvt-app">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>移动端
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li class="" id="lmvt-web">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>PC端
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div> -->
+
+                            <!-- <button class="btn btn-default" type="button" id="lmvt-searchall">
+                                <span class="glyphicon glyphicon-search"></span>查看全部
+                            </button> -->
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <button type="button" class="btn btn-default " style="padding: 0">
+                                <input type="text" id="cby-aroundSearch-table" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                            </button>
+                            <button class="btn btn-default" type="button" id="">
+                                <span class="glyphicon glyphicon-search"></span>查询
+                            </button>
+                        </div>
+                        <span class="cby-header-title" id="tzj_title">流程节点</span>
+                    </div>
+                    <div class="cby-tree-body femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered line-limit-length">
+                                <thead>
+                                    <tr>
+                                        <!-- <th style="width: 30px">
+                                            <input type="checkbox"
+                                                   class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                   value="{{functionID}}" />
+                                        </th> -->
+                                        
+                                        <th style="width: 50px" data-order="OrderID">序号</th>
+                                        <th style="min-width: 50px" data-order="ID">节点主键</th>
+                                        <th style="min-width: 50px" data-order="Name">节点名称</th>
+                                        <!-- <th style="min-width: 50px" data-order="FormName">表单名称</th> -->
+                                        <!-- <th style="min-width: 50px" data-order="RoleName">执行角色</th> -->
+                                        <!--<th style="min-width: 50px" data-order="IsBind">是否绑定</th>-->
+                                        <th data-order="UserList">候选人</th>
+                                        <th data-order="Recipients">通知人</th>
+                                        <th style="min-width: 50px;display:none" data-order="ProcessDefinitionId">流程定义</th>
+                                        <th style="min-width: 50px;display:none" data-order="ProdefinVersion">流程版本</th>
+                                        <th style="min-width: 150px" data-order="">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-tbody-designTable" class="table-color">
+                                    <tr>
+                                        <!-- <td>
+                                            <input type="checkbox" class="femi-tb-checkbox"
+                                                   style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                        </td> -->
+                                       
+                                        <td colspan="13">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- <div id="cby-route-charf" class="cby-charf-down cby-route-charf femi-contain-border" style="height: 50%;display: block;">
+                        <div class="" style="min-width:1000px;height: 100%;">
+                            <div class="cby-tree-header" style="overflow:visible;">
+                                <div class="btn-group cby-left" role="group">
+    
+                                </div>
+                                <div class="columns columns-right btn-group pull-right">
+                                </div>
+                                <span class="cby-header-title" id="">流程图</span>
+                            </div>
+                            <div style="height: 92%;">
+                                <div style="height: 100%;overflow: auto;">
+                                    <img style="margin: auto;" src="">
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/routeManage/businessModelManage.js"></script>
+    <!-- <script src="../static/utils/layui/layui.js"></script> -->
+</body>
+</html>

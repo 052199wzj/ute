@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>log日志</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_route/FMCLineUnitSetting_logs.css" />
+</head>
+<body  >
+      
+    <div class="zace-cbd-contain zace-BomItem" style="min-width:1300px">
+
+        <div class="femi-left femi-lf">
+            <div class="femi-contain-border femi-border-contain">
+                <div class="femi-tree-head">
+                    <!-- <div class="btn-group" role="group">
+                        <button type="button" id="zace-tree-part" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>logs日志
+                        </button>
+                    </div> -->
+                    <span><strong style="font-size: 16px; margin-top: 5px;margin-right: 5px;margin-left: 28%;">log日志集</strong></span>
+                </div>
+                
+                <div class="femi-tree-body ">
+                    <div class="femi-tree-contain">
+                        <ul id="areaTree" class="femi-left-tree treeview-famfamfam"></ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="femi-full-bd  zzzArea">
+            <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                <div class="zace-tree-header" style="overflow:visible;">
+
+                    <div class="btn-group zace-left" role="group">
+                        <button type="button" id="mDownLoad" class="btn btn-default " style="display: none;">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>下载
+                        </button>
+                        <button type="button" id="mDelete" class="btn btn-default" style="display: none;">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                        </button>
+                        <button type="button" id="mFolder" class="btn btn-default" style="display: none;">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span>打开文件夹
+                        </button>
+                        <button type="button" id="mDeletePattern_in" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>进入安全模式
+                        </button>
+                        <button type="button" id="mDeletePattern_out" class="btn btn-default" style="display: none;">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>退出安全模式
+                        </button>
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        
+                    </div>
+
+                    <span class="zace-header-title"  id="Name">log日志</span>
+
+                </div>
+                <!-- overflow: hidden;  -->
+                <div class="zace-tree-body femi-contain-border">
+                  <div class="femi-tb-scroll table-part">
+                  <div id="showLog" style="font-size: 14px; white-space: pre-line;word-wrap: break-word;
+                  word-break: break-all; ">
+
+                  </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_route/FMCLineUnitSetting_logs.js"></script>
+</body>
+</html>

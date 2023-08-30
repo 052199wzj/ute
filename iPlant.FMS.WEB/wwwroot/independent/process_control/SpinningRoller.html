@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>轮对镟修设备的</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../static/css/process_control/SpinningRoller.css">
+</head>
+<body>
+<div class="fxy-spinning-roller" id="fxy-app">
+  <div class="basics box borders">
+    <p class="title">镟修基础数据</p>
+    <table
+        class="table table-bordered table-hover"
+        data-toggle="table"
+        data-classes="table table-hover"
+    >
+      <thead>
+      <tr>
+        <th>设备信息</th>
+        <th>加工日期</th>
+        <th>加工结束时间</th>
+        <th>加工时长</th>
+        <th>操作员 ID</th>
+        <th>加工原因</th>
+        <th>加工类型</th>
+        <th>轮廓型</th>
+        <th>轮对 ID</th>
+        <th>轮对位置</th>
+        <th>轮对方向</th>
+        <th>转向架 ID</th>
+        <th>车辆 ID</th>
+        <th>车辆方向</th>
+        <th>车辆类型</th>
+      </tr>
+      </thead>
+      <tbody>
+      <td>{{Basics["1.1"]}}</td>
+      <td>{{Basics["2.1"]}}</td>
+      <td>{{Basics["2.2"]}}</td>
+      <td>{{Basics["2.3"]}}</td>
+      <td>{{Basics["2.4"]}}</td>
+      <td>{{Basics["2.5"]}}</td>
+      <td>{{Basics["2.6"]}}</td>
+      <td>{{Basics["2.7"]}}</td>
+      <td>{{Basics["2.8"]}}</td>
+      <td>{{Basics["2.9"]}}</td>
+      <td>{{Basics["2.10"]}}</td>
+      <td>{{Basics["2.11"]}}</td>
+      <td>{{Basics["2.12"]}}</td>
+      <td>{{Basics["2.13"]}}</td>
+      <td>{{Basics["2.14"]}}</td>
+      </tbody>
+    </table>
+  </div>
+  <div class="before-correction box borders">
+    <p class="title">镟修前测量数据</p>
+    <table
+        class="table table-bordered table-hover"
+        data-toggle="table"
+        data-classes="table table-hover"
+    >
+      <thead>
+      <tr>
+        <th>轮对内侧距 单位:mm</th>
+        <th>轮对外侧距 单位:mm</th>
+        <th>轮径差</th>
+        <th>轮径左</th>
+        <th>轮径右</th>
+        <th>轴向窜动左</th>
+        <th>轴向窜动右</th>
+        <th>径向跳动左</th>
+        <th>径向跳动右</th>
+        <th>轮缘高度左</th>
+        <th>轮缘高度右</th>
+        <th>轮缘厚度左</th>
+        <th>轮缘厚度右</th>
+        <th>QR尺寸左</th>
+        <th>QR尺寸右</th>
+        <th>轮对多边形低阶最大值左</th>
+        <th>轮对多边形低阶最大值右</th>
+        <th>轮对多边形低阶最大值阶次右</th>
+        <th>轮对多边形高阶最大值左</th>
+        <th>轮对多边形高阶最大值右</th>
+        <th>轮对多边形高阶最大值阶次左</th>
+        <th>轮对多边形高阶最大值阶次右</th>
+        <th>等效锥度左（ UIC519方法）</th>
+        <th>等效锥度右（ UIC519方法）</th>
+        <th>等效锥度左（简易方法）</th>
+        <th>等效锥度右（简易方法）</th>
+        <th>轮对多边形左（ 1-150阶）</th>
+        <th>轮对多边形右（ 1-150阶）</th>
+        <th>径跳函数</th>
+        <th>踏面轮廓左</th>
+        <th>踏面轮廓右</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fixed-target box borders">
+    <p class="title">镟修目标数据</p>
+    <table
+        class="table table-bordered table-hover"
+        data-toggle="table"
+        data-classes="table table-hover"
+    >
+      <thead>
+      <tr>
+        <th>轮对内侧距 单位:mm</th>
+        <th>轮对外侧距 单位:mm</th>
+        <th>轮径差</th>
+        <th>轮径左</th>
+        <th>轮径右</th>
+        <th>轴向窜动左</th>
+        <th>轴向窜动右</th>
+        <th>径向跳动左</th>
+        <th>径向跳动右</th>
+        <th>轮缘高度左</th>
+        <th>轮缘高度右</th>
+        <th>轮缘厚度左</th>
+        <th>轮缘厚度右</th>
+        <th>QR尺寸左</th>
+        <th>QR尺寸右</th>
+        <th>轮对多边形低阶最大值左</th>
+        <th>轮对多边形低阶最大值右</th>
+        <th>轮对多边形低阶最大值阶次右</th>
+        <th>轮对多边形高阶最大值左</th>
+        <th>轮对多边形高阶最大值右</th>
+        <th>轮对多边形高阶最大值阶次左</th>
+        <th>轮对多边形高阶最大值阶次右</th>
+        <th>等效锥度左（ UIC519方法）</th>
+        <th>等效锥度右（ UIC519方法）</th>
+        <th>等效锥度左（简易方法）</th>
+        <th>等效锥度右（简易方法）</th>
+        <th>轮对多边形左（ 1-150阶）</th>
+        <th>轮对多边形右（ 1-150阶）</th>
+        <th>径跳函数</th>
+        <th>踏面轮廓左</th>
+        <th>踏面轮廓右</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+        <td>12</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/SpinningRoller.js"></script>
+</body>
+</html>

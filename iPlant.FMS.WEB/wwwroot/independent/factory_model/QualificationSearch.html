@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>资质管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_model/QualificationSearch.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div class="zace-cbd-contain" style="min-width:1300px">
+        <div class="lmvt-container-header-top">
+            <div class="row" style="background: #fff;">
+                <div class="span8">
+                    <ul class="nav nav-pills">
+                        <li data-value="1" class="active"><a href="#">已发起<span class="badge badge-danger"
+                                    id="MustDo1">0</span></a></li>
+                        <li data-value="2" class=""><a href="#">待办<span class="badge badge-danger"
+                                    id="HasDo2"></span></a></li>
+                        <li data-value="3" class=""><a href="#">已办<span class="badge badge-danger"
+                                    id="News3"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="zzza zace-cbd-contain zace-left" style="min-width:950px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <input style="float: left;width: 140px;" id="lmvt-DTAddedStart" type="text" class="form-control width200" placeholder="开始时间">
+                            <input style="float: left;width: 140px;" id="lmvt-DTAddedEnd" type="text" class="form-control width200" placeholder="结束时间">
+                            <button type="button" id="lmvt-search" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                            </button>
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-export-submit" class="btn lmvt-def-btn" data-toggle="modal" data-target="#myModal">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+                        </button>
+                        <!-- <button type="button" id="zace-add-level" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>增加
+                        </button> -->
+                        <!-- <button type="button" id="zace-delete-level" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>撤销
+                        </button> -->
+                        <button type="button" style="display:none" class="btn btn-default">
+                            <input type="file" id="input-file" multiple>
+                        </button>
+                    </div>
+                    <span class="zace-header-title">资质管理</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border" id="luanchtable">
+                    <div class="femi-tb-scroll" >
+                        <table class="table   table-hover table-bordered grinding-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="WID">行号</th>
+                                    <!-- <th style="min-width: 50px" data-order="UpFlowName">姓名</th> -->
+                                    <th style="min-width: 80px" data-order="CertificationName">证书名称</th>
+                                    <th style="min-width: 80px" data-order="CertificationNo">证书编号</th>
+                                    <th style="min-width: 120px" data-order="CreateTime">创建日期</th>
+                                    <th style="min-width: 50px" data-order="DTValidUntil">有效期</th>
+                                    <th style="min-width: 50px" data-order="StatusText">状态</th>
+                                    <th style="min-width: 80px" data-order="Certificationdetail">证书图片</th>
+                                    <th style="min-width: 50px" data-order="">操作</th>
+                                    <button type="button" style="display:none" class="btn btn-default">
+                                        <input type="file" id="input-updatefile">
+                                    </button>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevel-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border" id="ProcessingTable">
+                    <div class="femi-tb-scroll" >
+                        <table class="table   table-hover table-bordered processing-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="WID">行号</th>
+                                    <th style="min-width: 50px" data-order="UpFlowName">姓名</th>
+                                    <th style="min-width: 80px" data-order="CertificationName">证书名称</th>
+                                    <th style="min-width: 80px" data-order="CertificationNo">证书编号</th>
+                                    <th style="min-width: 120px" data-order="CreateTime">创建日期</th>
+                                    <th style="min-width: 50px" data-order="DTValidUntil">有效期</th>
+                                    <th style="min-width: 80px" data-order="Certificationdetail">证书图片</th>
+                                    <th style="min-width: 50px" data-order="">操作</th>
+                                    <button type="button" style="display:none" class="btn btn-default">
+                                        <input type="file" id="input-updatefile">
+                                    </button>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Processing-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border" id="finishedTable">
+                    <div class="femi-tb-scroll" >
+                        <table class="table   table-hover table-bordered finished-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="WID">行号</th>
+                                    <th style="min-width: 50px" data-order="UpFlowName">姓名</th>
+                                    <th style="min-width: 80px" data-order="CertificationName">证书名称</th>
+                                    <th style="min-width: 80px" data-order="CertificationNo">证书编号</th>
+                                    <th style="min-width: 120px" data-order="CreateTime">创建日期</th>
+                                    <th style="min-width: 50px" data-order="DTValidUntil">有效期</th>
+                                    <th style="min-width: 50px" data-order="StatusText">状态</th>
+                                    <th style="min-width: 80px" data-order="Certificationdetail">证书图片</th>
+                                    <button type="button" style="display:none" class="btn btn-default">
+                                        <input type="file" id="input-updatefile">
+                                    </button>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-finished-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="cby-route-charf-apply" class="cby-charf-down cby-route-charf" style="display:none">
+            <div class="" style="min-width:1000px">
+                <div class="cby-tree-header" style="overflow:visible;">
+                    <div class="btn-group cby-left" role="group">ss
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button class="btn btn-default" type="button" id="cby-return-table">
+                            <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="cby-header-title" id="">证书图片</span>
+                </div>
+                <div style="overflow: auto;">
+                    <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;">
+        <div id="innerdiv" style="position:absolute;">
+            <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src="" />
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">提交</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="ReadOnly">
+                        <div style="font-size: 20px">证书申请</div>
+                        <div class="CertificateRequestContent">
+                        </div>
+                    </div>
+                    <div class="m-c-panel ds-prop-write-ctrl Write-Control-CertificationID">
+                        <div class="m-c-head"><span class="ds-head-CertificationID">证书名称</span><span style="color: red;" class="ds-head-show"></span></div>
+                        <!-- <select id="slpk" class="selectpicker" data-live-search="true"></select> -->
+                        <select id="slpk" class="selectpicker" data-live-search="true"></select>
+                    </div>
+                    <div class="m-c-panel ds-prop-write-ctrl Write-Control-CertificationNo">
+                        <div class="m-c-head"><span class="ds-head-CertificationNo">证书编号</span><span style="color: red;" class="ds-head-show"></span></div>
+                        <div class="m-c-body m-c-input clearfix">
+                            <input rows="1" placeholder="请输入证书编号信息" style="width: 100%;height:40px;line-height: 35px; resize: none" class="Write-content-CertificationNo" data-value=""></input>
+                        </div>
+                    </div>
+                    <div class="m-c-panel ds-prop-write-ctrl Write-Control-DTValidUntil">
+                        <div class="m-c-head"><span class="ds-head-DTValidUntil">证书有效期</span><span style="color: red;" class="ds-head-show"></span></div>
+                        <div class="row" style="margin-top: 10px">
+                            <input type="text" name="endtime"  class="form-control" id="endtime">
+                        </div>
+                    </div>
+                    <!-- 上传图片 -->
+                    <div class="m-c-panel ds-prop-write-ctrl Write-Control-CertificationFilesPath">
+                        <div class="m-c-head"><span class="ds-head-CertificationFilesPath">上传图片</span><span style="color: red;" class="ds-head-show"></span></div>
+                        <div class="m-c-body m-c-upload clearfix">
+                            <ul class="upload-list">
+                                <li class="upload-btn">
+                                    <input type="file" data-value="" class="uploadImageZac Write-content-CertificationFilesPath" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
+                <button type="button" class="btn btn-primary" id="Confirm">确认</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_model/QualificationSearch.js"></script>
+</body>
+
+</html>

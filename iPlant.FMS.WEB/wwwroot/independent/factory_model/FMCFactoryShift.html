@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>工厂管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_model/FMCFactoryShift.css" />
+</head>
+
+<body>
+
+    <div class="zace-cbd-contain">
+        <div class="zzzz zace-cbd-contain">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-add-day" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <!-- <button type="button" id="zace-update-day" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button>
+                           
+                            <div class="btn-group">
+                                <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-active-day">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>启用
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-disable-day">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </div> -->
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input type="text" id="zace-search-day"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-searchZall-day" class="btn lmvt-def-btn">
+                            <span class="glyphicon " aria-hidden="true"></span>筛选
+                        </button>
+                        <button type="button" id="zace-update-zaceRefresh" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                        </button>
+                    </div>
+
+                    <span class="zace-header-title">作息列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-title="WID">序号</th>
+                                    <th style="min-width: 50px" data-title="Name">名称</th>
+                                    <th style="min-width: 50px" data-title="StartTime">开始时间</th>
+                                    <th style="min-width: 50px" data-title="EndTime">结束时间</th>
+                                    <th style="min-width: 50px" data-title="Minutes">时长(分钟)</th>
+                                    <th style="min-width: 50px" data-title="IdleMinutes">休息时长</th>
+                                    <th style="min-width: 50px" data-title="WorkMinutes ">工作时长</th>
+                                    <th style="min-width: 50px" data-title="Creator">创建者</th>
+                                    <th style="min-width: 50px" data-title="CreateTime">创建时间</th>
+                                    <th style="min-width: 50px" data-title="Editor ">编辑者</th>
+                                    <th style="min-width: 50px" data-title="EditTime  ">编辑时间</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                    <th style="max-width: 20px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-day-tbody" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzc zace-cbd-contain zace-right" style="display:none;">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-add-zone" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <!-- <button type="button" id="zace-update-zone" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button> -->
+
+                        </div>
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" id="zace-closeLine-zone" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="zace-header-title" id="zace-sapn-zoneText">班次详细</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-title="WID">序号</th>
+                                    <th style="min-width: 50px" data-title="ZoneName">名称</th>
+                                    <th style="min-width: 50px" data-title="StartTime">开始时间</th>
+                                    <th style="min-width: 50px" data-title="Minutes">时长(分钟)</th>
+                                    <th style="min-width: 50px" data-title="IdleOrWork">工作</th>
+                                    <th style="max-width: 20px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-zone-tbody" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzza zace-cbd-contain zace-left" style="display:none;min-width:700px;">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                           
+                            <button type="button" id="zace-add-shift" class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <!-- <button type="button" id="zace-update-shift" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button> -->
+
+                            <button type="button" id="zace-logOut-shift" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button>
+
+                            <!-- <button type="button" id="zace-update-zaceRefreshItem" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                            </button> -->
+                           
+                        </div>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <!--<button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="zace-search-shift"
+                               style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                               placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-searchZall-shift"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>-->
+
+                    </div>
+
+                    <span class="zace-header-title" id="zace-sapn-shiftText">班次管理</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-title="WID">序号</th>
+                                    <th style="min-width: 50px" data-title="Name">名称</th>
+                                    <!--<th style="min-width: 50px" data-title="LevelID">班次</th>-->
+                                    <th style="min-width: 50px" data-title="StartTime">开始时间</th>
+                                    <th style="min-width: 50px" data-title="EndTime">结束时间</th>
+                                    <th style="min-width: 50px" data-title="Minutes">时长(分钟)</th>
+                                    <th style="min-width: 50px" data-title="IdleMinutes">休息时长</th>
+                                    <th style="min-width: 50px" data-title="WorkMinutes ">工作时长</th>
+                                    <!--<th style="min-width: 50px" data-title="Active ">启用</th>-->
+                                    <th style="min-width: 50px" data-title="Creator">创建者</th>
+                                    <th style="min-width: 50px" data-title="CreateTime">创建时间</th>
+                                    <th style="max-width: 20px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-shift-tbody" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_model/FMCFactoryShift.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>部门管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/basicSet/departmentManage.css">
+    <link rel="stylesheet" href="../static/utils/css/jquery.orgchart.css">
+    <link rel="stylesheet" href="../static/utils/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../static/utils/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <!--横向 -->
+    <link rel="stylesheet" href="../static/utils/css/zTreeStyle/animate.css" type="text/css">
+
+
+
+</head>
+<style>
+    .tabbox {
+        width: 900px;
+        margin: 10% auto;
+        padding: 15px;
+        height: 600px;
+        background: white;
+        display: none
+    }
+
+    .tabbox li,
+    .tabbox ul {
+        list-style-type: none
+    }
+
+    .tabbox ul {
+        margin: 0;
+        padding: 0
+    }
+
+    .tabbox .tabnav,
+    .tabbox .tabcon {
+        width: 98%;
+        display: block;
+        float: left;
+    }
+
+    .tabbox .tabnav {
+        border-bottom: 1px solid #ddd
+    }
+
+    .tabbox .tabnav li {
+        position: relative;
+        cursor: pointer;
+        float: left;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin: 0px;
+        padding: 8px 26px;
+        color: #337ab7;
+        border: 1px solid #fff;
+    }
+
+    .tabnav li.active {
+        border: 1px solid #ddd;
+        border-bottom: none;
+        color: #555;
+    }
+
+    .tabnav li.active:before {
+        content: '';
+        width: 100%;
+        height: 1px;
+        bottom: -2px;
+        left: 0;
+        position: absolute;
+        background: white;
+    }
+
+    .tabbox .tabcon li {
+        display: none;
+        padding: 10px;
+        width: 100%;
+        height: 540px;
+        overflow: auto;
+    }
+
+    .tabbox .tabcon li:first-child {
+        display: block
+    }
+
+    .mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(212, 212, 212);
+        display: none
+    }
+</style>
+
+<body class="femi-font-size-middle">
+    <div class="l-body-container">
+        <div class="l-container">
+            <div class="l-containe-canvas-table" style="padding-bottom:2px">
+                <div class="l-containe-canvas-table-department" style='min-width: 1200px;'>
+                    <div class="femi-left femi-lf">
+                        <div class="femi-contain-border femi-border-contain">
+                            <div class="femi-tree-head">
+                                <div class="btn-group" role="group" style="float: right; margin-top:-5px ">
+                                    <button type="button" id="l-freshen-department" class="btn lmvt-def-btn">
+                                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                                    </button>
+                                   <div class="btn-group" role="group">
+                                     <button type="button" class="btn lmvt-def-btn dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            style="width:80px;">
+                                            更多
+                                            <span class="caret"></span> <span class="sr-only">
+                                                Toggle
+                                                Dropdown
+                                            </span>
+                                        </button> 
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li class="femi-group-add">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true">增加</span>
+                                                </a>
+                                            </li>
+                                            <li class="femi-group-delete">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true">删除</span>
+                                                </a>
+                                            </li>
+                                            <li class="femi-group-update">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true">单组修改</span>
+                                                </a>
+                                            </li>
+                                            <li class="femi-group-ChangeParent">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star"
+                                                        aria-hidden="true">整组移动</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div> 
+                                </div>
+                                <strong>证书种类</strong>
+                            </div>
+                            <div class="femi-tree-body">
+                                <div class="femi-tree-contain">
+                                    <ul id="depTree" class="femi-left-tree treeview-famfamfam"><span>等待数据加载</span>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="femi-full-bd">
+                        <div class="femi-bd-half-left " style="margin-right: -2px; ">
+
+                            <div class="l-containe-canvas-table-department-title femi-tb-head">
+                                <span
+                                    style="text-align:center;font-family:STXinwei;font-size:20px;color:#00688B">证书</span>
+                                <div class="btn-group femi-lf" role="group">
+                                    <button type="button" id="l-add-department" class="btn lmvt-default-btn">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </button>
+                                    <button type="button" id="l-delete-department" class="btn lmvt-danger-btn">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除
+                                    </button>
+                                    <button type="button" id="l-changegroup-department" class="btn lmvt-default-btn">
+                                        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>转移
+                                    </button>
+                                    <button type="button" id="l-activelist-department" class="btn lmvt-default-btn">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </button>
+                                    <button type="button" id="l-disablelist-department" class="btn lmvt-default-btn">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </button>
+                                </div>
+                                <div class="l-containe-btn-right">
+                                    <div class="btn-group" role="group">
+                                        <!-- <div class="btn-group" role="group">
+                                            <button type="button" class="btn lmvt-def-btn dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                style="width:80px;">
+                                                部门
+                                                <span class="caret"></span> <span class="sr-only">
+                                                    Toggle
+                                                    Dropdown
+                                                </span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+
+                                                <li class="femi-department-show">
+                                                    <a href="javascript:;">
+                                                        <span class="glyphicon glyphicon-star"
+                                                            aria-hidden="true">证书种类</span>
+                                                    </a>
+                                                </li>
+                                                <li class="femi-position-show">
+                                                    <a href="javascript:;">
+                                                        <span class="glyphicon glyphicon-star"
+                                                            aria-hidden="true">证书</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                        <!-- <div class="btn-group" role="group">
+                                            <button type="button"
+                                                class="btn lmvt-def-btn dropdown-toggle dropdown-canvas"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                style="width:80px;">
+                                                结构图
+                                                <span class="caret"></span> <span class="sr-only">
+                                                    Toggle
+                                                    Dropdown
+                                                </span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li class="femi-canvas-show">
+                                                    <a href="javascript:;">
+                                                        <span class="glyphicon glyphicon-eye-open">显示</span>
+                                                    </a>
+                                                </li>
+                                                <li class="femi-canvas-hide">
+                                                    <a href="javascript:;">
+                                                        <span class="glyphicon glyphicon-eye-close">隐藏</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+
+                                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                                            <input type="text" id="zace-search-BM"
+                                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                                placeholder="请输入证书名称查询" />
+                                        </button>
+                                        <button type="button" id="zace-Device-search-BM" class="btn lmvt-def-btn">
+                                            <span class="" aria-hidden="true"></span>筛选
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="femi-contain-border femi-tb-border">
+                                <div class="femi-tb-scroll table-part">
+                                    <table class="table   table-hover table-bordered grinding-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 3px">
+                                                    <input type="checkbox" class="femi-tb-checkbox"
+                                                        style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                                </th>
+                                                <th style="min-width: 50px" data-title="ID">序号</th>
+                                                <th style="min-width: 50px" data-title="CertificationName">证书名称</th>
+                                                <th style="min-width: 150px" data-title="InGroupID">证书所属</th>
+                                                <th style="min-width: 50px" data-title="CertificationComments">证书说明</th>
+                                                <th style="min-width: 150px" data-title="DTLastEdit">时间</th>
+                                                <th style="min-width: 50px" data-title="LastEditorName">操作员</th>
+                                                <th style="min-width: 50px" data-title="CertificationStatus">状态</th>
+                                                <th style="min-width: 200px" data-title="">操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="femi-riskLevel-tbody" class="l-department-body table-color"></tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="l-containe-canvas-table-position" style='min-width: 1200px;display: none;'>
+                    <div class="femi-left femi-lf" style='width: 230px;'>
+                        <div class="femi-contain-border femi-border-contain">
+                            <div class="femi-tree-head">
+                                <div class="btn-group" role="group" style="float: right; margin-top:-5px ">
+
+                                    <button type="button" id="l-freshen-position" class="btn lmvt-def-btn">
+                                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                                    </button>
+                                </div>
+                                <strong>证书</strong>
+
+                            </div>
+                            <div class="femi-tree-body">
+                                <div class="femi-tree-contain">
+                                    <ul id="PositionTree" class="femi-left-tree treeview-famfamfam"><span>等待数据加载</span>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="femi-full-bd">
+                        <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                            <div class="l-containe-canvas-table-department-title femi-tb-head">
+
+                                <div class="btn-group femi-lf" role="group">
+                                    <button type="button" id="l-add-position" class="btn lmvt-danger-btn">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </button>
+                                </div>
+                                <span
+                                    style="text-align:center;font-family:STXinwei;font-size:20px;color:#00688B;margin-top:-28px">岗位列表</span>
+
+                                <div class="btn-group l-containe-btn-right" role="group">
+                                    <!-- <div class="btn-group" role="group">
+                                        <button type="button" class="btn lmvt-def-btn dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                            style="width:80px;">
+                                            岗位
+                                            <span class="caret"></span> <span class="sr-only">
+                                                Toggle
+                                                Dropdown
+                                            </span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+
+                                            <li class="femi-department-show">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star" aria-hidden="true">部门</span>
+                                                </a>
+                                            </li>
+                                            <li class="femi-position-show">
+                                                <a href="javascript:;">
+                                                    <span class="glyphicon glyphicon-star" aria-hidden="true">岗位</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                    <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                                        <input type="text" id="zace-search-GW"
+                                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                            placeholder="请输入查询字符" />
+                                    </button>
+                                    <button type="button" id="zace-Device-search-GW" class="btn lmvt-def-btn">
+                                        <span class="" aria-hidden="true"></span>筛选
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="femi-contain-border femi-tb-border">
+                                <div class="femi-tb-scroll table-part">
+                                    <table class="table   table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 3px">
+                                                    <input type="checkbox" class="femi-tb-checkbox"
+                                                        style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                                </th>
+                                                <th style="width: 200px" data-title="ID">序号</th>
+                                                <th style="min-width: 50px" data-title="CertificationName">证书名称</th>
+                                                <th style="min-width: 50px" data-title="CertificationGroupID">证书所属</th>
+                                                <th style="min-width: 50px" data-title="CertificationComments">证书含义</th>
+                                                <th style="min-width: 50px" data-title="DTLastEdit">时间</th>
+                                                <th style="min-width: 50px" data-title="LastEditorID">操作员</th>
+                                                <th style="min-width: 50px" data-title="CertificationStatus">状态</th>
+                                                <th style="min-width: 50px" data-title="">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="l-position-body table-color"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="l-container-canvas femi-contain-border"
+                style="display:none;margin: 0px 5px -2px 5px;height: 100%;">
+                <div style="height: 35px;width: 100%;">
+                    <div class="l-containe-btn-right">
+                        <div class="btn-group" role="group">
+
+                            <div class="btn-group" role="group">
+                                <button type="button" id="femi-canvas-hide" class="btn lmvt-def-btn">
+                                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="l-container-canvas-title"
+                        style="text-align:center;font-family:STXinwei;font-size:20px;color:#00688B;">部门结构图</p>
+
+                </div>
+                <div style="top:28px;height: 100%;width: 100%;">
+                    <div class="l-canvas-in" style="text-align: center">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="l-container-crossZ femi-contain-border"
+                style="display:none;margin: 0px 5px -2px 5px;height: 100%;">
+                <div style="height: 35px;width: 100%;">
+                    <div class="l-containe-btn-right">
+                        <div class="btn-group" role="group">
+
+                            <div class="btn-group" role="group">
+                                <button type="button" id="femi-crossZ-hide" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="l-container-crossZ-title"
+                        style="text-align:center;font-family:STXinwei;font-size:20px;color:#00688B;">部门结构图</p>
+
+                </div>
+                <div style="top:28px;height: 96%;width: 100%;">
+
+
+
+                    <div class="content_wrap" style="height: 100%;">
+                        <div class="zTreeDemoBackground left femi-tb-scroll" style="height: 100%;">
+                            <ul id="treeDemo" class="ztree"></ul>
+                        </div>
+                        <div class="mask">
+                            <div class="tabbox">
+                                <ul class="tabnav">
+                                    <li class="active">施工前</li>
+                                    <li>施工中</li>
+                                    <li>施工后</li>
+                                </ul>
+                                <ul class="tabcon">
+                                    <li>
+
+                                        施工前 <br>
+                                    </li>
+                                    <li>
+                                        施工中
+                                    </li>
+                                    <li>
+                                        施工后
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript" src="../static/utils/require.js"></script>
+        <script type="text/javascript" src="../static/js/factory_model/QualificationClassification.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>物料信息管理</title>
+    <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/jquery.treeview.css" rel="stylesheet" type="text/css">
+    <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="materialInfo-body" class="fzy-page">
+
+        <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+
+        <div class="fzy-search-bar">
+            <el-input v-model="searchData.MaterialNo" class="input-box-300" placeholder="物料编号">
+                <template slot="prepend">
+                    物料编号
+                </template>
+            </el-input>
+
+            <el-input v-model="searchData.MaterialName" class="input-box-300" placeholder="物料名称">
+                <template slot="prepend">
+                    物料名称
+                </template>
+            </el-input>
+
+            <el-input v-model="searchData.Groes" class="input-box-300" placeholder="规格">
+                <template slot="prepend">
+                    规格
+                </template>
+            </el-input>
+
+            <div class="input-select-box input-box-200">
+                <div class="label">状态</div>
+                <el-select v-model="searchData.Active" placeholder="请选择">
+                    <el-option label="全部" value="-1"></el-option>
+                    <el-option label="启用" value="1"></el-option>
+                    <el-option label="不启用" value="0"></el-option>
+                </el-select>
+            </div>
+
+            <div class="button-box">
+                <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                    查询
+                </button>
+
+                <button class="btn lmvt-def-btn"
+                        type="button"
+                        @click="emptyClick">
+                    <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+                    重置
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class="fzy-page-center-box flex-column">
+            <div class="fzy-page-center-title-bar flex-none">
+                <div class="left">
+                    <span class="fzy-title">物料档案信息</span>
+                </div>
+                <div class="right">
+                    <button class="btn lmvt-danger-btn" type="button" @click="addClick">
+                        <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>添加
+                    </button>
+                    <button id="zace-exportApproval-level" class="btn btn-default " type="button" @click="exportClick">
+                        <span aria-hidden="true" class="glyphicon glyphicon-export"></span>导出
+                    </button>
+                </div>
+            </div>
+            <el-table :data="tableData"
+                      size="mini"
+                      border
+                      current-row-key="Code"
+                      height="calc(100% - 45px)">
+
+                <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+                <el-table-column label="物料编号" property="MaterialNo" align="center" width="120px"></el-table-column>
+                <el-table-column label="物料名称" property="MaterialName" align="center" width="150px"></el-table-column>
+                <el-table-column label="规格" property="Groes" align="center"></el-table-column>
+                <el-table-column label="创建人" property="Creator" align="center"></el-table-column>
+                <el-table-column label="创建时间" property="CreateTime" align="center"></el-table-column>
+                <el-table-column label="编辑人" property="Editor" align="center"></el-table-column>
+                <el-table-column label="编辑时间" property="EditTime" align="center"></el-table-column>
+                <el-table-column label="备注" property="Remark" align="center"></el-table-column>
+                <el-table-column label="状态" align="center" width="80px">
+                    <template slot-scope="scope">
+                        <el-switch :value="scope.row.Active | switchStatus"
+                                   active-color="#0ea9f7"
+                                   inactive-color="#cccccc"
+                                   @change="activeChange(scope.row)">
+                        </el-switch>
+                    </template>
+                </el-table-column>
+
+                <el-table-column label="操作" align="center" width="120px">
+                    <template slot-scope="scope">
+                        <div class="col-md-6 lmvt-do-info lmvt-resetPencil"
+                             @click="editClick(scope.row)">
+                            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                            编辑
+                        </div>
+
+                        <div class="col-md-6 lmvt-do-info lmvt-delete fzy-text-btn"
+                             @click="removeClick(scope.row)">
+                            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+                            删除
+                        </div>
+                    </template>
+                </el-table-column>
+
+            </el-table>
+
+        </div>
+
+    </div>
+
+    <script src="../static/utils/require.js" type="text/javascript"></script>
+    <script src="../static/js/materialManage/materialInfo.js" type="text/javascript"></script>
+</body>
+</html>

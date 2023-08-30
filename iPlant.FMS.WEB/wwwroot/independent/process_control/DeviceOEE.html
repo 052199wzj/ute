@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备OEE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/process_control/DeviceOEE.css">
+</head>
+<body>
+<div id="DeviceOee">
+  <template>
+    <div class="fzy-page fxy-head">
+      <div class="fzy-search-bar">
+        <div class="input-select-box input-box-300">
+          <div class="label">区域</div>
+          <el-select v-model="AreaID" placeholder="请选择">
+            <el-option
+                v-for="item in Area"
+                :key="item.ID"
+                :label="item.Name"
+                :value="item.ID"
+            >
+            </el-option>
+          </el-select>
+        </div>
+        <div class="input-select-box input-box-300">
+          <div class="label">设备类型</div>
+          <el-select v-model="DeviceTypeID" filterable="true" clearable placeholder="请选择">
+            <el-option
+                v-for="(item,index) in DeviceType"
+                :key="index"
+                :label="item.DeviceTypeName"
+                :value="item.DeviceType"
+            >
+            </el-option>
+          </el-select>
+        </div>
+        <div class="input-select-box input-box-300">
+          <div class="label">设备名称</div>
+          <el-select v-model="DeviceName" filterable="true" clearable placeholder="请选择">
+            <el-option
+                v-for="(item,index) in DeviceList"
+                :key="index"
+                :label="item.Name"
+                :value="item.Name"
+            >
+            </el-option>
+          </el-select>
+        </div>
+        <div class="input-select-box input-box-300">
+          <div class="label">时间</div>
+          <el-date-picker
+              ref="test"
+              v-model="timeSection"
+              type="daterange"
+              :clearable="false"
+              value-format="yyyy-MM-dd"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+          >
+          </el-date-picker>
+        </div>
+        <div class="button-box">
+          <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search('repairs')">
+            <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+            查询
+          </button>
+          <button
+              class="btn lmvt-def-btn"
+              type="button"
+              @click="reset('repairs')"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+            重置
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="fxy-body">
+      <div class="fxy-statistical-table">
+        <div class="fxy-table">
+          <span class="fxy-title">设备表</span>
+          <div class="header">
+            <div class="no1">设备名称</div>
+            <div>设备编码</div>
+            <div>开机率</div>
+            <div>故障率</div>
+            <div>稼动率</div>
+            <div>平均无故障时长</div>
+            <div>平均修复时长</div>
+            <div>平均故障间隔时长</div>
+            <div>状态</div>
+          </div>
+          <div class="table-body" v-cloak>
+            <div class="table-tr" v-for="(item,index) in list">
+              <div class="tr-top" @click="unfold(index)">
+                <div class="content">
+                  <div v-show="false">{{index}}</div>
+                  <div class="no1">{{item.DeviceName}}</div>
+                  <div>{{item.DeviceNo}}</div>
+                  <div>{{item.HUT}}%</div>
+                  <div>{{item.FailureRate}}%</div>
+                  <div>{{item.EWK}}%</div>
+                  <div>{{item.MTTF}}H</div>
+                  <div>{{item.MTTR}}H</div>
+                  <div>{{item.MTBF}}H</div>
+                  <div class="status">
+                    <div class="status-hue" :style="{background:item.colour}"></div>
+                    <span>{{item.StatusText}}</span></div>
+                </div>
+                <div class="icon"><img
+                    class="arrows-right"
+                    src="../static/images/logpng/arrows_right.png" alt=""
+                >
+                </div>
+              </div>
+              <div class="tr-bottom">
+                <div>故障时长:{{(item.AlarmDuration/360).toFixed(2)}}H</div>
+                <div>生产时长:{{item.production}}H</div>
+                <div>停机时长:{{item.halt}}H</div>
+                <div>待机时长:{{item.TheStandbyTime}}H</div>
+                <div>上电时长:{{(item.TurnOnDuration/360).toFixed(2)}}H</div>
+                <div>计划时长:{{(item.PlanDuration/360).toFixed(2)}}H</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="statistical-table">
+           <div id="FaultFrequency"></div>
+           <div id="TheFailureTime"></div>
+           <div id="pie-chart"></div>
+       </div>
+       <div class="halt-production">
+           <div id="line-chart"></div>
+       </div>-->
+      <div class="state">
+
+        <!--  <div class="fxy-Status-title">
+              <span class="title">设备状态时长</span>
+              <span class="title">设备状态频次</span>
+          </div>-->
+        <div class="fxy-time-frequency">
+          <div id="state-the-length"></div>
+          <div id="state-the-frequency"></div>
+        </div>
+
+      </div>
+    </div>
+  </template>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/DeviceOEE.js"></script>
+</body>
+</html>

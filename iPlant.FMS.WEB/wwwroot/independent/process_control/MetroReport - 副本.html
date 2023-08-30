@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>地铁样图</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/MetroReport.css"/>
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/reset.min.css">
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css"/>
+</head>
+
+<body class="femi-font-size-middle">
+<!-- 第一层容器 -->
+<div id="contain">
+
+  <!-- 背景图片容器 1366*768适配 16:9 -->
+  <div id="app">
+    <!-- 顶部flex布局 -->
+    <div class="app-top">
+      <div class="app-top-mode flex-itemContain flex-column">
+        <div>洗车模式</div>
+        <div>模拟洗车</div>
+        <div>通行洗车</div>
+      </div>
+      <div class="app-top-sed flex-itemContain">
+        <div class="app-float">
+          <div class="app-sed-switch">
+            <figure class="circle app-float"></figure>
+            <div class="app-float">自动</div>
+          </div>
+          <div class="app-sed-switch">
+            <figure class="circle app-float"></figure>
+            <div class="app-float">右端洗</div>
+          </div>
+          <div class="app-sed-switch">
+            <figure class="circle app-float"></figure>
+            <div class="app-float">洗涤液洗</div>
+          </div>
+        </div>
+        <div class="app-float">
+          <div class="app-sed-switch">
+            <figure class="circle app-float"></figure>
+            <div class="app-float">手动</div>
+          </div>
+          <div class="app-sed-switch">
+            <figure class="circle app-float"></figure>
+            <div class="app-float">无端洗</div>
+          </div>
+          <div class="app-sed-switch">
+            <figure class="circle app-float"></figure>
+            <div class="app-float">清水洗车</div>
+          </div>
+        </div>
+        <!-- <div class="app-top-sed-mode">
+                    <div class="app-float">自动</div>
+                    <div class="app-float">手动</div>
+                </div>
+                <div class="app-top-sed-mode">
+                    <div class="app-float">右端洗</div>
+                    <div class="app-float">无端洗</div>
+
+                </div>
+                <div class="app-top-sed-mode">
+                    <div class="app-float">洗涤液洗</div>
+                    <div class="app-float">清水洗车</div>
+
+                </div> -->
+      </div>
+      <div class="app-top-sld flex-itemContain">
+        <div class="app-float">
+          <div class="app-sed-switch">
+            <figure class="circle-large app-float"></figure>
+            <div class="app-float">洗车准备就绪</div>
+          </div>
+          <div class="app-sed-switch">
+            <figure class="circle-large app-float"></figure>
+            <div class="app-float">洗车开始</div>
+          </div>
+          <div class="app-sed-switch">
+            <figure class="circle-large app-float"></figure>
+            <div class="app-float">端洗开始</div>
+          </div>
+        </div>
+      </div>
+      <div class="app-top-fur flex-itemContain1 flex-row">
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">急停</div>
+        </div>
+
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">相序报警</div>
+        </div>
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">端洗报警</div>
+        </div>
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">水位报警</div>
+        </div>
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">气压报警</div>
+        </div>
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">温度报警</div>
+        </div>
+
+        <div class="app-sed-switch flex-column">
+          <figure class="circle-large"></figure>
+          <div class="">水位报警</div>
+        </div>
+
+      </div>
+      <div class="app-top-fiv flex-itemContain">
+        <div class="app-top-fiv-top">
+          <p>洗车库温度：20.1</p>
+          <p>压缩气压力：0.00MPa</p>
+        </div>
+        <div class="app-top-fiv-bottom">
+          <p>吃刷量：00.0</p>
+          <p>洗车时间：00.0min</p>
+          <p>入库速度：00.0km/h</p>
+        </div>
+      </div>
+    </div>
+    <!-- 回水系1 -->
+    <div class="backOne">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系2 -->
+    <div class="backTwo">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系3 -->
+    <div class="backThree">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系4 -->
+    <div class="backFour">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系5 -->
+    <div class="backFive">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系6 -->
+    <div class="backSix">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系7 -->
+    <div class="backSeven">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回水系8 -->
+    <div class="backEight">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 热水器 -->
+    <div class="waterHeater">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 集水池 -->
+    <div class="saveWater">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <div class="saveWaterReact">
+
+    </div>
+
+    <!-- 沉淀池 -->
+    <div class="desilter">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+        <li>
+          <h7>0.0</h7>
+        </li>
+      </ul>
+    </div>
+    <div class="desilterReact">
+      <!-- 水面高度 向上增加 -->
+      <div class="desilterReactWater">
+
+      </div>
+    </div>
+
+    <!-- 光催化池 -->
+    <div class="industrialCatalysis">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 回用水池 -->
+    <div class="backWater">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+    <!-- 清水池 -->
+    <div class="cleanWater">
+      <ul>
+        <li>
+          <h7>2.0</h7>
+        </li>
+        <li>
+          <h7>1.5</h7>
+        </li>
+        <li>
+          <h7>1.0</h7>
+        </li>
+        <li>
+          <h7>0.5</h7>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 出库洗信号灯 -->
+    <div class="app-sed-switch flex-column circlePosition circleOne">
+      <figure class="circle-big"></figure>
+      <div class="circleTextMa circleText">出库洗信号灯</div>
+    </div>
+
+    <!-- 后端洗信号灯 -->
+    <div class="app-sed-switch flex-column circlePosition circleTwo">
+      <figure class="circle-big"></figure>
+      <div class="circleTextMa circleText">后端洗信号灯</div>
+    </div>
+
+    <!-- 前端洗信号灯 -->
+    <div class="app-sed-switch flex-column circlePosition circleThree">
+      <figure class="circle-big"></figure>
+      <div class="circleTextMa circleText">前端洗信号灯</div>
+    </div>
+
+    <!-- 入库洗信号灯 -->
+    <div class="app-sed-switch flex-column circlePosition circleFour">
+      <figure class="circle-big"></figure>
+      <div class="circleTextMa circleText">入库洗信号灯</div>
+    </div>
+
+    <!-- 出库光灯 -->
+    <div class="app-sed-switch flex-column circlePosition circleFive">
+      <div class="flex-css">
+        <figure class="circle-min circleCircleMa"></figure>
+        <figure class="circle-min circleCircleMa"></figure>
+      </div>
+
+      <div class="circleTextMa circleText">出库光灯</div>
+    </div>
+    <!-- 端洗光灯 -->
+    <div class="app-sed-switch flex-column circlePosition circleSix">
+      <div class="flex-css">
+        <figure class="circle-min circleCircleMa"></figure>
+        <figure class="circle-min circleCircleMa"></figure>
+      </div>
+
+      <div class="circleTextMa circleText">端洗光灯</div>
+    </div>
+
+    <!-- 入库光灯 -->
+
+    <div class="app-sed-switch flex-column circlePosition circleSeven">
+      <div class="flex-css">
+        <figure class="circle-min circleCircleMa"></figure>
+        <figure class="circle-min circleCircleMa"></figure>
+      </div>
+
+      <div class="circleTextMa circleText">入库光灯</div>
+    </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/MetroReport.js"></script>
+</body>
+
+</html>

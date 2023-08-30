@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>设备维修-项目</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/bootstrap.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/utils/css/base.css">
+<link type="text/css" rel="stylesheet"
+	href="../static/css/deviceManage/deviceRepair-item.css">
+
+</head>
+<body>
+    <div class="lmvt-container">
+        <div class="zzzb lmvt-container-system zace-right" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-Device-addsh"
+                                class="btn lmvt-danger-btn">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-Device-yinc"
+                                class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title" id="Sub-Tb-title">寿命损耗倍率</span>
+                </div>
+                <div class="Typetable lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="LeftTimes">左次数范围</th>
+                                    <th style="min-width: 50px" data-order="RightTimes">右次数范围</th>
+                                    <th style="min-width: 50px" data-order="Ratio">倍率</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-time" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="4">等待数据加载</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzzc lmvt-container-system zace-right-XQ" style="display:none">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="cby-edit-yinc"
+                                class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="lmvt-header-title">维修项详情</span>
+                </div>
+                <div id="bbb"></div>
+                <div class="Typetable-item lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-XQ" class="table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzza lmvt-container-Regular zace-left">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-add-Device-item"
+                        class="btn lmvt-danger-btn">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                </button>
+                        <!-- <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-left">
+
+                                <li class="device_property" id="zace-add-Device-item">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li>
+                                <li class="device_property" id="zace-edit-Device-item">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li class="device_property" id="zace-active-Device-item">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property" id="zace-remove-Device-item">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!--<button type="button" id="zace-add-Device-item"
+                                class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>-->
+                        <button type="button" id="zace-export-Device-item"
+                                class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+
+                        <button type="button" class="btn lmvt-def-btn " style="padding: 0">
+                            <input type="text" id="zace-search-Device-item"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>设备损耗倍率
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu  pull-right">
+
+                                <li class="device_property" id="zace-Device-Ratio">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>寿命损耗倍率
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-Device-Ratio-Value">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>价值损耗倍率
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property" id="zace-Device-Ratio-JG">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>加工限制损耗倍率
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <span class="lmvt-header-title">设备维修项目</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part" id="deviceSparePart1">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <!-- <th style="min-width: 50px" data-order="FactoryID">工厂</th> -->
+                                    <th style="min-width: 50px" data-order="BusinessUnitID">部门</th>
+                                    <th style="min-width: 50px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+                                    <th style="min-width: 50px" data-order="ModelID">设备型号</th>
+                                    <th style="min-width: 50px" data-order="LifeWastage">寿命损耗</th>
+                                    <th style="min-width: 50px" data-order="ValueExpenditure">价值损耗</th>
+                                    <th style="min-width: 50px" data-order="ProcessingLimitE">加工限制损耗</th>
+                                    <!--<th style="min-width: 50px" data-order="LifeRatioList">设备寿命损耗倍率</th>
+                                    <th style="min-width: 50px" data-order="ValueRatioList">设备价值损耗倍率</th>
+                                    <th style="min-width: 50px" data-order="ProcessingRatioList">设备加工限制损耗倍率</th>-->
+                                    <th style="min-width: 50px" data-order="CareItems">注意事项</th>
+                                    <th style="min-width: 50px" data-order="SecondTime">所需时间</th>
+                                    <th style="min-width: 50px" data-order="Comment">备注</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">录入时刻</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">录入人</th>
+                                    <th style="min-width: 50px" data-order="EditTime">修改时刻</th>
+                                    <th style="min-width: 50px" data-order="EditorID">修改人</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                    <th style="max-width: 80px">操作</th>
+                                    <!--<th style="min-width: 50px" data-order="BaseID">基地</th>-->
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-item" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="15">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  
+    
+	<script type="text/javascript" src="../static/utils/require.js"></script>
+	<script type="text/javascript" src="../static/js/deviceManage/deviceRepair-item.js"></script>
+
+</body>
+</html>

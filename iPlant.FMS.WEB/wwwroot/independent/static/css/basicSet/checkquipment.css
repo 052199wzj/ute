@@ -1,0 +1,236 @@
+﻿.lmvt-container {
+    height: 100%;
+}
+
+.lmvt-container-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+    margin-left: -10px;
+}
+
+.lmvt-container-templet-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+}
+
+.lmvt-container-header-btn {
+    height: 34px;
+    float: left;
+}
+
+.lmvt-header-title {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688b;
+    margin: 0px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+}
+
+.lmvt-container-header-type {
+    float: right;
+    margin-top: -30px;
+}
+
+.lmvt-container-header-right {
+    float: right;
+}
+
+.lmvt-container-header-right-name {
+}
+
+.lmvt-check-type {
+    margin-top: -30px;
+}
+
+.lmvt-container-table-basic {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+
+.l-container-table-basic .table {
+    margin-top: 0px;
+}
+
+.lmvt-container-templet-body {
+    width: 100%;
+    height: 100%;
+    float: left;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    margin-left: 5px;
+}
+
+.lmvt-container-unreadyTable-body {
+    width: 28%;
+    height: 100%;
+    float: right;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    margin-right: 5px;
+}
+
+.lmvt-container-templet-body-unreadyTable {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+}
+
+.lmvt-container-templet-body-templet {
+    width: 350px;
+    height: 60%;
+    position: absolute;
+    left: 10px;
+}
+
+.lmvt-lable-left {
+    width: 80px;
+    text-align: right;
+}
+
+.lmvt-input-left {
+    width: 300px;
+    padding: 5px 0;
+}
+
+.lmvt-input-right {
+    width: 300px;
+    padding: 5px 0;
+}
+
+.lmvt-lable-right {
+    width: 80px;
+    text-align: right;
+}
+
+.lmvt-container-templet-body-templet-name {
+    text-align: center;
+    font-family: STXinwei;
+    font-size: 18px;
+    color: #00688b;
+    line-height: 40px;
+    margin: 0px;
+}
+
+.lmvt-container-templet-body-table {
+}
+
+.lmvt-container-templet-body-unreadyTable {
+    position: absolute;
+    top: 60%;
+    left: 10px;
+    right: 10px;
+}
+
+.l-container-table-basic-btn .navbar-right .l-checkName {
+    line-height: 2.5;
+    vertical-align: middle;
+}
+
+.l-container-table-basic-btn .btn {
+    float: left;
+}
+
+.l-container-table-basic-header {
+    height: 45px;
+    margin-top: 5px;
+}
+
+.l-container-table-templet {
+    width: 100%;
+    height: 50%;
+    margin-top: 5px;
+    border: solid 1px green;
+}
+
+.l-container-table-templet-title {
+    text-align: center;
+    font-size: 18px;
+}
+
+.l-container-form-templet {
+    width: 50%;
+    height: 100%;
+}
+
+.l-container-form-templet-title {
+    text-align: center;
+}
+
+.l-container-form-templet-left {
+    border: solid 1px red;
+    width: 100%;
+}
+
+.l-container-form-templet-left-type {
+    width: 100%;
+}
+
+.l-container-form-templet-right-float {
+    float: right;
+}
+
+.l-container-form-templet-left-float {
+    float: left;
+}
+
+.l-container-form-templet-right-float span {
+    text-align: right;
+}
+
+.l-input {
+    text-align: right;
+    margin: 2px 0;
+}
+
+.l-lable-input {
+    text-align: right;
+    margin: 2px 0;
+}
+
+l-container-form-templet-left-float .l-input {
+    float: right;
+}
+
+.l-input-type {
+    text-align: center;
+}
+
+.lmvt-container-unreadyTable-left {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 15px 10px;
+
+}
+
+.lmvt-container-templet-body-left {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 15px 10px;
+
+}
+/*.lmvt-container-templet-body-unreadyTable-name {
+    position:absolute;
+    right:50px;
+    font-family: STXinwei;
+    font-size: 18px;
+    color: #00688b;
+    line-height: 40px;
+    margin: 0px;
+}*/

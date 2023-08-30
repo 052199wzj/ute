@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>物料操作记录</title>
+    <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/jquery.treeview.css" rel="stylesheet" type="text/css">
+    <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="materialOperationRecord-body" class="fzy-page">
+
+        <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+
+        <div class="fzy-search-bar">
+            <el-input v-model="searchData.MaterialStoragePoint" class="input-box-300" placeholder="存放点">
+                <template slot="prepend">
+                    存放点
+                </template>
+            </el-input>
+            <el-input v-model="searchData.MaterialNo" class="input-box-300" placeholder="物料编号">
+                <template slot="prepend">
+                    物料编号
+                </template>
+            </el-input>
+
+            <el-input v-model="searchData.MaterialName" class="input-box-300" placeholder="物料名称">
+                <template slot="prepend">
+                    物料名称
+                </template>
+            </el-input>
+
+            <el-input v-model="searchData.MaterialBatch" class="input-box-300" placeholder="批次">
+                <template slot="prepend">
+                    批次
+                </template>
+            </el-input>
+
+            <div class="input-select-box input-box-200">
+                <div class="label">操作类型</div>
+                <el-select v-model="searchData.OperationType" placeholder="请选择">
+                    <el-option label="全部" value="-1"></el-option>
+                    <el-option label="入库" value="1"></el-option>
+                    <el-option label="出库" value="2"></el-option>
+                    <el-option label="盘点" value="3"></el-option>
+                    <el-option label="盘盈" value="4"></el-option>
+                    <el-option label="盘亏" value="5"></el-option>
+                </el-select>
+            </div>
+
+            <div class="button-box">
+                <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                    查询
+                </button>
+
+                <button class="btn lmvt-def-btn"
+                        type="button"
+                        @click="emptyClick">
+                    <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+                    重置
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class="fzy-page-center-box flex-column">
+            <div class="fzy-page-center-title-bar flex-none">
+                <div class="left">
+                    <span class="fzy-title">物料操作记录</span>
+                </div>
+            </div>
+            <el-table :data="tableData"
+                      size="mini"
+                      border
+                      current-row-key="Code"
+                      height="calc(100% - 45px)">
+                <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+                <el-table-column label="存放点" property="MaterialStoragePoint" align="center"></el-table-column>
+                <el-table-column label="物料编号" property="MaterialNo" align="center"></el-table-column>
+                <el-table-column label="物料名称" property="MaterialName" align="center"></el-table-column>
+                <el-table-column label="规格" property="Groes" align="center"></el-table-column>
+                <el-table-column label="批次" property="MaterialBatch" align="center"></el-table-column>
+                <el-table-column label="操作类型" property="OperationTypeName" align="center"></el-table-column>
+                <el-table-column label="数量" property="Num" align="center"></el-table-column>
+                <el-table-column label="创建人" property="Creator" align="center"></el-table-column>
+                <el-table-column label="创建时间" property="CreateTime" align="center"></el-table-column>
+                <el-table-column label="备注" property="Remark" align="center"></el-table-column>
+            </el-table>
+        </div>
+    </div>
+
+    <script src="../static/utils/require.js" type="text/javascript"></script>
+    <script src="../static/js/materialManage/materialOperationRecord.js" type="text/javascript"></script>
+</body>
+</html>

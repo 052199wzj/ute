@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>异常申请</title>
+
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/exception_management/exceptionApply.css" />
+</head>
+
+<body class="femi-font-size-middle" style="min-width:1550px">
+    <div class="lmvt-container">
+        <div class="lmvt-container-main-exception">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-task-Search" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                    <!--
+                    <button type="button" id="lmvt-table-Search" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button> -->
+                </div>
+                <span class="lmvt-header-title"
+                      style=" font-family: STXinwei;font-size: 20px;color: #00688b">异常申请单据</span>
+                <div class="columns columns-right btn-group pull-right">
+                    <!-- <button class="btn btn-default" type="button" id="lmvt-exception-apply">
+                        <span class="glyphicon glyphicon-eye-open"></span>查看申请单
+                    </button>-->
+                    <!-- <button class="btn btn-default" type="button" id="lmvt-apply-photo">
+                        <span class="glyphicon glyphicon-eye-open"></span>查看异常照片
+                    </button> -->
+                    <button class="btn btn-default" type="button" id="lmvt-apply-record">
+                        <span class="glyphicon glyphicon-eye-open"></span>查看异常记录
+                    </button>
+                </div>
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered grinding-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="width:80px" data-order="ID">序号</th>
+                                <th style="min-width: 60px" data-order="StationNo">地点编码</th>
+                               <!-- <th style="min-width: 60px" data-order="StationTypeName">地点类型</th>-->
+                                <th style="min-width: 50px" data-order="RespondLevel">响应级别</th>
+                                <!--<th style="min-width: 50px" data-order="DisplayBoard">看板显示</th>
+                                <th style="min-width: 50px" data-order="OnSite">到场确认</th>-->
+                                <!-- <th style="min-width: 50px" data-order="Comment">备注</th> -->
+                                <th style="min-width: 80px" data-order="ApplicantTime">申请时间</th>
+                                <th style="min-width: 50px" data-order="ApplicantID">申请人</th>
+                                <!--<th style="min-width: 50px" data-order="ApproverID">审批人</th>
+                                <th style="min-width: 80px" data-order="ApproverTime">审批时间</th>
+                                <th style="min-width: 50px" data-order="ConfirmID">确认人</th>
+                                <th style="min-width: 50px" data-order="ConfirmTime">确认时间</th>
+                                <th style="min-width: 50px" data-order="Status">状态</th>-->
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-Station-body table-color">
+                            <tr style="">
+                                <td colspan="500">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="lmvt-container-typt-exception" style="display: none">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <!-- <button type="button" id="lmvt-type-add" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>增加
+                    </button>
+                    <button type="button" id="lmvt-type-change" class="btn btn-default">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>修改
+                    </button>
+                    <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="lmvt-type-active">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>启用
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-type-stop">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>冻结
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <button class="btn btn-default" type="button" id="lmvt-type-back">
+                        <span class="glyphicon glyphicon-eye-open"></span>返回
+                    </button>
+                </div>
+                <span class="lmvt-header-title"
+                      style=" font-family: STXinwei;font-size: 20px;color: #00688b">异常申请列表</span>
+            </div>
+
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered grinding-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <!--<th style="min-width:50px;display:none" data-order="ID">编号</th>-->
+                                <th style="min-width: 80px" data-order="EXCTypeID">异常类型编号</th>
+                                <th style="min-width: 80px" data-order="EXCTypeName">异常类型名称</th>
+                                <th style="min-width: 40px" data-order="ConfirmID">确认人</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-type-body table-color">
+                            <tr style="">
+                                <td colspan="10">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="up-info" style="height:100%;display:none">
+            <!-- 任务详情 -->
+            <div class="call-right-info" style="padding:5px;display:none">
+                <div class="femi-contain-border" style="width:100%;height:100%;padding:10px;">
+                    <div class="cby-contain-cbg" style="height:45px;">
+                        <!--<div class="femi-toolbar-self femi-rt">
+                            <div class="btn-group" role="group">
+                                <button type="button" id="cby-hidden-list" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>隐藏
+                                </button>
+                            </div>
+                        </div>-->
+                        <p class="cby-tb-title">异常记录详情</p>
+                    </div>
+                    <div class="innerTab" style="width:100%;height:100%;margin-top:-45px;padding: 50px 10px 10px 10px;">
+                        <div class="inner-div" style="height:100%;overflow:auto;">
+                            <div class="call-info" style="">
+                                <!-- 呼叫信息头部 -->
+                                <div class="call-info-header">
+                                    <p class="cby-toolbar-self">呼叫信息</p>
+                                </div>
+                                <!-- 呼叫信息列表 -->
+                                <div class="">
+                                    <div class="call-info-all" id="call-info-all">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 呼叫详情 -->
+                            <div id="call-info-taskInformation" style="margin:13px 5px;"></div>
+                            <div id="call-info-cancelInformation" style="margin:13px 5px;"></div>
+                            <!-- 处理信息 -->
+                            <div class="" id="deal-info-all" style="height:67%;margin-top:5px;">
+                                <!-- 处理信息头部 -->
+                                <div class="call-info-header" style="">
+                                    <p class="cby-toolbar-self">处理信息</p>
+                                </div>
+                                <!-- 处理信息列表 -->
+                                <div style="overflow:auto;height:85%;">
+                                    <div class="call-info-deal" id="call-info-deal">
+                                        <ul class="deal-info-list"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 异常任务列表 -->
+            <div class="task-table" style="min-width:800px;">
+                <div class="" style="width:100%;height:100%;padding:5px;">
+                    <!-- 头部 -->
+                    <div class="cby-contain-cbg">
+                        <!-- 头部左侧 -->
+                        <div class="femi-toolbar-self femi-lf">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default " id="lmvt-call-list">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>呼叫详情
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 头部右侧 -->
+                        <div class="femi-toolbar-self femi-rt">
+                            <div class="btn-group" role="group">
+                                <!--<button type="button" class="btn btn-default " style="padding: 0">
+                                    <input type="text" id="cby-search-text-ledger" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符" />
+                                </button>-->
+                                <button type="button" id="lmvt-table-hide" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 头部标题 -->
+                        <p class="cby-tb-title">异常记录</p>
+                    </div>
+                    <!-- 表格 -->
+                    <div class="femi-contain-border call-info-body">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered" style="margin-bottom:0px;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox"
+                                                   class="cby-tb-checkbox" style="margin: 1px 0px 1px" />
+                                        </th>
+                                        <th style="width: 80px" data-order="ID">序号</th>
+                                        <th style="min-width: 50px" data-order="ExceptionTypeID">异常类型</th>
+                                        <th style="min-width: 50px" data-order="StationID">异常地点</th>
+                                        <!--<th style="min-width: 50px" data-order="StationType">异常地点类型</th>-->
+                                        <th style="min-width: 50px" data-order="Comment">异常描述</th>
+                                        <th style="min-width: 50px" data-order="ApplicantID">发起人</th>
+                                        <th style="min-width: 50px" data-order="OperatorID">解决人</th>
+                                        <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+                                        <th style="min-width: 50px" data-order="EditTime">结束时间</th>
+                                        <th style="min-width: 50px" data-order="LastTime">持续时长</th>
+                                        <th style="min-width: 50px" data-order="Status">状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-task-tbody" class="table-color">
+                                    <tr style="">
+                                        <td colspan="16">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/exception_management/exceptionApply.js"></script>
+</body>
+
+</html>

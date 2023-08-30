@@ -1,0 +1,440 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>整体式架车机</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/LntegralCarLiftingMachine.css"/>
+</head>
+
+<body class="femi-font-size-middle">
+<!-- 第一层容器 -->
+<div id="contain" style="min-width: 1350px;">
+
+  <!-- 容器flex布局 -->
+  <div id="app">
+    <!-- 设备状态一览 -->
+    <div class="DeviceTop">
+
+      <div class="app-top-mode flex-itemContain flex-column">
+        <div>整体式地下架车机</div>
+      </div>
+    </div>
+    <!-- 车辆容器 -->
+    <div class="AllMetroComtain">
+
+    </div>
+
+    <!-- 顶部flex布局 -->
+
+    <!-- 每辆机车情况 -->
+    <!--       <div class="MetroContain flex-row">
+
+    </div> -->
+    <!-- 车厢细节部门 -->
+    <!--   <div class="CarriageContain flex-row">
+
+    </div> -->
+
+    <!-- 设备列表 -->
+    <div class="BodyTable flex-column">
+      <div class="BodyTableHeaderContain flex-row" style="height: 40px;">
+
+      </div>
+      <div class="BodyTableBody" style="width: 95.5%;">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th style="min-width:50px" data-order="1">系统工作状态</th>
+            <th style="min-width:50px" data-order="2">编组工作状态</th>
+            <th style="min-width:50px" data-order="3">车体联控</th>
+            <th style="min-width:50px" data-order="4">转向架联控</th>
+            <th style="min-width: 50px" data-order="5">单控模式</th>
+
+            <th style="min-width:50px" data-order="6">电气控制柜上的急停</th>
+            <th style="min-width:50px" data-order="7">电源相序故障</th>
+            <th style="min-width: 50px" data-order="8">车体同步控制故障</th>
+
+            <th style="min-width:50px" data-order="9">转向架同步控制故障</th>
+            <th style="min-width:50px" data-order="10">上升接触器状态</th>
+            <th style="min-width:50px" data-order="10">下降接触器状态</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-device-body table-color">
+          <tr style="">
+            <td colspan="20">等待数据加载</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- 设备列表 -->
+    <div class="BodyTable flex-column">
+      <div class="BodyTableHeaderContain flex-row" style="height: 10px;">
+
+      </div>
+      <div class="BodyTableBody" style="width: 95.5%;">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+            <th style="min-width:50px" data-order="1">部位</th>
+            <th style="min-width:50px" data-order="2">上限位</th>
+            <th style="min-width:50px" data-order="3">下限位</th>
+            <th style="min-width:50px" data-order="4">预加载高度（mm）</th>
+            <th style="min-width: 50px" data-order="5">实际最高高度（mm）</th>
+
+            <th style="min-width:50px" data-order="6">实际最低高度(mm)</th>
+            <th style="min-width:50px" data-order="7">实际高度偏差(mm)</th>
+            <th style="min-width: 50px" data-order="8">加载最高(mm)</th>
+
+            <th style="min-width:50px" data-order="9">加载最低(mm)</th>
+            <th style="min-width:50px" data-order="10">加载偏差(mm)</th>
+            <th style="min-width:50px" data-order="11">全部下限位</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-deviceTwo-body table-color">
+          <tr style="">
+            <td colspan="20">等待数据加载</td>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- 所有表格 -->
+    <div class="ds-DeviceAll" style="border: 1px solid #ddd;padding: 3px;width: 96%;margin-left: 2%;">
+      <!-- 切换按钮 -->
+      <div style="margin-right: 1%;padding: 5px 0px;">
+        <div style="height: 40px;text-align: right;width: 100%;">
+          <div class="btn-group" role="group">
+            <button
+                type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"
+            >
+              <span class="glyphicon glyphicon-eye-open menuselect" aria-hidden="true">架车机高度</span>
+              <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+            </button>
+            <ul class="dropdown-menu  pull-right">
+              <li class="device_property" data-type="1" id="device_height">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>架车机高度
+                </a>
+              </li>
+              <li class="device_property" data-type="2" id="device_limit">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>架车机限位
+                </a>
+              </li>
+              <li class="device_property" data-type="3" id="device_clearance">
+                <a href="javascript:;">
+                  <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>架车机螺母
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ds-height">
+        <!-- 起升高度表 -->
+        <div
+            class="UpAndDownTable" style="width: 19%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            起升高度（mm）
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceOneHeight-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 安全螺母和承载螺母间隙表 -->
+        <div
+            class="SaveTable" style="width: 37.5%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            安全螺母和承载螺母间隙（mm）
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1间隙</th>
+                <th style="min-width:50px" data-order="3">BH2间隙</th>
+                <th style="min-width:50px" data-order="4">CH间隙</th>
+                <th style="min-width:50px" data-order="5">BH1磨耗量</th>
+                <th style="min-width:50px" data-order="6">BH2磨耗量</th>
+                <th style="min-width:50px" data-order="7">CH磨耗量</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceOneClearance-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 安全螺母故障 -->
+        <div
+            class="SaveTable" style="width: 19%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            安全螺母故障
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceOneNut-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 工作螺母故障 -->
+        <div
+            class="SaveTable" style="width: 19%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            工作螺母故障
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceOneNutFailure-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="ds-limit" style="display: none">
+        <!-- 限位报警 -->
+        <div
+            class="UpAndDownTable" style="width: 70%;display: inline-block;margin-left: 1%;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            限位报警
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1上</th>
+                <th style="min-width:50px" data-order="3">BH2上</th>
+                <th style="min-width:50px" data-order="4">CH上</th>
+                <th style="min-width:50px" data-order="5">BH1上上</th>
+                <th style="min-width:50px" data-order="6">BH2上上</th>
+                <th style="min-width:50px" data-order="7">CH上上</th>
+                <th style="min-width:50px" data-order="8">BH1下</th>
+                <th style="min-width:50px" data-order="9">BH2下</th>
+                <th style="min-width:50px" data-order="10">CH下</th>
+                <th style="min-width:50px" data-order="11">BH1下下</th>
+                <th style="min-width:50px" data-order="12">BH2下下</th>
+                <th style="min-width:50px" data-order="13">CH下下</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceTwoLimit-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 压力监测&坑急停 -->
+        <div
+            class="SaveTable" style="width: 27%;margin-left: 1%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            压力监测&坑急停
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1压力</th>
+                <th style="min-width:50px" data-order="3">BH2压力</th>
+                <th style="min-width:50px" data-order="4">坑急停</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceTwoPress-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="ds-fault" style="display: none">
+        <!-- 安全螺母故障 -->
+        <div
+            class="UpAndDownTable" style="width: 23.6%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            安全螺母故障
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceThreeFault1-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 工作螺母故障 -->
+        <div
+            class="SaveTable" style="width: 23.6%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            工作螺母故障
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceThreeFault2-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 电机超温报警 -->
+        <div
+            class="SaveTable" style="width: 23.6%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            电机超温报警
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceThreeFault3-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- 电机超流报警 -->
+        <div
+            class="SaveTable" style="width: 23.6%;margin-left: 1%;display: inline-block;border: 1px solid #ddd;
+            padding: 5px;"
+        >
+          <div style="height: 40px;text-align: left;width: 100%;" class="talbeTitle">
+            电机超流报警
+          </div>
+          <div class="BodyTableBody" style="width: 100%;">
+            <table class="table table-hover table-bordered">
+              <thead>
+              <tr>
+                <th style="min-width:50px" data-order="1">支架号</th>
+                <th style="min-width:50px" data-order="2">BH1</th>
+                <th style="min-width:50px" data-order="3">BH2</th>
+                <th style="min-width:50px" data-order="4">CH</th>
+              </tr>
+              </thead>
+              <tbody class="lmvt-deviceThreeFault4-body table-color">
+              <tr style="">
+                <td colspan="20">等待数据加载</td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/LntegralCarLiftingMachine.js"></script>
+</body>
+
+</html>

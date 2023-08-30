@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="../static/utils/css/baseNoScrollbar.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/process_control/CarLiftingJackReport2.css" rel="stylesheet">
+  <title>万顷沙检修库临修线设备状态一览</title>
+
+</head>
+
+<body>
+
+<div id="fxy-app" class="fxy-right-content">
+  <!-- 最上层标题 -->
+  <div v-cloak v-show="LogShow" class="fxy-head">
+    <span class="title">{{ Area.AreaName }}：</span>
+    <span>
+            <span>
+                设备数:{{ Area.DeviceCount }}台
+            </span>
+            <span class="green">
+                开机：{{ Area.OpenNum }}
+            </span>
+            <span class="red-font">
+                故障：{{ Area.FaultNum }}
+            </span>
+        </span>
+    <span>
+            <span class="green">
+                开机率：{{ Probability.Open }}%
+            </span>
+            <span>
+                关机率：{{ Probability.Close }}%
+            </span>
+            <span class="red-font">
+                故障率：{{ Probability.Fault }}%
+            </span>
+        </span>
+    <span>
+            {{ date }}
+        </span>
+  </div>
+  <!--    整体式架车机-->
+  <div v-for="item in statusOverview" v-if="LogShow" v-show="statusOverview.length" class="fxy-entirety">
+    <div class="title">
+      <span>{{ item.info.DeviceNo }}{{ item.info.DeviceName }} </span>
+      <span class="status">状态：<div
+          :style="{background:item.info.colour}" class="status-hue"
+      ></div><span>{{ item.info.StatusText }}</span></span>
+      <span>状态时间：{{ item.info.StatusTime }} </span>
+      <span>持续状态时长：{{ item.info.Duration | time_H }}</span>
+      <span><button
+          class="btn btn-success" type="button"
+          @click="Particulars(item.info.DeviceID)"
+      >查看详情</button></span>
+    </div>
+    <div class="fxy-carriage">
+      <div
+          v-for="i in 8"
+          class="carriage-list"
+      >
+        <div class="carriage">
+          <div class="box">
+            <span v-text="i+'号车'"></span>
+          </div>
+          <div class="wheel">
+            <div class="left">
+              <div></div>
+              <div></div>
+            </div>
+            <div class="right">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="light">
+
+          <el-tooltip :disabled="!item.data[(i-1)*2].rest.length">
+
+            <template slot="content">
+              <p v-for="item in item.data[(i-1)*2].rest">{{item}}</p>
+            </template>
+
+            <div
+                class="left"
+                :class="{restError:item.data[(i-1)*2].rest.length}"
+            >
+              <div class="top">
+                <span v-text="(i-1)*2+1+'.2'"></span>
+                <el-tooltip :disabled="!item.data[(i-1)*2].ch.length">
+
+                  <template slot="content">
+                    <p v-for="item in item.data[(i-1)*2].ch">{{item}}</p>
+                  </template>
+
+                  <div class="yellow" :class="{error:item.data[(i-1)*2].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!item.data[(i-1)*2].bh2.length">
+                        <div slot="content">
+                          <p v-for="item in item.data[(i-1)*2].bh2">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error: item.data[(i-1)*2].bh2.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+              </div>
+              <div class="bottom">
+                <el-tooltip :disabled="!item.data[(i-1)*2].ch.length">
+
+                  <template slot="content">
+                    <p v-for="item in item.data[(i-1)*2].ch">{{item}}</p>
+                  </template>
+
+                  <div class="yellow" :class="{error:item.data[(i-1)*2].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!item.data[(i-1)*2].bh1.length">
+                        <div slot="content">
+                          <p v-for="item in item.data[(i-1)*2].bh1">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error:item.data[(i-1)*2].bh1.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+                <span v-text="(i-1)*2+1+'.1'"></span>
+              </div>
+            </div>
+          </el-tooltip>
+
+          <el-tooltip :disabled="!item.data[(i-1)*2+1].rest.length">
+
+            <template slot="content">
+              <p v-for="item in item.data[(i-1)*2+1].rest">{{item}}</p>
+            </template>
+
+            <div
+                class="left"
+                :class="{restError:item.data[(i-1)*2+1].rest.length}"
+            >
+              <div class="top">
+                <span v-text="(i-1)*2+2+'.2'"></span>
+                <el-tooltip :disabled="!item.data[(i-1)*2+1].ch.length">
+                  <template slot="content">
+                    <p v-for="item in item.data[(i-1)*2+1].ch">{{item}}</p>
+                  </template>
+                  <div class="yellow" :class="{error:item.data[(i-1)*2+1].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!item.data[(i-1)*2+1].bh2.length">
+                        <div slot="content">
+                          <p v-for="item in item.data[(i-1)*2+1].bh2">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error:item.data[(i-1)*2+1].bh2.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+              </div>
+
+              <div class="bottom">
+                <el-tooltip :disabled="!item.data[(i-1)*2+1].ch.length">
+                  <template slot="content">
+                    <p v-for="item in item.data[(i-1)*2+1].ch">{{item}}</p>
+                  </template>
+
+                  <div class="yellow" :class="{error:item.data[(i-1)*2+1].ch.length}">
+
+                    <template>
+                      <el-tooltip :disabled="!item.data[(i-1)*2+1].bh1.length">
+                        <div slot="content">
+                          <p v-for="item in item.data[(i-1)*2+1].bh1">{{item}}</p>
+                        </div>
+                        <div
+                            class="alarm-light"
+                            :class="{error:item.data[(i-1)*2+1].bh1.length}"
+                        >
+                          <div class="Reacttop"></div>
+                          <div class="Reactbottom"></div>
+                        </div>
+                      </el-tooltip>
+                    </template>
+
+                  </div>
+                </el-tooltip>
+                <span v-text="(i-1)*2+2+'.1'"></span>
+              </div>
+            </div>
+          </el-tooltip>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    移动架车机-->
+  <div v-show="LogShow" v-if="Move.length" class="moveche-vehicle">
+    <div class="fxy-move" v-for="item in Move">
+      <div class="fxy-time">
+        <span>{{ item.DeviceNo }}{{ item.DeviceName }}</span>
+        <span class="status">状态：<div
+            :style="{background:item.colour}"
+            class="status-hue"
+        ></div><span>{{ item.StatusText }}</span></span>
+        <span>状态时间：{{ item.StatusTime }} </span>
+        <span>持续状态时长：{{ item.Duration | time_H }}</span>
+        <span class="time-newdate"><button
+            class="btn btn-success" type="button"
+            @click="Particulars(item.DeviceID)"
+        >查看详情</button></span>
+      </div>
+      <div class="fxy-diagrammatic" v-if="item.currentAlarm">
+        <div class="box" v-for="i in 4">
+          <div class="warp">
+            <div class="light">
+              <div class="number" v-text="i+'.1'"></div>
+              <div class="yellow"></div>
+              <div class="green"></div>
+              <el-tooltip placement="bottom" :manual="!item.currentAlarm[(i-1)*4].content">
+                <div slot="content"><span v-html="item.currentAlarm[(i-1)*4].content"></span></div>
+                <button class="white" :class="{red:item.currentAlarm[(i-1)*4].content.length}"></button>
+              </el-tooltip>
+            </div>
+            <div class="light">
+              <div class="number" v-text="i+'.2'"></div>
+              <div class="yellow"></div>
+              <div class="green"></div>
+              <el-tooltip placement="bottom" :manual="!item.currentAlarm[(i-1)*4+1].content">
+                <div slot="content"><span v-html="item.currentAlarm[(i-1)*4+1].content"></span></div>
+                <button class="white" :class="{red:item.currentAlarm[(i-1)*4+1].content.length}"></button>
+              </el-tooltip>
+            </div>
+          </div>
+
+          <div class="middle">
+            <span v-text="i+'号车'"></span>
+          </div>
+          <div class="warp">
+            <div class="light">
+              <el-tooltip placement="top" :manual="!item.currentAlarm[(i-1)*4+2].content">
+                <div slot="content"><span v-html="item.currentAlarm[(i-1)*4+2].content"></span></div>
+                <button class="white" :class="{red:item.currentAlarm[(i-1)*4+2].content.length}"></button>
+              </el-tooltip>
+              <div class="green"></div>
+              <div class="yellow"></div>
+              <div class="number" v-text="i+'.3'"></div>
+            </div>
+            <div class="light">
+              <el-tooltip placement="top" :manual="!item.currentAlarm[(i-1)*4+3].content">
+                <div slot="content"><span v-html="item.currentAlarm[(i-1)*4+3].content"></span></div>
+                <button class="white" :class="{red:item.currentAlarm[(i-1)*4+3].content.length}"></button>
+              </el-tooltip>
+              <div class="green"></div>
+              <div class="yellow"></div>
+              <div class="number" v-text="i+'.4'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    设备列表-->
+  <div v-show="LogShow" class="abrasion fzy-page">
+    <div class="fzy-page-center-box">
+      <div class="fzy-page-center-title-bar">
+        <div class="left">
+          <span class="fzy-title">设备表</span>
+        </div>
+      </div>
+      <table class="fzy-table">
+        <thead>
+        <tr>
+          <th>设备编号</th>
+          <th>设备名称</th>
+          <th>所属区域</th>
+          <th>使用班组</th>
+          <th>状态</th>
+          <th>设备描述</th>
+          <th>开机/故障时刻</th>
+          <th>累计开机时长</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item,index) in list">
+          <td>{{ item.DeviceNo }}</td>
+          <td>{{ item.DeviceName }}</td>
+          <td>{{ item.PositionText }}</td>
+          <td>{{ item.TeamName }}</td>
+          <td>
+            <div class="status-click">
+              <div :style="{background:item.colour}" class="status-hue"></div>
+              <span>{{ item.StatusText }}</span>
+            </div>
+          </td>
+          <td>{{ item.Remark }}</td>
+          <td>{{ item.StatusTime }}</td>
+          <td>{{ item.Duration | time_H }}</td>
+          <td>
+            <div class="status-click">
+                    <span class="lookOver" style="display:flex;align-items: center" @click="Particulars(item.DeviceID)">
+                      <span class="glyphicon glyphicon-zoom-in"></span>详情
+                    </span>
+              <span class="lookOver" style="display:flex;align-items: center" @click="ViewLog(item.DeviceID)">
+						<span class="glyphicon glyphicon-time"></span>开机日志
+					</span>
+            </div>
+          </td>
+        </tr>
+        <tr v-if="list.length==0">
+          <td colspan="14">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--    日志页面-->
+  <div v-show="!LogShow" class="table-box fzy-page">
+    <div class="fzy-search-bar">
+      <div class="input-select-box input-box-400">
+        <div class="label">选择时间</div>
+        <el-date-picker
+            ref="test"
+            v-model="timeSection"
+            type="daterange"
+            :clearable="false"
+            value-format="yyyy-MM-dd"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+        >
+        </el-date-picker>
+      </div>
+      <div class="button-box">
+        <button
+            class="btn lmvt-danger-btn" style="border: 0" type="button"
+            @click="searchLog"
+        >
+          <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+          查询
+        </button>
+        <button
+            class="btn lmvt-def-btn"
+            type="button"
+            @click="reset"
+        >
+          <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+          重置
+        </button>
+      </div>
+    </div>
+    <div class="fzy-page-center-box">
+      <div class="fzy-page-center-title-bar">
+        <div class="left">
+          <span class="fzy-title">开机日志</span>
+        </div>
+        <div class="right">
+          <button type="button" class="btn btn-info" @click="LogShow=true">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+          </button>
+        </div>
+      </div>
+      <table class="fzy-table">
+        <thead>
+        <tr>
+          <th>设备名称</th>
+          <th>设备编码</th>
+          <th>开机时间</th>
+          <th>关机时间</th>
+          <th>车间名称</th>
+          <th>产线名称</th>
+          <th>采集编码</th>
+        </tr>
+        </thead>
+        <tbody id="log">
+        <tr v-for="item in  Log">
+          <td>{{ item.DeviceName }}</td>
+          <td>{{ item.DeviceNo }}</td>
+          <td>{{item.StatusTime}}</td>
+          <td>{{item.StatusTimeEnd}}</td>
+          <td>{{ item.WorkShopName }}</td>
+          <td>{{ item.LineName }}</td>
+          <td>{{ item.AssetNo }}</td>
+        </tr>
+        <tr v-show="Log.length<=0">
+          <td colspan="7">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/process_control/CarLiftingJackReport2.js" type="text/javascript"></script>
+</body>
+
+</html>

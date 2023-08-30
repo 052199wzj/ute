@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>性能日志</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_route/Performance.css" />
+</head>
+<body class="">
+    <div class="lmvt-container">
+        <div class="zzza lmvt-container-Regular zace-left" style="width: 100%;">
+            <div class="zace-bg">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="zace-Device-searchface" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-Device-item"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-Device-search" class="btn btn-default">
+                            <span class="" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+
+                    <span class="lmvt-header-title">性能日志</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered deviceinfo-table table-part"
+                            id="deviceSparePart1">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <th style="width: 80px" data-order="ID">序号</th>
+                                    <th style="min-width: 50px" data-order="ProjectName">服务名称</th>
+                                    <th style="min-width: 20px" data-order="ModuleName">模块名称</th>
+                                    <th style="min-width: 20px" data-order="FuncName">函数名称</th>
+                                    <th style="min-width: 50px" data-order="MaxMS">最大值</th>
+                                    <th style="min-width: 50px" data-order="MinMS">最小值</th>
+                                    <th style="min-width: 50px" data-order="SumMS">总和值</th>
+                                    <th style="min-width: 50px" data-order="AvgMS">平均值</th>
+                                    <th style="min-width: 50px" data-order="OutTimeMS">超时时间</th>
+                                    <th style="min-width: 50px" data-order="CallOutTimes">超时次数</th>
+                                    <th style="min-width: 50px" data-order="CallTimes">呼叫次数</th>
+                                    <th style="min-width: 50px" data-order="AvgCallTimes">平均呼叫次数</th>
+                                    <th style="min-width: 20px" data-order="CallTime">呼叫时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Device-tbody-item" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="14">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_route/Performance.js"></script>
+</body>
+</html>

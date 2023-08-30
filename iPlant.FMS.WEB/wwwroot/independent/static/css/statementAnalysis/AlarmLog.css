@@ -1,0 +1,240 @@
+html {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(238, 238, 238);
+}
+
+/*公共样式-start*/
+.title {
+    font-size: 18px;
+    color: black;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    height: 57px;
+    margin: 20px 10px;
+    font-weight: bold;
+}
+
+.fxy-title {
+    font-family: STXinwei;
+    font-size: 20px;
+    color: black;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    height: 57px;
+    margin: 20px 10px;
+}
+
+th {
+    background-color: rgb(215, 215, 215);
+    border-color: rgb(233, 233, 233);
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.green {
+    color: rgb(112, 182, 3) !important;
+}
+
+.circle {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red !important;
+}
+
+.borders {
+    border: 1px solid rgb(233, 233, 233);
+    padding: 10px;
+}
+
+.font-red {
+    color: red;
+}
+
+.status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-hue {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #9b9b9b;
+    margin: 0 10px;
+}
+
+.StatusText {
+    margin: 0 10px;
+}
+
+[v-cloak] {
+    display: none;
+
+}
+
+.lmvt-def-btn {
+    color: #0ea9f7;
+    background-color: #ffffff;
+    border-color: #0ea9f7;
+    opacity: 0.8;
+}
+
+.no1 {
+    width: 20% !important;
+}
+
+.icon {
+    width: 10px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.icon > .arrows-right {
+    width: 100%;
+
+}
+
+.icon > .arrows-bottom {
+    -webkit-transform: rotate(90deg); /*Safari 4+,Google Chrome 1+ */
+    -moz-transform: rotate(90deg); /*Firefox 3.5+*/
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /*ie*/
+}
+#alarmStatistics {
+    height: 100%;
+    min-width: 1420px;
+    overflow-y: auto;
+}
+/*公共样式-end*/
+#alarmLog{
+    height: 100%;
+    width: 100%;
+}
+.fxy-body {
+    margin: 0 5px;
+    min-width: 1190px;
+    width: calc(100% - 10px);
+    height: calc(100% - 70px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: white;
+}
+
+/*统计表-start*/
+.statistical-table {
+    width: 100%;
+    height: 330px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+}
+
+.statistical-table > div {
+    width: 32%;
+    height: 80%;
+}
+
+/*统计表-end*/
+
+/*停产-start*/
+.halt-production{
+    width: 100%;
+    height: 330px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5px;
+    background-color: white;
+    padding: 20px;
+}
+.halt-production > div{
+    width: 100%;
+    height: 100%;
+}
+/*停产-end*/
+
+/* 时间选择器样式 start */
+
+.input-date-box {
+    display: flex;
+    overflow: hidden;
+    margin-left: 20px;
+    width: 400px;
+    height: 34px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.input-date-box .label {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    height: 34px;
+    background-color: #eeeeee;
+    border-right: 1px solid #cccccc;
+    border-radius: 0 !important;
+    font-size: 14px;
+    font-weight: normal;
+    color: #555555;
+}
+
+.input-date-box .el-range-separator {
+    width: 23px !important;
+}
+
+.input-date-box .el-input__inner {
+    width: 100% !important;
+    height: 34px !important;
+    border: 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* 时间选择器样式 end */
+.fzy-page{
+    min-width: 1200px;
+    height: auto;
+
+}
+.fzy-page .fzy-search-bar{
+    height: 50px;
+}
+.fzy-search-bar .el-date-editor--daterange{
+    padding: 0 10px;
+}
+.el-date-editor--daterange .el-range-separator{
+    width: 30px;
+}
+.box{
+    background-color: white;
+}
+
+/*表头*/
+.fzy-page-center-title-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 11px;
+    height: 34px;
+}

@@ -1,0 +1,164 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+.lmvt-container {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+   min-width:1200px;
+}
+#bbb{
+	width: 100%;
+	border-bottom: 1px solid gainsboro;
+        margin-top:-1px;
+}
+
+.lmvt-container-header-btn {
+    height: 45px;
+    width: 100%;
+    padding: 10px 10px 0px;
+    text-align: center;
+}
+
+.lmvt-container-table-basic {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+}
+
+.zace-right{
+    width: 0px;
+    height: 100%;
+    float:left;
+}
+.zace-right-XQ{
+    width: 0px;
+    height: 100%;
+    float:right;
+}
+.zace-bg{
+     width: 100%;
+    height: 100%;
+    padding:5px;
+}
+
+
+.zace-left{
+    width:auto;
+    height: 100%;
+    float: left;
+}
+
+.btn-group{
+	float: left;
+}
+.lmvt-header-title{
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    height: 40px;
+}
+.zzzb .zace-bg .lmvt-container-table-basic .femi-tb-scroll  .m-table .m-c-panel .m-c-body .list-group .list-li .list-group-item {
+  background: #f5f5f5;
+  width: 100%;
+  display: table;
+  /* padding: 2vw 2vw 2vw 4vw; */
+} 
+.zzzb .zace-bg .lmvt-container-table-basic .femi-tb-scroll  .m-table .m-c-panel .m-c-body .list-group {
+margin-bottom: 0px;
+}
+.zzzb .zace-bg .lmvt-container-table-basic .femi-tb-scroll  .m-table .m-c-panel .m-c-body .list-group .list-li .list-group-item .list-group-item-cell{
+  display: table-cell;
+  vertical-align: middle;
+  width: 10%;
+}
+.zzzb .zace-bg .lmvt-container-table-basic .femi-tb-scroll .m-table .m-c-panel .m-c-body .list-group .list-li .list-group .multil-btn .multi-flex{
+  padding: 2px;
+  border: 0px;
+}
+.zzzb .zace-bg .lmvt-container-table-basic .femi-tb-scroll .m-table .m-c-panel .m-c-body .list-group .list-li .list-group .multil-btn .multi-flex input{
+  border: 0px;
+}
+.zzzb .zace-bg .lmvt-container-table-basic .femi-tb-scroll .m-table .m-c-panel .m-c-body .list-group .list-li .list-groupAudit .multil-btn .multi-flex input{
+  border: 0px;
+}  
+.icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    transition: all .2s ease; }
+  
+  .icon-arrow-right {
+    background: url(/MESCore/my_app/static/images/arrow.png) no-repeat center;
+    background-size: 70%; }
+  
+  .icon-arrow-expand {
+    transform: rotate(90deg); }
+  
+  .icon-receive {
+    background-image: url(/MESCore/my_app/static/images/receive.png); }
+  
+  .icon-arrive {
+    background-image: url(/MESCore/my_app/static/images/arrive.png); }
+  
+  .icon-forward {
+    background-image: url(/MESCore/my_app/static/images/forward.png); }
+  
+  .icon-handle {
+    background-image: url(/MESCore/my_app/static/images/handle.png); }
+  
+  .icon-reject {
+    background-image: url(/MESCore/my_app/static/images/reject.png); }
+  
+  .icon-confirm {
+    background-image: url(/MESCore/my_app/static/images/confirm.png); }
+  
+  .icon-edit {
+    background-image: url(/MESCore/my_app/static/images/edit.png); }
+  
+  .icon-remove {
+    background-image: url(/MESCore/my_app/static/images/remove.png); }
+
+
+    .ds-bpm-btn-group{
+      width:100% ; 
+      display: inline-table;
+  }
+  .ds-bpm-btn-group .ds-bpm-btn{
+      display: table-cell;
+      /* padding: 2vw 1vw; */
+  
+  }
+
+  .m-detail-list {
+    width: 100%;
+    list-style-type: none;
+}
+
+    .m-detail-list > li {
+        font-size: 16px;
+        /* border-bottom: 1px solid #f3f3f3; */
+    }
+
+        .m-detail-list > li:last-child {
+            border-bottom: none;
+        }
+
+    .m-detail-list .m-detail-title {
+      width: 30%;
+        display: inline-block;
+        text-align: right;
+        color: #9b9b9b;
+        /* text-align: center; */
+    }
+  

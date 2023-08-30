@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>工位管理</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="locationmanagement-body" class="fzy-page">
+  <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+  <div v-if="!resourceData.show" class="fzy-search-bar">
+
+    <el-input v-model="searchDataStation.Name" class="input-box-300" placeholder="工位名称">
+      <template slot="prepend">工位名称</template>
+    </el-input>
+
+    <div class="input-select-box input-box-300">
+      <div class="label">区域</div>
+      <el-select v-model="searchDataStation.WorkAreaID" clearable filterable placeholder="请选择">
+        <el-option
+            v-for="item in selectOptions.region"
+            :key="item.ID"
+            :label="item.Name"
+            :value="item.ID"
+        ></el-option>
+      </el-select>
+    </div>
+
+    <div class="input-select-box input-box-200">
+      <div class="label">状态</div>
+      <el-select v-model="searchDataStation.Active" placeholder="请选择">
+        <el-option label="全部" value="-1"></el-option>
+        <el-option label="激活" value="1"></el-option>
+        <el-option label="关闭" value="2"></el-option>
+        <el-option label="保存" value="0"></el-option>
+      </el-select>
+    </div>
+
+
+    <div class="button-box">
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="searchStation">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClickStation"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+  </div>
+  <div v-if="!resourceData.show" class="fzy-page-center-box">
+    <div class="fzy-page-center-title-bar">
+      <div class="left">
+        <span class="fzy-title">工位管理</span>
+      </div>
+      <div class="right">
+        <button v-if="jurisdiction" class="btn lmvt-danger-btn" type="button" @click="addClickStation">
+          <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>添加
+        </button>
+      </div>
+    </div>
+    <el-table
+        :data="tableDataStation"
+        size="mini"
+        border
+        current-row-key="Code"
+        height="calc(100% - 45px)"
+    >
+      <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+      <el-table-column label="工位编码" property="Code" align="center"></el-table-column>
+      <el-table-column label="工位名称" property="Name" align="center"></el-table-column>
+      <el-table-column label="上级区域" align="center" min-width="200px">
+        <template slot-scope="scope">{{ scope.row.AreaName }}</template>
+      </el-table-column>
+      <el-table-column label="作业名称" property="WorkName" align="center"></el-table-column>
+      <el-table-column label="工位描述" property="Remark" align="center"></el-table-column>
+
+      <el-table-column label="创建时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.CreateTime | timeStr }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="编辑时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.EditTime | timeStr }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="状态" align="center" width="80px">
+        <template slot-scope="scope">
+          <el-switch
+              :value="scope.row.Active | switchStatus"
+              active-color="#0ea9f7"
+              inactive-color="#cccccc"
+              :disabled="!jurisdiction"
+              @change="activeChangeStation(scope.row)"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" align="center" :width="jurisdiction?'180px':'60px'">
+        <template slot-scope="scope">
+          <div
+              class="lmvt-do-info lmvt-resetPencil"
+              :class="jurisdiction?'col-md-4':'col-md-12'"
+              @click="searchResource(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-calendar"></span>
+            资源
+          </div>
+
+          <div
+              v-if="jurisdiction"
+              class="col-md-4 lmvt-do-info lmvt-resetPencil"
+              @click="editClickStation(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+            编辑
+          </div>
+          <div
+              v-if="jurisdiction"
+              :class="{forbidden:scope.row.Active !== 0}"
+              class="col-md-4 lmvt-do-info lmvt-delete fzy-text-btn"
+              @click="removeClickStation(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+            删除
+          </div>
+        </template>
+      </el-table-column>
+
+    </el-table>
+  </div>
+
+
+  <div v-if="resourceData.show" v-cloak class="fzy-search-bar">
+
+    <div class="input-select-box input-box-200">
+      <div class="label">状态</div>
+      <el-select v-model="searchDataResource.Active" placeholder="请选择">
+        <el-option label="全部" value="-1"></el-option>
+        <el-option label="激活" value="1"></el-option>
+        <el-option label="关闭" value="2"></el-option>
+        <el-option label="保存" value="0"></el-option>
+      </el-select>
+    </div>
+
+
+    <div class="button-box">
+      <button
+          class="btn lmvt-danger-btn" style="border: 0" type="button"
+          @click="function($evt){searchResource()}"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClickResource"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+  </div>
+  <div v-if="resourceData.show" v-cloak class="fzy-page-center-box">
+    <div class="fzy-page-center-title-bar">
+      <div class="left">
+        <span class="fzy-title">{{ resourceData.data.Name }}({{ resourceData.data.Code}})资源列表：</span>
+      </div>
+      <div class="right">
+        <button class="btn lmvt-danger-btn" type="button" @click="resourceData.show = false">
+          <span aria-hidden="true" class="glyphicon glyphicon-arrow-left"></span>返回
+        </button>
+        <button v-if="jurisdiction" class="btn lmvt-danger-btn" type="button" @click="addClickResource">
+          <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>添加
+        </button>
+      </div>
+    </div>
+    <el-table
+        :data="tableDataResource"
+        size="mini"
+        border
+        current-row-key="Code"
+        height="calc(100% - 45px)"
+    >
+      <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+      <el-table-column label="资源编码" property="Code" align="center" width="80px"></el-table-column>
+      <el-table-column label="资源名称" property="Name" align="center" min-width="200px"></el-table-column>
+      <el-table-column label="类型" align="center" min-width="200px">
+        <template slot-scope="scope">
+          {{ scope.row.Type | typeString }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="创建时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.CreateTime | timeStr }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="编辑时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.EditTime | timeStr }}
+        </template>
+      </el-table-column>
+
+
+      <el-table-column label="状态" align="center" width="150px">
+        <template slot-scope="scope">
+          <el-switch
+              :value="scope.row.Active | switchStatus"
+              active-color="#0ea9f7"
+              inactive-color="#cccccc"
+              @change="activeChangeResource(scope.row)"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" align="center" width="150px">
+        <template slot-scope="scope">
+
+          <div
+              :class="{forbidden:scope.row.Active !== 0}"
+              class="col-md-12 lmvt-do-info lmvt-delete fzy-text-btn"
+              @click="removeClickResource(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+            删除
+          </div>
+        </template>
+      </el-table-column>
+
+    </el-table>
+  </div>
+</div>
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/basicSet/Locationmanagement-Vue.js" type="text/javascript"></script>
+</body>
+</html>

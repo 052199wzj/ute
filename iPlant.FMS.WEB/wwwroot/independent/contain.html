@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>中石油天津大港测井射孔枪产线管控系统主页</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link type="text/css" rel="stylesheet" href="./static/utils/css/bootstrap.css">
+  <link href="./static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link type="text/css" rel="stylesheet" href="./static/utils/css/base.css">
+  <link type="text/css" rel="stylesheet" href="./static/css/contain.css">
+</head>
+
+<body>
+<div id="fzy-component-box"></div>
+
+<div class="body-all">
+  <div class="iplant-tool-header femi-contain-width">
+    <div class="zace-header-top      ">
+      <div class="zace-header-top-left">
+        <!--<a class="" href="http://www.shris.com.cn" target="_blank">
+            <img src="./static/images/contain/ShrisLogo.jpg" alt="" />
+        </a>
+        <span class="femi-header-font">IPLANT.MES</span>-->
+      </div>
+      <div class="femi-head-right-btn">
+        <div class="btn-group">
+          <button
+              type="button"
+              class="btn btn-default dropdown-toggle zace-onload-user femi-font-size-biglarge"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          >
+
+            <img src="./static/images/ShrisLogo.jpg" id="userImg" alt="No File"/>
+
+            <a href="javascript:;" id="userLabel"><span>未登录</span></a>
+
+            <span class="caret"></span>
+
+          </button>
+          <ul class="dropdown-menu">
+
+            <li class="femi-log-out">
+              <a href="javascript:;"><span class="glyphicon glyphicon-log-out"></span>注销</a>
+            </li>
+
+            <li class="femi-hand  femi-repari-zace  cby-down-li">
+              <a href="javascript:;"><span class="glyphicon glyphicon-pencil"></span>修改密码</a>
+            </li>
+
+            <li class="femi-hand  femi-header-helper  cby-down-li">
+              <a href="javascript:;"> <span class="glyphicon glyphicon-question-sign"></span>
+                帮助</a>
+            </li>
+          </ul>
+
+        </div>
+
+        <!--<div class="btn-group">
+            <button
+                type="button" class="btn btn-default dropdown-toggle femi-font-size-biglarge lmvt-bell"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
+                <span class="glyphicon glyphicon-bell">&nbsp;</span>
+                <span class="femi-bell-msg">99</span>
+
+            </button>
+          &lt;!&ndash; <div class="dropdown-menu pull-right femi-msg-dropdown-menu " style="padding: 0px;top: calc(100% + 2px);">
+  <div class="femi-msg-header"  >
+    <div class="femi-msg-tab femi-msg-unhandle femi-msg-tab-active" data-value="1" >待办 (<span id="MustDo1">0</span>)</div>
+    <div class="femi-msg-tab femi-msg-handle" data-value="2" >已办 (<span id="HasDo2">0</span>)</div>
+    <div class="femi-msg-tab femi-msg-notify" data-value="3" >通知 (<span id="News3">0</span>)</div>
+  </div>
+  <div class="femi-msg-body">
+    <div class="femi-msg-body-content">
+      <div class="femi-msg-unhandle femi-msg-tab-active" data-value="1">
+
+      </div>
+      <div class="femi-msg-handle" data-value="2"></div>
+      <div class="femi-msg-notify" data-value="3"></div>
+    </div>
+    <div class="femi-msg-footer">
+      <div class="femi-msg-tab femi-msg-all-read">全部已读</div>
+      <div class="femi-msg-tab femi-msg-more">查看更多</div>
+    </div>
+  </div>
+</div> &ndash;&gt;
+
+        </div>-->
+
+        <div class="btn-group">
+          <button
+              type="button" class="btn btn-default dropdown-toggle femi-font-size-biglarge"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          >
+            <span class="glyphicon glyphicon-cog" style="top:3px"></span>
+            <span class="caret"></span>
+
+          </button>
+          <ul class="dropdown-menu toolbarContent pull-right">
+
+            <li class="cby-down-li">
+              <a class="lmvt-add-item" href="javascript:;">
+                <span class="glyphicon glyphicon-pencil"></span>菜单设置
+              </a>
+            </li>
+            <li class="cby-down-li">
+              <a class="femi-allClose" href="javascript:;">
+                <span class="glyphicon glyphicon-remove-circle"></span>全部关闭
+              </a>
+            </li>
+            <li class="cby-down-li">
+              <a class="femi-allClose-bt" href="javascript:;">
+                <span class="glyphicon glyphicon-ban-circle"></span>关闭非当前
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="iplant-tool-middle  femi-contain-width">
+    <div class="zace-middle-center" id="bottom-right">
+      <div class="zace-out-right">
+        <div class="btn femi-menu-left-tool femi-openClose"><span
+            class="glyphicon glyphicon-th-list "
+        ></span></div>
+        <div class="zace-sub-header">
+
+        </div>
+        <div class="zace-sub-center">
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="zace-middle-left" id="bottom-left">
+
+      <div class="lmvt-top" style="width: 100%;height: 60px !important;background: rgb(0, 33, 64);">
+        <img class="lmvt-logo" src="./static/images/logo.jpg" alt="" style="width: 90%;" >
+        <spna></spna>
+      </div>
+
+      <div class="zace-left-center femi-scroll" style="top:0px;bottom:0px;overflow:auto">
+
+      </div>
+      <div class="zace-left-top" style="height:0px ">
+
+      </div>
+      <div class="zace-left-bom" style="height:0px">
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <!-- <div class="iplant-tool-footer femi-contain-width">
+  <div class="cby-footer-logo">
+    <img src="./static/images/contain/iplantmeslogo.png" alt="">
+  </div>
+  <span>供应商：上海中车瑞伯德智能系统股份有限公司&nbsp;&nbsp;&nbsp;&nbsp;地址：上海市嘉定区招贤路655号 </span>
+</div> -->
+
+</div>
+
+<script type="text/javascript" src="./static/utils/require.js"></script>
+<script type="text/javascript" src="./static/js/contain.js"></script>
+
+</body>
+
+</html>

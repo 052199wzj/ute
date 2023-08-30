@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\iPlant.FMS.Models\iPlant.FMS.Models.csproj" />
+    <ProjectReference Include="..\iPlant.FMS.Service\iPlant.FMS.Service.csproj" />
+    <ProjectReference Include="..\ShrisCommunicationCore\ShrisCommunicationCore.csproj" />
+  </ItemGroup>
+
+</Project>

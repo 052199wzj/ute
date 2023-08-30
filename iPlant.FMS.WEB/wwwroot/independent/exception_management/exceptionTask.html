@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>异常任务单</title>
+
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/exception_management/exceptionTask.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div class="lmvt-container">
+        <div class="lmvt-container-main-exception">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-task-Search" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                    <!--
+                    <button type="button" id="lmvt-table-Search" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button> -->
+                </div>
+                <span class="lmvt-header-title"
+                    style=" font-family: STXinwei;font-size: 20px;color: #00688b">异常任务单据</span>
+                <div class="columns columns-right btn-group pull-right">
+                    <button class="btn btn-default" type="button" id="lmvt-exception-action">
+                        <span class="glyphicon glyphicon-eye-open"></span>处理明细
+                    </button>
+                    <button class="btn btn-default" type="button" id="lmvt-exception-apply">
+                        <span class="glyphicon glyphicon-eye-open"></span>查看申请单
+                    </button>
+                    <!-- <button class="btn btn-default" type="button" id="lmvt-exception-photo">
+                        <span class="glyphicon glyphicon-eye-open"></span>查看异常照片
+                    </button> -->
+                </div>
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered grinding-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="width:80px" data-order="ID">序号</th>
+                                <th style="min-width: 60px" data-order="StationNo">地点编码</th>
+                                <th style="min-width: 60px" data-order="StationTypeName">地点类型</th>
+                                <th style="min-width: 50px" data-order="ExceptionTypeName">异常类型</th>
+                                <!-- <th style="min-width: 50px" data-order="ReportTimes">剩余上报次数</th>
+                                <th style="min-width: 50px" data-order="ForwardTimes">剩余转发次数</th> -->
+                                <th style="min-width: 50px" data-order="RespondLevel">响应级别</th>
+                                <th style="min-width: 50px" data-order="DisplayBoard">看板显示</th>
+                                <th style="min-width: 50px" data-order="OnSite">到场确认</th>
+                                <th style="min-width: 50px" data-order="Comment">备注</th>
+                                <th style="min-width: 80px" data-order="ApplicantTime">申请时间</th>
+                                <th style="min-width: 50px" data-order="ApplicantID">申请人</th>
+                                <th style="min-width: 50px" data-order="ConfirmID">确认人</th>
+                                <th style="min-width: 80px" data-order="OperatorID">解决人</th>
+                                <th style="min-width: 80px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 80px" data-order="ExpireTime">超时时间</th>
+                                <th style="min-width: 50px" data-order="EditTime">修改时间</th>
+                                <th style="min-width: 50px" data-order="Status">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-Station-body table-color">
+                            <tr style="">
+                                <td colspan="500">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="lmvt-container-typt-exception" style="display: none">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-type-add" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>增加
+                    </button>
+                    <button type="button" id="lmvt-type-change" class="btn btn-default">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>修改
+                    </button>
+                    <div class="btn-group pull-left" role="group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="lmvt-type-active">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>启用
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-type-stop">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <button class="btn btn-default" type="button" id="lmvt-type-back">
+                        <span class="glyphicon glyphicon-arrow-left"></span>返回
+                    </button>
+                </div>
+                <span class="lmvt-header-title"
+                    style=" font-family: STXinwei;font-size: 20px;color: #00688b">异常申请单据</span>
+            </div>
+            <div class="lmvt-select-widget" style="width:100%;height:auto">
+                <div class="lmvt-select-templet" style="width:100%">
+                    <div class=" " id=" " style="font-family: STXinwei;font-size: 20px;color: #00688b">处理信息</div>
+                    <div class="m-c-body handle-info clearfix nobd">
+                        <div style="float:left;width:70%">1</div>
+                        <div style="float:left;width:20%">2</div>
+                        <div style="float:left;width:6%">3</div>
+                        <div style="float:left;width:4%">4</div>
+                    </div>
+                    <ul style="display:none">
+                        <li>1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/exception_management/exceptionTask.js"></script>
+</body>
+
+</html>

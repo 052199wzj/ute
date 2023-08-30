@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="renderer" content="webkit">
+  <meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>消息中心</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/basicSet/MessageCenter.css"/>
+</head>
+
+<body>
+<div class="lmvt-container">
+  <div class="zzzc lmvt-container-system zace-left" style="width:100%;">
+    <div class="zace-bg">
+      <div class="lmvt-container-header-btn">
+        <div class="lmvt-container-header-top">
+          <div class="row" style="">
+            <div class="span8">
+              <ul class="nav nav-pills" style="padding: 0px 11px;">
+                <li data-value="1" class="active"><a href="#">待办<span
+                    class="badge badge-danger"
+                    id="MustDo1"
+                >0</span></a></li>
+                <li data-value="2" class=""><a href="#">已办<span
+                    class="badge badge-danger"
+                    id="HasDo2"
+                ></span></a></li>
+                <li data-value="3" class=""><a href="#">通知<span
+                    class="badge badge-danger"
+                    id="News3"
+                ></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="lmvt-container-header-bottom">
+          <div class="row">
+            <div class="col-xs-6 col-md-2">
+              <button
+                  type="button" id=""
+                  class="btn btn-default lmvt-default-btn lmvt-def-btn AllRead"
+              >
+                勾选已读
+              </button>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+              <div class="btn-group" role="group">
+                <button type="button" id="" class="btn btn-default lmvt-default-btn" disabled>
+                  时间段
+                </button>
+                <input
+                    style="float: left;width: 140px;" id="lmvt-startTime" type="text"
+                    class="form-control width200" placeholder="请选择开始时间"
+                >
+                <input
+                    style="float: left;width: 140px;" id="lmvt-endTime" type="text"
+                    class="form-control width200" placeholder="请选择结束时间"
+                >
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <div class="btn-group" role="group">
+                <button
+                    type="button" id="zace-export-export"
+                    class="btn btn-default lmvt-default-btn" disabled
+                >
+                  </span>类型
+                </button>
+                <select
+                    style="width: 140px;display: none;" multiple class="selectpicker  show-tick"
+                    data-container="body" data-live-search="true" title="请选择"
+                    data-hide-disabled="true" data-actions-box="true" data-virtual-scroll="false"
+                >
+                </select>
+                <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle lmvt-default-btn"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon" aria-hidden="true"></span><span
+                            class="lmvt-changeName">全部</span>
+                        <span class="caret"></span> <span class="sr-only">
+                            Toggle
+                            Dropdown
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                        <li class="device_status" id="lmvt-mission">
+                            <a href="javascript:;">
+                                <span class="glyphicon " aria-hidden="true"></span>任务
+                            </a>
+                        </li>
+                        <li class="device_status" id="lmvt-notice">
+                            <a href="javascript:;">
+                                <span class="glyphicon " aria-hidden="true"></span>通知
+                            </a>
+                        </li>
+                        <li class="device_status" id="lmvt-allNews">
+                            <a href="javascript:;">
+                                <span class="glyphicon" aria-hidden="true"></span>全部
+                            </a>
+                        </li>
+                    </ul>
+
+                </div> -->
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+
+              <button type="button" id="lmvt-search" class="btn lmvt-danger-btn lmvt-default-btn">
+                查询
+              </button>
+              <button
+                  type="button" id="lmvt-reset"
+                  class="btn btn-default lmvt-default-btn lmvt-def-btn"
+              >
+                重置
+              </button>
+
+            </div>
+            <div class="col-xs-6 col-md-2">
+
+              <div class="columns columns-right btn-group pull-right">
+                <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                  <input
+                      type="text" id="femi-search-text-ledger"
+                      style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                      placeholder="请输入查询字符"
+                  />
+                </button>
+                <button class="btn lmvt-def-btn" type="button" id="zace-search-userS">
+                  筛选
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="Typetable lmvt-container-table-basic femi-contain-border">
+        <div class="femi-tb-scroll" style="width: 100%;">
+          <table class="table table-bordered table-striped newsTable">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </th>
+              <th style="min-width: 50px" data-order="ID">编号</th>
+              <th style="min-width: 50px" data-order="Title">名称</th>
+              <th style="min-width: 50px" data-order="MessageText">详情</th>
+              <th style="min-width: 50px" data-order="Type">类型</th>
+              <th style="min-width: 50px" data-order="Active">状态</th>
+              <th style="min-width: 50px" data-order="CreateTime">时刻</th>
+              <th style="min-width: 50px" data-order="Handle">操作</th>
+            </tr>
+            </thead>
+            <tbody id="lmvt-news-tbody" class="table-color"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/MessageCenter.js"></script>
+</body>
+
+</html>

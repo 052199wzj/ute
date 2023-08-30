@@ -1,0 +1,472 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>生产配料</title>
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/product_plan/produceMaterial.css" />
+</head>
+<body class="femi-font-size-middle">
+
+    <div class="lmvt-container">
+        <div class="lmvt-container-main">
+            <div class="lmvt-container-header-btn">
+                <p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;margin: 0px;position: absolute;right: 41%;top: 15px;">生产配料</p>
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-produce-plan" class="btn btn-default">
+                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>生成计划
+                    </button>
+                    <button type="button" id="lmvt-produce-do" class="btn btn-default">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>下达
+                    </button>
+                    <button type="button" id="lmvt-produce-check" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                    <button type="button" id="lmvt-produce-change" class="btn btn-default">
+                        <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>手动调整
+                    </button>
+                    <button type="button" id="lmvt-produce-delete" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                    </button>
+                    <!--<button type="button" id="lmvt-produce-submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+                    </button>-->
+                    <button type="button" id="lmvt-main-out" class="btn btn-default">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" id="lmvt-see-supplement" class="btn btn-default">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>补料计划表
+                    </button>
+                </div>
+            </div>
+            <div class="lmvt-container-table-main femi-contain-border" id="lmvt-container-table-main">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered table-main">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="showID">编号</th>
+                                <th style="min-width: 80px" data-order="TypeText">类型</th>
+                                <!--<th style="min-width: 50px" data-order="WorkShopName">车间</th>-->
+                                <th style="min-width: 50px" data-order="LineName">产线</th>
+                                <th style="min-width: 50px" data-order="PartName">工段</th>
+                                <th style="min-width: 50px" data-order="PartPointName">工步</th>
+                                <th style="min-width: 80px" data-order="ProductNo">规格</th>
+                                <th style="min-width: 50px" data-order="OrderNo">订单</th>
+                                <th style="min-width: 50px" data-order="MaterialNo">物料号</th>
+                                <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                <th style="min-width: 80px" data-order="FQTYPlan">计划配料数</th>
+                                <th style="min-width: 50px" data-order="FQTYBase">实际配料数</th>
+                                <th style="min-width: 50px" data-order="FQTYOnSite">线上物料数</th>
+                                <th style="min-width: 50px" data-order="FQTYMargin">剩余物料数</th>
+                                <th style="min-width: 50px" data-order="FQTYPL">已配料数</th>
+                                <!--<th style="min-width: 50px" data-order="MaterialSubModeText">警告</th>-->
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-main-body table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}">
+                                </td>
+                                <td colspan="50">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="lmvt-container-supplement" style="display:none">
+            <div class="lmvt-container-supplement-first">
+                <div class="lmvt-container-header-btn">
+                    <p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;margin: 0px;position: absolute;right: 41%;top: 15px;">补料计划</p>
+                    <div class="btn-group femi-lf" role="group">
+                        <button type="button" id="lmvt-supplement-search" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                        <button type="button" id="lmvt-supplement-plan" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>补料计划表
+                        </button>
+                        <!--<button type="button" id="lmvt-supplement-hand" class="btn btn-default">
+                            <span class="glyphicon glyphicon-share" aria-hidden="true"></span>手动调整
+                        </button>-->
+                        <!--<button type="button" id="lmvt-produce-delete" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                        </button>-->
+                        <!--<button type="button" id="lmvt-produce-submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+                        </button>-->
+                        <!--<button type="button" id="lmvt-tableMES-out" class="btn btn-default">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>-->
+                        <!--<button type="button" id="lmvt-produce-plan-main" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>生产计划
+                        </button>-->
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="lmvt-produce-back" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                        </button>
+                    </div>
+                </div>
+                <div class="lmvt-container-table-supplement femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width:50px;display:none" data-order="ID">编号</th>
+                                    <th style="min-width:50px" data-order="showID">编号</th>
+                                    <!--<th style="min-width: 50px" data-order="WorkShopName">车间</th>-->
+                                    <th style="min-width: 50px" data-order="LineName">产线</th>
+                                    <th style="min-width: 50px" data-order="PartName">工序段</th>
+                                    <th style="min-width: 50px" data-order="PartPointName">工序</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 80px" data-order="ProductNo">规格</th>
+                                    <!--<th style="min-width: 50px" data-order="DeviceNo">设备号</th>-->
+                                    <th style="min-width: 80px" data-order="FQTYDemand">补料数</th>
+                                    <!--<th style="min-width: 50px" data-order="ModeType">配料模式</th>-->
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplement-body table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}">
+                                    </td>
+                                    <td colspan="50">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lmvt-container-supplement-plan" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;margin: 0px;position: absolute;right: 41%;top: 15px;">补料计划</p>
+                    <div class="btn-group femi-lf" role="group">
+                        <!--<button type="button" id="lmvt-supplement-plan" class="btn btn-default">
+                            <span class="glyphicon glyphicon-share" aria-hidden="true"></span>补料计划表
+                        </button>-->
+                        <button type="button" id="lmvt-supplement-hand" class="btn btn-default">
+                            <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>手动调整
+                        </button>
+                        <button type="button" id="lmvt-produce-submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>下达
+                        </button>
+                        <button type="button" id="lmvt-supplement-out" class="btn btn-default">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+                        <button type="button" id="lmvt-produce-check" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                        <button type="button" id="lmvt-produce-delete" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                        </button>
+                        <!--<button type="button" id="lmvt-produce-plan-main" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>生产计划
+                        </button>-->
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="lmvt-position-back" class="btn btn-default">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                        </button>
+                    </div>
+                </div>
+                <div class="lmvt-container-table-supplement-main femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered supplement-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width:50px;display:none" data-order="ID">编号</th>
+                                    <th style="min-width:50px" data-order="showID">编号</th>
+                                    <th style="min-width: 80px" data-order="TypeText">类型</th>
+                                    <!--<th style="min-width: 50px" data-order="WorkShopName">车间</th>-->
+                                    <th style="min-width: 50px" data-order="LineName">产线</th>
+                                    <th style="min-width: 50px" data-order="PartName">工段</th>
+                                    <th style="min-width: 50px" data-order="PartPointName">工步</th>
+                                    <th style="min-width: 80px" data-order="ProductNo">规格</th>
+                                    <th style="min-width: 50px" data-order="OrderNo">订单</th>
+                                    <th style="min-width: 50px" data-order="MaterialNo">物料号</th>
+                                    <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                    <th style="min-width: 80px" data-order="FQTYPlan">计划配料数</th>
+                                    <th style="min-width: 50px" data-order="FQTYPL">实际配料数</th>
+                                    <th style="min-width: 50px" data-order="FQTYOnSite">线上物料数</th>
+                                    <th style="min-width: 50px" data-order="FQTYMargin">订单剩余物料数</th>
+                                    <th style="min-width: 50px" data-order="FQTYPL">已配料数</th>
+                                    <!--<th style="min-width: 50px" data-order="MaterialSubModeText">警告</th>-->
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplement-main-body table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}">
+                                    </td>
+                                    <td colspan="50">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="lmvt-container-supplement-position">
+                        <div class="lmvt-container-header-btn">
+                                <span class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b">仓库</span>
+                                <div class="btn-group femi-lf" role="group">
+                                    <button type="button" id="lmvt-supplement-location-delete" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                    </button>
+                                </div>
+                            </div>
+                   
+                    <div class="lmvt-container-table-supplement-position femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox"
+                                                   class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                   value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width:50px;display:none" data-order="ID">编号</th>
+                                        <th style="min-width: 50px" data-order="ID">编号</th>
+                                        <th style="min-width: 80px" data-order="StockName">仓库名称</th>
+                                        <!--<th style="min-width: 80px" data-order="LocationName">仓位名称</th>
+                                        <th style="min-width: 80px" data-order="LocationText">仓位二维码</th>-->
+                                        <th style="min-width:50px" data-order="MaterialNo">物料号</th>
+                                        <th style="min-width: 80px" data-order="MaterialName">物料名称</th>
+                                        <th style="min-width: 50px" data-order="FQTYStock">库存数</th>
+                                        <th style="min-width: 50px" data-order="FQTY">配料数</th>
+                                        <!--<th style="min-width: 50px" data-order="StockTime">入库时刻</th>
+                                        <th style="min-width: 40px" data-order="StockStatusText">库存状态</th>-->
+                                        <th style="min-width: 40px" data-order="ERPFlot_Text">批号</th>
+                                        <!--<th style="min-width: 40px" data-order="RemarkText">备注</th>-->
+                                    </tr>
+                                </thead>
+                                <tbody class="lmvt-supplement-produce-body table-color">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}">
+                                        </td>
+                                        <td colspan="50">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lmvt-container-surport" style="display:none">
+            <div class="lmvt-container-header-btn">
+                <p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;margin: 0px;position: absolute;right: 41%;top: 15px;">生产配料</p>
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-produce-plan" class="btn btn-default">
+                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>生成计划
+                    </button>
+                    <button type="button" id="lmvt-produce-do" class="btn btn-default">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>下达计划
+                    </button>
+                    <button type="button" id="lmvt-supplement-plan" class="btn btn-default">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>补料计划表
+                    </button>
+                    <button type="button" id="lmvt-supplement-hand" class="btn btn-default">
+                        <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>手动调整
+                    </button>
+                    <button type="button" id="lmvt-produce-check" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                    <button type="button" id="lmvt-produce-delete" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                    </button>
+                    <button type="button" id="lmvt-produce-submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>提交
+                    </button>
+                    <button type="button" id="lmvt-tableMES-out" class="btn btn-default">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+                    <button type="button" class="btn btn-default dropdown-toggle" id="changeType"
+                            data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="margin-right:-10px;">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                        <span class="changeName">主料</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="margin-left:578px;list-style:none;">
+                        <li style="" class="device_status" id="lmvt-main">
+                            <a href="javascript:;">
+                                <span id="femi-canvas-show" class="glyphicon glyphicon-star" aria-hidden="true">主料</span>
+                            </a>
+                        </li>
+                        <!--<li class="device_status" id="lmvt-surport">
+                            <a href="javascript:;">
+                                <span id="femi-canvas-show" class="glyphicon glyphicon-star" aria-hidden="true">辅料</span>
+                            </a>
+                        </li>-->
+                        <li class="device_status" id="lmvt-supplement">
+                            <a href="javascript:;">
+                                <span id="femi-canvas-show" class="glyphicon glyphicon-star" aria-hidden="true">补料</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" id="lmvt-produce-back" class="btn btn-default">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>返回
+                    </button>
+
+                </div>
+            </div>
+            <div class="lmvt-container-table-surport femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px;display:none" data-order="ID">编号</th>
+                                <th style="min-width:50px" data-order="showID">编号</th>
+                                <!--<th style="min-width: 80px" data-order="Type">类型</th>-->
+                                <!--<th style="min-width: 50px" data-order="WorkShopName">车间</th>-->
+                                <th style="min-width: 50px" data-order="LineName">产线</th>
+                                <th style="min-width: 50px" data-order="PartName">工段</th>
+                                <th style="min-width: 80px" data-order="ProductNo">规格</th>
+                                <th style="min-width: 50px" data-order="OrderNo">订单</th>
+                                <th style="min-width: 50px" data-order="MaterialNo">物料号</th>
+                                <th style="min-width: 50px" data-order="MaterialName">物料名称</th>
+                                <th style="min-width: 80px" data-order="FQTYPlan">计划配料数</th>
+                                <th style="min-width: 50px" data-order="FQTYBase">实际配料数</th>
+                                <th style="min-width: 50px" data-order="FQTYOnSite">线上配料数</th>
+                                <th style="min-width: 50px" data-order="FQTYMargin">订单剩余配料数</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-surport-body table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}">
+                                </td>
+                                <td colspan="50">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="lmvt-container-produce" style="display:none">
+            <div class="lmvt-container-header-btn">
+                <span style="font-family: STXinwei;font-size: 20px;color: #00688b;">仓库</span>
+                <!--<p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #00688b;margin: 0px;position: absolute;right: 41%;top: 15px;">生产配料</p>-->
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-location-delete" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                    </button>
+                </div>
+                <!--<button type="button" id="lmvt-supplement-hand" class="btn btn-default">
+                        <span class="glyphicon glyphicon-share" aria-hidden="true"></span>手动调整
+                    </button>
+                    <button type="button" id="lmvt-produce-check" class="btn btn-default">
+                        <span class="glyphicon glyphicon-share" aria-hidden="true"></span>查询
+                    </button>
+                    <button type="button" id="lmvt-produce-delete" class="btn btn-default">
+                        <span class="glyphicon glyphicon-share" aria-hidden="true"></span>删除
+                    </button>
+                    <button type="button" id="lmvt-produce-submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+                    </button>
+                    <button type="button" id="lmvt-tableMES-out" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>导出
+                    </button>
+                    <button type="button" class="btn btn-default dropdown-toggle" id="changeType"
+                            data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="margin-right:-10px;">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                        <span class="changeName">主料</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="margin-left:578px;list-style:none;">
+                        <li style="" class="device_status" id="lmvt-main">
+                            <a href="javascript:;">
+                                <span id="femi-canvas-show" class="glyphicon glyphicon-star" aria-hidden="true">主料</span>
+                            </a>
+                        </li>
+                        <li class="device_status" id="lmvt-supplement">
+                            <a href="javascript:;">
+                                <span id="femi-canvas-show" class="glyphicon glyphicon-star" aria-hidden="true">补料</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>-->
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" id="lmvt-produce-back" class="btn btn-default">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                    </button>
+
+                </div>
+            </div>
+            <div class="lmvt-container-table-produce femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px;display:none" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="showID">编号</th>
+                                <th style="min-width: 80px" data-order="StockName">仓库名称</th>
+                                <!--<th style="min-width: 80px" data-order="LocationName">仓位名称</th>
+                                <th style="min-width: 80px" data-order="LocationText">仓位二维码</th>-->
+                                <th style="min-width:50px" data-order="MaterialNo">物料号</th>
+                                <th style="min-width: 80px" data-order="MaterialName">物料名称</th>
+                                <th style="min-width: 50px" data-order="FQTYKC">库存数</th>
+                                <th style="min-width: 50px" data-order="FQTYPL">配料数</th>
+                                <!--<th style="min-width: 50px" data-order="StockTime">入库时刻</th>
+                                <th style="min-width: 40px" data-order="StockStatusText">库存状态</th>-->
+                                <th style="min-width: 40px" data-order="BatchNo">批号</th>
+                                <!--<th style="min-width: 40px" data-order="RemarkText">备注</th>-->
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-produce-body table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" value="{{functionID}}">
+                                </td>
+                                <td colspan="50">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/produceMaterial.js"></script>
+</body>
+</html>

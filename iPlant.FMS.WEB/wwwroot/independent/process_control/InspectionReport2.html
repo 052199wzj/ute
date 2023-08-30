@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>检修库监视</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/process_control/InspectionReport2.css">
+</head>
+<body>
+<div id="fzy-accessLibrary">
+  <div v-show="!deviceHistory.show " v-cloak>
+
+    <div class="fzy-scroll-box">
+      <!-- 页头 -->
+      <div class="fxy-head">
+        <span class="title">万顷沙检修库设备状态总览:</span>
+        <span>
+                    <span class="font-bold" v-text="'设备数：' + overviewEquipmentStatus.DeviceCount"></span>
+                    <span class="font-green font-bold" v-text="'开机：' + overviewEquipmentStatus.on"></span>
+                    <span class="font-gray font-bold" v-text="'关机：' + overviewEquipmentStatus.off"></span>
+                    <span class="font-red font-bold" v-text="'故障：' + overviewEquipmentStatus.alarm"></span>
+                </span>
+        <span v-cloak>
+                    <span class="font-green font-bold">
+                        开机率：{{ overviewEquipmentStatus.on / overviewEquipmentStatus.DeviceCount | percent }}
+                    </span>
+                    <span class="font-gray font-bold">
+                        关机率：{{ overviewEquipmentStatus.off / overviewEquipmentStatus.DeviceCount | percent }}
+                    </span>
+                    <span class="font-red font-bold">
+                        故障率：{{ overviewEquipmentStatus.alarm / overviewEquipmentStatus.DeviceCount | percent }}
+                    </span>
+                </span>
+      </div>
+      <!-- 状态一览 -->
+      <div class="fzy-district">
+        <div
+            class="box" :style="{borderColor:equipmentBorderColor(item.StatusCount_)}"
+            v-for="item in overviewEquipmentStatusList" :key="item.id" @click="districtClick(item)"
+        >
+          <div class="content">
+            <span class="color-red" v-text="item.AreaNo"></span>
+            <span class="color-gray" v-text="item.AreaName"></span>
+            <span class="color-gray">设备数( <span v-text="item.DeviceCount"></span> )</span>
+          </div>
+          <div class="bottom">
+            <span :class="{'font-green':item.StatusCount_.on }" v-text="'开机：' + item.StatusCount_.on"></span>
+            <span :class="{'font-gray':item.StatusCount_.off }" v-text="'关机：' + item.StatusCount_.off"></span>
+            <span :class="{'font-red':item.StatusCount_.alarm }" v-text="'故障：' + item.StatusCount_.alarm"></span>
+
+          </div>
+        </div>
+      </div>
+      <!-- 区域分布图 -->
+      <img class="fzy-distribution-img" src="../static/images/Metro/CheckArea.png"/>
+      <!-- 设备列表 -->
+      <div class="fzy-table equipment">
+        <span class="fzy-title">设备列表</span>
+        <el-table
+            :data="deviceList"
+            size="mini"
+            border
+            current-row-key="DeviceNo"
+            height="500px"
+        >
+          <el-table-column label="序号" type="index" width="50" align="center"></el-table-column>
+          <el-table-column label="设备编号" property="DeviceNo" align="center"></el-table-column>
+          <el-table-column label="设备名称" property="DeviceName" align="center" min-width="100px"></el-table-column>
+          <el-table-column label="所在区域" property="PositionText" align="center" min-width="180px"></el-table-column>
+          <el-table-column label="使用班组" property="TeamName" align="center"></el-table-column>
+          <el-table-column label="设备描述" property="Remark" align="center"></el-table-column>
+          <el-table-column label="开机/故障时刻" property="StatusTime" align="center"></el-table-column>
+          <el-table-column label="状态累计时常" align="center" width="190px">
+            <template slot-scope="scope">
+              {{scope.row.Duration | toDHMS }}
+            </template>
+          </el-table-column>
+
+          <el-table-column label="操作" align="center" width="120px">
+            <template slot-scope="scope">
+                           <span class="lookOver" @click="deviceInfoClick(scope.row)"><span
+                               class="glyphicon glyphicon-zoom-in"
+                           ></span>详情</span>
+              <span class="lookOver" @click="deviceHistoryClick(scope.row)"><span
+                  class="glyphicon glyphicon-time"
+              ></span>开机日志</span>
+            </template>
+          </el-table-column>
+
+        </el-table>
+      </div>
+    </div>
+
+  </div>
+  <div v-show="deviceHistory.show" class=" device-history fzy-page">
+    <div class="fzy-search-bar">
+      <div class="input-select-box input-box-400">
+        <div class="label">选择时间</div>
+        <el-date-picker
+            ref="test"
+            v-model="deviceHistory.search.timeSection"
+            type="daterange"
+            value-format="yyyy-MM-dd"
+            :clearable="false"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+        >
+        </el-date-picker>
+      </div>
+      <div class="button-box">
+        <button
+            class="btn lmvt-danger-btn" style="border: 0" type="button"
+            @click="searchClick"
+        >
+          <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+          查询
+        </button>
+        <button
+            class="btn lmvt-def-btn"
+            type="button"
+            @click="removeInput"
+        >
+          <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+          重置
+        </button>
+      </div>
+    </div>
+    <div class="fzy-page-center-box">
+      <div class="fzy-page-center-title-bar">
+        <div class="left">
+          <span class="fzy-title">开机日志</span>
+        </div>
+        <div class="right">
+          <button type="button" class="btn btn-info" @click="deviceHistory.show=false">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+          </button>
+        </div>
+
+      </div>
+      <table class="fzy-table">
+        <thead>
+        <tr>
+          <th>设备名称</th>
+          <th>设备编码</th>
+          <th>开机时间</th>
+          <th>关机时间</th>
+          <th>车间名称</th>
+          <th>产线名称</th>
+          <th>采集编码</th>
+        </tr>
+        </thead>
+        <tbody id="fzy-device-history-table">
+        <tr v-for="item in deviceHistory.data" v-cloak>
+          <td>{{ item.DeviceName }}</td>
+          <td>{{ item.DeviceNo }}</td>
+          <td>{{item.StatusTime}}</td>
+          <td>{{item.StatusTimeEnd}}</td>
+          <td>{{ item.WorkShopName }}</td>
+          <td>{{ item.LineName }}</td>
+          <td>{{ item.AssetNo }}</td>
+        </tr>
+        <tr v-show="deviceHistory.data.length==0">
+          <td colspan="5">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/bizTools/process_control/fzy-tools.js"></script>
+<script type="text/javascript" src="../static/js/process_control/InspectionReport2.js"></script>
+</body>
+</html>

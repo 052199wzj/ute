@@ -1,0 +1,149 @@
+@charset "UTF-8";
+/*
+  用于覆盖element样式
+ */
+[v-cloak] {
+	display: none;
+}
+
+.el-input {
+	height: 34px;
+}
+
+.el-input.el-input-group {
+	height: 34px;
+	border-color: #dddddd;
+}
+
+.el-input.el-input-group .el-input-group__prepend {
+	box-sizing: border-box;
+	padding: 6px 12px;
+	height: 34px;
+	background-color: #eeeeee;
+	color: #555555;
+	user-select: none;
+}
+
+.el-input.el-input-group .el-input__inner {
+	height: 34px;
+}
+
+.el-upload--picture-card > .el-upload__input {
+	display: none;
+}
+
+/* select */
+
+.el-scrollbar__view.el-select-dropdown__list {
+	max-height: 300px;
+}
+
+.el-select .el-select__tags {
+	height: 26px;
+}
+
+.el-select .el-select__tags > span {
+	order: 1;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline;
+	white-space: nowrap;
+	width: 98% !important;
+}
+
+.el-select .el-select__tags > input {
+	order: 0;
+	/*display: inline;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	margin-left: 5px;
+	padding-left: 5px;
+	width: 100% !important;
+}
+
+.el-select .el-select__tags.is-focus > input {
+	z-index: 10;
+	background-color: rgba(255, 255, 255, .7);
+}
+
+.el-select .el-tag.el-tag--info {
+	flex-wrap: nowrap;
+}
+
+/*
+.el-cascader .el-cascader__tags{
+	height: 26px;
+	display: flex;
+}
+.el-cascader .el-cascader__tags > input {
+	order: 0;
+	!*display: inline;*!
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	margin-left: 5px;
+	padding-left: 5px;
+	width: 100% !important;
+}
+
+.el-cascader .el-cascader__tags.is-focus > input {
+	z-index: 10;
+	background-color: rgba(255, 255, 255, .7);
+}
+
+.el-cascader .el-tag.el-tag--info {
+	flex-wrap: nowrap;
+}
+*/
+
+/* table */
+
+.el-table {
+	border-color: #cbcbcb;
+	border-left-color: transparent;
+}
+
+.el-table::before,
+.el-table::after {
+	display: none !important;
+	background-color: #cbcbcb !important;
+}
+
+
+.el-table .el-table__header-wrapper table,
+.el-table .el-table__body-wrapper table {
+	position: relative;
+}
+
+.el-table .el-table__header-wrapper table::before,
+.el-table .el-table__body-wrapper table::before {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-color: #cbcbcb;
+}
+
+.el-table .el-table__header-wrapper th {
+	border-color: #cbcbcb;
+	background-color: #e0e0e0;
+	color: #000000;
+}
+
+.el-table .el-table__header-wrapper tr {	position: relative;}
+
+.el-table .el-table__body-wrapper tr td { border-color: #cbcbcb;}
+
+.el-table .el-table__body-wrapper tr:hover > td { background: #fcf5e7;}
+
+.el-upload-list--picture-card.is-disabled + .el-upload--picture-card{
+	display: none;
+}
+

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8"/>
+  <title>电容包导入</title>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+
+  <link type="text/css" rel="stylesheet" href="../static/css/process_control/module.css"/>
+</head>
+
+<body class="femi-font-size-middle">
+<div class="iplant-tool-contain" id="lmvt-vueApp">
+
+
+  <div class="iplant-tool-right" style="width: 100%;float: left;">
+    <div class="lmvt-container-supplier" style="float: left;">
+      <div class="femi-tb-head" style="height: 45px;">
+
+        <div class="row supplier-row" style="width: 40%;">
+
+          <div class="col-xs-3" style="">
+            <div class="btn-group" role="group">
+              <!-- <button style="width: 30%;float: left;" type="button" id="zace-export-export"
+                  class="btn btn-default lmvt-default-btn" disabled="">
+                  平衡板号
+              </button> -->
+
+              <input
+                  style="width: 100%;" v-model="Code" type="text" class="form-control width200"
+                  placeholder="文件名称"
+              >
+            </div>
+          </div>
+
+          <!-- <div class="col-xs-1" style="padding-left: 2px;">
+              <input style="width: 100%;" v-model="ModuleNo" id="lmvt-ModuleNo" type="text"
+                  class="form-control width200" placeholder="请输入模组号">
+          </div> -->
+
+          <div class="col-xs-3" style="padding-left: 2px;">
+            <!-- <button style="width: 30%;" type="button" id="zace-export-export" class="btn btn-default lmvt-default-btn"
+                disabled="">
+                平衡板号
+            </button> -->
+            <input
+                style="width: 100%;background-color: #ffffff;" readonly="readonly"
+                v-model="StartTime" id="lmvt-startTime" type="text" class="form-control width200"
+                placeholder="开始时间"
+            >
+          </div>
+
+          <div class="col-xs-3" style="padding-left: 2px;">
+            <input
+                style="width: 100%;background-color: #ffffff;" readonly="readonly" v-model="EndTime"
+                id="lmvt-endTime" type="text"
+                class="form-control width200" placeholder="结束时间"
+            >
+          </div>
+          <div class="col-xs-3">
+
+            <button
+                type="button" @click="refresh" id="lmvt-search"
+                class="btn lmvt-danger-btn lmvt-default-btn"
+            >
+              查询
+            </button>
+            <button
+                type="button" @click="reset" id="lmvt-reset"
+                class="btn btn-default lmvt-default-btn lmvt-def-btn"
+            >
+              重置
+            </button>
+
+          </div>
+          <!-- <div class="col-xs-4">
+
+              <button type="button" id="lmvt-search" class="btn lmvt-danger-btn lmvt-default-btn">
+                  查询
+              </button>
+              <button type="button" id="lmvt-reset" class="btn btn-default lmvt-default-btn lmvt-def-btn">
+                  重置
+              </button>
+
+          </div> -->
+        </div>
+
+        <!-- <div class="row" style="margin-top: 5px;">
+
+
+        </div> -->
+        <!-- <div class="femi-toolbar-self femi-lf">
+            <div class="btn-group" role="group">
+                <button type="button" id="lmvt-tree-open" class="btn lmvt-def-btn">
+                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="femi-toolbar-self femi-rt">
+            <button type="button" id="lmvt-tree-close" class="btn lmvt-def-btn">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            </button>
+        </div>
+        <span class="lmvt-header-title" style="font-family:STXinwei;font-size: 20px;color: #C7001A;">
+        </span> -->
+      </div>
+      <div class="lmvt-container-header-btn zace-tree-header" style="">
+        <div class="btn-group" role="group">
+          <div class="btn-group">
+            <button type="button" style="display:none" class="btn btn-default">
+              <input @change="InputFileClick($event)" type="file" id="input-file"/>
+            </button>
+            <button @click="Import" class="btn lmvt-danger-btn" type="button" id="lmvt-left-check2">
+              <span class="glyphicon glyphicon-search"></span>导入出货码
+            </button>
+
+            <button @click="ImportResultFile" class="btn lmvt-danger-btn" type="button" id="">
+              <span class="glyphicon glyphicon-search"></span>导入单体信息
+            </button>
+
+            <!-- <button @click="Save" class="btn lmvt-def-btn" type="button" id="lmvt-left-check2">
+                <span class="glyphicon glyphicon-saved"></span>保存
+            </button> -->
+          </div>
+
+          <!-- <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+
+                  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 操作
+                  <span class="caret"></span> <span class="sr-only">
+                      Toggle
+                      Dropdown
+                  </span>
+              </button>
+
+              <ul class="dropdown-menu">
+                  <li class="device_status" id="active">
+                      <a href="javascript:;">
+                          <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+                      </a>
+                  </li>
+                  <li class="device_status" id="active1" style="display:none">
+                      <a href="javascript:;">
+                          <input @change="InputFileClick($event)" type="file" id="input-file" />
+                      </a>
+                  </li>
+                  <li class="device_status" id="active2">
+                      <a href="javascript:;">
+                          <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                      </a>
+                  </li>
+                  <li class="device_status" id="active3">
+                      <a href="javascript:;">
+                          <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                      </a>
+                  </li>
+              </ul> -->
+
+
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+              <input
+                  type="text" id="femi-search-text-ledger2"
+                  style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                  placeholder="请输入查询字符"
+              />
+            </button>
+            <button
+                class="btn lmvt-def-btn" @click="ShipMentSearch" type="button"
+                id="lmvt-left-check2"
+            >
+              筛选
+            </button>
+            <!-- <button class="btn lmvt-def-btn" type="button" id="lmvt-left-check2">
+                <span class="glyphicon glyphicon-search"></span>查询
+            </button> -->
+          </div>
+        </div>
+        <span class="zace-header-title" id="lmvt-header-title" style="">
+                        出货码信息</span>
+      </div>
+      <div
+          class="lmvt-container-table-basic femi-contain-border" style="margin-top: -90px;
+                padding: 95px 10px 15px 10px;"
+      >
+        <div class="femi-tb-scroll">
+          <table class="table table-hover table-bordered deviceinfo-table table-left" id="">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </th>
+              <th style="min-width:50px" data-order="WID">序号</th>
+
+              <th style="min-width:50px" data-order="FileName">文件名称</th>
+              <th style="min-width:50px" data-order="ItemCount">平衡板总数量</th>
+              <th style="min-width:50px" data-order="FileName">平衡板饱和数量</th>
+              <th style="min-width:50px" data-order="CreateTime">导入时间</th>
+              <th style="min-width:50px" data-order="handle">操作</th>
+            </tr>
+            </thead>
+            <tbody class="lmvt-device-body table-color">
+            <tr v-for="item in ShipMent" data-color="">
+              <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"/>
+              </td>
+              <td style="display: none;" data-title="ID" :data-value="item.ID">{{item.WID}}</td>
+              <td data-title="WID" :data-value="item.WID">{{item.WID}}</td>
+
+              <td data-title="FileName" :data-value="item.FileName">{{item.FileName}}</td>
+              <td data-title="ItemCount" :data-value="item.ItemCount">{{item.ItemCount}}</td>
+
+              <td data-title="FullCount" :data-value="item.FullCount">{{item.FullCount}}</td>
+
+              <td data-title="CreateTime" :data-value="item.CreateTime">
+                {{item.CreateTime}}
+              </td>
+
+              <td style="max-width: 60px;" :data-value="item.ID">
+                <div class="row">
+
+                  <div @click.stop="LookTableInfo(item.ID)" class="col-md-12 lmvt-do-info">
+                    详情
+                  </div>
+
+                  <!-- <div @click.stop="ImportResultFile" class="col-md-4 lmvt-do-info">导入</div> -->
+
+                  <!-- <div class="col-md-6">
+
+                      <UL id="lmvt-nav">
+                          <LI>更多
+                              <ul>
+                                  <li :data-value=item.ID @click="DeleteFileResultAll"
+                                      class="lmvt-reset">删除单体详情</li>
+                              </ul>
+                          </LI>
+                      </UL>
+
+
+                  </div> -->
+
+                </div>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="first-contain" v-for="(item,index) in ShipMent" :key="index">
+
+            <ul class="lmvt-first th">
+                <li style="width: 5%;">序号</li>
+                <li style="width: 35%;">文件名称</li>
+                <li style="width: 20%;">平衡板数量</li>
+                <li style="width: 35%;">导入时间</li>
+                <li style="width: 5%;">操作</li>
+            </ul>
+
+            <ul class="lmvt-first-li">
+                <li style="width: 5%;">{{item.WID}}</li>
+                <li style="width: 35%;">{{item.Code}}</li>
+                <li style="width: 20%;">{{item.ItemCount}}</li>
+                <li style="width: 35%;">{{item.ImportTime}}</li>
+                <li style="width: 5%;" @click="ShowItemList($event)" class="lastItem">
+                    <img src="../static/images/icon-right.png" style="">
+                </li>
+            </ul>
+            <ul class="lmvt-first th lmvt-second" style="margin-left: 2.5%;display: none;">
+                <li style="width: 5%;">序号</li>
+                <li style="width: 35%;">平衡板号</li>
+                <li style="width: 20%;">模组编码</li>
+                <li style="width: 35%;">导入时间</li>
+                <li style="width: 5%;">操作</li>
+            </ul>
+            <div style="display: none;margin-left: 2.5%;max-height: 650px;overflow: auto;"
+                class="lmvt-second">
+                <ul v-for="jtem in ShipMent[index].ItemList">
+                    <li style="width: 5%;">{{jtem.WID}}
+                    </li>
+                    <li style="width: 35%;">{{jtem.BalancePlateNo}}</li>
+                    <li style="width: 20%;">{{jtem.ModuleNo}}</li>
+                    <li style="width: 35%;">{{jtem.ImportTime}}</li>
+                    <li style="width: 5%;" class="lastItem">
+                        <div class="row">
+                            <div class="col-md-6" @click="lookInfo">查看</div>
+                            <div class="col-md-6" @click="lookInfoImport">导入</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="lmvt-container-item" style="display: none;float: right;padding: 3px 5px;height: 100%;">
+
+      <div class="femi-tb-head" style="height: 45px;">
+
+        <div class="row" style="width: 100%;">
+
+          <div class="col-xs-3" style="">
+            <input
+                style="width: 100%;" v-model="BalancePlateNo" id="lmvt-BalancePlateNo" type="text"
+                class="form-control width200" placeholder="请输入平衡板号"
+            >
+          </div>
+
+          <div class="col-xs-3" style="padding-left: 2px;">
+            <input
+                style="width: 100%;" v-model="ModuleNo" id="lmvt-ModuleNo" type="text"
+                class="form-control width200" placeholder="请输入模组号"
+            >
+          </div>
+
+
+          <div class="col-xs-3">
+
+            <button
+                type="button" @click="refreshModule" id="lmvt-search"
+                class="btn lmvt-danger-btn lmvt-default-btn"
+            >
+              查询
+            </button>
+            <button
+                type="button" @click="resetModule" id="lmvt-reset"
+                class="btn btn-default lmvt-default-btn lmvt-def-btn"
+            >
+              重置
+            </button>
+
+          </div>
+
+          <div class="col-xs-3">
+            <div class="columns columns-right btn-group pull-right">
+
+
+              <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                <input
+                    type="text" id="zace-search-level"
+                    style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                    placeholder="请输入查询字符"
+                />
+              </button>
+              <button
+                  @click="searchLevelPro" type="button" id="zace-search-level-pro"
+                  class="btn lmvt-def-btn "
+              >
+                <span class="glyphicon" aria-hidden="true"></span>筛选
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="lmvt-container-header-btn zace-tree-header" style="">
+
+
+                    <span class="zace-header-title" style="">
+                        出货码详情</span>
+      </div>
+
+      <div
+          class="lmvt-container-table-basic femi-contain-border" style="margin-top: -90px;
+                padding: 95px 10px 15px 10px;"
+      >
+        <div class="femi-tb-scroll">
+          <table class="table table-hover table-bordered deviceinfo-table table-left" id="table-info">
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </th>
+              <th style="min-width:50px" data-order="WID">序号</th>
+
+              <th style="min-width:50px" data-order="BalancePlateNo">平衡板号</th>
+              <th style="min-width:50px" data-order="ModuleNo">模组编码</th>
+              <th style="min-width:50px" data-order="ItemCount">单体数量</th>
+
+              <th style="min-width:50px" data-order="StandardCount">标准单体数量</th>
+
+              <th style="min-width:50px" data-order="Active">状态</th>
+
+              <th style="min-width:50px" data-order="ImportTime">导入时间</th>
+              <th style="min-width:50px" data-order="handle">操作</th>
+
+            </tr>
+            </thead>
+            <tbody class="lmvt-deviceInfo-body table-color">
+            <tr v-for="item in ItemInfoList" data-color="">
+              <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"/>
+              </td>
+              <td style="display: none;" data-title="ID" :data-value="item.ID">{{item.WID}}</td>
+              <td data-title="WID" :data-value="item.WID">{{item.WID}}</td>
+
+              <td data-title="BalancePlateNo" :data-value="item.BalancePlateNo">
+                {{item.BalancePlateNo}}
+              </td>
+
+              <td data-title="ModuleNo" :data-value="item.ModuleNo">{{item.ModuleNo}}</td>
+              <td data-title="ItemCount" :data-value="item.ItemCount">
+                {{item.ItemCount}}
+              </td>
+
+              <td data-title="StandardCount" :data-value="item.StandardCount">
+                {{item.StandardCount}}
+              </td>
+
+              <td data-title="Active" :data-value="item.Active">
+                {{ActiveList[item.Active]}}
+              </td>
+
+              <td data-title="ImportTime" :data-value="item.ImportTime">
+                {{item.ImportTime}}
+              </td>
+
+              <td style="max-width: 60px;" :data-value="item.ID">
+                <div class="row">
+
+                  <div
+                      v-if="item.ItemCount>0" @click.stop="LookOneInfo(item.ModuleNo)"
+                      class="col-md-6 lmvt-do-info"
+                  >
+                    详情
+                  </div>
+                  <div v-else class="col-md-6 lmvt-not-allowed-delete">详情</div>
+
+                  <div
+                      v-if="item.Active==3" @click.stop="LookOneInfo(item.ModuleNo)"
+                      class="col-md-6 lmvt-do-active"
+                  >
+                    解锁
+                  </div>
+                  <div v-else class="col-md-6 lmvt-not-allowed-delete">解锁</div>
+
+                  <!--
+              <div v-if="item.ID >= 0" @click.stop="deleteTableInfo(item.ID)"
+                  class="col-md-6 lmvt-allowed-delete">导入</div>
+              <div v-else class="col-md-6 lmvt-not-allowed-delete">导入</div> -->
+                </div>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div
+        class="iplant-tool-center lmvt-container-device"
+        style="width: 100%;margin: 0px;float: right;display: none;"
+    >
+      <div class="lmvt-container-header-btn zace-tree-header">
+        <div class="btn-group" role="group">
+
+          <button type="button" @click="ResultDeleteAll" id="" class="btn lmvt-danger-btn">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>全部删除
+          </button>
+
+          <!--<button type="button" style="display:none" class="btn lmvt-def-btn ">
+              <input type="file" id="input-file" />
+          </button>
+
+          <button type="button" id="tzj-sava" class="btn lmvt-def-btn ">
+              <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+          </button>
+          <button type="button" id="out_code" class="btn lmvt-def-btn ">
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>出货码
+          </button> -->
+          <button type="button" style="display:none" class="btn lmvt-def-btn ">
+            <input type="file" @change="ImportResult($event)" id="ImportResult-file"/>
+          </button>
+
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <div class="btn-group" role="group">
+
+            <div class="columns columns-right btn-group pull-right">
+              <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                <input
+                    type="text" id="zace-search-levelResult"
+                    style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                    placeholder="请输入查询字符"
+                />
+              </button>
+              <button
+                  @click="searchLevelProResult" type="button" id="zace-search-level-pro"
+                  class="btn lmvt-def-btn "
+              >
+                <span class="glyphicon" aria-hidden="true"></span>筛选
+              </button>
+              <button type="button" @click="resultHide" id="" class="btn lmvt-danger-btn">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+              </button>
+            </div>
+
+          </div>
+        </div>
+        <span class="zace-header-title" style="">
+                        电容包匹配结果</span>
+      </div>
+
+      <div class="lmvt-container-table-basic femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table
+              class="table table-hover table-bordered deviceinfo-table table-left"
+              id="deviceSparePart1"
+          >
+            <thead>
+            <tr>
+              <th style="width: 3px">
+                <input
+                    type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                    value="{{functionID}}"
+                />
+              </th>
+              <th style="min-width:50px" data-order="WID">序号</th>
+              <!--<th style="min-width:50px" data-order="BalancePlateNO">平衡板号</th>-->
+              <th style="min-width:50px" data-order="ModuleNo">模组编号</th>
+              <th style="min-width:50px" data-order="CasketOne">小箱号</th>
+              <th style="min-width:50px" data-order="CasketTwo">区别码</th>
+              <th style="min-width:50px" data-order="CasketThree">小箱号+区别码</th>
+              <th style="min-width: 50px" data-order="ProductNo">产品型号</th>
+              <th style="min-width: 50px" data-order="ACResistance">AC内阻</th>
+              <th style="min-width: 50px" data-order="DCResistance">DC内阻</th>
+              <th style="min-width: 50px" data-order="Capacity">容量</th>
+              <th style="min-width: 50px" data-order="SelfDischarge">自放电</th>
+              <th style="min-width: 50px" data-order="Gears">档位</th>
+              <!--<th style="min-width: 50px" data-order="GroupingPeople">分组人</th>
+  <th style="min-width: 50px" data-order="GroupingDate">分组日期</th>
+  <th style="min-width: 50px" data-order="IncomingBatches">来料批次</th>
+  <th style="min-width: 50px" data-order="Remark">备注</th>-->
+              <th style="min-width: 50px" data-order="ImportTime"> 导入时间</th>
+              <!--<th style="min-width: 50px" data-order="Active">状态</th>-->
+              <th style="min-width: 50px" data-order="UpdateTime">更新时间</th>
+
+              <th style="min-width:50px" data-order="handle">操作</th>
+
+            </tr>
+            </thead>
+            <tbody class="lmvt-deviceResult-body table-color">
+            <tr v-for="item in ResultList" data-color="">
+              <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"/>
+              </td>
+              <td style="display: none;" data-title="ID" :data-value="item.ID">{{item.ID}}</td>
+              <td data-title="WID" :data-value="item.WID">{{item.WID}}</td>
+
+              <td data-title="ModuleNo" :data-value="item.ModuleNo">{{item.ModuleNo}}</td>
+              <td data-title="CasketOne" :data-value="item.CasketOne">{{item.CasketOne}}</td>
+
+              <td data-title="CasketTwo" :data-value="item.CasketTwo">
+                {{item.CasketTwo}}
+              </td>
+
+              <td data-title="CasketThree" :data-value="item.CasketThree">{{item.CasketThree}}</td>
+              <td data-title="ProductNo" :data-value="item.ProductNo">{{item.ProductNo}}</td>
+
+              <td data-title="ACResistance" :data-value="item.ACResistance">
+                {{item.ACResistance}}
+              </td>
+
+              <td data-title="DCResistance" :data-value="item.DCResistance">{{item.DCResistance}}
+              </td>
+              <td data-title="Capacity" :data-value="item.Capacity">{{item.Capacity}}</td>
+
+              <td data-title="SelfDischarge" :data-value="item.SelfDischarge">
+                {{item.SelfDischarge}}
+              </td>
+              <td data-title="Gears" :data-value="item.Gears">{{item.Gears}}</td>
+
+              <td data-title="ImportTime" :data-value="item.ImportTime">{{item.ImportTime}}</td>
+              <td data-title="UpdateTime" :data-value="item.UpdateTime">{{item.UpdateTime}}</td>
+
+              <td style="max-width: 60px;" :data-value="item.ID">
+                <div class="row">
+                  <div
+                      v-if="item.ID>0" @click.stop="ResultDelete(item.ID)"
+                      class="col-md-12 lmvt-allowed-deleteo"
+                  >
+                    删除
+                  </div>
+                  <div v-else class="col-md-12 lmvt-not-allowed-delete">删除</div>
+                </div>
+              </td>
+
+            </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script type="text/javascript" src="../static/utils/require.js"></script>
+  <script type="text/javascript" src="../static/js/process_control/module.js"></script>
+</body>
+
+</html>

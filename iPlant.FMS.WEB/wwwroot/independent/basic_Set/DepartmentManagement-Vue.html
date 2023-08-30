@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>组织架构</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/vue/components/vue2-org-tree/index.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/basicSet/DepartmentManagement-Vue.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+<div id="department-body" class="fzy-page">
+  <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+  <div class="fzy-search-bar">
+    <el-input v-model="searchData.Name" class="input-box-300" placeholder="组织名称">
+      <template slot="prepend">组织名称</template>
+    </el-input>
+
+    <div class="input-select-box input-box-200">
+      <div class="label">状态</div>
+      <el-select v-model="searchData.Active" placeholder="请选择">
+        <el-option label="全部" value="-1"></el-option>
+        <el-option label="激活" value="1"></el-option>
+        <el-option label="关闭" value="2"></el-option>
+        <el-option label="保存" value="0"></el-option>
+      </el-select>
+    </div>
+
+    <div class="button-box">
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClick"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+
+
+  </div>
+  <div class="fzy-page-center-box">
+    <div class="fzy-page-center-title-bar">
+      <div class="left">
+        <span class="fzy-title">组织架构</span>
+      </div>
+      <div class="right">
+        <button class="btn lmvt-danger-btn" type="button" v-if="jurisdiction" @click="addClick">
+          <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>添加
+        </button>
+        <button class="btn lmvt-danger-btn" type="button" @click="getOrganizationChart">
+          <span aria-hidden="true" class="glyphicon glyphicon-indent-left"></span>组织架构图
+        </button>
+      </div>
+    </div>
+    <!--     <table class="fzy-table">
+             <thead>
+             <tr>
+                 <template
+                         v-for="(item,index) in tableHead"
+                         :key="index"
+                 >
+                     <th v-if="!item.show || jurisdiction"
+                         :style="{
+                             width: item.width ? item.width + 'px' : 'auto',
+                             minWidth: item.minWidth ? item.minWidth + 'px' : 'auto',
+                             maxWidth: item.maxWidth ? item.maxWidth + 'px' : 'auto',
+                         }"
+                     > {{ item.label }}
+                     </th>
+                 </template>
+             </tr>
+             </thead>
+             <tbody>
+             <tr v-for="(row,index) in departmentList" :key="index">
+                 <template
+                         v-for="item in tableHead"
+                         :key="item.label"
+                 >
+                     &lt;!&ndash;序号&ndash;&gt;
+                     <td v-if="item.type==='sequence'">{{ index + 1 }}</td>
+
+                     &lt;!&ndash;开关&ndash;&gt;
+                     <td v-else-if="item.type==='switch'" v-show="!item.show || jurisdiction">
+                         <el-switch
+                                 :value="row[item.key] | switchStatus"
+                                 active-color="#0ea9f7"
+                                 inactive-color="#cccccc"
+                                 @change="activeChange(row)"
+                         >
+                         </el-switch>
+                     </td>
+
+                     &lt;!&ndash;日期&ndash;&gt;
+                     <td v-else-if="item.type==='time'">
+                         {{ row[item.key] | timeStr }}
+                     </td>
+
+                     &lt;!&ndash;操作&ndash;&gt;
+                     <td v-else-if="item.type==='operation'"  v-show="!item.show || jurisdiction">
+                         <div
+                                 class="col-md-6 lmvt-do-info lmvt-resetPencil"
+                                 @click="editClick(row,index)"
+                         >
+                             <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                             编辑
+                         </div>
+                         <div
+                                 :class="{forbidden:row.Active !== 0}"
+                                 class="col-md-6 lmvt-do-info lmvt-delete fzy-text-btn"
+                                 @click="removeClick(row,index)"
+                         >
+                             <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+                             删除
+                         </div>
+                     </td>
+
+                     &lt;!&ndash;基础数据&ndash;&gt;
+                     <td v-else> {{ row[item.key] }}</td>
+
+                 </template>
+             </tr>
+             </tbody>
+         </table>-->
+
+    <el-table
+        :data="departmentList"
+        size="mini"
+        border
+        current-row-key="Code"
+        height="calc(100% - 45px)"
+    >
+      <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+      <el-table-column label="部门编码" property="Code" align="center" width="80px"></el-table-column>
+      <el-table-column label="部门名称" property="Name" align="center" min-width="150px"></el-table-column>
+      <el-table-column label="上级部门" property="ParentName" align="center" min-width="150px"></el-table-column>
+      <el-table-column label="部门成员数量" property="EmployeeCount" align="center" width="120px"></el-table-column>
+      <el-table-column label="部门描述" property="Remark" align="center" min-width="200px"></el-table-column>
+      <el-table-column label="申请时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.CreateTime | timeStr }}
+        </template>
+      </el-table-column>
+      <el-table-column label="编辑时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.EditTime | timeStr }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="状态" align="center" width="80px">
+        <template slot-scope="scope">
+          <el-switch
+              :value="scope.row.Active | switchStatus"
+              active-color="#0ea9f7"
+              inactive-color="#cccccc"
+              @change="activeChange(scope.row)"
+              :disabled="!jurisdiction"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" align="center" v-if="jurisdiction">
+        <template slot-scope="scope">
+          <div
+              class="col-md-6 lmvt-do-info lmvt-resetPencil"
+              @click="editClick(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+            编辑
+          </div>
+          <div
+              :class="{forbidden:scope.row.Active !== 0}"
+              class="col-md-6 lmvt-do-info lmvt-delete fzy-text-btn"
+              @click="removeClick(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+            删除
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+
+
+  <el-dialog
+      :show-close="false"
+      :visible.sync="tree.show"
+      title="组织架构图"
+      width="75vw"
+  >
+    <div class="fzy-dialog-center flex-j-center">
+      <vue2-org-tree
+          :data="tree.data"
+          :label-class-name="labelClass"
+          :render-content="renderContent"
+          collapsable
+          selected-class-name="selected-node"
+          selected-key="selectedKey"
+          selectedKey="ID"
+          @on-expand="onExpand"
+      ></vue2-org-tree>
+      <!--
+          @on-node-drop="onNodeDrop"
+          @on-node-click="onNodeClick"
+          @on-node-mouseover="onNodeMouseOver"
+          @on-node-mouseout="onNodeMouseOut"
+      -->
+    </div>
+    <div slot="title" class="dialog-footer flex-row flex-j-sb flex-a-center">
+      <span class="fzy-title">组织架构图:</span>
+
+      <button class="btn lmvt-danger-btn" type="button" @click="tree.show=false">
+        <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+        关闭
+      </button>
+    </div>
+    <span>
+
+  </span>
+  </el-dialog>
+
+</div>
+
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/basicSet/DepartmentManagement-Vue.js" type="text/javascript"></script>
+</body>
+
+</html>

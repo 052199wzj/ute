@@ -1,0 +1,208 @@
+body {
+	color: white;
+	background-image: url('../images/bgbody.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	min-width: 200px;
+}
+
+.form-signin-heading {
+	color: white;
+}
+
+.form-signin {
+	/* max-width: 330px; */
+	padding: 15px;
+	height: 80%;
+	max-width: 40%;
+	/* margin: 0 auto; */
+	flex: 1;
+	justify-content: flex-start;
+	/* background-color: #FACD92; */
+	max-width: 25%;
+	margin-left: 25%;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+.form-signin-heading {
+	/* width:165px;  */
+	height:45px;
+	margin-left: 2px;
+	/* background-image: url("../images/contain/iPlant.png"); */
+	/* background-image: url("../images/contain/GZLOCO.png"); */
+	/* background-image: url("../images/contain/NBLOGO.png"); */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+ 
+.form-signin-headingMes {
+    width:165px;		
+	background-image: url("../images/contain/iPlant.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+
+
+.form-signin .form-control {
+	position: relative;
+	height: 60px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+
+	margin: 20px 5px;
+
+
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.btn {
+	background-color: #0079FE;
+	height: 60px;
+}
+
+.sq-head-title { 
+	font-family: STXinwei;
+  
+}
+
+div.femi-bottom {
+	height: 35px;
+	width: 100%;
+	margin-top: 20px;
+	position: absolute;
+	bottom: 0;
+	background-color: white;
+	overflow: hidden;
+}
+
+div.femi-bottom div {
+	margin: 0 auto;
+	width: 500px;
+	line-height: 38px;
+	color: #555555;
+}
+
+.femi-header-lf {
+	width: 65px;
+	height: 65px;
+	border-radius: 65px;
+	overflow: hidden;
+	float: left;
+}
+
+div.femi-header-lf img {
+	width: 65px;
+	height: 65px;
+}
+
+div.femi-container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin: 0;
+}
+
+div.femi-header {
+	width: 100%;
+	padding: 15px;
+	overflow: hidden;
+	position: absolute;
+}
+
+ul.femi-header-float {
+	float: right;
+	list-style: none;
+	-webkit-padding-start: 0px;
+	font-family: inherit;
+}
+ul.femi-header-floatLeft {
+	float: left;
+
+}
+
+
+ul.femi-header-float li a {
+	font-size: 14px;
+	color: white;
+}
+
+.femi-login-repair {
+	float: right;
+	padding-top: 5px;
+	color: #EE2C2C;
+}
+
+.femi-login-repair a {
+	color: white;
+	cursor: pointer;
+}
+
+.femi-login-alarm {
+	float: left;
+	padding-top: 5px;
+	color: #EE2C2C;
+}
+
+.femi-login-bd {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	margin-top: -410px;
+	display: flex;
+	height: 80%;
+}
+
+.femi-login-bd .femi-head-login-title {
+	margin: 10px auto;
+	height: 65px;
+	max-width: 330px;
+	padding: 15px;
+}
+
+.femi-login-bd .femi-head-login-title .femi-head-title-name {
+	line-height: 59px;
+	color: white;
+	font-family: STXingkai;
+}
+
+.femi-login-bd .form-signin .femi-head-title-name {
+	line-height: 35px;
+	/* color:black;   STXingkai*/
+	color: white;
+	font-family: sans-serif;
+}
+h3,h2{
+	text-align: center;
+}
+.index-logo{
+	text-align: center;
+}
+.btn-margin{
+	margin: 40px 5px 0px 5px;
+}

@@ -1,0 +1,544 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title> 工艺变更</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/ProcessChange.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/webbpm.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/webselect.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap-select.css"/>
+
+</head>
+
+<body class="femi-font-size-middle">
+<div class="ds-tab-contain">
+  <div class="ds-tab-head">
+    <ul class="ds-tab-menu">
+      <li class="ds-tab-menu-item active" id="zace-undone">
+        <svg
+            style=" height: 24px;width: 24px;"
+            t="1606457497808" class="icon" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="2959" width="200" height="200"
+        >
+          <path
+              d="M372.674303 617.841583 208.583061 617.841583l0 55.112202 158.683069 0C367.966071 654.182256 369.801882 635.789351 372.674303 617.841583L372.674303 617.841583z"
+              p-id="2960" fill="#5aafee"
+          ></path>
+          <path
+              d="M208.583061 403.864164l353.807095 0c29.618575-13.797237 61.45363-22.044062 94.675266-23.715121l0-31.399127L208.583061 348.749916 208.583061 403.864164 208.583061 403.864164z"
+              p-id="2961" fill="#5aafee"
+          ></path>
+          <path
+              d="M158.507572 769.490445c-20.847817 0-29.540803-8.698103-29.540803-29.526477l0-593.077573c0-20.828374 8.694009-29.52443 29.540803-29.52443l548.628222 0c20.826328 0 29.54592 8.696056 29.54592 29.52443l0 237.22489c23.485901 4.300956 33.708729 11.326976 54.92596 20.72502L791.607674 107.216907c0-24.76708-20.083407-44.847417-44.847417-44.847417L118.888226 62.369489c-24.769127 0-44.852534 20.081361-44.852534 44.847417l0 672.728658c0 24.758893 20.083407 44.847417 44.852534 44.847417l283.845697 0c-11.346419-21.157879-20.263509-31.520901-26.356274-55.302537L178.973696 769.490445 158.507572 769.490445z"
+              p-id="2962" fill="#5aafee"
+          ></path>
+          <path
+              d="M208.583061 214.205617l448.481338 0 0 55.113225-448.481338 0 0-55.113225Z" p-id="2963"
+              fill="#5aafee"
+          ></path>
+          <path
+              d="M679.400103 420.235017c-148.146085 0-268.25358 120.091122-268.25358 268.258697 0 148.144038 120.112612 268.257673 268.25358 268.257673 148.164504 0 268.25665-120.114658 268.25665-268.257673C947.656753 540.326139 827.564607 420.235017 679.400103 420.235017zM679.87901 905.252479C560.885895 905.252479 464.4311 808.801776 464.4311 689.810708c0-118.999255 96.455819-215.45712 215.44791-215.45712 119.001301 0 215.452004 96.457866 215.452004 215.45712C895.32999 808.801776 798.875195 905.252479 679.87901 905.252479z"
+              p-id="2964" fill="#5aafee"
+          ></path>
+          <path
+              d="M208.583061 483.293191l0 55.113225 197.292412 0c8.973372-19.528775 19.332301-37.97387 30.9325-55.113225L208.583061 483.293191z"
+              p-id="2965" fill="#5aafee"
+          ></path>
+          <path
+              d="M681.543929 714.512297 681.543929 589.929884 627.394658 589.929884 627.394658 769.682827 807.143509 769.682827 807.143509 714.512297Z"
+              p-id="2966" fill="#5aafee"
+          ></path>
+        </svg>
+        报修
+      </li>
+      <li class="ds-tab-menu-item" id="zace-done">
+        <svg
+            t="1606457936640" class="icon" viewBox="0 0 1024 1024"
+            version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4063" width="200" height="200"
+        >
+          <path
+              d="M738.826039 1005.166431c-150.226824 0-272.00251-121.916235-272.00251-272.303686 0-150.407529 121.775686-272.323765 272.00251-272.323765 150.206745 0 271.982431 121.916235 271.982432 272.323765 0 150.387451-121.775686 272.303686-271.982432 272.303686z m-0.040157-508.225255c-128.582275 0-232.789333 104.347608-232.789333 233.09051s104.207059 233.110588 232.789333 233.110589c128.562196 0 232.769255-104.367686 232.769255-233.110589 0-128.742902-104.207059-233.09051-232.769255-233.09051z m10.561255 318.243138s-3.694431 3.674353-7.408941 3.674353a18.010353 18.010353 0 0 1-25.941333 0l-74.10949-80.916079a17.66902 17.66902 0 0 1 0-25.740549c7.408941-7.368784 22.246902-7.368784 25.941333 0l63.006118 69.872941 129.686588-117.699764a18.010353 18.010353 0 0 1 25.941333 0 17.709176 17.709176 0 0 1 0 25.760627L749.347137 815.184314zM391.529412 682.666667H190.745098a20.078431 20.078431 0 0 1 0-40.156863h200.784314a20.078431 20.078431 0 1 1 0 40.156863zM170.666667 261.019608a20.078431 20.078431 0 0 1 20.078431-20.078432h481.882353a20.078431 20.078431 0 0 1 0 40.156863H190.745098a20.078431 20.078431 0 0 1-20.078431-20.078431z m341.333333 200.784314H190.745098a20.078431 20.078431 0 0 1 0-40.156863h321.254902a20.078431 20.078431 0 0 1 0 40.156863zM813.176471 120.470588a80.313725 80.313725 0 0 0-80.313726-80.313725H130.509804a80.313725 80.313725 0 0 0-80.313726 80.313725v762.980392a80.313725 80.313725 0 0 0 80.313726 80.313726h366.832941a346.112 346.112 0 0 0 40.417882 40.779294H130.509804a120.470588 120.470588 0 0 1-120.470588-120.470588V120.470588a120.470588 120.470588 0 0 1 120.470588-120.470588h602.352941a120.470588 120.470588 0 0 1 120.470588 120.470588v293.667137a340.188863 340.188863 0 0 0-40.156862-8.533333V120.470588z"
+              p-id="4064" fill="#1afa29"
+          ></path>
+        </svg>
+        检修
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="ds-tab-body-contain">
+    <div class="ds-tab-body active zacePlanCommit">
+      <!-- 报修 -->
+      <div class="zace-cbd-contain">
+        <div class="ds-search-top" style="height: 50px; margin-bottom: 5px;display: flex;align-items: center;">
+          <div class="fxy-search searchShow-repairs">
+            <div class="input-group Device-search">
+              <span class="input-group-addon">维修等级</span>
+              <div style="height: 34px;">
+                <select class="selectpicker fxy-search-AlarmLevel">
+                  <option value="-1">请选择</option>
+                  <option value="1">A级</option>
+                  <option value="2">B级</option>
+                  <option value="3">C级</option>
+                  <option value="4">D级</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group Device-search">
+              <span class="input-group-addon ">报警类型</span>
+              <div style="height: 34px;">
+                <select class="selectpicker fxy-search-AlarmType">
+                  <option value="-1">请选择</option>
+                  <option value="1">状态</option>
+                  <option value="2">报警</option>
+                  <option value="3">参数</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group Device-search">
+              <span class="input-group-addon">状态</span>
+              <div style="height: 34px;">
+                <select class="selectpicker fxy-search-Status">
+                  <option value="-1">请选择</option>
+                  <option value="1">未检修</option>
+                  <option value="2">已检修</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="input-group Device-search" style="width: 341px">
+              <span class="input-group-addon">选择时间</span>
+              <input
+                  type="text" name="datetimepicker1" value="" placeholder="查询年月"
+                  class="form-control date1"
+              >
+              <input
+                  type="text" name="datetimepicker2" value="" placeholder="查询年月"
+                  class="form-control date1"
+              >
+            </div>
+            <div class="search-btn Device-search">
+              <button type="button" class="btn btn-info " id="lmvt-search-ReportRepair">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                查询
+              </button>
+              <button
+                  type="button" id="lmvt-reset-ReportRepair"
+                  class="btn btn-default lmvt-default-btn lmvt-def-btn"
+              >
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                重置
+              </button>
+            </div>
+          </div>
+          <div class="particulars-head-repairs">
+            <button
+                type="button"
+                class="btn lmvt-danger-btn lmvt-default-btn"
+                id="go-back-repairs"
+            >
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              返回
+            </button>
+            <div class="fxy-DeviceName fxy-head"></div>
+            <span id="fxy-StatusText-repairs" class="fxy-head fxy-StatusText"></span>
+            <button
+                type="button"
+                class="btn lmvt-danger-btn lmvt-default-btn"
+                id="fxy-preserve-repairs"
+            >
+              <span class="glyphicon" aria-hidden="true"></span>
+              保存
+            </button>
+
+          </div>
+        </div>
+        <div class="zace-leftContain ds-contain-middle" style="height: calc(100% - 50px);">
+          <div class="zzza zace-cbd-contain zace-right" style="display: none;background-color: #fff;">
+            <div class="zace-tree-header" style="overflow:visible;">
+              <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                  <button type="button" id="zace-useModify" class="btn btn-default ">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+                  </button>
+                </div>
+              </div>
+              <div class="columns columns-right btn-group pull-right">
+                <button type="button" id="zace-usehideModify" class="btn btn-default">
+                  <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                </button>
+              </div>
+              <span
+                  class="" style="font-family: STXinwei;
+                                font-size: 20px;
+                                color: black;
+                                width: 200px;
+                                line-height: 40px;
+                                cursor: default;
+                                text-align: center;
+                                margin: auto;
+                                height: 40px;"
+              > 报修修改</span>
+            </div>
+
+            <div
+                class="Typetable lmvt-container-table-basic femi-contain-border"
+                id="Typetable-taskuseModify"
+            >
+
+
+            </div>
+          </div>
+          <div class="zzzb zace-cbd-contain zace-right" style="display: none;background-color: #fff;">
+            <div class="zace-tree-header" style="overflow:visible;">
+              <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                  <button type="button" id="zace-useAdd" class="btn btn-default ">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>提交
+                  </button>
+                </div>
+              </div>
+              <div class="columns columns-right btn-group pull-right">
+                <button type="button" id="zace-usehide" class="btn btn-default">
+                  <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                </button>
+              </div>
+              <span
+                  class="" style="font-family: STXinwei;
+                                font-size: 20px;
+                                color: black;
+                                width: 200px;
+                                line-height: 40px;
+                                cursor: default;
+                                text-align: center;
+                                margin: auto;
+                                height: 40px;"
+              > 报修新增</span>
+            </div>
+
+            <div class="Typetable lmvt-container-table-basic femi-contain-border" id="Typetable-task1">
+
+
+            </div>
+          </div>
+          <div class="zzzc zace-cbd-contain zace-left">
+            <div class="zace-tree-header" style="overflow:visible;">
+              <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                </div>
+              </div>
+              <div class="columns columns-right btn-group pull-right">
+                <button type="button" id="zace-AddRepair" class="btn lmvt-danger-btn">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>报修
+                </button>
+              </div>
+              <div style="float: left;">
+                                    <span
+                                        class="" style="font-family: STXinwei;
+                                font-size: 20px;
+                                color: black;
+                                width: 200px;
+                                line-height: 40px;
+                                cursor: default;
+                                text-align: center;
+                                margin: auto;
+                                height: 40px;"
+                                    > 设备报修列表</span>
+              </div>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border">
+              <div class="femi-tb-scroll">
+                <table
+                    class="table   table-hover table-bordered table-part table-partApprovalRecord"
+                >
+
+                  <thead>
+                  <tr>
+                    <th style="min-width: 50px" data-order="DeviceNo">设备编号</th>
+                    <th style="min-width: 50px" data-order="DeviceName">设备名称</th>
+                    <th style="min-width: 50px" data-order="AlarmType">报警类型</th>
+                    <th style="min-width: 50px" data-order="AlarmCode">异常编码</th>
+                    <th style="min-width: 50px" data-order="AlarmName">报修名称</th>
+                    <th style="min-width: 50px" data-order="AlarmRemark">报修备注</th>
+                    <th style="min-width: 50px" data-order="AlarmLevel">维修等級</th>
+                    <th style="min-width: 50px" data-order="Creator">报修人</th>
+                    <th style="min-width: 50px" data-order="CreateTime">报修时间</th>
+                    <th style="min-width: 50px" data-order="Repairer">检修人</th>
+                    <th style="min-width: 50px" data-order="RepairTime">维修时间</th>
+                    <th style="min-width: 50px" data-order="RepairRemark">维修备注</th>
+                    <th style="min-width: 50px" data-order="RepairStartTime">开始时间</th>
+                    <th style="min-width: 50px" data-order="RepairEndTime">结束时间</th>
+                    <th style="min-width: 50px" data-order="StatusText">状态</th>
+                    <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+                  </tr>
+                  </thead>
+                  <tbody id="femi-zacePlanCommit-tbody" class="table-color">
+                  <tr>
+                    <td colspan="17">等待数据加载</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="zzze-repairs zace-cbd-contain">
+            <div class="repairs-particulars"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-tab-body zacePlanCommitDone" style="display: none;">
+      <!-- 检修 -->
+      <div class="zace-cbd-contain">
+        <div class="ds-search-top" style="height: 50px; margin-bottom: 5px;display: flex;align-items: center">
+          <div class="fxy-search searchShow">
+            <div class="input-group Device-search">
+              <span class="input-group-addon">维修等级</span>
+              <div style="height: 34px;">
+                <select class="selectpicker fxy-search-AlarmLevel-recondition">
+                  <option value="-1">请选择</option>
+                  <option value="1">A级</option>
+                  <option value="2">B级</option>
+                  <option value="3">C级</option>
+                  <option value="4">D级</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group Device-search">
+              <span class="input-group-addon ">报警类型</span>
+              <div style="height: 34px;">
+                <select class="selectpicker fxy-search-AlarmType-recondition">
+                  <option value="-1">请选择</option>
+                  <option value="1">状态</option>
+                  <option value="2">报警</option>
+                  <option value="3">参数</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group Device-search">
+              <span class="input-group-addon">状态</span>
+              <div style="height: 34px;">
+                <select class="selectpicker fxy-search-Status-recondition">
+                  <option value="-1">请选择</option>
+                  <option value="1">未检修</option>
+                  <option value="2">已检修</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group Device-search" style="width: 341px">
+              <span class="input-group-addon">选择时间</span>
+              <input
+                  type="text" name="datetimepicker3" value="" placeholder="查询年月"
+                  class="form-control date1"
+              >
+              <input
+                  type="text" name="datetimepicker4" value="" placeholder="查询年月"
+                  class="form-control date1"
+              >
+            </div>
+            <div class="search-btn Device-search">
+              <button type="button" class="btn btn-info " id="lmvt-search-Overhaul">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                查询
+              </button>
+              <button
+                  type="button" id="lmvt-reset-Overhaul"
+                  class="btn btn-default lmvt-default-btn lmvt-def-btn"
+              >
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                重置
+              </button>
+            </div>
+          </div>
+          <div class="particulars-head">
+            <button
+                type="button"
+                class="btn lmvt-danger-btn lmvt-default-btn"
+                id="go-back"
+            >
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              返回
+            </button>
+            <div class="fxy-DeviceName fxy-head"></div>
+            <span id="fxy-StatusText" class="fxy-head fxy-StatusText"></span>
+            <button
+                type="button"
+                class="btn lmvt-danger-btn lmvt-default-btn"
+                id="fxy-preserve"
+            >
+              <span class="glyphicon" aria-hidden="true"></span>
+              保存
+            </button>
+
+          </div>
+        </div>
+        <div class="zace-leftContain ds-contain-middle" style="height: calc(100% - 50px);">
+          <div class="zzzd zace-cbd-contain">
+            <div class="zace-tree-header" style="overflow:visible;">
+              <div class="femi-toolbar-self femi-lf">
+                <div class="btn-group" role="group">
+                  <!-- <button type="button" id="zace-undone" class="btn lmvt-def-btn">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>待办
+      </button>
+      <button type="button" id="zace-done" class="btn lmvt-def-btn" style="color: black;">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已办
+      </button>
+      <button type="button" id="zace-Send" class="btn lmvt-def-btn">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>发起
+      </button> -->
+                </div>
+              </div>
+
+              <div class="columns columns-right btn-group pull-right">
+
+                <!-- <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                    <input type="text" id="zace-search-done"
+                        style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                        placeholder="请输入查询字符" />
+                </button>
+                <button type="button" id="zace-searchDone" class="btn lmvt-def-btn">
+                    <span class="glyphicon " aria-hidden="true"></span>筛选
+                </button>
+                <button type="button" id="zace-refresh-Done" class="btn lmvt-def-btn">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                </button> -->
+              </div>
+
+              <div style="float: left;">
+                                    <span
+                                        class="" style="font-family: STXinwei;
+                                font-size: 20px;
+                                color: black;
+                                width: 200px;
+                                line-height: 40px;
+                                cursor: default;
+                                text-align: center;
+                                margin: auto;
+                                height: 40px;"
+                                    > 设备检修列表</span>
+              </div>
+            </div>
+            <div class="zace-tree-body femi-contain-border">
+              <div class="femi-tb-scroll">
+                <table
+                    class="table   table-hover table-bordered table-part table-partApprovalRecord"
+                >
+
+                  <thead>
+                  <tr>
+
+                    <!-- <th style="width: 3px">
+            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                value="{{functionID}}" />
+        </th> -->
+                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                    <th style="min-width: 50px" data-order="DeviceNo">设备编号</th>
+                    <th style="min-width: 50px" data-order="DeviceName">设备名称</th>
+                    <th style="min-width: 50px" data-order="AlarmType">报警类型</th>
+                    <th style="min-width: 50px" data-order="AlarmCode">异常编码</th>
+                    <th style="min-width: 50px" data-order="AlarmName">报修名称</th>
+                    <th style="min-width: 50px" data-order="AlarmRemark">报修备注</th>
+                    <th style="min-width: 50px" data-order="AlarmLevel">检修等級</th>
+                    <th style="min-width: 50px" data-order="Creator">报修人</th>
+                    <th style="min-width: 50px" data-order="CreateTime">报修时间</th>
+                    <th style="min-width: 50px" data-order="Repairer">检修人</th>
+                    <th style="min-width: 50px" data-order="RepairTime">维修时间</th>
+                    <th style="min-width: 50px" data-order="RepairRemark">维修备注</th>
+                    <th style="min-width: 50px" data-order="RepairStartTime">开始时间</th>
+                    <th style="min-width: 50px" data-order="RepairEndTime">结束时间</th>
+                    <th style="min-width: 50px" data-order="StatusText">状态</th>
+                    <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+                  </tr>
+                  </thead>
+                  <tbody id="femi-zacePlanCommitDone-tbody" class="table-color">
+                  <tr>
+                    <!-- <td>
+            <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                value="{{functionID}}" />
+        </td> -->
+                    <td colspan="17">等待数据加载</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="zzze zace-cbd-contain">
+            <div class="zace-tree-body femi-contain-border" style="padding: 50px 0 5px 0;">
+              <div class="recondition-particulars"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--                详情-->
+
+    </div>
+  </div>
+</div>
+<div
+    style="width: 40%; margin-left: 30%;position: absolute;top: 30px;min-width: 600px;display: none;z-index: 99999999999999999999;"
+    class="ds-TempAlarm"
+>
+  <div class="modal-content">
+    <div class="modal-bodySelectDate">
+      <div class="view view-wrap" style="padding: 25px 10px;left: 0px;">
+        <div class="m-menu m-blue-menu" style="font-size:16px;width: 100%">
+          <div
+              class="m-left-area btn"
+              style="width: 20%;display: inline-block;text-align: left;font-size:16px;font-weight: bold;"
+              data-dismiss="modal"
+          >
+            <img
+                src="../static/images/checkbox/返回.png"
+                style="width:20px;height:20px;vertical-align: middle;"
+            >
+            <span>返回</span>
+          </div>
+          <div
+              class="m-title"
+              style="width: 58%;display: inline-block;text-align: center;font-weight: bold;font-size:16px;"
+          >
+            <span class="DateTitle">报修编码选择</span></div>
+          <div
+              class="m-right-area btn"
+              style="width: 20%;display: inline-block;text-align: right;font-weight: bold;font-size:16px;"
+          >
+            <img
+                src="../static/images/checkbox/确认.png"
+                style="width:25px;height:25px;vertical-align: middle;"
+            >
+            <span class="confirmSelect">确认</span>
+          </div>
+        </div>
+        <div class="ds-select-input" style="padding: 5px 13px;">
+          <input
+              class="form-control femi-select-input femi-search-content" type="text"
+              placeholder="请输入搜索文本"
+          >
+        </div>
+
+        <div style="padding: 0 13px;overflow-y: auto;">
+          <ul
+              class="SelectDate"
+              style="max-height: 500px;min-height: 300px;list-style: none; margin-left: -40px;"
+          >
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/ProcessChange.js"></script>
+</body>
+
+</html>

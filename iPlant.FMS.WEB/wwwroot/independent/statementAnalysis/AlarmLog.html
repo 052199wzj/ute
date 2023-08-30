@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/statementAnalysis/AlarmLog.css">
+  <title>报警日志</title>
+</head>
+<body>
+<div id="alarmLog">
+  <template>
+    <div class="fzy-page fxy-head">
+      <div class="fzy-search-bar">
+        <div class="input-select-box input-box-300">
+          <div class="label">区域</div>
+          <el-select v-model="AreaID" placeholder="请选择">
+            <el-option
+                v-for="item in Area"
+                :key="item.ID"
+                :label="item.Name"
+                :value="item.ID"
+            >
+            </el-option>
+          </el-select>
+        </div>
+        <div class="input-select-box input-box-300">
+          <div class="label">设备类型</div>
+          <el-select v-model="DeviceTypeID" filterable="true" clearable placeholder="请选择">
+            <el-option
+                v-for="(item,index) in DeviceType"
+                :key="index"
+                :label="item.DeviceTypeName"
+                :value="item.DeviceType"
+            >
+            </el-option>
+          </el-select>
+        </div>
+        <!--<div class="input-select-box input-box-300">
+            <div class="label">设备名称</div>
+            <el-select v-model="DeviceName" filterable="true" clearable placeholder="请选择">
+                <el-option
+                        v-for="(item,index) in DeviceList"
+                        :key="index"
+                        :label="item.Name"
+                        :value="item.Name">
+                </el-option>
+            </el-select>
+        </div>-->
+        <div class="input-select-box input-box-300">
+          <div class="label">时间</div>
+          <el-date-picker
+              ref="test"
+              v-model="timeSection"
+              type="daterange"
+              :clearable="false"
+              value-format="yyyy-MM-dd"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+          >
+          </el-date-picker>
+        </div>
+        <div class="button-box">
+          <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search()">
+            <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+            查询
+          </button>
+          <button
+              class="btn lmvt-def-btn"
+              type="button"
+              @click="reset"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+            重置
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="fxy-body">
+      <div class="flex-j-sb mb-1">
+        <div>
+          <span class="fzy-title">报警日志</span>
+        </div>
+        <div>
+          <button
+              class="btn lmvt-def-btn"
+              type="button"
+              @click="clearSelection"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+            清空
+          </button>
+          <button class="btn lmvt-danger-btn" style="border: 0;" type="button" @click="exportEx">
+            <span aria-hidden="true" class="glyphicon glyphicon-export"></span>
+            导出
+          </button>
+        </div>
+      </div>
+      <el-table
+          ref="myTable"
+          :data="alarmList"
+          border
+          size="mini"
+          current-row-key="Code"
+          height="calc(100% - 70px)"
+          row-key="$key"
+          @selection-change="selectionChange"
+      >
+        <el-table-column type="selection" reserve-selection></el-table-column>
+        <el-table-column type="index" label="序号" width="50px" align="center" min-width="150"></el-table-column>
+        <el-table-column label="设备名称" property="DeviceName" align="center" min-width="200"></el-table-column>
+        <el-table-column label="设备编号" property="DeviceNo" align="center" min-width="80"></el-table-column>
+        <el-table-column label="报警编码" property="AlarmCode" align="center" min-width="100"></el-table-column>
+        <el-table-column label="报警名称" property="AlarmName" align="center" min-width="200"></el-table-column>
+        <el-table-column label="起始时刻" property="StatusTime" align="center" min-width="150"></el-table-column>
+        <el-table-column label="结束时刻" property="StatusTimeEnd" align="center" min-width="150"></el-table-column>
+        <el-table-column label="报警描述" property="AlarmDesc" align="center" min-width="150"></el-table-column>
+      </el-table>
+    </div>
+  </template>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/statementAnalysis/AlarmLog.js"></script>
+</body>
+</html>

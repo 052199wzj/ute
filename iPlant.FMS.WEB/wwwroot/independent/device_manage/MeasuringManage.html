@@ -1,0 +1,774 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>量具管理</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/deviceManage/MeasuringManage.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div id="lmvt-vueApp" class="zace-cbd-contain">
+        <div class="zace-leftContain">
+
+            <div v-show="TreeMenu" style="width: 20%;height: 100%;float: left">
+
+                <div class="femi-tb-head" style="position: relative;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" @click="ChangeCalibration(1)" id="zace-add-levelOrder"
+                                class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>切换
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <span class="zace-header-title" style="font-family:STXinwei;font-size: 20px;color: #C7001A;">量具树
+                    </span>
+                </div>
+
+                <div class="femi-tb-head">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="input-select-node" class="sr-only">Search
+                                Tree:</label>
+                            <input type="input" v-on:input="TreeSelect" class="form-control" id="input-select-node"
+                                placeholder="模糊匹配，请输入名称或编码" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="femi-contain-border femi-tb-border" style="margin-top: -90px;
+                    padding: 95px 10px 15px 10px;">
+                    <div style="height: 100%;overflow:auto;">
+                        <ul id="standardList" class="femi-left-tree treeview-famfamfam treeview">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div v-show="TableMenu" style="width: 20%;height: 100%;float: left">
+
+                <div class="femi-tb-head" style="position: relative;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" @click="ChangeCalibration(2)" id="zace-add-levelOrder"
+                                class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>切换
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button @click="CalibrationAdd" type="button" class="btn lmvt-danger-btn">
+                            <span class="glyphicon" aria-hidden="true"></span>新增
+                        </button>
+                    </div>
+
+                    <span class="zace-header-title" style="font-family:STXinwei;font-size: 20px;color: #C7001A;">校正等级
+                    </span>
+                </div>
+
+                <div class="femi-contain-border femi-tb-border" style="margin-top: -45px;
+                    padding: 50px 10px 15px 10px;">
+                    <div style="height: 100%;overflow:auto;">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+
+                                        <th style="width: 60px" data-order="WID">序号</th>
+                                        <th style="min-width: 50px" data-order="Code">字码</th>
+                                        <th style="max-width: 50px" data-order="CalibrationCycle">周期（月）</th>
+                                        <th style="min-width: 50px" data-order="Active">状态</th>
+                                        <th style="min-width: 50px">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lmvt-Type-tbody" class="table-color">
+                                    <tr v-for="item in CalibrationList" data-color="">
+
+                                        <td style="display: none;" data-title="ID" :data-value=item.ID>{{item.WID}}</td>
+                                        <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+
+                                        <td data-title="Code" :data-value=item.Code>{{item.Code}}</td>
+                                        <td data-title="CalibrationCycle" :data-value=item.CalibrationCycle>
+                                            {{item.CalibrationCycle}}</td>
+
+                                        <td data-title="Active" :data-value=item.Active>
+                                            <span class="badge lmvt-badge"
+                                                :class="[{ 'lmvt-defBadge': item.Active==0 }, { 'lmvt-activeBadge': item.Active==1 }, { 'lmvt-forbiddenBadge': item.Active==2 }]">{{item.Badge}}</span>{{ActiveType[item.Active]}}
+                                        </td>
+                                        <td style="max-width: 60px;" :data-value=item.ID>
+                                            <div class="row">
+                                                <div @click.stop="resetCalibration(item.ID)"
+                                                    class="col-md-6 lmvt-do-info">
+                                                    修改
+                                                </div>
+
+                                                <div v-if="item.Active==0||item.Active==2"
+                                                    @click.stop="ActiveCalibration(item.ID,1)"
+                                                    class="col-md-6 lmvt-do-active">激活
+                                                </div>
+                                                <div v-else class="col-md-6 lmvt-do-forbidden"
+                                                    @click.stop="ActiveCalibration(item.ID,2)">禁用</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--量具类型-->
+            <div v-show="MeasuringType" class="zzzb zace-cbd-contain"
+                style="width: 80%;float: right;padding-left: 5px;">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" @click="addMeasuringType" id="zace-add-levelOrder"
+                                class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+
+                            <!-- <button type="button" @click="Export" id="zace-edit-levelOrderSearchPro"
+                                class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                            </button>
+                            <button type="button" @click="Import" id="zace-edit-levelOrderSearchPro"
+                                class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导入
+                            </button>
+                            <button type="button" style="display:none" class="btn btn-default">
+                                <input @change="InputFileClick($event)" type="file" id="input-file" />
+                            </button> -->
+                        </div>
+                    </div>
+
+                    <span class="zace-header-title">量具类型列表</span>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevelType" type="text" id="searchLevelType-Type"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelProType" type="button" class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <!-- <th style="min-width:50px;display: none;" data-order="ID">编号</th> -->
+                                    <th style="width: 60px" data-order="WID">序号</th>
+                                    <!-- <th style="min-width: 60px" data-order="WBSNo">WBS编号</th> -->
+
+                                    <th style="min-width: 50px" data-order="Name">类型名称</th>
+
+                                    <th style="min-width: 80px" data-order="Code">类型编码</th>
+
+
+                                    <th style="min-width: 50px" data-order="OperatorName">创建人</th>
+                                    <th style="min-width: 50px" data-order="OperateTime">创建时间</th>
+
+                                    <!-- <th style="min-width: 50px" data-order="EditorName">编辑人</th>
+                                    <th style="min-width: 50px" data-order="EditTime">编辑时间</th>
+
+                                    <th style="min-width: 50px" data-order="Remark">备注</th> -->
+
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                    <th style="min-width: 50px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lmvt-Type-tbody" class="table-color">
+                                <tr v-for="item in MeasuringTypeList" data-color="">
+                                    <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                    </td>
+                                    <td style="display: none;" data-title="ID" :data-value=item.ID>{{item.WID}}</td>
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="Name" :data-value=item.Name>{{item.Name}}</td>
+                                    <td data-title="Code" :data-value=item.Code>{{item.Code}}</td>
+                                    <td data-title="OperatorName" :data-value=item.OperatorName>{{item.OperatorName}}
+                                    </td>
+
+                                    <td data-title="OperateTime" :data-value=item.OperateTime>
+                                        {{item.OperateTime}}</td>
+
+                                    <td data-title="Active" :data-value=item.Active>
+                                        <span class="badge lmvt-badge"
+                                            :class="[{ 'lmvt-defBadge': item.Active==0 }, { 'lmvt-activeBadge': item.Active==1 }, { 'lmvt-forbiddenBadge': item.Active==2 }]">{{item.Badge}}</span>{{ActiveType[item.Active]}}
+                                    </td>
+                                    <td style="max-width: 60px;" :data-value=item.ID>
+                                        <div class="row">
+
+                                            <!-- <div @click.stop="refreshMeasuringProduct(item.ID)"
+                                                class="col-md-4 lmvt-do-info">
+                                                详情
+                                            </div> -->
+
+                                            <div @click.stop="resetMeasuringProduct(item.ID)"
+                                                class="col-md-6 lmvt-do-info">
+                                                修改
+                                            </div>
+
+                                            <div v-if="item.Active==0||item.Active==2"
+                                                @click.stop="ActiveMeasuringType(item.ID)"
+                                                class="col-md-6 lmvt-do-active">激活
+                                            </div>
+                                            <div v-else class="col-md-6 lmvt-do-forbidden"
+                                                @click.stop="ForbiddenMeasuringType(item.ID)">禁用</div>
+
+                                            <!-- <div @click.stop=" " class="col-md-4 lmvt-lookinfo">
+                                                <UL id="lmvt-nav">
+                                                    <LI>更多
+                                                        <UL>
+                                                            <LI @click.stop="">修改</LI>
+                                                       
+                                                        </UL>
+                                                    </LI>
+                                                </UL>
+                                            </div> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--量具规格-->
+            <div v-show="MeasuringProductNo" class="zzzb zace-cbd-contain"
+                style="width: 80%;float: right;padding-left: 5px;">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+
+                            <button type="button" @click="addMeaType" id="zace-add-levelOrder"
+                                class="btn lmvt-danger-btn">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button type="button" @click="refreshAll" id="zace-add-levelOrder" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>所有类型
+                            </button>
+                            <!-- <button type="button" @click="Export" id="zace-edit-levelOrderSearchPro"
+                                class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                            </button>
+                            <button type="button" @click="Import" id="zace-edit-levelOrderSearchPro"
+                                class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导入
+                            </button>
+                            <button type="button" style="display:none" class="btn btn-default">
+                                <input @change="InputFileClick($event)" type="file" id="input-file" />
+                            </button> -->
+                        </div>
+                    </div>
+
+                    <span class="zace-header-title">量具规格列表</span>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                            <input v-on:keyup.enter="searchLevelProductEnter" type="text" id="lmvt-Product-level"
+                                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                placeholder="请输入查询字符" />
+                        </button>
+                        <button @click="searchLevelProduct" type="button" id="zace-search-level-pro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon" aria-hidden="true"></span>筛选
+                        </button>
+                    </div>
+                </div>
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                            value="{{functionID}}" />
+                                    </th>
+                                    <!-- <th style="min-width:50px;display: none;" data-order="ID">编号</th> -->
+                                    <th style="width: 60px" data-order="WID">序号</th>
+                                    <!-- <th style="min-width: 60px" data-order="WBSNo">WBS编号</th> -->
+
+                                    <th style="min-width: 50px" data-order="ModelName">规格名称</th>
+                                    <th style="min-width: 80px" data-order="ModelNo">规格编码</th>
+
+                                    <th style="min-width: 80px" data-order="MeasureRange">量程范围</th>
+                                    <th style="min-width: 80px" data-order="Cost">量具价值</th>
+                                    <th style="min-width: 80px" data-order="Accuracy">精准度</th>
+                                    <th style="min-width: 80px" data-order="Mistake">允许误差</th>
+                                    <th style="min-width: 80px" data-order="Environment">环境</th>
+                                    <th style="min-width: 80px" data-order="CalibrationLevel">校准等级</th>
+                                    <th style="min-width: 80px" data-order="CalibrationCycle">校周期</th>
+                                    <th style="min-width: 80px" data-order="CalibrationBasis">校准依据</th>
+
+
+                                    <th style="min-width: 50px" data-order="CreatorName">创建人</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                    <th style="min-width: 80px">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-Product-tbody" class="table-color">
+                                <tr v-for="item in OrderGrade" data-color="">
+                                    <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                    </td>
+                                    <td style="display: none;" data-title="ID" :data-value=item.ID>{{item.ID}}</td>
+                                    <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                    <td data-title="ModelName" :data-value=item.ModelName>{{item.ModelName}}</td>
+                                    <td data-title="ModelNo" :data-value=item.ModelNo>{{item.ModelNo}}</td>
+
+                                    <td data-title="MeasureRange" :data-value=item.MeasureRange>{{item.MeasureRange}}
+                                    </td>
+
+                                    <td data-title="Cost" :data-value=item.Cost>{{item.Cost}}</td>
+                                    <td data-title="Accuracy" :data-value=item.Accuracy>{{item.Accuracy}}</td>
+                                    <td data-title="Mistake" :data-value=item.Mistake>{{item.Mistake}}</td>
+                                    <td data-title="Environment" :data-value=item.Environment>{{item.Environment}}</td>
+                                    <td data-title="CalibrationLevel" :data-value=item.CalibrationLevel>
+                                        {{item.CalibrationLevel}}</td>
+                                    <td data-title="CalibrationCycle" :data-value=item.CalibrationCycle>
+                                        {{item.CalibrationCycle}}</td>
+                                    <td data-title="CalibrationBasis" :data-value=item.CalibrationBasis>
+                                        {{item.CalibrationBasis}}</td>
+
+                                    <td data-title="CreatorName" :data-value=item.CreatorName>{{item.CreatorName}}</td>
+
+                                    <td data-title="CreateTime" :data-value=item.CreateTime>{{item.CreateTime}}</td>
+
+                                    <td data-title="Active" :data-value=item.Active>
+                                        <span class="badge lmvt-badge"
+                                            :class="[{ 'lmvt-defBadge': item.Active==0 }, { 'lmvt-activeBadge': item.Active==1 }, { 'lmvt-forbiddenBadge': item.Active==2 }]">{{item.Badge}}</span>{{ActiveType[item.Active]}}
+                                    </td>
+
+                                    <td style="max-width: 60px;" :data-value=item.ID>
+                                        <div class="row">
+                                            <div @click.stop="MeaTypeReset(item.ModelID)" class="col-md-6 lmvt-do-info">
+                                                修改
+                                            </div>
+
+                                            <!-- <div v-if="item.Active<=0" @click.stop="deleteTableInfo(item.ID)"
+                                                class="col-md-4 lmvt-allowed-delete">删除</div>
+                                            <div v-else class="col-md-4 lmvt-not-allowed-delete">删除</div> -->
+
+                                            <div v-if="item.Active==0||item.Active==2"
+                                                @click.stop="MeaTypeActive(item.ModelID,1)" class="col-md-6 lmvt-do-active">
+                                                激活
+                                            </div>
+                                            <div v-else class="col-md-6 lmvt-do-forbidden"
+                                                @click.stop="MeaTypeActive(item.ModelID,2)">禁用</div>
+                                        </div>
+
+                                        <!-- <div @click.stop="getMaterialMarginAndLL(item.ID)"
+                                            class="col-md-4 lmvt-do-info">
+                                            状态更改
+                                        </div> -->
+                                        <!-- <div @click.stop=" " class="col-md-4 lmvt-lookinfo">
+                                                <UL id="lmvt-nav">
+                                                    <LI>更多
+                                                        <UL>
+                                                            <LI @click.stop="ChangeMeaStatus(1,item.ID)">启用</LI>
+                                                            <LI @click.stop="ChangeMeaStatus(2,item.ID)">闲置</LI>
+                                                            <LI @click.stop="ChangeMeaStatus(3,item.ID)">维修</LI>
+                                                            <LI @click.stop="ChangeMeaStatus(4,item.ID)">保养</LI>
+                                                            <LI @click.stop="ChangeMeaStatus(5,item.ID)">报废</LI>
+                                                            <LI @click.stop="ChangeMeaStatus(6,item.ID)">封存</LI>
+                                                        </UL>
+                                                    </LI>
+                                                </UL>
+                                            </div> -->
+                    </div>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div v-show="GradeISShow" class="zzzb zace-cbd-contain" style="width: 80%;float: right;padding-left: 5px;">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+
+                        <button type="button" @click="addGradeItem" id="zace-add-levelOrder"
+                            class="btn lmvt-danger-btn">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                        </button>
+                        <button type="button" @click="refreshAll" id="" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>所有类型
+                        </button>
+                        <!-- <button type="button" @click="Export" id="zace-edit-levelOrderSearchPro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                        </button>
+                        <button type="button" @click="Import" id="zace-edit-levelOrderSearchPro"
+                            class="btn lmvt-def-btn ">
+                            <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导入
+                        </button>
+                        <button type="button" style="display:none" class="btn btn-default">
+                            <input @change="InputFileClick($event)" type="file" id="input-file" />
+                        </button> -->
+                        <!--<button type="button" @click="back" id="zace-return-levelOrder" class="btn lmvt-def-btn ">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                            </button> -->
+
+                    </div>
+                </div>
+
+                <span class="zace-header-title">量具列表</span>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                        <input v-on:keyup.enter="searchLevel" type="text" id="zace-search-level"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入查询字符" />
+                    </button>
+                    <button @click="searchLevelPro" type="button" id="zace-search-level-pro" class="btn lmvt-def-btn ">
+                        <span class="glyphicon" aria-hidden="true"></span>筛选
+                    </button>
+
+                    <!-- <button type="button" @click="getPLDate" id="zace-search-level-pro12" class="btn lmvt-def-btn ">
+                        <span class="glyphicon" aria-hidden="true"></span>类型
+                    </button> -->
+                </div>
+            </div>
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <!-- <th style="min-width:50px;display: none;" data-order="ID">编号</th> -->
+                                <th style="min-width: 60px" data-order="WID">序号</th>
+                                <!-- <th style="min-width: 60px" data-order="WBSNo">WBS编号</th> -->
+
+                                <th style="min-width: 80px" data-order="Name">量具名称</th>
+
+                                <th style="min-width: 80px" data-order="Code">量具编码</th>
+                                <!-- <th style="min-width: 80px" data-order="ModelName">规格</th> -->
+
+                                <th style="min-width: 80px" data-order="OwnerName">责任人</th>
+                                <th style="min-width: 80px" data-order="BorrowerName">借用人</th>
+                                <th style="min-width: 80px" data-order="BorrowTime">借用时间</th>
+                                <th style="min-width: 100px" data-order="FirstTime">首次投入使用日期</th>
+
+                                <th style="min-width: 80px" data-order="ManufacturerNo">出厂编码</th>
+                                <th style="min-width: 80px" data-order="ModelDemand">规格要求</th>
+                                <th style="min-width: 80px" data-order="CalibrationManufacturer">校准单位</th>
+                                <th style="min-width: 100px" data-order="CalibrationPersonName">校准责任人</th>
+                                <th style="min-width: 80px" data-order="CalibrationDate">校准日期</th>
+
+                                <th style="min-width: 100px" data-order="NextCalibrationDate">下次校准日期</th>
+                                <th style="min-width: 100px" data-order="CalibrationNo">校准证书编号</th>
+                                <th style="min-width: 80px" data-order="StorageLocation">存放地点</th>
+
+                                <th style="min-width: 80px" data-order="DeviceName">所属设备</th>
+
+                                <!-- <th style="min-width: 80px" data-order="WorkShopName">车间</th>
+                                <th style="min-width: 80px" data-order="LineName">产线</th>
+                                <th style="min-width: 80px" data-order="PartName">工序</th> -->
+
+                                <!-- <th style="min-width: 50px" data-order="OwnerName">责任人</th>
+                                <th style="min-width: 50px" data-order="BorrowerName">借用人</th>
+                                <th style="min-width: 50px" data-order="BorrowTime">借用时间</th>
+
+                                <th style="min-width: 50px" data-order="FirstTime">投入使用日期</th> -->
+                                <!-- <th style="min-width: 50px" data-order="EditTime">编辑时间</th> -->
+
+                                <!-- <th style="min-width: 50px" data-order="Remark">备注</th> -->
+
+                                <th style="min-width: 50px" data-order="Status">状态</th>
+                                <th style="min-width: 80px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevel-tbody" class="table-color">
+                            <tr v-for="item in GradeItem" data-color="">
+                                <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                </td>
+                                <td style="display: none;" data-title="ID" :data-value=item.ID>{{item.WID}}</td>
+                                <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                <td data-title="Name" :data-value=item.Name>{{item.Name}}</td>
+                                <td data-title="Code" :data-value=item.Code>{{item.Code}}</td>
+
+                                <td data-title="OwnerName" :data-value=item.OwnerName>{{item.OwnerName}}</td>
+                                <td data-title="BorrowerName" :data-value=item.BorrowerName>{{item.BorrowerName}}</td>
+                                <td data-title="BorrowTime" :data-value=item.BorrowTime>{{item.BorrowTime}}</td>
+                                <td data-title="FirstTime" :data-value=item.FirstTime>{{item.FirstTime}}</td>
+                                
+                                <td data-title="ManufacturerNo" :data-value=item.ManufacturerNo>{{item.ManufacturerNo}}</td>
+                                <td data-title="ModelDemand" :data-value=item.ModelDemand>{{item.ModelDemand}}</td>
+                                <td data-title="CalibrationManufacturer" :data-value=item.CalibrationManufacturer>{{item.CalibrationManufacturer}}</td>
+                                <td data-title="CalibrationPersonName" :data-value=item.CalibrationPersonName>{{item.CalibrationPersonName}}</td>
+                                <td data-title="CalibrationDate" :data-value=item.CalibrationDate>{{item.CalibrationDate}}</td>
+                                <td data-title="NextCalibrationDate" :data-value=item.NextCalibrationDate>{{item.NextCalibrationDate}}</td>
+                                <td data-title="CalibrationNo" :data-value=item.CalibrationNo>{{item.CalibrationNo}}</td>
+                                <td data-title="StorageLocation" :data-value=item.StorageLocation>{{item.StorageLocation}}</td>
+                                <td data-title="DeviceName" :data-value=item.DeviceName>{{item.DeviceName}}</td>
+           
+                                <!-- <td data-title="Life" :data-value=item.Life>
+                                        {{item.Life}}</td> -->
+                                <!-- <td data-title="RouteID" :data-value=item.RouteID>{{item.RouteID}}</td> -->
+                                <!-- <td data-title="ScrapValue" :data-value=item.ScrapValue>
+                                        {{item.ScrapValue}}</td>
+                                    <td data-title="NetValue" :data-value=item.NetValue>
+                                        {{item.NetValue}}</td> -->
+
+                                <!-- <td data-title="LimitCount" :data-value=item.LimitCount>
+                                        {{item.LimitCount}}</td>
+                                    <td data-title="BusinessUnitID" :data-value=item.BusinessUnitID>
+                                        {{item.BusinessUnitID}}</td>
+                                    <td data-title="WorkShopID" :data-value=item.WorkShopID>
+                                        {{item.WorkShopID}}</td>
+
+                                    <td data-title="LineID" :data-value=item.LineID>
+                                        {{item.LineID}}</td> -->
+                                <!-- <td data-title="CreatorName" :data-value=item.CreatorName>
+                                    {{item.CreatorName}}</td>
+                                <td data-title="CreateTime" :data-value=item.CreateTime>
+                                    {{item.CreateTime}}</td>
+
+                                <td data-title="EditorName" :data-value=item.EditorName>
+                                    {{item.EditorName}}</td>
+                                <td data-title="EditTime" :data-value=item.EditTime>
+                                    {{item.EditTime}}</td> -->
+
+                                <td data-title="Status" :data-value=item.Status>{{StatusMenu[item.Status]}}</td>
+
+                                <!-- <td data-title="Remark" :data-value=item.Remark>{{item.Remark}}</td> -->
+
+                                <td style="max-width: 60px;" :data-value=item.ID>
+                                    <div class="row">
+                                        <div @click.stop="getMaterialMarginAndLL(item.ID)"
+                                            class="col-md-6 lmvt-do-info">
+                                            修改
+                                        </div>
+
+                                        <!-- <div v-if="item.status<=0" @click.stop="deleteTableInfo(item.ID)"
+                                            class="col-md-4 lmvt-allowed-delete">删除</div>
+                                        <div v-else class="col-md-4 lmvt-not-allowed-delete">删除</div> -->
+
+                                        <!-- <div @click.stop="getMaterialMarginAndLL(item.ID)"
+                                                class="col-md-4 lmvt-do-info">
+                                                状态更改
+                                            </div> -->
+                                        <div @click.stop=" " class="col-md-6 lmvt-lookinfo">
+                                            <UL id="lmvt-nav">
+                                                <LI>更多
+                                                    <UL>
+                                                        <LI @click.stop="ChangeMeaStatus(1,item.ID)">启用</LI>
+                                                        <LI @click.stop="ChangeMeaStatus(2,item.ID)">闲置</LI>
+                                                        <LI @click.stop="ChangeMeaStatus(3,item.ID)">维修</LI>
+                                                        <LI @click.stop="ChangeMeaStatus(4,item.ID)">保养</LI>
+                                                        <LI @click.stop="ChangeMeaStatus(5,item.ID)">报废</LI>
+                                                        <LI @click.stop="ChangeMeaStatus(6,item.ID)">封存</LI>
+                                                    </UL>
+                                                </LI>
+                                            </UL>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div v-show="GradeItemISShow" class="zzza zace-cbd-contain ">
+
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+
+                        <button type="button" @click="Submit(1)" id="zace-edit-levelOrder" class="btn lmvt-danger-btn">
+                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>下达
+                        </button>
+                        <button type="button" @click="Submit(0)" id="zace-add-levelOrder" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-saved" aria-hidden="true"></span>保存
+                        </button>
+                        <button type="button" @click="getPLDate" id="zace-add-levelOrder" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>需求日期
+                        </button>
+                        <button type="button" @click="back" id="zace-add-levelOrder" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+                        </button>
+                        <!-- <button type="button" id="zace-edit-levelOrderSearch" class="btn lmvt-def-btn">
+                                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>订单列表
+                            </button> -->
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group femi-lf pull-left" role="group">
+
+
+                        <div v-show="SelectISShow" class="btn-group femi-lf pull-left" role="group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                <span>{{changeName}}</span>
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li @click.stop="getMaterialPlanType(1,'已保存')" class="device_status"
+                                    id="lmvt-model-product">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已保存
+                                    </a>
+                                </li>
+                                <li @click.stop="getMaterialPlanType(2,'已下达')" class="device_status"
+                                    id="lmvt-model-quality">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>已下达
+                                    </a>
+                                </li>
+                                <li @click.stop="getMaterialPlanType(-1,'全部')" class="device_status"
+                                    id="lmvt-model-technology">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>全部
+                                    </a>
+                                </li>
+                            </ul>
+                            </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+                        <input v-on:keyup.enter="searchLevel" type="text" id="zace-search"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入筛选字符" />
+                    </button>
+                    <button @click="searchlevelProGrade" type="button" id="zace-search-levelPro"
+                        class="btn lmvt-def-btn">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                </div>
+                <span class="zace-header-title">配料计划</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered table-partApproval">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                <th style="width: 80px" data-order="WID">序号</th>
+                                <th style="min-width: 60px" data-order="OrderNo">制造令</th>
+                                <th style="min-width: 60px" data-order="MaterialName">物料名称</th>
+                                <th style="min-width: 60px" data-order="MaterialNo">物料编码</th>
+
+                                <th style="min-width: 70px" data-order="LineName">产线</th>
+                                <th style="min-width: 80px" data-order="PartName">工序</th>
+                                <th style="min-width: 80px" data-order="PartPointName">工步</th>
+
+                                <th style="min-width: 80px" data-order="FQTYBase">需求数</th>
+                                <th style="min-width: 80px" data-order="FQTYPlan">实际计划数</th>
+                                <th style="min-width: 80px" data-order="FQTYPL">已配料数</th>
+                                <th style="min-width: 80px" data-order="FQTYLL">已领料数</th>
+                                <!-- <th style="min-width: 80px" data-order="PlanerName">计划员</th> -->
+                                <th style="min-width: 80px" data-order="Status">状态</th>
+                                <th style="min-width: 80px" data-order="PLDate">需求日期</th>
+                                <th style="min-width: 60px" data-order="SubmitTime">提交日期</th>
+                                <th style="min-width: 80px" data-order="Handle">操作</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevelOrder-tbody" class="table-color">
+                            <tr v-for="item in Grade">
+
+                                <td><input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+
+                                </td>
+                                <td data-title="WID" :data-value=item.WID>{{item.WID}}</td>
+                                <td data-title="OrderNo" :data-value=item.OrderNo>{{item.OrderNo}}</td>
+                                <td data-title="MaterialName" :data-value=item.MaterialName>{{item.MaterialName}}
+                                </td>
+                                <td data-title="MaterialNo" :data-value=item.MaterialNo>{{item.MaterialNo}}</td>
+                                <td data-title="LineName" :data-value=item.LineName>{{item.LineName}}</td>
+                                <td data-title="PartName" :data-value=item.PartName>{{item.PartName}}</td>
+                                <td data-title="PartPointName" :data-value=item.PartPointName>{{item.PartPointName}}
+                                </td>
+                                <td data-title="FQTYBase" :data-value=item.FQTYBase>{{item.FQTYBase}}</td>
+                                <td data-title="FQTYPlan" :data-value=item.FQTYPlan>{{item.FQTYPlan}}</td>
+                                <td data-title="FQTYPL" :data-value=item.FQTYPL>{{item.FQTYPL}}</td>
+                                <td data-title="FQTYLL" :data-value=item.FQTYLL>{{item.FQTYLL}}</td>
+
+                                <td data-title="Status" :data-value=item.Status>{{StatusMenu[item.Status]}}</td>
+
+                                <td data-title="PLDate" :data-value=item.PLDate>{{item.PLDate}}</td>
+                                <td data-title="SubmitTime" :data-value=item.SubmitTime>{{item.SubmitTime}}</td>
+
+                                <td :data-value=item.ID>
+                                    <div class="row">
+
+                                        <!-- <div v-if="item.Status<=1" @click.stop="getPLDate(item.ID)"
+                                                class="col-md-6 item.ID lmvt-do-info">
+                                                需求日期
+                                            </div>
+                                            <div v-else class="col-md-6 lmvt-not-allowed-delete">需求日期</div> -->
+
+                                        <div v-if="item.Status<=1" @click.stop="setPlan(item)"
+                                            class="col-md-12 item.ID lmvt-do-info">
+                                            计划数
+                                        </div>
+                                        <div v-else class="col-md-12 lmvt-not-allowed-delete">计划数</div>
+
+                                        <!-- <div @click.stop="getLocationList(item.ID)" class="col-md-6 lmvt-do-active">
+                                                查看仓位
+                                            </div> -->
+                                        <!-- <div @click.stop="ChangeTableTR(item.ID)" class="col-md-4 lmvt-lookinfo">修改
+                                            </div>
+                                            <div v-if="item.FQTYPlan<=0" @click.stop="deleteTableInfo(item.ID)"
+                                                class="col-md-4 lmvt-allowed-delete">删除</div>
+                                            <div v-else class="col-md-4 lmvt-not-allowed-delete">删除</div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/deviceManage/MeasuringManage.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+﻿body {
+    margin:0;
+    padding:0;
+    min-width:1700px;
+}
+.lmvt-container {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+}
+.lmvt-container-device {
+    margin: 0;
+    padding: 5px 5px;
+    margin-left: 0px;
+    margin-right:0px; 
+}
+.iplant-tool-right{
+    width:500px;
+}
+.lmvt-container-header-btn {
+    height: 45px;
+    width: 100%;
+    padding: 10px 10px 0px;
+}
+
+.lmvt-container-table-basic {
+    /*min-width:1230px;*/
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+    /* border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05); */
+}
+.lmvt-container-system {
+    margin: 0;
+    padding: 3px 5px;
+    width: 100%;
+    height: 100%; 
+}
+.lmvt-container-supplier {
+    /*position: absolute;*/
+    margin: 0;
+    padding: 3px 5px;
+    width: 100%;
+    height: 100%; 
+}
+.lmvt-container-equip {
+   margin: 0;
+    padding: 3px 5px;
+    width: 100%;
+    height: 100%; 
+}
+.lmvt-container-controller {
+    margin: 0;
+    padding: 3px 5px;
+    width: 100%;
+    height: 100%; 
+}
+.lmvt-container-type {
+    margin: 0;
+    padding: 3px 5px;
+    width: 100%;
+    height: 100%;  
+}

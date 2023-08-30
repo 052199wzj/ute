@@ -1,0 +1,158 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+.lmvt-container {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+   min-width:1700px;
+}
+#bbb{
+	width: 100%;
+	border-bottom: 1px solid gainsboro;
+        margin-top:-1px;
+}
+
+.lmvt-container-header-btn {
+    height: 140px;
+    width: 100%;
+    /* padding: 5px 5px 0px; */
+    /* text-align: center; */
+}
+
+.lmvt-container-table-basic {
+    width: 100%;
+    height: calc(100% - 51px);
+    margin-top: -88px;
+    padding: 48px 10px 5px 10px;
+    /* border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05); */
+}
+
+.zace-right{
+    width: 0px;
+    height: 100%;
+    float:right;
+}
+.zace-right-XQ{
+    width: 0px;
+    height: 100%;
+    float:right;
+}
+.zace-bg{
+     width: 100%;
+    height: 100%;
+    padding:5px;
+}
+
+
+.zace-left{
+    width:auto;
+    height: 100%
+}
+
+.btn-group{
+	float: left;
+}
+.lmvt-header-title{
+    font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;
+    width: 200px;
+    line-height: 40px;
+    cursor: default;
+    height: 40px;
+}
+.lmvt-sreach-head{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.lmvt-default-btn{
+    width: 120px;
+}
+.lmvt-danger-btn {
+    background-color: #C7001A;
+    opacity: 0.8;
+    color: #fff;
+}
+.lmvt-def-btn {
+    color: #C7001A;
+    background-color: #fff;
+    border-color: #C7001A;
+    opacity: 0.8;
+}
+.nav li{
+    width: 120px;
+    text-align: center;
+    color: #333;
+    background-color: darkgrey;
+    border-color: #adadad;
+    margin: 5px 0 5px 0px;
+}
+.lmvt-container-header-top{
+    margin-bottom: 2px;
+    height: 45px;
+    background: #fff;
+}
+.lmvt-container-header-bottom{
+    height: 45px;
+    padding: 10px 11px;
+}
+.row{
+    margin: 0;
+}
+
+.row>div{
+    padding: 0;
+}
+.badge-danger {
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    top: -10px;
+    left: 96px;
+    position: absolute;
+}
+ul li a{
+    position: relative;
+}
+.row:hover{
+    cursor: pointer;
+}
+.lmvt-allowed-delete{
+    color: #52C41A;
+}
+.lmvt-not-allowed-delete {
+    color: darkgrey;
+}
+.lmvt-not-allowed-delete:hover {
+    cursor: not-allowed;
+}
+.lmvt-lookinfo{
+    color: #409EFF;
+}
+.badge{
+    margin-right: 10px;
+}
+.lmvt-activeBadge{
+    color: #fff !important;
+    background-color: #28a745 !important;
+    padding: 7px 7px !important;
+    display: none;
+}
+.lmvt-forbiddenBadge{
+    color: #fff !important;
+    background-color: #dc3545 !important;
+    padding: 7px 7px !important;
+}
+.nav-pills > li + li {
+    margin-left: 30px !important;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #337ab7 !important;
+}

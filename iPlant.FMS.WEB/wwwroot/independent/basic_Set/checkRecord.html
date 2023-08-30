@@ -1,0 +1,521 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>质量三检的记录</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta
+      id="scale" name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/utils/css/base.css"
+  />
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/css/basicSet/checkRecord.css"
+  />
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/css/basicSet/checkRecordItem.css"
+  />
+
+</head>
+<body>
+
+<div class="zace-cbd-contain  orderAll" style="min-width: 1300px;">
+  <div class="zace-leftContain">
+    <div class="zace-tree-header" style="overflow:visible;">
+      <div class="femi-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+          <button
+              type="button" id="femi-add-searchOrder"
+              class="btn btn-default "
+          ><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+          </button>
+        </div>
+
+      </div>
+
+      <div class="columns columns-right btn-group pull-right">
+
+
+        <button
+            type="button" id="femi-add-refresOrder"
+            class="btn btn-default "
+        ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+        </button>
+      </div>
+
+      <p class="zace-header-title">车辆作业列表</p>
+    </div>
+    <div class="zace-tree-body femi-contain-border">
+      <div class="femi-tb-scroll  table-part">
+        <table class="table   table-hover table-bordered">
+
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              />
+            </th>
+            <th style="width: 80px" data-title="WID">序号</th>
+            <th style="min-width: 50px" data-title="BureauSection">配属局段</th>
+
+            <th style="min-width: 50px" data-title="LineName">修程</th>
+            <th style="min-width: 50px" data-title="PartNo">车号</th>
+
+            <th style="min-width: 50px" data-title="OrderNo">订单号</th>
+            <th style="min-width: 50px" data-title="WBSNo">WBS编号</th>
+            <th style="min-width: 50px" data-title="RealReceiveDate">进车时间</th>
+            <th style="min-width: 50px" data-title="PlanFinishDate">预计完工时间</th>
+            <th style="min-width: 50px" data-title="RealFinishDate">实际完工时间</th>
+          </tr>
+          </thead>
+          <tbody id="femi-orderAll-tbody" class="table-color">
+          <tr>
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="9">等待数据加载</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="zace-cbd-contain  stationAll" style="display: none;min-width: 1300px;">
+  <div class="zace-leftContain">
+    <div class="zace-tree-header" style="overflow:visible;">
+      <div class="femi-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+          <button
+              type="button" id="femi-return-searchStation"
+              class="btn btn-default "
+          ><span
+              class="glyphicon glyphicon-log-out"
+              aria-hidden="true"
+          ></span>返回
+          </button>
+        </div>
+
+      </div>
+
+      <div class="columns columns-right btn-group pull-right">
+
+        <button
+            type="button" id="femi-add-refreshStation"
+            class="btn btn-default "
+        ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+        </button>
+      </div>
+
+      <p class="zace-header-title">工位任务列表</p>
+    </div>
+    <div class="zace-tree-body femi-contain-border">
+      <div class="femi-tb-scroll  table-part">
+        <table class="table   table-hover table-bordered">
+
+          <thead>
+          <tr>
+            <th style="width: 3px">
+              <input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              />
+            </th>
+            <th style="width: 80px" data-title="WID">序号</th>
+            <th style="min-width: 50px" data-title="CustomerName">配属局段</th>
+
+            <th style="min-width: 50px" data-title="LineName">修程</th>
+            <th style="min-width: 50px" data-title="OrderNo">订单号</th>
+            <th style="min-width: 50px" data-title="WBSNO">WBS编号</th>
+            <th style="min-width: 50px" data-title="PartNo">车号</th>
+
+
+            <th style="min-width: 50px" data-title="PartName">工位</th>
+            <th style="min-width: 50px" data-title="ClassName">责任班组</th>
+            <th style="min-width: 50px" data-title="StartWorkTime">开工时间</th>
+            <th style="min-width: 50px" data-title="StatusText">状态</th>
+
+          </tr>
+          </thead>
+          <tbody id="femi-stationAll-tbody" class="table-color">
+          <tr>
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="11">等待数据加载</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="femi-bd-contain  itemAll" style="display: none;min-width: 1300px;">
+  <div class="femi-left femi-lf">
+    <div class="femi-tb-head">
+      <div class="femi-toolbar-self femi-lf">
+        <div class="btn-group" role="group">
+          <button
+              type="button" id="femi-return-userStep"
+              class="btn btn-default"
+          >
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>返回
+          </button>
+        </div>
+      </div>
+
+      <div class="femi-toolbar-self femi-rt">
+        <div class="btn-group" role="group">
+          <button
+              type="button" id="femi-add-userStep"
+              class="btn btn-default"
+          >
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+          </button>
+        </div>
+      </div>
+      <p class="femi-tb-title">
+        <strong>工序任务</strong>
+      </p>
+    </div>
+    <div class="femi-contain-border femi-tb-border">
+      <div class="femi-tb-scroll">
+        <table class="table   table-hover table-bordered">
+
+          <thead>
+          <tr>
+
+            <th style="width: 3px"><input
+                type="checkbox"
+                class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                value="{{functionID}}"
+            /></th>
+            <th style="width: 60px" data-title="WID">序号</th>
+            <th style="min-width: 50px" data-title="PartNo">车号</th>
+            <th style="min-width: 50px" data-title="PartName">工位</th>
+
+            <th style="min-width: 50px" data-title="StepName">工序</th>
+
+            <th style="min-width: 50px" data-title="Status">状态</th>
+          </tr>
+          </thead>
+          <tbody id="femi-userStep-tbody" class="table-color">
+          <tr style="">
+            <td>
+              <input
+                  type="checkbox" class="femi-tb-checkbox"
+                  style="margin: 1px 0px 1px" value="{{functionID}}"
+              />
+            </td>
+            <td colspan="5">等待数据加载</td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="femi-full-bd">
+    <div class="femi-bd-half-right femi-rt " id="role-user-contain" style="display: none;">
+      <div class="femi-tb-head">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-close-detailRefresh"
+                class="btn btn-default"
+            >
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+            </button>
+          </div>
+        </div>
+
+        <div class="femi-toolbar-self femi-rt">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-item-detailRefresh"
+                class="btn btn-default"
+            >
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+            </button>
+          </div>
+        </div>
+        <p class="femi-tb-title">
+          <strong>检验项详情</strong>
+        </p>
+      </div>
+      <div class="femi-contain-border femi-tb-border">
+        <div class="femi-tb-scroll">
+
+          <div class="overAll" style="overflow-y: auto; height: 100%">
+            <div class="m-table">
+              <div class="femi-table-unload"></div>
+              <div class="m-card">
+                <div class="m-c-head"></div>
+                <div class="m-c-body call-info clearfix">
+                  <ul class="list-group">
+                    <li class="list-li">
+                      <div class="list-group-item stop-expand">
+                        <div
+                            class="list-group-item-cell item-static item-title"
+                            style="text-align: left"
+                        >
+                          <span id="call-info-title" style="font-weight: bold !important;">基础信息</span>
+                        </div>
+
+                      </div>
+
+                      <div class="m-c-body zace-basic">
+                        <ul class="m-detail-list" style="padding: 0px;"></ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="m-c-body call-info clearfix">
+                  <ul class="list-group">
+                    <li class="list-li">
+                      <div class="list-group-item stop-expand">
+                        <div
+                            class="list-group-item-cell item-static item-title"
+                            style="text-align: left"
+                        >
+                                                    <span
+                                                        id="call-info-title"
+                                                        style="font-weight: bold !important;"
+                                                    >检验项</span>
+                        </div>
+
+                      </div>
+
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="zace-title" style="width:100% ;top:33.5px;left:0px;">
+              <div class="m-switch" style="margin-top: 7px;width: 100%;">
+                <a
+                    href="javascript:;" class="m-switch-btn active  zace-undone"
+                    style="width: 48%;text-align: center"
+                >未做</a>
+                <a
+                    href="javascript:;" class="m-switch-btn zace-done"
+                    style="width: 48%;text-align: center"
+                >已做</a>
+              </div>
+            </div>
+
+
+            <div class="m-card content">
+              <div
+                  class="m-c-head zaceUnDoneMode"
+                  style="height: 0px;width: 100%;border: 1px solid gainsboro;background-color: gainsboro;font-size: 3.7px"
+              >
+                <!-- <div class="item-checkAll"  style="width:10%;float:left;display: table;text-align: left;margin-left: 7px;margin-top: 5px;">
+                <input  type="checkbox"  style="margin-left: 2px;width: 20px;height: 21px" />
+                </div> -->
+                <div
+                    style="width: 46%;display: block;float:left;text-align:center;margin-top: 5px;font-weight: bold;border-bottom: 1px solid #ddd"
+                >
+                  <span>要求</span></div>
+                <div
+                    style="width: 38%;display: block;float:left;text-align:center;margin-top: 5px;font-weight: bold;border-bottom: 1px solid #ddd"
+                >
+                  <span>描述</span></div>
+                <div
+                    style="width: 16%;display: block;float:left;text-align:left;margin-top: 5px;font-weight: bold;border-bottom: 1px solid #ddd"
+                >
+                  <span>状态</span></div>
+              </div>
+              <div
+                  class="m-c-head zaceDoneMode"
+                  style="height: 0px;width: 100%;border: 1px solid gainsboro;background-color: gainsboro;font-size: 3.7px;display: none;"
+              >
+
+                <div
+                    style="width: 46%;display: block;float:left;text-align:center;margin-top: 5px;font-weight: bold;border-bottom: 1px solid #ddd"
+                >
+                  <span>要求</span></div>
+                <div
+                    style="width: 38%;display: block;float:left;text-align:center;margin-top: 5px;font-weight: bold;border-bottom: 1px solid #ddd"
+                >
+                  <span>描述</span></div>
+                <div
+                    style="width: 16%;display: block;float:left;text-align:left;margin-top: 5px;font-weight: bold;border-bottom: 1px solid #ddd"
+                >
+                  <span>状态</span></div>
+              </div>
+              <div class="m-c-panel">
+                <div class="m-c-body handle-info clearfix nobd">
+                  <ul class="list-group">
+
+                    <div class="femi-table-unload"></div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="m-card">
+
+            </div>
+            <!-- <div class="multi-btn-BY  clearfix" id="OperationItem" style="width:100% ;background:white;position: fixed;bottom: 0px;left:0px;">
+                <div class="multi-flex-BY  " style="width:48%;margin: 0;height: 6.7vw;margin-left: 1vw;
+                margin-right: 2vw;">
+                    <a href="javascript:;" class="btn btn-primary " id="checkDone" style="background:green">已做</a>
+                </div>
+                <div class="multi-flex-BY " style="width:95vw;margin-left: 0;height: 6.7vw;">
+                    <a href="javascript:;" class="btn btn-primary" id="confirm">提交</a>
+                </div>
+            </div> -->
+
+
+            <!-- <div class="multi-box" id="resultList">
+                <div class="multi-select clearfix">
+                    <div class="multi-bg">
+                        <ul>
+                            <li>
+                                <label class="col-flex clearfix" for="result1">
+                                    <div class="col-item">
+                                        <span>合格</span>
+                                    </div>
+                                    <div class="col-item">
+                                        <div class="m-checkbox-box">
+                                            <input type="radio" name="device" id="result1" data-value="1"> <label for="result1"></label>
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="col-flex clearfix" for="result2">
+                                    <div class="col-item">
+                                        <span>不合格</span>
+                                    </div>
+                                    <div class="col-item">
+                                        <div class="m-checkbox-box">
+                                            <input type="radio" name="device" id="result2" data-value="2"> <label for="result2"></label>
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="multi-btn">
+                    <a href="javascript:;" class="btn btn-primary" id="result_confirm">确定</a>
+                </div>
+            </div> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="femi-bd-half-left " style="margin-right: -2px; ">
+      <div class="femi-tb-head">
+        <!-- <p class="femi-tb-title"></p>
+             -->
+
+
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+
+
+          </div>
+
+        </div>
+
+        <div class="femi-toolbar-self femi-rt">
+          <div class="btn-group" role="group">
+            <button
+                type="button" id="femi-active-stepItem"
+                class="btn btn-default "
+            ><span
+                class="glyphicon glyphicon-refresh"
+                aria-hidden="true"
+            ></span>刷新
+            </button>
+
+          </div>
+
+        </div>
+        <p class="femi-tb-title">
+          <strong>检验单列表</strong>
+        </p>
+      </div>
+
+      <div class="femi-contain-border femi-tb-border">
+
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered">
+
+            <thead>
+            <tr>
+              <th style="width: 3px"><input
+                  type="checkbox"
+                  class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              /></th>
+              <th style="width: 60px" data-title="WID">序号</th>
+              <th style="min-width: 50px" data-title="PartPointName">工序</th>
+
+              <th style="min-width: 50px" data-title="TypeText">类型</th>
+              <th style="min-width: 50px" data-title="StatusText">状态</th>
+
+              <th style="min-width: 50px" data-title="OperatorName">操作人</th>
+              <th style="min-width: 50px" data-title="SubmitTime">操作时间</th>
+            </tr>
+            </thead>
+            <tbody id="femi-StepItem-tbody" class="table-color">
+            <tr>
+              <td>
+                <input
+                    type="checkbox" class="femi-tb-checkbox"
+                    style="margin: 1px 0px 1px" value="{{functionID}}"
+                />
+              </td>
+              <td colspan="6">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script
+    type="text/javascript"
+    src="../static/js/basicSet/checkRecord.js"
+></script>
+
+</body>
+</html>

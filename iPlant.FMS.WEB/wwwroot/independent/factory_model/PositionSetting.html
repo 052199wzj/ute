@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>岗位设置</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/factory_model/PositionSetting.css" />
+</head>
+<body class="femi-font-size-middle">
+    <div class="zace-cbd-contain" style="min-width:1400px">
+        <div class="zzzItem zace-cbd-contain zace-right" style="display:none">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-addItem-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <!--<button type="button" id="zace-editItem-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button>-->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-editItem-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-pencil"
+                                                  aria-hidden="true"></span>修改
+                                        </a>
+                                    </li>
+
+                                    <li class="device_status" id="zace-item-logOut">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-export"
+                                                  aria-hidden="true"></span>导出
+                                        </a>
+                                    </li>                                  
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="zace-closeItem-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                    </div>
+                    <span class="zace-header-title">作业列表</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll ">
+                        <table class="table   table-hover table-bordered table-partEvent">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="FunctionName">职能分组</th>
+                                    <th style="min-width: 50px" data-order="EventName">作业</th>
+                                  
+                                    <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                    <th style="min-width: 50px" data-order="Active">激活</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevelItem-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="6">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="zzza zace-cbd-contain zace-left" style="min-width:900px">
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" style="overflow:visible;">
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="zace-logout-tableOrder"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                            </button>
+                            <button type="button" id="zace-add-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button type="button" id="zace-edit-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button>
+                           
+                            <button type="button" id="zace-up-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>提交
+                            </button>
+                            <button type="button" id="zace-return-level"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-download" aria-hidden="true"></span>撤销
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>配置
+                                    <span class="caret"></span> <span class="sr-only">
+                                        Toggle
+                                        Dropdown
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="device_status" id="zace-PositionUserSetup-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send"
+                                                  aria-hidden="true"></span>岗位管理
+                                        </a>
+                                    </li>
+
+                                    <li class="device_status" id="zace-WorkFlowSetup-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send"
+                                                  aria-hidden="true"></span>工作流程
+                                        </a>
+                                    </li>
+                                    <li class="device_status" id="zace-SCHPositionSetup-level">
+                                        <a href="javascript:;">
+                                            <span class="glyphicon glyphicon-send"
+                                                  aria-hidden="true"></span>工位岗位模型
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="columns columns-right btn-group pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的申请
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="device_status" id="zace-allList-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-list"
+                                              aria-hidden="true"></span>所有列表
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-myApproval-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-left"
+                                              aria-hidden="true"></span>我的申请
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-myAudit-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-indent-right"
+                                              aria-hidden="true"></span>我的审批
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-default " style="padding: 0">
+                            <input type="text" id="zace-search-level"
+                                   style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                   placeholder="请输入查询字符" />
+                        </button>
+                        <button type="button" id="zace-searchZall-level"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+                        <!--<button type="button" id="zace-myAudit-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的审核
+                    </button>-->
+                    </div>
+
+                    <span class="zace-header-title">岗位分组管理</span>
+                </div>
+
+                <div class="zace-tree-body femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table   table-hover table-bordered table-partApproval">
+
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="WorkShopID">车间</th>
+                                    <th style="min-width: 50px" data-order="LineID">产线</th>
+                                    <th style="min-width: 50px" data-order="ModuleName">职能类别</th>
+                                    <th style="min-width: 50px" data-order="Name">组名称</th>
+                                    <th style="min-width: 50px" data-order="VersionText">组编码</th>
+                                    <!--<th style="min-width: 50px" data-order="Text"> 备注</th>-->
+                                   
+                                    <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                    <th style="min-width: 50px" data-order="Auditor">审核人</th>
+                                    <th style="min-width: 50px" data-order="AuditTime">审核时间</th>
+                                    <th style="min-width: 50px" data-order="Status">状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="femi-riskLevel-tbody" class="table-color">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="femi-tb-checkbox"
+                                               style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                    </td>
+                                    <td colspan="11">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="zzzb zace-cbd-contain" style="display:none;min-width:900px">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">                      
+                        <button type="button" id="zace-audit-returnAudit"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>审核
+                        </button>
+                        <button type="button" id="zace-fan-returnAudit"
+                                class="btn btn-default ">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>反审核
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>配置
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="device_status" id="zace-PositionUserSetup-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>岗位管理
+                                    </a>
+                                </li>
+
+                                <li class="device_status" id="zace-WorkFlowSetup-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>工作流程
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-SCHPositionSetup-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>工位岗位模型
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的审批
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="zace-allList-level">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-list"
+                                          aria-hidden="true"></span>所有列表
+                                </a>
+                            </li>
+                            <li class="device_status" id="zace-myApproval-level">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-indent-left"
+                                          aria-hidden="true"></span>我的申请
+                                </a>
+                            </li>
+                            <li class="device_status" id="zace-myAudit-level">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-indent-right"
+                                          aria-hidden="true"></span>我的审批
+                                </a>
+                            </li>
+                        </ul>
+                    </div> 
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="zace-search-returnAudit"
+                               style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                               placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-returnAudit-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button> 
+                             
+                </div>
+
+                <span class="zace-header-title">岗位分组管理</span>
+            </div>
+
+            <div class="zace-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <!--//<th style="min-width:50px" data-order="WID">序号</th>-->
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="WorkShopID ">车间</th>
+                                <th style="min-width: 50px" data-order="LineID">产线</th>
+                                <th style="min-width: 50px" data-order="ModuleID">职能类别</th>
+                                <th style="min-width: 50px" data-order="Name">组名称</th>
+                                <th style="min-width: 50px" data-order="VersionText">组编码</th>
+                                <!--<th style="min-width: 50px" data-order="Text"> 备注</th>-->
+                                                           
+                                <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 50px" data-order="Auditor">审核人</th>
+                                <th style="min-width: 50px" data-order="AuditTime">审核时间</th>
+                                <th style="min-width: 50px" data-order="Status">状态</th>   
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevelAudit-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="11">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="zzzc zace-cbd-contain" style="display:none;min-width:900px">
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>配置
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="device_status" id="zace-PositionUserSetup-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>岗位管理
+                                    </a>
+                                </li>
+
+                                <li class="device_status" id="zace-WorkFlowSetup-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>工作流程
+                                    </a>
+                                </li>
+                                <li class="device_status" id="zace-SCHPositionSetup-level">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-send"
+                                              aria-hidden="true"></span>工位岗位模型
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>所有列表
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="zace-allList-level">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-list"
+                                          aria-hidden="true"></span>所有列表
+                                </a>
+                            </li>
+                            <li class="device_status" id="zace-myApproval-level">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-indent-left"
+                                          aria-hidden="true"></span>我的申请
+                                </a>
+                            </li>
+                            <li class="device_status" id="zace-myAudit-level">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-indent-right"
+                                          aria-hidden="true"></span>我的审批
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="zace-search-returnAllList"
+                               style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                               placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-returnAllList-level"
+                            class="btn btn-default ">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                   
+                </div>
+
+                <span class="zace-header-title">岗位分组管理</span>
+            </div>
+
+            <div class="zace-tree-body">
+                <div class="femi-tb-scroll">
+                    <table class="table   table-hover table-bordered table-part">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <!--//<th style="min-width:50px" data-order="WID">序号</th>-->
+                                <th style="min-width: 50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="WorkShopID ">车间</th>
+                                <th style="min-width: 50px" data-order="LineID">产线</th>
+                                <th style="min-width: 50px" data-order="ModuleID">职能类别</th>
+                                <th style="min-width: 50px" data-order="Name">组名称</th>
+                                <th style="min-width: 50px" data-order="VersionText">组编码</th>
+                                <!--<th style="min-width: 50px" data-order="Text"> 备注</th>-->
+                               
+                                <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                <th style="min-width: 50px" data-order="CreateTime">创建时间</th>
+                                <th style="min-width: 50px" data-order="Auditor">审核人</th>
+                                <th style="min-width: 50px" data-order="AuditTime">审核时间</th>
+                                <th style="min-width: 50px" data-order="Status">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevelApproval-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td>
+                                <td colspan="11">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_model/PositionSetting.js"></script>
+</body>
+</html>

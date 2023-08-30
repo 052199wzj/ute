@@ -1,0 +1,87 @@
+﻿body {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+}
+
+.zace-cbd-contain{
+	height: 100%;	
+}
+
+.zace-tree-header {
+    height: 45px;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px 0px;
+    overflow: hidden;
+}
+
+.zace-tree-body {
+    width: 100%;
+    height: 100%;
+    margin-top: -45px;
+    padding: 50px 10px 5px 10px;
+
+}
+
+.zace-tree-header .femi-toolbar-self {
+    height:34px;
+}
+
+.zace-tree-header .btn-group {
+    height:34px;
+}
+
+.zace-tree-header .btn-default {
+    height:34px;
+}
+
+
+.zace-tree-header .zace-left {
+    padding-right:0px;
+}
+
+.zace-header-title {  
+    font-family: STXinwei;
+	font-size: 20px;
+    color: #00688B;
+	width:200px;
+	line-height: 40px;
+	cursor:default;
+	margin: 0px;
+	text-align:center;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+}
+.zace-schedule-text{
+
+    padding-top:5px;
+}
+.zace-schedule-text  span{
+    text-align:center;
+    vertical-align:middle;
+    font-size:16px;
+}
+
+
+
+
+div.zace-text {
+    display:inline;
+    /*float:left;*/
+    margin-left:5px;
+    height:25px;
+}
+
+div.zace-text span{
+    text-align:center;
+    vertical-align:middle;
+    
+}
+.zzzz{
+    /*padding:5px;*/
+     text-align:center;
+    vertical-align:middle;
+}

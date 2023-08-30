@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>设备型号</title>
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/deviceManage/deviceInfo.css" />
+</head>
+<body class="femi-font-size-middle">
+    <div class="iplant-tool-contain">
+        <div class="iplant-tool-right" style="display:none;">
+            <div class="lmvt-container-type zace-tree-header" style="display:none">
+                <div class="lmvt-container-header-btn zace-tree-header">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="lmvt-supplier-hide" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+                                </span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li id="femi-add-property5">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li id="femi-edit-property5">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property_status" data-status="1" id="ok5">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property_status" data-status="0" id="no5">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="zace-header-title" style="">加工类型</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="Name">名称</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">操作人</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">操作时刻</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-type-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="lmvt-container-system" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+
+                        <button type="button" id="lmvt-supplier-hide" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+                                </span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li id="femi-add-property1">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li id="femi-edit-property1">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property_status" data-status="1" id="ok1">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property_status" data-status="0" id="no1">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="zace-header-title" style="">系统</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 40px" data-order="SystemID">编号</th>
+                                    <th style="min-width: 60px" data-order="SystemName">系统名称</th>
+                                    <th style="min-width: 60px" data-order="SystemVersion">系统版本</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">操作人</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">操作时刻</th>
+                                    <th style="min-width: 40px" data-order="Active">状态</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-system-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="lmvt-container-supplier" style="display:none">
+                <div class="lmvt-container-header-btn zace-tree-header">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="lmvt-supplier-hide" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+                                </span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li id="femi-edit-property2">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li id="femi-add-property2">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li>
+
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property_status" data-status="1" id="ok2">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property_status" data-status="0" id="no2">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="zace-header-title" style="">供应商</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 40px" data-order="ID">编号</th>
+                                    <th style="min-width: 40px" data-order="PropertyName">供应商</th>
+                                    <th style="min-width: 60px" data-order="PropertyNo">供应商编号</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">操作人</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">操作时刻</th>
+                                    <th style="min-width: 40px" data-order="Active">状态</th>
+
+                                    <!-- <th style="min-width: 40px" data-order="Handle">操作</th> -->
+
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-supplier-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="lmvt-container-equip" style="display:none">
+                <div class="lmvt-container-header-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="lmvt-supplier-hide" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+                                </span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li id="femi-add-property3">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li id="femi-edit-property3">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property_status" data-status="1" id="ok3">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property_status" data-status="0" id="no3">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="epuipList" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-send" aria-hidden="true"></span>所有列表
+                        </button>
+                    </div>
+                    <p class="lmvt-header-title" style=" font-family: STXinwei;font-size: 20px;color: #C7001A !important; margin-top:-30px; margin-left:280px;">可装备件</p>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="DeviceSpareName">名称</th>
+                                    <th style="min-width: 50px" data-order="DeviceModelID">设备型号</th>
+                                    <th style="min-width: 50px" data-order="SpareModelID">备件型号</th>
+                                    <th style="min-width: 50px" data-order="EquipNum">数量</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">操作人</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">操作时刻</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+
+                                    <th style="min-width: 50px" data-order="Handle">操作</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-equip-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="lmvt-container-controller" style="display:none">
+                <div class="lmvt-container-header-btn zace-tree-header">
+                    <div class="btn-group" role="group">
+                        <button type="button" id="lmvt-supplier-hide" class="btn lmvt-def-btn">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏
+                        </button>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-wrench" aria-hidden="true">
+                                </span>操作
+                                <span class="caret"></span> <span class="sr-only">
+                                    Toggle
+                                    Dropdown
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu ">
+                                <li id="femi-add-property4">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li id="femi-edit-property4">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li class="device_property_status" data-status="1" id="ok4">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                                    </a>
+                                </li>
+                                <li class="device_property_status" data-status="0" id="no4">
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <span class="zace-header-title" style="">控制器</span>
+                </div>
+
+                <div class="lmvt-container-table-basic femi-contain-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>
+                                    <th style="min-width: 40px" data-order="ID">编号</th>
+                                    <th style="min-width: 40px" data-order="ControllerName">名称</th>
+                                    <th style="min-width: 40px" data-order="ControllerType">类型</th>
+                                    <th style="min-width: 50px" data-order="OperatorID">操作人</th>
+                                    <th style="min-width: 50px" data-order="OperatorTime">操作时刻</th>
+                                    <th style="min-width: 40px" data-order="Active">状态</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-equip-body table-color"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="iplant-tool-center lmvt-container-device">
+            <div class="lmvt-container-header-btn zace-tree-header" >
+                <div class="btn-group" role="group">
+                    <button type="button" id="lmvt-deviceinfo-input" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+                    </button>
+                    <button type="button" style="display:none" class="btn lmvt-def-btn">
+                        <input type="file" id="input-file" />
+                    </button>
+                    <button type="button" id="lmvt-deviceinfo-output" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+                    <button type="button" id="lmvt-deviceinfo-add" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                    <!-- <button type="button" id="lmvt-deviceinfo-edit" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                    </button>
+                    <button type="button" id="lmvt-deviceinfo-active" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                    </button>
+                    <button type="button" id="lmvt-deviceinfo-forbidden" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>禁用
+                    </button> -->
+                    <!-- <button type="button" id="lmvt-deviceinfo-refresh" class="btn lmvt-def-btn">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                    </button> -->
+                </div>
+                <div class="columns columns-right btn-group pull-right">
+                    <button type="button" class="btn lmvt-def-btn " style="padding: 0">
+                        <input type="text" id="femi-search-text-ledger" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                    </button>
+                    <button class="btn lmvt-def-btn" type="button" id="lmvt-left-check">
+                        <span class="glyphicon glyphicon-search"></span>查询
+                    </button>
+                    <div class="btn-group">
+                        <button type="button" class="btn lmvt-def-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>属性设置
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu  pull-right">
+
+                            <li class="device_property" data-type="3" id="device_controller">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>控制器
+                                </a>
+                            </li>
+
+                            <li class="device_property" data-type="2" id="device_supplier">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>供应商
+                                </a>
+                            </li>
+                        
+                            <li class="device_property" data-type="4" id="device_system">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>系统
+                                </a>
+                            </li>
+                            <li class="device_property" data-type="6" id="device_equip">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>可装备件
+                                </a>
+                            </li>
+                            <li class="device_property" data-type="6" id="device_type">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>加工类型
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <span class="zace-header-title" style="">设备型号</span>
+            </div>
+
+            <div class="lmvt-container-table-basic femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered deviceinfo-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="ID">编号</th>
+                                <th style="min-width: 50px" data-order="ModelNo">型号</th>
+                                <th style="min-width: 50px" data-order="DeviceWorkType">类型</th>
+                                <th style="min-width: 50px" data-order="SupplierName">供应商名称</th>
+                                <!-- <th style="min-width: 50px" data-order="SupplierModelNo">供应商编号</th> -->
+                                <th style="min-width: 50px" data-order="SystemName">系统名称</th>
+                                <th style="min-width: 50px" data-order="SystemVersion">系统版本</th>
+                                <th style="min-width: 50px" data-order="ControllerName">控制器名称</th>
+                                <th style="min-width: 50px" data-order="ControllerModel">控制器类型</th>
+                                <th style="min-width: 50px" data-order="DeviceCost">价值</th>
+                                <th style="min-width: 50px" data-order="DeviceLife">寿命</th>
+                                <th style="min-width: 50px" data-order="LimitCount">加工限制</th>
+                                <th style="min-width: 50px" data-order="StockNum">库存数量</th>
+                                <th style="min-width: 50px" data-order="WarningCycle">预警周期</th>
+                                <th style="min-width: 50px" data-order="WarningNum">预警加工剩余数</th>
+                                <th style="min-width: 50px" data-order="OperatorID">操作人</th>
+                                <th style="min-width: 50px" data-order="OperatorTime">操作时刻</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="max-width: 80px">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-device-body table-color"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/deviceManage/deviceInfo.js"></script>
+</body>
+
+</html>

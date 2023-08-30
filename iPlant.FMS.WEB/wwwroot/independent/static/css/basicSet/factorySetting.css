@@ -1,0 +1,183 @@
+﻿body {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+}
+
+.zace-cbd-contain{
+    margin:0px;
+	height: 100%;	
+}
+
+
+.zace-left{
+    margin:10px 10px 15px 15px;
+    margin-right:10px;
+    width:320px;
+    height:100%;
+    position:absolute;
+}
+.zace-left-contain{
+    width:100%;
+    height:100%;
+    /*border:solid 1px wheat;*/
+    margin-bottom:10px;
+
+
+}
+.femi-contain-border {
+  padding:5px;
+  height:100%;
+}
+
+.zace-center{
+    margin:10px 0px 15px 0px;
+    position:absolute;
+    margin:10px 0;
+    height:100%;
+    width:100%;
+    padding-right:325px;
+    padding-left:325px;
+
+}
+.zace-center-contain{
+    width:100%;
+    height:100%;
+    /*border:solid 1px wheat;*/
+    margin-bottom:10px;
+}
+.zace-right{
+    margin:10px 15px 15px 10px;
+    right:0;
+    width:400px;
+    margin-left:10px;
+    height:100%;
+    position:absolute;
+}
+.zace-right-contain{
+    position:absolute;
+    width:100%;
+    height:100%;
+    /*border:solid 1px wheat;*/
+    margin-bottom:10px;
+}
+
+.zace-center-contain .btn-group {
+    margin:5px 20px 5px 10px;
+    height:30px;
+    float:left;
+}
+.zace-btn-up {
+    bottom:5px;
+}
+.zace-btn-up span{
+   vertical-align:middle
+}
+.zace-center-contain .btn-group .btn {
+    height:30px;
+}
+
+.zace-left-contain .btn-group {
+    margin:5px 20px 5px 10px;
+    height:30px;
+}
+
+.zace-left-header ,.zace-center-header, .zace-right-header{
+    height:45px;
+    width:100%;
+
+}
+
+.zace-center-contain-contain {
+   
+    height:100%;
+    width:100%;
+    margin-top:-45px;
+    padding:45px 0px 15px 0px;
+
+}
+
+ .zace-center-header .pull-right {
+     margin-right:10px;
+  }
+
+.femi-tb-title {  
+    font-family: STXinwei;
+	font-size:20px;
+	line-height:40px;
+	color: #00688B; 
+	cursor:default;  
+	width: 200px;
+	text-align: center;
+    vertical-align:middle;
+	margin:auto;    
+    height:40px;
+   
+}
+
+/*.zace-center-text1 .femi-tb-title {
+    font-family: STXinwei;
+	font-size:20px;
+	line-height:40px;
+   
+    margin-left:450px;
+}*/
+
+.zace-center-text2 .femi-tb-title {
+    font-family: STXinwei;
+	font-size:20px;
+	line-height:40px;
+    text-align: center;
+     margin:auto;
+    /*margin-left:450px;*/
+}
+
+.zace-center-text3 .femi-tb-title {
+    font-family: STXinwei;
+	font-size:20px;
+	line-height:40px;
+    margin-left:45px;
+}
+.zace-left-contain .btn-group .btn {
+    height:30px;
+}
+
+.zace-left-contain .glyphicon ,.zace-right-contain .glyphicon,.zace-center-contain .glyphicon{
+    height:20px;
+}
+.zace-right-contain .btn-group .btn {
+    height:30px;
+}
+
+.zace-right-contain .btn-group {
+    margin:5px 11px 5px 10px;
+    height:30px;
+}
+.zace-center-contain .femi-tb-scroll , .zace-right-contain .femi-tb-scroll{
+     margin-left:10px;
+     margin-right:10px;
+
+}
+.zace-left-input{
+    margin:10px 10px 15px 10px;
+    font-size:14px;
+
+}
+
+
+.zace-left-input input{
+    border:0px;
+    outline:none;
+    width:150px;
+
+}
+
+.input-label{
+        display: inline-block;
+        text-align: right;
+        width: 120px;
+        font-size:13px;
+        font-weight:400;
+    
+    }

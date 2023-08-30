@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大屏</title>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/statementAnalysis/ScreenDisplay.css">
+</head>
+<body>
+
+<div id="screenDisplay">
+  <div class="fxy-heard">
+    <span>广州地铁18号线万顷沙基地</span>
+  </div>
+  <div class="fxy-box">
+    <div class="fxy-workOrder">
+      <div class="order-status-overview flex-none flex-row">
+        <div class="fxy-order-title">
+          工单总览:
+        </div>
+        <div
+            v-for="(item,index) in orderOverview"
+            v-cloak
+            :key="index"
+            class="card flex-column flex-center"
+        >
+          <div class="flex-none flex-row flex-a-center">
+            <div :style="{background:item.color}" class="circle"></div>
+            <span class="label">{{ item.label }}</span>
+            <span class="label">{{ item.value }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="fxy-device-probability flex-row">
+        <span>设备总数:</span>
+        <span>{{deviceSum}}</span>
+      </div>
+    </div>
+    <div class="fxy-deviceBox">
+      <div v-for="area in areaList">
+        <div>
+          <p v-text="area.Name" class="fxy-areaName"></p>
+          <p>
+            <span>关机:<span v-text="area.status.Shutdown"></span></span>
+            <span>开机:<span v-text="area.status.TurnOn"></span></span>
+            <span>报警:<span v-text="area.status.Alarm"></span></span>
+          </p>
+          <p>
+            <span>关机率:<span v-text="odds(area.status.Shutdown,(area.status.Shutdown+area.status.TurnOn))"></span></span>
+            <span>开机率:<span v-text="odds(area.status.TurnOn,(area.status.Shutdown+area.status.TurnOn))"></span></span>
+            <span>报警率:<span v-text="odds(area.status.Alarm,(area.status.Shutdown+area.status.TurnOn))"></span></span>
+          </p>
+        </div>
+        <div class="fxy-devicelist">
+          <ul class="infinite-list" :id="'areaID'+area.ID">
+            <li class="infinite-list-item" v-for="device in area.deviceList" :key="device.ID">
+              <span>{{device.DeviceName}}</span>
+              <span :style="{color:device.colour}">{{device.StatusText}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/statementAnalysis/ScreenDisplay.js"></script>
+
+</body>
+</html>

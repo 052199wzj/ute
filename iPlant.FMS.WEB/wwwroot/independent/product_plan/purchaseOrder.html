@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>采购计划</title>
+
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/product_plan/purchaseOrder.css" />
+
+</head>
+
+<body class="femi-font-size-middle">
+    <div class="lmvt-container">
+        <div class="lmvt-container-purchase">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-table-sreach" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                    </button>
+                    <button type="button" style="display:none" class="btn btn-default">
+                        <input type="file" id="input-file">
+                    </button>
+                    <button type="button" id="lmvt-table-out" class="btn btn-default">
+                        <span class="glyphicon glyphicon-export" aria-hidden="true"></span>导出
+                    </button>
+                </div>
+
+                <span class="lmvt-header-title"
+                    style=" font-family: STXinwei;font-size: 20px;color: #00688b">所有计划</span>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>所有列表
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="lmvt-allList">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>所有列表
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-myApproval">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的申请
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-myAudit">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的审批
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered order-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="ID">编号</th>
+                                <th style="min-width: 80px" data-order="EvaluationNo">合同评审号</th>
+                                <th style="min-width: 80px" data-order="RequestPurchaseNo">请购单号</th>
+                                <th style="min-width: 50px" data-order="Project">项目</th>
+                                <th style="min-width: 50px" data-order="DrawingNo">图号</th>
+                                <th style="min-width:50px" data-order="Version">版本号</th>
+                                <th style="min-width: 80px" data-order="MaterialNo">物料编码</th>
+                                <th style="min-width: 80px" data-order="ProductName">产品名称</th>
+                                <th style="min-width: 50px" data-order="ProductNo">产品规格</th>
+                                <th style="min-width: 50px" data-order="TParameter">技术参数</th>
+                                <th style="min-width:50px" data-order="FQTY_Request">需求量</th>
+                                <th style="min-width: 80px" data-order="FQTY_Plan">计划采购数</th>
+                                <th style="min-width: 50px" data-order="UnitText">单位</th>
+                                <th style="min-width: 50px" data-order="FQTY_Arrival">实际到货数量</th>
+                                <th style="min-width: 50px" data-order="ArrivalDate">实际到货日期</th>
+                                <th style="min-width:50px" data-order="ExpectArrivalDate">预计到货日期</th>
+                                <th style="min-width: 80px" data-order="RSupplierName">推荐供应商</th>
+                                <th style="min-width: 50px" data-order="SupplierName">供应商</th>
+                                <th style="min-width: 50px" data-order="ContractNo">合同编号</th>
+                                <th style="min-width: 50px" data-order="Auditor">审批人</th>
+                                <th style="min-width:50px" data-order="AuditTime">审批日期</th>
+                                <th style="min-width: 50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width:50px" data-order="CreateTime">创建日期</th>
+                                <th style="min-width: 50px" data-order="Buyer">采购员</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width: 50px" data-order="Status">单据状态</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-order-body table-color">
+                            <tr style="">
+                                <td colspan="50">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="lmvt-container-apply" style="display: none">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-apply-submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>提交
+                    </button>
+                    <button type="button" id="lmvt-table-add" class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                    </button>
+                    <button type="button" id="lmvt-table-active" class="btn btn-default">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                    </button>
+                    <button type="button" id="lmvt-table-crice" class="btn btn-default">
+                        <span class=" glyphicon glyphicon-remove" aria-hidden="true"></span>冻结
+                    </button>
+                    <button type="button" id="lmvt-table-basic-add-templet" class="btn btn-default">
+                        <span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+                    </button>
+                </div>
+
+                <span class="lmvt-header-title"
+                    style=" font-family: STXinwei;font-size: 20px;color: #00688b">我的申请</span>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的申请
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="lmvt-allList">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>所有列表
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-myApproval">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的申请
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-myAudit">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的审批
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="ID">编号</th>
+                                <th style="min-width: 80px" data-order="EvaluationNo">合同评审号</th>
+                                <th style="min-width: 80px" data-order="RequestPurchaseNo">请购单号</th>
+                                <th style="min-width: 50px" data-order="Project">项目</th>
+                                <th style="min-width: 50px" data-order="DrawingNo">图号</th>
+                                <th style="min-width:50px" data-order="Version">版本号</th>
+                                <th style="min-width: 80px" data-order="MaterialNo">物料编码</th>
+                                <th style="min-width: 80px" data-order="ProductName">产品名称</th>
+                                <th style="min-width: 50px" data-order="ProductNo">产品规格</th>
+                                <th style="min-width: 50px" data-order="TParameter">技术参数</th>
+                                <th style="min-width:50px" data-order="FQTY_Request">需求量</th>
+                                <th style="min-width: 80px" data-order="FQTY_Plan">计划采购数</th>
+                                <th style="min-width: 50px" data-order="UnitText">单位名称</th>
+                                <th style="min-width: 50px" data-order="FQTY_Arrival">实际到货数量</th>
+                                <th style="min-width: 50px" data-order="ArrivalDate">实际到货日期</th>
+                                <th style="min-width:50px" data-order="ExpectArrivalDate">预计到货日期</th>
+                                <th style="min-width: 80px" data-order="RSupplierName">推荐供应商名称</th>
+                                <th style="min-width: 50px" data-order="SupplierName">供应商</th>
+                                <th style="min-width: 50px" data-order="ContractNo">合同号</th>
+                                <th style="min-width: 50px" data-order="Auditor">审批人</th>
+                                <th style="min-width:50px" data-order="AuditTime">审批日期</th>
+                                <th style="min-width: 50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width:50px" data-order="CreateTime">创建日期</th>
+                                <th style="min-width: 50px" data-order="Buyer">采购员</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width: 50px" data-order="Status">单据状态</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-order-body table-color">
+                            <tr style="">
+                                <td colspan="50">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="lmvt-container-approve" style="display: none">
+            <div class="lmvt-container-header-btn">
+                <div class="btn-group femi-lf" role="group">
+                    <button type="button" id="lmvt-approve-agree" class="btn btn-default">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>审批
+                    </button>
+                    <button type="button" id="lmvt-approve-disagree" class="btn btn-default">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>反审批
+                    </button>
+                    <button type="button" id="lmvt-table-active" class="btn btn-default">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>激活
+                    </button>
+                    <button type="button" id="lmvt-table-crice" class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>冻结
+                    </button>
+                </div>
+
+                <span class="lmvt-header-title"
+                    style=" font-family: STXinwei;font-size: 20px;color: #00688b">我的审批</span>
+
+                <div class="columns columns-right btn-group pull-right">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>我的审批
+                            <span class="caret"></span> <span class="sr-only">
+                                Toggle
+                                Dropdown
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="device_status" id="lmvt-allList">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>所有列表
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-myApproval">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的申请
+                                </a>
+                            </li>
+                            <li class="device_status" id="lmvt-myAudit">
+                                <a href="javascript:;">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>我的审批
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="lmvt-container-table femi-contain-border">
+                <div class="femi-tb-scroll">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <th style="min-width:50px" data-order="ID">编号</th>
+                                <th style="min-width: 80px" data-order="EvaluationNo">合同评审号</th>
+                                <th style="min-width: 80px" data-order="RequestPurchaseNo">请购单号</th>
+                                <th style="min-width: 50px" data-order="Project">项目</th>
+                                <th style="min-width: 50px" data-order="DrawingNo">图号</th>
+                                <th style="min-width:50px" data-order="Version">版本号</th>
+                                <th style="min-width: 80px" data-order="MaterialNo">物料编码</th>
+                                <th style="min-width: 80px" data-order="ProductName">产品名称</th>
+                                <th style="min-width: 50px" data-order="ProductNo">产品规格</th>
+                                <th style="min-width: 50px" data-order="TParameter">技术参数</th>
+                                <th style="min-width:50px" data-order="FQTY_Request">需求量</th>
+                                <th style="min-width: 80px" data-order="FQTY_Plan">计划采购数</th>
+                                <th style="min-width: 50px" data-order="UnitText">单位名称</th>
+                                <th style="min-width: 50px" data-order="FQTY_Arrival">实际到货数量</th>
+                                <th style="min-width: 50px" data-order="ArrivalDate">实际到货日期</th>
+                                <th style="min-width:50px" data-order="ExpectArrivalDate">预计到货日期</th>
+                                <th style="min-width: 80px" data-order="RSupplierName">推荐供应商名称</th>
+                                <th style="min-width: 50px" data-order="SupplierName">供应商</th>
+                                <th style="min-width: 50px" data-order="ContractNo">合同号</th>
+                                <th style="min-width: 50px" data-order="Status">单据状态</th>
+                                <th style="min-width:50px" data-order="AuditTime">审批日期</th>
+                                <th style="min-width: 50px" data-order="CreatorID">创建人</th>
+                                <th style="min-width:50px" data-order="CreateTime">创建日期</th>
+                                <th style="min-width: 50px" data-order="Buyer">采购员</th>
+                                <th style="min-width: 50px" data-order="Active">状态</th>
+                                <th style="min-width: 50px" data-order="Status">单据状态</th>
+                            </tr>
+                        </thead>
+                        <tbody class="lmvt-order-body table-color">
+                            <tr style="">
+                                <td colspan="50">等待数据加载</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/purchaseOrder.js"></script>
+</body>
+
+</html>

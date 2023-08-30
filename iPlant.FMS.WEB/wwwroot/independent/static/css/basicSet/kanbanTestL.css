@@ -1,0 +1,140 @@
+﻿
+
+html {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+}
+
+body {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;   
+}
+
+.zace-font-size-large{
+   
+     font-size:1.6vh !important;
+    font-family:Arial;
+   font-weight:600;
+
+}
+
+  div::-webkit-scrollbar {
+            display: none;
+        }
+
+
+  div img{
+
+      width:4vh;
+      height:4vh;
+
+
+  }
+
+  .removeClass {
+
+      width:5vw;
+      height:5vh;
+      left:50vw;
+      top:10vh;
+      position:absolute;
+      border-radius:15px;
+      background:rgba(56,187,139,0.59);
+      text-align:center;
+      line-height:5vh;
+      overflow-x:auto
+
+  }
+
+
+  .TDTable > thead > tr > th, .TDTable > tbody > tr > th, .TDTable > tfoot > tr > th, .TDTable > thead > tr > td, .TDTable > tbody > tr > td, .TDTable > tfoot > tr > td {
+    padding: 8px;
+    line-height: 2.8vh;
+    vertical-align: top;
+    /*border-top: 1px solid #ddd;*/
+    text-align:center;
+}
+.TDTable > thead {
+    background-color:#0E4477;
+    font-size: 2.2vh;
+}
+.TDTable > tbody {  
+    font-size: 2vh;
+}
+
+.TDTable > tbody > tr:nth-child(even){
+    background-color:#1C3771;
+}
+
+/*  异常统计*/
+.TDTableZace > thead {
+    background-color:#0E4477
+}
+.TDTableZace > tbody > tr:nth-child(even){
+    background-color:#152654;
+}
+.TDTableZace > tbody > tr:nth-child(odd){
+    background-color:#1C3771;
+}
+
+
+.TDTableZace > thead {
+    background-color:#0E4477;
+    font-size: 2vh;
+}
+.TDTableZace > tbody {  
+    font-size: 1.7vh;
+}
+
+.TDTableZace > thead > tr > th, .TDTableZace > tbody > tr > th, .TDTableZace > tfoot > tr > th, .TDTableZace > thead > tr > td, .TDTableZace > tbody > tr > td, .TDTableZace > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    line-height: 3vh;
+    vertical-align: top;
+    /*border-top: 1px solid #ddd;*/
+    text-align:center;
+}
+
+/*  台位异常统计*/
+.TDTableZacePlace > thead {
+    background-color:#0E4477
+}
+.TDTableZacePlace > tbody > tr:nth-child(even){
+    background-color:#152654;
+}
+.TDTableZacePlace > tbody > tr:nth-child(odd){
+    background-color:#1C3771;
+}
+
+
+.TDTableZacePlace > thead {
+    background-color:#0E4477;
+    font-size: 2vh;
+}
+.TDTableZacePlace > tbody {  
+    font-size: 1.7vh;
+}
+
+.TDTableZacePlace > thead > tr > th, .TDTableZacePlace > tbody > tr > th, .TDTableZacePlace > tfoot > tr > th, .TDTableZacePlace > thead > tr > td, .TDTableZacePlace > tbody > tr > td, .TDTableZacePlace > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    line-height: 3vh;
+    vertical-align: top;
+    /*border-top: 1px solid #ddd;*/
+    text-align:center;
+}
+
+
+
+
+.lmvt-exc-body tr td input[type=checkbox]{
+
+    display:none;
+}
+.zace-colorHead{
+    font-size: 2.1vh;
+}

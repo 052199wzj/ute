@@ -1,0 +1,182 @@
+﻿
+
+html {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+}
+
+body {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;   
+}
+
+.zace-font-size-large{
+   
+     font-size:1.6vh !important;
+    font-family:Arial;
+   font-weight:600;
+
+}
+
+  div::-webkit-scrollbar {
+            display: none;
+        }
+
+
+  div img{
+
+      width:4vh;
+      height:4vh;
+
+
+  }
+
+  .removeClass {
+
+      width:5vw;
+      height:5vh;
+      left:50vw;
+      top:10vh;
+      position:absolute;
+      border-radius:15px;
+      background:rgba(56,187,139,0.59);
+      text-align:center;
+      line-height:5vh;
+      overflow-x:auto
+
+  }
+
+ /* 库位台位 */
+  .TDTable > thead > tr > th, .TDTable > tbody > tr > th, .TDTable > tfoot > tr > th, .TDTable > thead > tr > td, .TDTable > tbody > tr > td, .TDTable > tfoot > tr > td {
+    /* padding: 8px;
+    vertical-align: top; */
+    /*border-top: 1px solid #ddd;*/
+    border: 1px solid gray;
+    text-align:center;
+}
+.TDTable > thead {
+    /* background-color:#0E4477; */
+    font-size: 2.2vh;
+}
+.TDTable > tbody {  
+    font-size: 2vh;
+}
+
+/* 图例说明 */
+.TDTableOther > thead > tr > th, .TDTableOther > tbody > tr > th, .TDTableOther > tfoot > tr > th, .TDTableOther > thead > tr > td, .TDTableOther > tbody > tr > td, .TDTableOther > tfoot > tr > td {
+    /* padding: 8px;
+    vertical-align: top; */
+    /*border-top: 1px solid #ddd;*/
+    border: 1px solid gray;
+    text-align:center;
+}
+.TDTableOther > thead {
+    /* background-color:#0E4477; */
+    font-size: 1.5vh;
+}
+.TDTableOther > tbody {  
+    font-size: 1.5vh;
+}
+/* 检修概况 */
+
+.TDTableZacePlace > thead {
+    background-color:#0E4477;
+    font-size: 2vh;
+}
+.TDTableZacePlace > tbody {  
+    font-size: 1.7vh;
+}
+
+.TDTableZacePlace > thead > tr > th, .TDTableZacePlace > tbody > tr > th, .TDTableZacePlace > tfoot > tr > th, .TDTableZacePlace > thead > tr > td, .TDTableZacePlace > tbody > tr > td, .TDTableZacePlace > tfoot > tr > td {
+    padding: 8px;
+    line-height: 3vh;
+    vertical-align: top;
+    text-align:center;
+}
+/* 检修概况一 */
+.lmvt-exc-div .lmvt-exc-div-count-exc .femi-tb-scroll .TDTableZacePlaceGK  thead {
+    background-color:#0E4477
+}
+.lmvt-exc-div .lmvt-exc-div-count-exc .femi-tb-scroll .TDTableZacePlaceGK  tbody  tr:nth-child(even){
+    background-color:#152654;
+}
+.lmvt-exc-div .lmvt-exc-div-count-exc .femi-tb-scroll .TDTableZacePlaceGK  tbody  tr:nth-child(odd){
+    background-color:#1C3771;
+}
+/* 检修概况二 */
+.lmvt-exc-divTwo .lmvt-exc-div-count-exc .femi-tb-scroll .TDTableZacePlaceGKTwo  thead {
+    background-color:#0E4477
+}
+.lmvt-exc-divTwo .lmvt-exc-div-count-exc .femi-tb-scroll .TDTableZacePlaceGKTwo  tbody  tr:nth-child(even){
+    background-color:#152654;
+}
+.lmvt-exc-divTwo .lmvt-exc-div-count-exc .femi-tb-scroll .TDTableZacePlaceGKTwo  tbody  tr:nth-child(odd){
+    background-color:#1C3771;
+}
+/* 异常任务 */
+.lmvt-exc-msg .lmvt-exc-msgtable  .femi-tb-scroll table thead tr th{
+    /* border: 1px solid gray; */
+    font-size: 1.2vw;
+}
+.lmvt-exc-msg .lmvt-exc-msgtable  .femi-tb-scroll table tbody tr td{
+    /* border: 1px solid gray; */
+    font-size: 1.2vw;
+}
+
+.lmvt-exc-msg .lmvt-exc-msgtable .femi-tb-scroll .TDTableZacePlaceEXC  thead {
+    background-color:#0E4477
+}
+.lmvt-exc-msg .lmvt-exc-msgtable .femi-tb-scroll .TDTableZacePlaceEXC  tbody  tr:nth-child(even){
+    background-color:#152654;
+}
+.lmvt-exc-msg .lmvt-exc-msgtable .femi-tb-scroll .TDTableZacePlaceEXC  tbody  tr:nth-child(odd){
+    background-color:#1C3771;
+}
+
+
+/* .TDTableZacePlaceEXC > thead {
+    background-color:#0E4477;
+    font-size: 2vh;
+}
+.TDTableZacePlaceEXC > tbody {  
+    font-size: 1.7vh;
+} */
+
+.TDTableZacePlaceEXC > thead > tr > th, .TDTableZacePlaceEXC > tbody > tr > th, .TDTableZacePlaceEXC > tfoot > tr > th, .TDTableZacePlaceEXC > thead > tr > td, .TDTableZacePlaceEXC > tbody > tr > td, .TDTableZacePlaceEXC > tfoot > tr > td {
+    padding: 5px;
+    line-height: 3vh;
+    vertical-align: top;
+    text-align:center;
+}
+
+/* 台车事实列表*/
+.lmvt-exc-car .lmvt-exc-cartable  .femi-tb-scroll table thead tr th{
+    /* border: 1px solid gray; */
+    font-size:  1.3vw;
+}
+.lmvt-exc-car .lmvt-exc-cartable  .femi-tb-scroll table tbody tr td{
+    /* border: 1px solid gray; */
+    font-size: 1.3vw;
+}
+.lmvt-exc-car .lmvt-exc-cartable .femi-tb-scroll .TDTableZacePlace  thead {
+    background-color:#0E4477
+}
+.lmvt-exc-car .lmvt-exc-cartable .femi-tb-scroll .TDTableZacePlace  tbody  tr:nth-child(even){
+    background-color:#152654;
+}
+.lmvt-exc-car .lmvt-exc-cartable .femi-tb-scroll .TDTableZacePlace  tbody  tr:nth-child(odd){
+    background-color:#1C3771;
+}
+
+.lmvt-exc-contain .femi-tb-scroll .lmvt-mid .TDTable{
+    width: 100%;
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: table;
+    border-color: grey;
+}

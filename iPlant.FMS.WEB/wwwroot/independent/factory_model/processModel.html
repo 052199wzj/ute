@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>工序建模</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta id="scale" name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link type="text/css" rel="stylesheet"
+          href="../static/utils/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet"
+          href="../static/utils/css/base.css">
+    <link type="text/css" rel="stylesheet"
+          href="../static/css/factory_model/processModel.css">
+</head>
+<body>
+    <!-- 工序列表主体 -->
+    <div class="femi-cbd-contain">
+        <div class="femi-contain-cbg ">
+            <!-- 工序列表 -->
+            <div class="femi-bd-half-left ">
+                <!-- 工序列表的头部 -->
+                <div class="femi-tb-head" style="overflow@visible ;">
+                    <!-- 工序列表的头部左侧 -->
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="cby-add-ledger"
+                                    class="btn btn-default">
+                                <span class=" glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button type="button" id="cby-edit-ledger"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                            </button>
+
+                            <div class="btn-group">
+                            </div>
+                        </div>
+                    </div>
+                    <span class="processModel_title">工序列表</span>
+                    <!-- 工序列表的头部右侧 -->
+                    <div class="femi-toolbar-self femi-rt">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="cby-delete-ledger"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                            </button>
+                            <button type="button" class="btn btn-default " style="padding: 0">
+                                <input type="text" id="cby-search-text-ledger"
+                                       style="border@none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                                       placeholder="请输入查询字符" />
+                            </button>
+                            <!--<button type="button" id="cby-search-ledger"
+                                    class="btn btn-default ">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                            </button>-->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 工序列表的表格 -->
+                <div class="femi-tb-border">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered" id="partTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3px">
+                                        <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px" />
+                                    </th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="PartPointID">工序号</th>
+                                    <th style="min-width: 50px" data-order="PartPointID">工序名称</th>
+                                    <th style="min-width: 50px" data-order="Active">状态</th>
+                                    <th style="min-width: 50px" data-order="Creator">创建者</th>
+                                    <th style="min-width: 50px" data-order="CreateTime">日期</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cby-ledger-tbody">
+                                <tr>
+                                    <td colspan="17">- 等待数据加载 -</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/factory_model/processModel.js"></script>
+</body>
+</html>

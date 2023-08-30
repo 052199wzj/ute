@@ -1,0 +1,973 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/basicSet/KanbanCar_first.css"/>
+
+
+</head>
+
+<body class="zace-font-size-large" style="min-width:100px">
+<!--html 100%   vw  vh-->
+<!--;background:url(ce2.jpg)-->
+
+<div
+    id="event"
+    style="width:100%;height:100%;color:white;background:url(../static/images/GZImg/bgL.png);background-size:100% 100%;"
+>
+  <!--移车台位-->
+  <div
+      class="lmvt-exc-contain"
+      style="position:relative;top:8vh;left:1vw;right:16vw;bottom:11vh;width: 58.5%;background-color: #1A2B58;height: 92%;"
+  >
+    <div class="femi-tb-scroll" style="background-color: #152654;">
+      <div class="lmvt-left" style="height:100%;width:30%;float: left;padding-right: 5px;">
+        <table
+            class="TDTable grinding-table"
+            style="width: 100%;background-color: transparent;border-spacing: 0;
+                    border-collapse: collapse;display: table;border-color: grey;margin-right: 10px;float: left;height: 89.5vh;"
+        >
+          <thead class="zace-colorHead" style="background-color: #0E4477;">
+          <tr style="font-size: 0.9vw;">
+            <!--<th style="width: 3px;display:none">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>-->
+            <th data-order="Name">台位状态</th>
+            <th data-order="CarNo">库位</th>
+            <!-- <th data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;color: white;">
+          <!-- <tr style="">
+                              <td colspan="8">等待数据加载</td>
+
+                          </tr> -->
+          <!-- <tr style="height: 2.7vh;color: white;font-size: 0.8vw;">
+          <td style="border: 1px solid gray;text-align: center;font-size: 1vw;">
+              台位状态
+          </td>
+          <td>
+              <div style="width: 50px;">库位</div>
+          </td>
+      </tr> -->
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getRain">
+            <!-- <td style="border: 1px solid gray;">
+
+                <div
+                    style="margin-left: 5%; width: 42%;height: 18px;border-radius: 8px;border: 1px solid gray;color: white;float: right;margin-right: 5%;background-color: #cccccc;">
+                    <p style="font-size: 1vw;line-height: 1vw;vertical-align: middle;"></p>
+                </div>
+                <div
+                    style="width: 42%;height: 18px;border-radius: 8px;border: 1px solid gray;color: white;float: right;background-color: #cccccc;">
+                    <p style="font-size: 1vw;line-height: 1vw;vertical-align: middle;"></p>
+                </div>
+            </td>
+            <td>
+                <div style="width: 50px;">淋雨</div>
+            </td> -->
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC32">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC31">
+            <!-- <td style="border: 1px solid gray;width: 100%;">
+
+            </td>
+            <td>
+                <div>C31</div>
+            </td> -->
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC30">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC29">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC28">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC27">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC26">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC25">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC24">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC23">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC22">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC21">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC20">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC19">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC18">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC17">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC16">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC15">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC14">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC13">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC12">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC11">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC10">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC9">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC8">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC7">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC6">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC5">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC4">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC3">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC2">
+
+          </tr>
+          <tr style="height: 2.72vh;color: white;font-size: 0.8vw;" class="getC1">
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lmvt-mid" style="height:100%;width:70%;float: left;">
+        <!-- 厂线 -->
+        <table
+            class="TDTable grinding-table" style="width: 100%;background-color: transparent;border-spacing: 0;
+                        border-collapse: collapse;display: table;border-color: grey;height: 10.8vh;"
+        >
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 10.8vh;;font-size: 1vw; color: white;" class="getFactoryline">
+
+          </tr>
+          </tbody>
+        </table>
+
+        <!-- B07 -->
+        <table class="TDTable grinding-table" style="margin-top: 2.4vh;height: 8vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 8vh;font-size: 0.8vw; color: white;" class="getB7">
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- B06 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 2.6vh;font-size: 0.8vw;color: white;" class="getB6">
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- B05 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 2.6vh;font-size: 0.8vw; color: white;" class="getB5">
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- B04 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 2.6vh;font-size: 0.8vw;color: white;" class="getB4">
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- B03 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;" class="getB3">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 2.6vh;font-size: 0.8vw;color: white;" class="getB3">
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- B02 -->
+        <table class="TDTable grinding-table" style="margin-top: 2.3vh;height: 8.1vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                      <input type="checkbox"
+                                             class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                             value="{{functionID}}" />
+                                  </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                  <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                  <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;" class="getB2">
+          <!-- <tr style="">
+                                    <td colspan="8">等待数据加载</td>
+
+                                </tr> -->
+          <tr style="height: 8vh;font-size: 0.8vw;color: white;" class="getB2">
+
+          </tr>
+          </tbody>
+        </table>
+        <!-- B01 -->
+        <table class="TDTable grinding-table" style="height: 8.1vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                    <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                    <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;" class="getB1">
+          <!-- <tr style="">
+                                      <td colspan="8">等待数据加载</td>
+
+                                  </tr> -->
+          <tr style="height: 8vh;font-size: 0.8vw;color: white;" class="getB1">
+            <!-- <td style="width: 50px;">
+                <div>B1</div>
+            </td>
+            <td style="border: 1px solid gray;">
+            </td> -->
+          </tr>
+          </tbody>
+        </table>
+        <!-- 图例说明 -->
+        <table
+            class="TDTableOther grinding-table" style="margin-top: 2vh;height: 4vh;width: 100%; background-color: transparent;border-spacing: 0;border-collapse: collapse;display: table;
+                    border-color: grey;"
+        >
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                  <td colspan="8">等待数据加载</td>
+
+                              </tr> -->
+          <tr style="height: 2.7vh;font-size: 0.7vw;color: white;">
+            <td style="width: 50px;" colspan="1" rowspan="1">
+              <div>图例<br/>说明</div>
+            </td>
+            <td style="border: 1px solid gray;clear: both;">
+              <div
+                  style="width: 12%;float: left;margin-right: 4px;margin-top: 1vh;margin-left: 2px"
+              >
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: transparent"
+                >
+                </div>
+                <p style="margin-top: 0.4vh;">空闲台位
+                <p>
+              </div>
+              <div
+                  style="width: 12%;float: left;margin-right: 10px;margin-top: 1vh;margin-left: 1%;"
+              >
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: transparent;"
+                >
+                  <p
+                      style="font-size: 0.8vw;line-height: 0.8vw;vertical-align: middle;color: white;"
+                  >
+                    车号</p>
+                </div>
+                <p style="margin-top: 0.4vh;">占用台位
+                <p>
+              </div>
+              <div style="width: 12%;float: left;margin-right: 10px;margin-top: 1vh;">
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: #009900;"
+                >
+                </div>
+                <p style="margin-top: 0.4vh">工位开工
+                <p>
+              </div>
+              <div style="width: 12%;float: left;margin-right: 10px;margin-top: 1vh;">
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: #00CCFF;"
+                >
+                </div>
+                <p style="margin-top: 0.4vh">工位完工
+                <p>
+              </div>
+              <div style="width: 12%;float: left;margin-right: 10px;margin-top: 1vh">
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: #cc3399;"
+                >
+                </div>
+                <p style="margin-top: 0.4vh">移车起始台位
+                <p>
+              </div>
+              <div style="width: 12%;float: left;margin-right: 10px;margin-top: 1vh">
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: #FF9933;"
+                >
+                </div>
+                <p style="margin-top: 0.4vh">移车目标台位
+                <p>
+              </div>
+              <div style="width: 12%;float: left;margin-right: 10px;margin-top: 1vh">
+                <div
+                    style="width: 100%;height: 18px;border-radius: 8px;border: 2px solid #cccccc;color: black;background-color: #FF0000;"
+                >
+                </div>
+                <p style="margin-top: 0.4vh">异常
+                <p>
+              </div>
+              <!-- <div style="margin: 5px;width: 17%;height: 20px;border-radius: 8px;border: 1px solid gray;color: black;float: left;margin-right: 10px;background-color: #00FF66;">222</div>
+                                  <div style="margin: 5px;width: 17%;height: 20px;border-radius: 8px;border: 1px solid gray;color: black;float: left;margin-right: 10px;background-color: #00CCFF;">333</div>
+                                   <div style="margin: 5px;width: 17%;height: 20px;border-radius: 8px;border: 1px solid gray;color: black;float: left;margin-right: 10px;background-color: #FFCC33;">444</div>
+                                   <div style="margin: 5px;width: 17%;height: 20px;border-radius: 8px;border: 1px solid gray;color: black;float: left;margin-right: 10px;background-color: #FF0000;">555</div> -->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- A07 -->
+        <table class="TDTable grinding-table" style="margin-top: 2.2vh;height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                    <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                    <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                      <td colspan="8">等待数据加载</td>
+
+                                  </tr> -->
+          <tr style="height: 2.7vh;font-size: 0.8vw;color: white;" class="getA7">
+            <td style="width: 50px;">
+              <div>A7</div>
+            </td>
+            <td style="border: 1px solid gray;">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- A06 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                    <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                    <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                      <td colspan="8">等待数据加载</td>
+
+                                  </tr> -->
+          <tr style="height: 2.7vh;font-size: 0.8vw;color: white;" class="getA6">
+            <td style="width: 50px;">
+              <div>A6</div>
+            </td>
+            <td style="border: 1px solid gray;">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- A05 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                        <input type="checkbox"
+                                               class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                               value="{{functionID}}" />
+                                    </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                                    <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                                    <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                                      <td colspan="8">等待数据加载</td>
+
+                                  </tr> -->
+          <tr style="height: 2.7vh;font-size: 0.8vw;color: white;" class="getA5">
+            <!-- <td style="width: 50px;">
+                <div>A5</div>
+            </td>
+            <td style="border: 1px solid gray;">
+            </td> -->
+          </tr>
+          </tbody>
+        </table>
+        <!-- A04 -->
+        <table class="TDTable grinding-table" style="height: 2vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                            <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                            <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                              <td colspan="8">等待数据加载</td>
+
+                          </tr> -->
+          <tr style="height: 2.7vh;font-size: 0.8vw;color: white;" class="getA4">
+            <td style="width: 50px;">
+              <div>A4</div>
+            </td>
+            <td style="border: 1px solid gray;">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <!-- A03 -->
+        <table class="TDTable grinding-table" style="height: 5.4vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                            <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                            <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                              <td colspan="8">等待数据加载</td>
+
+                          </tr> -->
+          <tr style="height: 5.4vh;font-size: 0.8vw;color: white;" class="getA3">
+            <!-- <td style="width: 50px;">
+                <div>A3</div>
+            </td>
+            <td style="border: 1px solid gray;">
+                <div style="width: 13%;height: 40px;float: left;">
+                    <div
+                        style="margin: 2px; width: 100%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;background-color: #cccccc;">
+                    </div>
+                    <div
+                        style="margin: 2px ;width: 100%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;background-color: #cccccc;">
+                    </div>
+                </div>
+                <div
+                    style="margin: 3px; width: 13%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;float: left;background-color: #cccccc;margin-top: 1.2vh;">
+                </div>
+                <div
+                    style="margin: 3px; width: 13%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;float: left;background-color: #cccccc;margin-top: 1.2vh;">
+                </div>
+                <div
+                    style="margin: 3px; width: 13%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;float: left;background-color: #cccccc;margin-top: 1.2vh;">
+                </div>
+                <div
+                    style="margin: 3px; width: 13%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;float: left;background-color: #cccccc;margin-top: 1.2vh;">
+                </div>
+                <div
+                    style="margin: 3px; width: 13%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;float: left;background-color: #cccccc;margin-top: 1.2vh;">
+                </div>
+                <div
+                    style="margin: 3px; width: 13%;height: 18px;border-radius: 8px;border: 1px solid gray;color: black;float: left;background-color: #cccccc;margin-top: 1.2vh;">
+                </div>
+
+            </td> -->
+          </tr>
+          </tbody>
+        </table>
+        <!-- A02 -->
+        <table class="TDTable grinding-table" style="height: 5.4vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                            <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                            <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                              <td colspan="8">等待数据加载</td>
+
+                          </tr> -->
+          <tr style="height: 5.4vh;font-size: 0.8vw;color: white;" class="getA2">
+          </tr>
+          </tbody>
+        </table>
+        <!-- A01 -->
+        <table class="TDTable grinding-table" style="height: 8.1vh;">
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                                <input type="checkbox"
+                                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                       value="{{functionID}}" />
+                            </th>-->
+            <!-- <th style="min-width:50px" data-order="Name">台位名称</th>
+                            <th style="min-width: 80px" data-order="CarNo">车编号</th>
+                            <th style="min-width: 50px" data-order="Type">异常类型</th> -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-exc-body" style="background-color: #0E4477;">
+          <!-- <tr style="">
+                              <td colspan="8">等待数据加载</td>
+
+                          </tr> -->
+          <tr style="font-size: 0.8vw;color: white;border: 0;" class="getA1">
+            <!-- <td style="width: 50px;">
+                <div>A1</div>
+            </td>
+            <td style="border: 1px solid gray;">
+            </td> -->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- 概况一 -->
+  <div
+      class="lmvt-exc-div"
+      style="position:absolute;top:8vh;right:1vw;left:60vw;bottom:1vh;height:28vh;"
+  >
+    <!--名称-->
+    <div class="lmvt-exc-div-name " style="height:5vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:2vw;">
+      <div class="zace-colorHead" style="line-height: 5vh;background-color:#0E4477;font-size: 1.5vw;">
+        &nbsp;&nbsp;检修概况
+      </div>
+    </div>
+    <div
+        class="lmvt-exc-div-count-exc zace-colorBg"
+        style="height:16vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:5vw;overflow-y:auto;"
+    >
+      <div class="femi-tb-scroll">
+        <table
+            class="TDTableZacePlaceGK grinding-table" style="width: 100%;max-width: 100%;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;height: 16vh;"
+        >
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                <input type="checkbox"
+                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                       value="{{functionID}}" />
+            </th>-->
+            <!-- <th style="min-width:50px" data-order="PlaceName">台位</th> -->
+            <!-- <th style="min-width: 80px" data-order="Active">台位状态</th> -->
+            <!-- <th style="min-width: 50px" data-order="ExcNum">异常数量</th>                              -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-excPlace-bodyGK" style="color: black;font-size: 1.3vw;">
+          <!-- <tr>
+              <td style="color: white;text-align: right;">全年累计修竣
+              </td>
+              <td style=" color: #07C33E;text-align: left;">112</td>
+              <td style="color: white;text-align: right;">C5修累计修竣
+              </td>
+              <td style="color: #07C33E;text-align: left;">99</td>
+              <td style="color: white;text-align: right;">C6修累计修竣
+              </td>
+              <td style="color: #07C33E;text-align: left;">13</td>
+          </tr>
+          <tr>
+              <td style="color: white;text-align: right;">本月竣工数</td>
+              <td style="color: #07C33E;text-align: left;">14</td>
+              <td style="color: white;text-align: right;">在厂机车</td>
+              <td style="color: #07C33E;text-align: left;">11</td>
+              <td style="color: white;text-align: right;">在修机车</td>
+              <td style="color: #07C33E;text-align: left;">6</td>
+          </tr>
+          <tr>
+              <td style="color: white;text-align: right;">工位待完工任务</td>
+              <td style="color: #F5B128;text-align: left;">230</td>
+              <td style="color: white;text-align: right;">今日新增异常</td>
+              <td style="color: red;text-align: left;">12</td>
+              <td style="color: white;text-align: right;">不合格评审数</td>
+              <td style="color: red;text-align: left;">3</td>
+          </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- 异常信息 -->
+  <div
+      class="lmvt-exc-msg"
+      style="position:absolute;top:30vh;right:1vw;left:60vw;bottom:1vh;height:68vh;"
+  >
+    <!-- <div class="lmvt-exc-div-name " style="height:5vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:2vw;">
+        <div class="zace-colorHead" style="line-height: 5vh;background-color:#0E4477;font-size: 1.5vw;">
+            &nbsp;&nbsp;异常信息</div>
+    </div> -->
+    <!--名称-->
+    <div
+        class="lmvt-exc-div-name"
+        style="height:6vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:2vw;background-color:#13487A;"
+    >
+      <!-- <div class="zace-colorHead" style="font-size: 1.5vw;line-height: 6vh;clear: both;">
+      <p style="float: left;margin-left: 0.6vw;margin-right: 1vw;">异常信息</p><p style="float: left; margin-right: 1vw;">A级:12</p> <p style="float: left;margin-right: 1vw;">B级:12</p> <p style="float: left;margin-right: 1vw;">C级:12</p > <p style="float: left;">D级:12</p>
+      </div> -->
+    </div>
+    <div
+        class="lmvt-exc-msgtable zace-colorBg"
+        style="height:63vh;position:relative;top:-0.3vw;right:0vw;left:0vw;bottom:5vw;overflow-y:auto;background-color:#0E4477;clear: both;"
+    >
+      <div class="femi-tb-scroll" style="background-color: #13487A;">
+        <table
+            class="TDTableZacePlaceEXC grinding-table" style="width: 100%;max-width: 100%;background-color: #0E4477;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;"
+        >
+          <thead class="zace-colorHead" style="background-color: #13487A;color: white;">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                <input type="checkbox"
+                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                       value="{{functionID}}" />
+            </th>-->
+            <th style="width:80px;" data-order="PlaceNo">台位</th>
+            <th style="width:60px" data-order="CarName">车号</th>
+            <th style="width:60px" data-order="EXType">类型</th>
+            <th style="width:60px" data-order="ResponseLevelName">等级</th>
+            <th style="width:60px" data-order="CreateTime">异常时间</th>
+            <!-- <th style="width:50px" data-order="CreatorName">发起人</th> -->
+            <th style="width:60px" data-order="OperatorName">处理人</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-excPlace-bodyExc" style="color: white;">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- 概况二 -->
+  <div
+      class="lmvt-exc-divTwo"
+      style="position:absolute;top:8vh;right:1vw;left:0.5vw;bottom:1vh;height:20vh;width: 99vw;display: none;"
+  >
+    <!--名称-->
+    <div class="lmvt-exc-div-name " style="height:5vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:2vw;">
+      <div class="zace-colorHead" style="line-height: 5vh;background-color:#0E4477;font-size: 1.5vw;">
+        &nbsp;检修概况
+      </div>
+    </div>
+    <div
+        class="lmvt-exc-div-count-exc zace-colorBg"
+        style="height:6vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:5vw;overflow-y:auto;"
+    >
+      <div class="femi-tb-scroll">
+        <table
+            class="TDTableZacePlaceGKTwo grinding-table" style="width: 100%;max-width: 100%;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;height: 6vh;"
+        >
+          <thead class="zace-colorHead">
+          <tr>
+            <!--<th style="width: 3px;display:none">
+                <input type="checkbox"
+                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                       value="{{functionID}}" />
+            </th>-->
+            <!-- <th style="min-width:50px" data-order="PlaceName">台位</th> -->
+            <!-- <th style="min-width: 80px" data-order="Active">台位状态</th> -->
+            <!-- <th style="min-width: 50px" data-order="ExcNum">异常数量</th>                              -->
+          </tr>
+          </thead>
+          <tbody class="lmvt-excPlace-bodyGKTwo" style="color: black;font-size: 1.3vw;">
+          <!-- <tr>
+              <td style="color: white;text-align: right;">全年累计修竣
+              </td>
+              <td style=" color: #07C33E;text-align: right;">112</td>
+              <td style="color: white;text-align: right;">C5修累计修竣
+              </td>
+              <td style="color: #07C33E;text-align: right;">99</td>
+              <td style="color: white;text-align: right;">C6修累计修竣
+              </td>
+              <td style="color: #07C33E;text-align: right;">13</td>
+              <td style="color: white;text-align: right;">本月竣工数</td>
+              <td style="color: #07C33E;text-align: right;">14</td>
+              <td style="color: white;text-align: right;">在厂机车</td>
+              <td style="color: #07C33E;text-align: right;">11</td>
+              <td style="color: white;text-align: right;">在修机车</td>
+              <td style="color: #07C33E;text-align: right;">6</td>
+              <td style="color: white;text-align: right;">工位待完工任务</td>
+              <td style="color: #F5B128;text-align: right;">230</td>
+              <td style="color: white;text-align: right;">今日新增异常</td>
+              <td style="color: red;text-align: right;">12</td>
+              <td style="color: white;text-align: right;">不合格评审数</td>
+              <td style="color: red;text-align: right;">333</td>
+          </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- 台车实时列表 -->
+  <div
+      class="lmvt-exc-car"
+      style="position:relative;top:20vh;left:0.5vw;right:16vw;bottom:11vh;width: 99vw;background-color: #1A2B58;height: 80%;display: none;"
+  >
+    <!--名称-->
+    <div
+        class="lmvt-exc-div-name "
+        style="height:5vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:2vw;margin-bottom: 1px;"
+    >
+      <div class="zace-colorHead" style="line-height: 5vh;background-color:#0E4477;font-size: 1.5vw;">
+        &nbsp;在厂台车列表
+      </div>
+    </div>
+    <div
+        class="lmvt-exc-cartable zace-colorBg"
+        style="height: 72vh;position:relative;top:0vw;right:0vw;left:0vw;bottom:5vw;overflow-y:auto;"
+    >
+      <div class="femi-tb-scroll">
+        <table
+            class="TDTableZacePlace grinding-table" style="width: 100%;max-width: 100%;background-color: #0E4477;border-spacing: 0;
+    border-collapse: collapse;display: table;border-color: grey;"
+        >
+          <thead class="zace-colorHead" style="color: white;">
+          <tr>
+            <th style="width: 3px;display:none">
+              <input
+                  type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                  value="{{functionID}}"
+              />
+            </th>
+            <th style="min-width:50px" data-order="">车号</th>
+            <th style="min-width:50px" data-order="">配属局段</th>
+            <th style="min-width:50px" data-order="">修程</th>
+            <th style="min-width:50px" data-order="">进厂日期</th>
+            <th style="min-width:50px" data-order="">停时</th>
+            <th style="min-width:50px" data-order="">库位</th>
+            <th style="min-width:50px" data-order="">台位</th>
+            <th style="min-width:50px" data-order="">工位</th>
+            <th style="min-width:50px" data-order="">完成数</th>
+            <th style="min-width:50px" data-order="">剩余数</th>
+            <th style="min-width:50px" data-order="">完成进度</th>
+            <th style="min-width:50px" data-order="">返修</th>
+            <th style="min-width:50px" data-order="">不合格评审</th>
+            <th style="min-width:50px" data-order="">异常</th>
+            <th style="min-width:50px" data-order="">状态</th>
+          </tr>
+          </thead>
+          <tbody class="lmvt-excPlace-bodyMove" style="color: white;">
+          <!-- <tr style="text-align: center;height: 6vh;">
+              <td style="min-width: 50px;vertical-align: middle;">3C#1022</td>
+              <td style="min-width: 50px;vertical-align: middle;">成局成段</td>
+              <td style="min-width: 50px;vertical-align: middle;">C5</td>
+              <td style="min-width: 50px;vertical-align: middle;">2020-01-02</td>
+              <td style="min-width: 50px;vertical-align: middle;">23</td>
+              <td style="min-width: 50px;vertical-align: middle;">厂线</td>
+              <td style="min-width: 50px;vertical-align: middle;">机车组装台位11</td>
+              <td style="min-width: 50px;vertical-align: middle;">机车预检工位</td>
+              <td style="min-width: 50px;vertical-align: middle;">8</td>
+              <td style="min-width: 50px;vertical-align: middle;">3</td>
+              <td style="min-width: 50px;vertical-align: middle;"><p style="line-height: 1vh;">30%</p><progress max="100" value="30" style="width: 100px ;height: 15px;"><progress></td>
+              <td style="min-width: 50px;vertical-align: middle;">3</td>
+               <td style="min-width: 50px;vertical-align: middle;">3</td>
+               <td style="min-width: 50px;vertical-align: middle;">3</td>
+              <td style="min-width: 50px;vertical-align: middle;">工位开工</td>
+          </tr> -->
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div
+      id="Div1Title"
+      style="width:29.5vw;height:4vh;left:35vw;top:1.7vh;position:absolute;line-height:4vh;text-align:center;overflow-x:auto;font-size:2.7vh"
+  >
+    广州电力机车MES系统生产状态监控
+  </div>
+</div>
+
+<!-- <div id="DivChange" style="width:1vw;cursor:pointer;height:1vh;left:0vw;top:0vh;position:absolute;">
+</div> -->
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/KanbanCar_first.js"></script>
+<script>
+
+    function place(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        //alert("当前位置：X轴" + x + " Y轴" + y + "");
+    }
+</script>
+
+
+</body>
+
+</html>

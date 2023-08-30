@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>日报表</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/product_plan/PlanRealityTable.css" />
+</head>
+
+<body class="femi-font-size-middle " style="min-width:1200px">
+    <div class="zace-cbd-contain gante" style="">
+        <div class="zace-ganteAll right-middle-zace">
+
+            <div class="zace-leftContain">
+                <div class="zace-tree-header" >
+                    <div class="femi-toolbar-self femi-lf">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="lmvt-changeView" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>局段视图切换
+                            </button>
+
+                        </div>
+
+                    </div>
+                    <span style="overflow:visible;font-family: STXinwei;
+    font-size: 30px;
+    color: #00688B;">和谐型电力机车检修生产日报(统计至<span class="lmvt-Year">2020</span></span>
+                    <div class="columns columns-right btn-group pull-right">
+                        <button type="button" id="lmvt-search" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>隐藏非当月
+                        </button>
+                        <button type="button" id="lmvt-all" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>全部显示
+                        </button>
+                    </div>
+                </div>
+                <div class="zace-tree-header" style="overflow:visible;min-width:1400px">
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        全年累计修竣:<span class="YearFinsh" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        全年进厂数:<span class="YearEnter" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        本月修竣数:<span class="MonthFinsh" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        本月进厂数:<span class="MonthEnter" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        在厂数:<span class="RealPlant" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        在修数:<span class="RealRepair" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        C5累计修竣数:<span class="C5Finsh" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        C5平均周期:<span class="C5AvgRepairPeriod" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        C6累计修竣数:<span class="C6Finsh" style="color:red">20</span>
+                    </div>
+                    <div style="width:10%;height:100%;float:left;font-size: 18px;white-space: nowrap">
+                        C6平均周期:<span class="C6AvgRepairPeriod" style="color:red">20</span>
+                    </div>
+                </div>
+                <div class="lmvt-left-contain lmvt-chartsView" id="lmvt-left-contain" style="width:20%;height:80%;float:left;display:none">
+                    
+                    
+                </div>
+                <div class="lmvt-left-contain lmvt-tableView" style="width:20%;height:80%;float:left;">
+                    <div class="zace-tree-header">
+ 
+                        <span style="overflow:visible;font-family: STXinwei;
+    font-size: 20px;
+    color: #00688B;">局段信息统计表</span>
+ 
+                    </div>
+                    <div class="lmvt-left-table" style="height:100%;">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="lmvt-left-thead" style="background-color: aliceblue;">
+                                        <th>局段</th>
+                                        <th>数量</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="lmvt-left-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="lmvt-container-table" style="width: 80%;height: 100%;float: left;margin-top: -100px;padding: 100px 10px 5px 10px;">
+                    <div class="femi-tb-scroll">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="lmvt-order-thead" style="background-color: aliceblue;">
+                                    <th colspan="3">月份/修程</th>
+                                </tr>
+                            </thead>
+                            <tbody class="lmvt-order-body table-color">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/product_plan/PlanRealityTable.js"></script>
+
+</body>
+
+</html>

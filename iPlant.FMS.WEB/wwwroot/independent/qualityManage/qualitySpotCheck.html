@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>质量抽检记录</title>
+    <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css" />
+    <link href="../static/utils/css/jquery.treeview.css" rel="stylesheet" type="text/css">
+    <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="qualitySpotCheck-body" class="fzy-page">
+
+        <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+
+        <div class="fzy-search-bar">
+            <el-input v-model="searchData.OrderNo" class="input-box-200" placeholder="订单号">
+                <template slot="prepend">
+                    订单号
+                </template>
+            </el-input>
+            <div class="input-select-box input-box-300">
+                <div class="label">产品编号</div>
+                <el-select v-model="searchData.ProductID" multiple clearable filterable placeholder="请选择">
+                    <el-option v-for="item in selectOptions.ProductList"
+                               :key="item.ID"
+                               :label="item.ProductNo + '  ' +item.ProductName"
+                               :value="item.ID"></el-option>
+                </el-select>
+            </div>
+
+            <el-input v-model="searchData.WorkpieceNo" class="input-box-200" placeholder="工件编码">
+                <template slot="prepend">
+                    工件编码
+                </template>
+            </el-input>
+
+            <div class="input-select-box input-box-200">
+                <div class="label">抽检结果</div>
+                <el-select v-model="searchData.SpotCheckResult" placeholder="请选择">
+                    <el-option label="全部" value="-1"></el-option>
+                    <el-option label="合格" value="OK"></el-option>
+                    <el-option label="不合格" value="NG"></el-option>
+                </el-select>
+            </div>
+
+            <div class="input-date-box input-box-500">
+                <div class="label">抽检时间</div>
+                <el-date-picker v-model="searchData.StartTime"
+                                type="datetime"
+                                format="yyyy-MM-dd HH:mm:ss"
+                                clearable="false">
+                </el-date-picker>
+                <span style="margin: auto;">至</span>
+                <el-date-picker v-model="searchData.EndTime"
+                                type="datetime"
+                                format="yyyy-MM-dd HH:mm:ss"
+                                clearable="false">
+                </el-date-picker>
+            </div>
+
+            <div class="button-box">
+                <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                    查询
+                </button>
+
+                <button class="btn lmvt-def-btn"
+                        type="button"
+                        @click="emptyClick">
+                    <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+                    重置
+                </button>
+            </div>
+
+
+        </div>
+
+        <div class="fzy-page-center-box flex-column">
+            <div class="fzy-page-center-title-bar flex-none">
+                <div class="left">
+                    <span class="fzy-title">质量抽检表</span>
+                </div>
+            </div>
+            <el-table :data="tableData"
+                      size="mini"
+                      border
+                      current-row-key="Code"
+                      height="calc(100% - 45px)">
+                <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+                <el-table-column label="订单号" property="OrderNo" align="center"></el-table-column>
+                <el-table-column label="产品编号" property="ProductNo" align="center"></el-table-column>
+                <el-table-column label="产品名称" property="ProductName" align="center"></el-table-column>
+                <el-table-column label="工件编码" property="WorkpieceNo" align="center"></el-table-column>
+                <el-table-column label="大径(mm)" property="LargeDiameter" align="center"></el-table-column>
+                <el-table-column label="中径(mm)" property="MiddleDiameter" align="center"></el-table-column>
+                <el-table-column label="小径(mm)" property="SmallDiameter" align="center"></el-table-column>
+                <el-table-column label="螺距(mm)" property="Pitch" align="center"></el-table-column>
+                <el-table-column label="抽检人" property="Creator" align="center"></el-table-column>
+                <el-table-column label="抽检时间" property="CreateTime" align="center"></el-table-column>
+                <el-table-column label="抽检结果" align="center">
+                    <template slot-scope="scope">
+                        <span aria-hidden="true" v-if="scope.row.SpotCheckResult=='OK'" class="el-icon-success" style="color:green;width:80px;"></span>
+                        <span aria-hidden="true" v-else-if="scope.row.SpotCheckResult=='NG'" class="el-icon-error" style="color:red"></span>
+                    </template>
+                </el-table-column>
+                <el-table-column label="不合格原因" property="NokReason" align="center"></el-table-column>
+            </el-table>
+        </div>
+    </div>
+
+    <script src="../static/utils/require.js" type="text/javascript"></script>
+    <script src="../static/js/qualityManage/qualitySpotCheck.js" type="text/javascript"></script>
+</body>
+</html>

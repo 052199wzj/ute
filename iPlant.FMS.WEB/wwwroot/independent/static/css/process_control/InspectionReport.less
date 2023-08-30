@@ -1,0 +1,557 @@
+/* 设备状态 */
+@DeviceTopHeiht:50px;
+/* 顶部高度 */
+@apptop:60px;
+/* 检修状态长宽 */
+@MetroInspectionOneHeight:135px;
+@MetroInspectionOneWidth:250px;
+
+/* 车厢细节部门 */
+@CarriageContainHeight:170px;
+body {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    font-family: Arial !important;
+    font-size: 14px !important;
+}
+
+#contain{
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(238,238,238);
+}
+
+#app{
+    margin: 0 auto;
+    position: relative;
+    /* background-image: url(../../images/Metro/back.png); */
+    background-repeat:no-repeat;
+    /* background-size: 100%; */
+    /* background-size: 100%; */
+    /* overflow: auto; */
+    width: 100%;
+    /* height: calc(100% - 66px); */
+    height: 100%;
+    overflow: auto;
+    padding: 3px 5px;
+    background-color: white;
+    margin-top: 5px;
+}
+
+.app-top{
+    height: @apptop;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    z-index: 2;
+    position: relative;
+    font-size: 18px;
+}
+
+.DeviceTop{
+    height: @DeviceTopHeiht;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    z-index: 2;
+    position: relative;
+    font-size: 20px;
+}
+
+.MetroInspectionArea,.MetroInspectionAreaText,
+.MetroInspectionDevice,.MetroInspectionSatus,.Open,.Close,.Fault{
+    // width: 100%;
+}
+
+.MetroInspectionOne:hover{
+    cursor: pointer;
+}
+
+.MetroInspectionArea,.Fault{
+    color: red;
+}
+
+.Open{
+    color: green;
+}
+
+// .Close{
+//     color: darkgray;
+// }
+
+.AllMetroComtain{
+
+}
+
+.MetroInspectionOne{
+    width: @MetroInspectionOneWidth;
+    height: @MetroInspectionOneHeight;
+    border: 2px solid darkgray;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    margin: 5px 10px;
+    cursor: pointer;
+}
+
+.MetroInfoList{
+        height: 100%;
+        width: 194px;
+        min-width: 194px;
+        margin: 0 5px;
+}
+
+.CarriageContain{
+        height: @CarriageContainHeight;
+        width: 100%;
+}
+
+
+.CarriageContainInfo{
+        height: 100%;;
+        width: 98px;
+        min-width: 98px;
+        border: 2px solid darkgray;
+        padding: 2px 5px;
+        margin: 0 2px;
+}
+
+.CarriageContainInfoBottom,.CarriageContainInfoTop{
+        height: 50%;
+        width: 100%;
+        padding: 5px 2px;
+}
+
+.CarriageContainInfoBottomText,.CarriageContainInfoTopText{
+    text-align: center;
+}       
+
+.CarriageContainInfoTopRect{
+        width: 80px;
+        height:50px;
+        border-top: none;
+        border-left: 10px solid yellow;
+        border-right: 10px solid yellow;
+        border-bottom: 10px solid yellow;
+}
+
+.CarriageContainInfoBottomRect{
+    width: 80px;
+        height:50px;
+        border-top: 10px solid yellow;
+        border-left: 10px solid yellow;
+        border-right: 10px solid yellow;
+        border-bottom: none;
+        display: flex;
+}
+
+.CarriageContainInfoTopRectCenter{
+        width: 25px;
+        height: 25px;
+        border: 1px solid darkgray;
+        margin: 0 auto;
+        align-self: flex-end;
+ }
+
+.Forbidden{
+    background-color: red;
+}
+
+.Active{
+    background-color: green;
+}
+
+.ForbiddenText{
+    color: red;
+}
+
+.ActiveText{
+    color: green;
+}
+
+.DefaultText{
+    // color:darkgray
+}
+
+.AllCar{
+    width: 100%;
+    height: auto;
+    font-size: 18px;
+}
+
+.BodyTableBody{
+    width: 90%;
+    height: auto;
+    font-size: 18px;
+}
+
+.BodyTableHeaderContain{
+    width: 100%;
+}
+
+.BodyTableHeader{
+    width: 260px;
+    height: auto;
+    font-size: 18px;
+    padding: 2px;
+    margin: 2px 5px;
+    font-weight: 1000;
+    flex-direction: row;
+}
+
+.OneCar{
+    height: auto;
+    width: 50%;
+}
+
+.AllCarBottom{
+    height: 296px;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+.CarBodyContent{
+    width: 140px;
+}
+
+.CarContain{
+    height: 100%;
+    width: fit-content;
+    border: 2px solid darkgray;
+    margin: 0 5px;
+}
+
+.CarShoeTop{
+    height: 60px;
+}
+
+.DoubleShoe{
+    height: 60px;
+    margin: 0px 20px;
+}
+
+.ShoeReactTop{
+    width: 30px;
+    height: 20px;
+    background-color: yellow;
+    border: 1px solid darkgray;
+}
+
+.ShoeReactMiddle{
+    width: 50px;
+    height: 20px;
+    background-color: green;
+    border: 1px solid darkgray;
+}
+
+.ShoeReactBottom{
+    width: 30px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid darkgray;
+}
+
+.AllCarTop{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    z-index: 2;
+    position: relative;
+}
+
+.AllCarTopInfo{
+    height: 40px;
+    width: 100%;
+}
+
+.AllCarTimeInfo{
+    height: 20px;
+    width: 100%;
+}
+
+.CarBody{
+    height: 80px;
+    width: fit-content;
+    border: 1px solid darkgray;
+    margin: 5px 0;
+}
+
+.Reacttop{
+    width: 32px;
+    height: 0px;
+    margin-top: 11px;
+    margin-left: -4px;
+    border-bottom: 1px solid darkgray;
+    transform: rotate(45deg);
+}
+.Reactbottom{
+    width: 32px;
+    height: 1px;
+    margin-top: -1px;
+    margin-left: -4px;
+    border-bottom: 1px solid darkgray;
+    transform: rotate(-45deg);
+}
+ 
+.app-sed-switch{
+    /* width: 100%;
+    height: 20px; */
+    clear: both;
+    margin: 0 5px;
+//     display: flex;
+}
+
+.circle {
+    display: block; 
+    border-radius: 50%; 
+    height: 20px; 
+    width: 20px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+//     background-color: darkgray;
+}
+
+.circle-large {
+    display: block; 
+    border-radius: 50%; 
+    height: 20px; 
+    width: 20px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+    /* background-color: green; */
+}
+
+.circle-min {
+    display: block; 
+    border-radius: 50%; 
+    height: 15px; 
+    width: 15px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+}
+
+.circle-big {
+    display: block; 
+    border-radius: 50%; 
+    height: 25px; 
+    width: 25px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+}
+
+.circlePosition{
+    position: absolute;
+}
+
+.circleTextMa{
+    margin: 3px 0px;
+}
+
+.circleCircleMa{
+    margin: 0px 2px;
+}
+
+.circleText{
+    font-family: Arial !important;
+    font-size: 14px !important;
+    font-weight: 1000;
+    color: #6D000E;
+}
+
+.circle-Active{
+    background-color: green;
+}
+
+.circle-forbidden{
+    background-color: red;
+}
+
+.flex-column{
+    flex-direction:column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.flex-Contain{
+        display: flex;
+       
+    }
+    
+
+    .flex-justify{
+        justify-content:flex-start;
+    }
+
+.flex-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    flex-wrap: wrap;
+}
+
+.flex-start{
+    display: flex;
+    align-items: center;
+    // justify-content: flex-start;
+
+    justify-content: space-around;
+    z-index: 3;
+    flex-wrap: wrap;
+}
+
+.flex-row{
+    flex-direction:row;
+}
+
+.app-float-left{
+    float: left;
+}
+
+.app-float-right{
+        float: right;
+    }
+
+.flex-itemContain{
+    // flex: 1;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    padding: 2px;
+    margin: 2px 5px;
+//     background-color: aliceblue;
+    font-weight: 1000;
+    flex-direction: row;
+}
+
+.CheckArea{
+    width: 100%;
+    height: 878px;
+}
+
+.AllCar{
+    // background-image: url(../../images/Metro/CheckArea.png);
+    // position: relative;
+    // height: calc(100% - 68px);
+    width: 100%;
+    height: 878px;
+    // top: -34px;
+    background-repeat:no-repeat;
+    background-size: auto;
+}
+
+.flex-itemText{
+    margin: 2px 5px;
+//     background-color: aliceblue;
+    font-weight: 1000;
+    flex-direction: row;
+}
+
+.flex-css{
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+}
+
+.app-top-sed-mode{
+    width: 100%;
+    display: flex;
+    font-size: 18px !important;
+    /* float: left; */
+    /* height: 100%; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.desilterReact{
+    position: absolute;
+    height: 93px;
+    width: 221px;
+    top: 644px;
+    left: 154px;
+    /* background-color: cornflowerblue; */
+    z-index: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.desilterReactWater{
+    width: 100%;
+    background-color: cornflowerblue;
+    /* z-index: 0; */
+}
+
+.waterHeater{
+    position: absolute;
+    top: 428px;
+    left: 773px;
+    z-index: 10;
+}
+.saveWater{
+    position: absolute;
+    top: 688px;
+    left: 65px;
+    z-index: 10;
+}
+.desilter{
+    position: absolute;
+    top: 676px;
+    left: 246px;
+    z-index: 10;
+}
+.industrialCatalysis{
+    position: absolute;
+    top: 688px;
+    left: 415px;
+    z-index: 10;
+}
+.backWater{
+    position: absolute;
+    top: 688px;
+    left: 565px;
+    z-index: 10;
+}
+.cleanWater{
+    position: absolute;
+    top: 688px;
+    left: 659px;
+    z-index: 10;
+}
+
+.app-top-fiv-top{
+    height: 100%;
+    padding: 2px 4px;
+    overflow-y: auto;
+}
+
+.app-top-fiv-bottom{
+    height: 40px;
+    padding: 2px 4px;
+    overflow-y: auto;
+}
+
+.flex-itemContain1{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 2px;
+//     background-color: aliceblue;
+    font-weight: 1000;
+}
+

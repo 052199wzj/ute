@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>休息日</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta
+      id="scale" name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap-year-calendar.min.css">
+  <link type="text/css" rel="stylesheet" href="../static/css/basicSet/restDaySetting.css">
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+
+
+</head>
+
+<body style="padding: 5px;">
+
+<div class="femi-header">
+  <P class="femi-header-title">休息日</P>
+  <div style="float: right; margin-right: 20px;font-size: 16px">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="javascript:;" id="confirm" style="padding: 7.5px 15px">保存</a></li>
+      <li class="dropdown">
+        <a
+            href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+            role="button" aria-haspopup="true" aria-expanded="false"
+            style="padding: 7.5px 15px"
+        >设置 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:;" id="saturday">周六</a></li>
+          <li><a href="javascript:;" id="sunday">周日</a></li>
+          <li><a href="javascript:;" id="weekend">周末</a></li>
+
+          <li role="separator" class="divider"></li>
+          <li><a href="javascript:;" id="restSet">重置</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<div id="calendar" style="overflow: hidden;background: #fff;"></div>
+
+
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/basicSet/restDaySetting.js"></script>
+
+</body>
+
+</html>

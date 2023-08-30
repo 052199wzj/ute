@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<ArrayOfPlaceQRType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PlaceQRType>
+    <QRType>1</QRType>
+    <QRStart>BU-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>8</QRType>
+    <QRStart>DE-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>2</QRType>
+    <QRStart>FT-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>4</QRType>
+    <QRStart>LE-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>9</QRType>
+    <QRStart>SP-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>5</QRType>
+    <QRStart>ST-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>6</QRType>
+    <QRStart>SH-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>7</QRType>
+    <QRStart>SL-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+  <PlaceQRType>
+    <QRType>3</QRType>
+    <QRStart>WS-</QRStart>
+    <QREnd />
+    <MinLength>10</MinLength>
+    <MaxLength>30</MaxLength>
+  </PlaceQRType>
+</ArrayOfPlaceQRType>

@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>个人任务2</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/routeManage/ownTask2.css" />
+    <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/reset.min.css">
+    <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/style.css">
+</head>
+<body style="padding: 5px;">
+    <div class="cby-body-contain  femi-contain-border tab-wrapper" style="height: 100%;">
+        <div class="cby-tab-header">
+            <ul class="tab-menu">
+                <li class="active">
+                    待办事项
+                    <span class="cby-message-count" id="cby-messageFinishing-count">0</span>
+                </li>
+                <li>
+                    已办事项
+                </li>
+                <li>
+                    我的发起
+                    <span class="cby-message-count" id="cby-messageApply-count">0</span>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="femi-full-bd" style="min-width:1000px" id="cby-table">
+                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <span class="cby-header-title" id="">待办事项表</span>
+                    </div>
+                    <div class="cby-tree-body">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead style="visibility: visible;background-color: #abccec;" class="cby-header-show">
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox"
+                                                class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                        <th style="min-width: 50px" data-order="ID">编号</th>
+                                        <th style="min-width: 50px" data-order="Name">名称</th>
+                                        <th style="min-width: 50px" data-order="ProcessDefinitionName">流程定义</th>
+                                        <!--<th style="min-width: 50px" data-order="TaskType">任务类型</th>-->
+                                        <!--<th style="min-width: 50px" data-order="assignee">创建人</th>-->
+                                        <th style="min-width: 50px" data-order="CreateTime">开始时间</th>
+                                        <th style="min-width: 50px" data-order="">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-tbody-taskTable" class="table-color">
+                                    <tr>
+                                        <td colspan="13">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- 流程图 -->
+                    <div id="cby-route-charf-ontask" class="cby-charf-down cby-route-charf" style="display:none">
+                        <div class="" style="min-width:1000px">
+                            <div class="cby-tree-header" style="overflow:visible;">
+                                <div class="btn-group cby-left" role="group">
+
+                                </div>
+                                <div class="columns columns-right btn-group pull-right">
+
+                                    <button class="btn btn-default" type="button" id="cby-return-ontask">
+                                        <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                                    </button>
+                                </div>
+                                <span class="cby-header-title" id="">流程图</span>
+                            </div>
+                            <div style="overflow: auto;">
+
+                                <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <span class="cby-header-title" id="">已办事项表</span>
+                    </div>
+                    <div class="cby-tree-body">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead style="visibility: visible;background-color: #abccec;" class="cby-header-show">
+                                    <tr>
+                                        <th style="width: 3px">
+                                            <input type="checkbox"
+                                                class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                value="{{functionID}}" />
+                                        </th>
+                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                        <th style="min-width: 50px" data-order="id">编号</th>
+                                        <th style="min-width: 50px" data-order="name">名称</th>
+                                        <th style="min-width: 50px" data-order="processDefinitionId">流程定义</th>
+                                        <th style="min-width: 50px" data-order="assignee">创建人</th>
+                                        <th style="min-width: 50px" data-order="startTime">开始时间</th>
+                                        <th style="min-width: 50px" data-order="endTime">结束时间</th>
+                                        <th style="min-width: 50px" data-order="">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-tbody-taskFinishedTable" class="table-color">
+                                    <tr>
+                                        <!-- <td>
+                    <input type="checkbox" class="femi-tb-checkbox"
+                            style="margin: 1px 0px 1px" value="{{functionID}}" />
+                </td> -->
+                                        <td colspan="13">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="hw-overlay lmvt-TableAndImg" id="hw-layer">
+                      
+                        <div class="lmvt-header">
+                           
+                            <span class="glyphicon glyphicon-remove hwLayer-close"></span>
+                            
+                        </div>
+                        <div class="lmvt-top" id="">
+                            <!-- 流程图 -->
+                            <div id="cby-route-charf-finish" class="cby-charf-down cby-route-charf">
+                                <div class="" style="min-width:1000px">
+                                    <div class="cby-tree-header" style="overflow:visible;">
+                                        <div class="btn-group cby-left" role="group">
+
+                                        </div>
+                                        <div class="columns columns-right btn-group pull-right">
+
+                                            <!--<button class="btn btn-default" type="button" id="cby-return-table">
+                                                <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                                            </button>-->
+                                        </div>
+                                        <span class="cby-header-title" id="">流程图</span>
+                                    </div>
+                                    <div style="overflow: auto;text-align: center;">
+
+                                        <img id="lmvt-imgclick" style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 历史记录 -->
+                            <div id="cby-finished-record" class="cby-charf-down" style="padding: 0 5px;">
+                                <div class="femi-bd-half-left " style="">
+                                    <div class="cby-tree-header-record" style="overflow:visible;">
+                                        <div class="btn-group cby-left" role="group">
+                                            <!--<button class="btn btn-default" type="button" id="cby-return-table-finish">
+                                                <span class="glyphicon glyphicon-share-alt"></span>返回
+                                            </button>-->
+                                        </div>
+                                        <div class="columns columns-right btn-group pull-right">
+                                            <button type="button" class="btn btn-default " style="padding: 0">
+                                                <input type="text" id="cby-searchRecord-table-finish" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                                            </button>
+                                            <button class="btn btn-default" type="button" id="">
+                                                <span class="glyphicon glyphicon-search"></span>查询
+                                            </button>
+                                        </div>
+                                        <span class="cby-header-title" id="">历史记录</span>
+                                    </div>
+                                    <div class="cby-tree-body femi-contain-border">
+                                        <div class="femi-tb-scroll">
+                                            <table class="table table-hover table-bordered">
+                                                <thead style="visibility: visible;background-color: #abccec;" class="cby-header-show">
+                                                    <tr>
+                                                        <!-- <th style="width: 3px">
+                                    <input type="checkbox"
+                                           class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                           value="{{functionID}}" />
+                                </th> -->
+                                                        <!-- <th style="min-width: 50px" data-order="">操作</th> -->
+                                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                                        <th style="min-width: 50px" data-order="id">编号</th>
+                                                        <th style="min-width: 50px" data-order="name">任务名称</th>
+                                                        <th style="min-width: 50px" data-order="assignee">办理人</th>
+                                                        <th style="min-width: 50px" data-order="taskDefinitionKey">任务标识</th>
+                                                        <th style="min-width: 50px" data-order="createTime">创建时间</th>
+                                                        <th style="min-width: 50px" data-order="endTime">结束时间</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="cby-tbody-recordTable-finish" class="table-color">
+                                                    <tr>
+                                                        <!-- <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td> -->
+                                                        <td colspan="13">等待数据加载</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+            <div>
+                <!-- 进行中任务表 -->
+                <div class="femi-full-bd" style="min-width:1000px" id="cby-uplist-apply">
+                    <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                        <div class="cby-tree-header" style="overflow:visible;">
+                            <div class="btn-group cby-left" role="group">
+                                <button type="button" id="cby-show-finishBill" class="btn btn-default ">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看已完成发起
+                                </button>
+                            </div>
+                        </div>
+                        <div class="cby-tree-body">
+                            <div class="femi-tb-scroll">
+                                <table class="table table-hover table-bordered">
+                                    <thead style="visibility: visible;background-color: #abccec;" class="cby-header-show">
+                                        <tr>
+                                            <th style="width: 3px">
+                                                <input type="checkbox"
+                                                    class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                                    value="{{functionID}}" />
+                                            </th>
+                                            <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                            <th style="min-width: 50px" data-order="ID">编号</th>
+                                            <th style="min-width: 50px" data-order="ProcessDefinitionName">流程定义</th>
+                                            <th style="min-width: 50px" data-order="Status">状态</th>
+                                            <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+                                            <th style="min-width: 50px" data-order="Description">描述</th>
+                                            <th style="min-width: 50px" data-order="">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cby-tbody-taskApplyTable" class="table-color">
+                                        <tr>
+                                            <td colspan="13">等待数据加载</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 已完成任务表 -->
+                <div id="cby-finished-apply">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <div class="btn-group cby-left" role="group">
+                            <button type="button" id="cby-return-finishingBill" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>返回
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="femi-tb-scroll">
+                        <table class="table table-hover table-bordered">
+                            <thead style="visibility: visible;background-color: #abccec;" class="cby-header-show">
+                                <tr>
+                                    <!-- <th style="width: 3px">
+                <input type="checkbox"
+                        class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                        value="{{functionID}}" />
+            </th> -->
+                                    <!--<th style="min-width: 50px" data-order="">操作</th>-->
+                                    <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                    <th style="min-width: 50px" data-order="ID">编号</th>
+                                    <th style="min-width: 50px" data-order="ProcessDefinitionId">流程定义</th>
+                                    <th style="min-width: 50px" data-order="StartTime">开始时间</th>
+                                    <th style="min-width: 50px" data-order="EndTime">结束时间</th>
+                                    <th style="min-width: 50px" data-order="DurationInMillis">时长</th>
+                                    <!--<th style="min-width: 50px" data-order="ApplyName">发起人</th>-->
+                                </tr>
+                            </thead>
+                            <tbody id="cby-tbody-taskApplyFinishedTable" class="table-color">
+                                <tr>
+                                    <!-- <td>
+                            <input type="checkbox" class="femi-tb-checkbox"
+                                    style="margin: 1px 0px 1px" value="{{functionID}}" />
+                        </td> -->
+                                    <td colspan="13">等待数据加载</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 流程图 -->
+                <div id="cby-route-charf-apply" class="cby-charf-down cby-route-charf" style="display:none">
+                    <div class="" style="min-width:1000px">
+                        <div class="cby-tree-header" style="overflow:visible;">
+                            <div class="btn-group cby-left" role="group">
+
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+
+                                <button class="btn btn-default" type="button" id="cby-return-table">
+                                    <span class="glyphicon glyphicon-eye-open"></span>隐藏
+                                </button>
+                            </div>
+                            <span class="cby-header-title" id="">流程图</span>
+                        </div>
+                        <div style="overflow: auto;">
+
+                            <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+                        </div>
+                    </div>
+                </div>
+                <!-- 历史记录 -->
+                <div id="cby-apply-record" class="cby-charf-down">
+                    <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                        <div class="cby-tree-header-record" style="overflow:visible;">
+                            <div class="btn-group cby-left" role="group">
+                                <button class="btn btn-default" type="button" id="cby-return-table-apply">
+                                    <span class="glyphicon glyphicon-share-alt"></span>返回
+                                </button>
+                            </div>
+                            <div class="columns columns-right btn-group pull-right">
+                                <button type="button" class="btn btn-default " style="padding: 0">
+                                    <input type="text" id="cby-searchRecord-table-apply" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                                </button>
+                                <button class="btn btn-default" type="button" id="">
+                                    <span class="glyphicon glyphicon-search"></span>查询
+                                </button>
+                            </div>
+                            <span class="cby-header-title" id="">历史记录</span>
+                        </div>
+                        <div class="cby-tree-body femi-contain-border">
+                            <div class="femi-tb-scroll">
+                                <table class="table table-hover table-bordered">
+                                    <thead style="visibility: visible;background-color: #abccec;" class="cby-header-show">
+                                        <tr>
+                                            <!-- <th style="width: 3px">
+                <input type="checkbox"
+                       class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                       value="{{functionID}}" />
+            </th> -->
+                                            <!-- <th style="min-width: 50px" data-order="">操作</th> -->
+                                            <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                            <th style="min-width: 50px" data-order="id">编号</th>
+                                            <th style="min-width: 50px" data-order="name">任务名称</th>
+                                            <th style="min-width: 50px" data-order="assignee">办理人</th>
+                                            <th style="min-width: 50px" data-order="taskDefinitionKey">任务标识</th>
+                                            <th style="min-width: 50px" data-order="createTime">创建时间</th>
+                                            <th style="min-width: 50px" data-order="endTime">结束时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cby-tbody-recordTable-apply" class="table-color">
+                                        <tr>
+                                            <!-- <td>
+                                    <input type="checkbox" class="femi-tb-checkbox"
+                                           style="margin: 1px 0px 1px" value="{{functionID}}" />
+                                </td> -->
+                                            <td colspan="13">等待数据加载</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;">
+        <div id="innerdiv" style="position:absolute;">
+            <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src="" />
+        </div>
+    </div>
+
+
+
+<!--<div class="tab-wrapper">
+    <ul class="tab-menu">
+        <li class="active">tab #1</li>
+        <li>tab #2</li>
+        <li>tab #3</li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="cby-cbd-contain" style="min-width:1300px">
+            <div class="femi-full-bd" style="min-width:1000px" id="cby-table">
+                <div class="femi-bd-half-left " style="margin-right: -2px; ">
+                    <div class="cby-tree-header" style="overflow:visible;">
+                        <div class="btn-group cby-left" role="group">
+                            <button type="button" id="cby-add-billTable" class="btn btn-default ">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                            </button>
+                        </div>
+                        <div class="columns columns-right btn-group pull-right">
+                            <button type="button" class="btn btn-default " style="padding: 0">
+                                <input type="text" id="cby-searchBill-table" style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;" placeholder="请输入查询字符">
+                            </button>
+                            <button class="btn btn-default" type="button" id="">
+                                <span class="glyphicon glyphicon-search"></span>查询
+                            </button>
+                        </div>
+                        <span class="cby-header-title" id="">单据表</span>
+                    </div>
+                    <div class="cby-tree-body femi-contain-border">
+                        <div class="femi-tb-scroll">
+                            <table class="table table-hover table-bordered">
+                                <thead style="visibility: visible;background-color: #abccec;">
+                                    <tr>
+                                        <th style="min-width: 50px" data-order="">操作</th>
+                                        <th style="min-width: 50px" data-order="OrderID">序号</th>
+                                        <th style="min-width: 50px" data-order="id">编号</th>
+                                        <th style="min-width: 50px" data-order="name">名称</th>
+                                        <th style="min-width: 50px" data-order="processDefinitionId">流程定义</th>
+                                        <th style="min-width: 50px" data-order="assignee">创建人</th>
+                                        <th style="min-width: 50px" data-order="startTime">开始时间</th>
+                                        <th style="min-width: 50px" data-order="endTime">结束时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cby-tbody-taskFinishedTable" class="table-color">
+                                    <tr>
+                                        <td colspan="13">等待数据加载</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim veritatis nostrum, blanditiis, quia maiores nisi. Expedita cupiditate similique magnam, adipisci nesciunt, laborum rem! Excepturi, ad.</div>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, ad esse. Hic at officiis fuga mollitia quod.</div>
+    </div>
+
+</div>-->
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/routeManage/ownTask2.js"></script>
+</body>
+</html>

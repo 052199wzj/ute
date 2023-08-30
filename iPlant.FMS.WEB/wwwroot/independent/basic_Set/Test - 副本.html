@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link
+      type="text/css" rel="stylesheet"
+      href="../static/css/basicSet/ztest.css"
+  >
+</head>
+<body style="font-size: 12px;">
+
+
+<div class="select">
+  <div class="input_in">
+    <input type="text" value="D.C"/>
+  </div>
+  <div class="city hide">
+    <ul>
+      <li>New York1</li>
+      <li>New York2</li>
+      <li>New York3</li>
+      <li>New York4</li>
+      <li>New York5</li>
+      <li>New York6</li>
+    </ul>
+  </div>
+
+</div>
+<div class="select"></div>
+<div class="input_inZ">
+  <input type="checkbox"/>
+  <input type="textzzz" value="test"/>
+</div>
+</div>
+
+<script src="../static/utils/js/jquery-3.1.1.js"></script>
+<script>
+    $(function () {
+
+        //模拟下拉框
+        $(".select input_in").on("click", function () {
+            if ($(".select .city").is(".hide")) {
+                $(".select .city").removeClass("hide");
+            } else {
+                $(".select .city").addClass("hide");
+            }
+        });
+        $(".select ul li").on("click", function () {
+            console.log($(this).html(), "$(this).html()");
+            $(".select input_in").val($(this).html());
+            $(".select .city").addClass("hide");
+            $(".select input_in").css("border-bottom", "1px solid $d6d6d6");
+        });
+        $(".select ul li").hover(
+            function () {
+                $(this).css({"backgroundColor": "#fd9", "font-size": "18px"});
+            }, function () {
+                $(this).css({"backgroundColor": "#fff", "font-size": "14px"});
+            },
+        );
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>旋床</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../static/css/process_control/Lathe2.css">
+</head>
+<body>
+<div class="fxy-general" id="fxy-app" v-cloak>
+  <!--        页面头部-->
+  <div class="fxy-head">
+    <span>{{StartingUp.DeviceNo}}{{StartingUp.DeviceName}}</span>
+    <span>状态：<span class="glyphicon glyphicon-record" :style="StartingUp.bgColor" aria-hidden="true"></span><span
+        class="StatusText"
+    >{{StartingUp.StatusText}}</span></span>
+    <span>状态改变时刻：{{StartingUp.StatusTime}}</span>
+    <span>状态持续时长：{{StartingUp.Duration}}</span>
+  </div>
+  <!--        设备图片及其设备报警-->
+  <div class="fxy-picture-alarm">
+    <div class="picture">
+      <div class="img"></div>
+      <div class="describe">
+        <span>设备名称：{{StartingUp.DeviceName}}</span>
+        <span>设备编码：{{StartingUp.DeviceNo}}</span>
+        <span>使用班组：{{StartingUp.TeamName}}</span>
+      </div>
+    </div>
+    <div class="fxy-parameter-alarm">
+      <div class="parameter">
+        <p class="title">参数列表</p>
+        <table id="parameter"></table>
+      </div>
+      <div class="alarm">
+        <p class="title">安全螺母和承载螺母间隙及磨耗量（mm）</p>
+        <table id="fxy-alarm"></table>
+      </div>
+    </div>
+  </div>
+  <!--    作业列表-->
+  <div class="fxy-assignment borders">
+    <div class="assignment  borders">
+      <p class="title">轮对镟修作业列表</p>
+      <div class="particulars">
+        <p>
+                    <span>
+                        线路号:18号线
+                    </span>
+          <span>
+                        车型：XXXX
+                    </span>
+          <span>
+                        车号：2318001
+                    </span>
+          <span>
+                        车辆类型 ：XXXX
+                    </span>
+          <span>
+                        开始时间： <span class="font-red">2018-08-19 14:48:38</span>
+                    </span>
+          <span>
+                        结束时间： <span class="font-red">2018-08-19 14:48:38</span>
+                    </span>
+        </p>
+        <p>
+          <span>镟修通知单编号：SN20210600001</span>
+          <span> 镟轮原因：周期性检修</span>
+          <span>作业部门：镟轮班</span>
+          <span>配合部门：技术中心</span>
+        </p>
+      </div>
+      <table
+          class="table table-bordered table-hover"
+          data-toggle="table"
+          data-classes="table table-hover"
+          data-height="320"
+      >
+        <thead>
+        <tr>
+          <th>转向架ID</th>
+          <th>轮对ID</th>
+          <th>里程数</th>
+          <th>加工原因</th>
+          <th>轮对位置</th>
+          <th>加工时间</th>
+          <th>踏面直径</th>
+          <th>轮缘厚度</th>
+          <th>径向圆跳动</th>
+          <th>轮缘高度</th>
+          <th>同轴差</th>
+          <th>同架差</th>
+          <th>同车差</th>
+          <th>操作员ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="assignment  borders">
+      <p class="title">轮对镟修作业列表</p>
+      <div class="particulars">
+        <p>
+                    <span>
+                        线路号:18号线
+                    </span>
+          <span>
+                        车型：XXXX
+                    </span>
+          <span>
+                        车号：2318001
+                    </span>
+          <span>
+                        车辆类型 ：XXXX
+                    </span>
+          <span>
+                        开始时间： <span class="font-red">2018-08-19 14:48:38</span>
+                    </span>
+          <span>
+                        结束时间： <span class="font-red">2018-08-19 14:48:38</span>
+                    </span>
+        </p>
+        <p>
+          <span>镟修通知单编号：SN20210600001</span>
+          <span> 镟轮原因：周期性检修</span>
+          <span>作业部门：镟轮班</span>
+          <span>配合部门：技术中心</span>
+        </p>
+      </div>
+      <table
+          class="table table-bordered table-hover"
+          data-toggle="table"
+          data-classes="table table-hover"
+          data-height="320"
+      >
+        <thead>
+        <tr>
+          <th>转向架ID</th>
+          <th>轮对ID</th>
+          <th>里程数</th>
+          <th>加工原因</th>
+          <th>轮对位置</th>
+          <th>加工时间</th>
+          <th>踏面直径</th>
+          <th>轮缘厚度</th>
+          <th>径向圆跳动</th>
+          <th>轮缘高度</th>
+          <th>同轴差</th>
+          <th>同架差</th>
+          <th>同车差</th>
+          <th>操作员ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>前:100; 后200</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/Lathe2.js"></script>
+</body>
+</html>

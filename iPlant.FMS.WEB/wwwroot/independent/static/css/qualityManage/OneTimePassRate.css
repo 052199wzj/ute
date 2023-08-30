@@ -1,0 +1,62 @@
+/*
+body{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+#energyConsumption{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-width: 1200px;
+	height: 100%;
+	background-color: #eeeeee;
+	padding: 5px;
+}
+.deviceList{
+	flex: none;
+	width: 200px;
+}
+
+.chart-box{
+	flex: 1;
+	background-color: #ffffff;
+}
+ */
+
+.fzy-divider {
+	flex: none;
+	margin: 10px -10px;
+	height: 5px;
+	background-color: #eeeeee;
+}
+
+.fzy-page-center-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.fzy-page-center-title-bar,
+.el-table,
+.fzy-divider {
+	flex: none;
+}
+
+.el-table{
+	height:270px !important;
+}
+
+.fzy-statistical-box {
+	flex: 1;
+}
+
+.fzy-statistical-echarts {
+	height: 390px;
+}
+
+
+.el-date-editor .el-input__prefix .el-input__icon {
+	line-height: 34px;
+}

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>机车出厂普查记录</title>
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/GZRecord/PartQTProcess.css" />
+</head>
+
+<body class="femi-font-size-middle">
+    <div class="zace-leftContain">
+
+        <div class="zzza zace-cbd-contain zace-left" style="min-width:900px">
+
+            <div class="zace-tree-header" style="overflow:visible;">
+                <div class="femi-toolbar-self femi-lf">
+                    <div class="btn-group" role="group">
+
+                        <button type="button" id="zace-searchZall-level" class="btn btn-default ">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="columns columns-right btn-group pull-right">
+
+                    <button type="button" class="btn btn-default " style="padding: 0">
+                        <input type="text" id="zace-search-level"
+                            style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                            placeholder="请输入查询字符" />
+                    </button>
+                    <button type="button" id="zace-searchZall-levelZace" class="btn btn-default ">
+                        <span class="glyphicon " aria-hidden="true"></span>筛选
+                    </button>
+                    <button type="button" id="zace-refresh-po" class="btn btn-default ">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+                    </button>
+                    <button  data-table="table-ZaceQTProcessRecordTable" data-module="table-ZaceQTProcessRecordTable"
+                    table-class="table-ZaceQTProcessRecordTable" type="button" class="btn btn-default tableConfig table-ZaceQTProcessRecord">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                </button>
+
+
+                </div>
+
+                <span class="zace-header-title  zace-titleText">机车普查记录</span>
+            </div>
+
+            <div class="zace-tree-body femi-contain-border">
+                <div class="femi-tb-scroll table-ZaceQTProcessRecord">
+                    <!--  机车出厂普查记录  -->
+                    <table class="table   table-hover table-bordered table-ZaceQTProcessRecordTable">
+
+                        <thead>
+                            <tr>
+                                <th style="width: 3px">
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </th>
+                                <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+                                <th style="min-width: 60px" data-order="OrderNo">订单号</th>
+                                <th style="min-width: 60px" data-order="WBSNo">WBS元素</th>
+                                <th style="min-width: 80px" data-order="CustomerName">配属局段</th>
+                                <th style="min-width: 50px" data-order="LineName">修程</th>
+                                <th style="min-width: 50px" data-order="ProductNo">车型</th>
+                                <th style="min-width: 50px" data-order="PartNo">车号</th>
+                                <th style="min-width: 50px" data-order="StationName">工位</th>
+                                <th style="min-width: 50px" data-order="Operator">质检员</th>
+                                <th style="min-width: 50px" data-order="StepName">工序</th>
+                             
+                                <th style="min-width: 80px" data-order="FirstOpinion">一级项点</th>
+                                <th style="min-width: 80px" data-order="SecondOpinion">二级项点</th>
+                                <th style="min-width: 80px" data-order="ThirdOpinion">三级项点</th>
+                                <th style="min-width: 80px" data-order="FourOpinion">四级项点</th>
+                                <th style="min-width: 80px" data-order="FiveOpinion">五级项点</th>
+                                <th style="min-width: 80px" data-order="Standard">检验标准</th>
+                                <th style="min-width: 80px" data-order="CheckResult">检验结果</th>
+                                <th style="min-width: 50px" data-order="PartsFactory">厂商</th>
+                                <th style="min-width: 50px" data-order="PartsModal">型号</th>
+                                <th style="min-width: 50px" data-order="PartsNumber">编号</th>
+                                <th style="min-width: 60px" data-order="Value">填写值</th>
+                                <th style="min-width: 80px" data-order="ResultDescribe">结果描述</th>                              
+                                <th style="min-width: 80px" data-order="LendImages">附加图片</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="femi-riskLevel-tbody" class="table-color">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                                        value="{{functionID}}" />
+                                </td>
+                                <td colspan="23">等待数据加载</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/utils/require.js"></script>
+    <script type="text/javascript" src="../static/js/GZRecord/PartQTProcessFinal.js"></script>
+</body>
+
+</html>

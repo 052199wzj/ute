@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>设备详情</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/baseNoScrollbar.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="../static/css/process_control/DeviceParticulars.css">
+</head>
+
+<body>
+<div class="fxy-particulars" id="fxy-particulars">
+  <template>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs tag-vessel" role="tablist">
+      <li role="presentation"><a
+          href="#parameter" aria-controls="parameter" role="tab" data-toggle="tab"
+          @click="TabName('parameter')"
+      >参数详情</a></li>
+      <li role="presentation"><a
+          href="#alarm" aria-controls="alarm" role="tab" data-toggle="tab"
+          @click="TabName('alarm')"
+      >报警信息</a></li>
+      <li role="presentation"><a
+          href="#status" aria-controls="status" role="tab" data-toggle="tab"
+          @click="TabName('status')"
+      >状态记录</a></li>
+      <li role="presentation"><a
+          href="#maintain" aria-controls="maintain" role="tab" data-toggle="tab"
+          @click="TabName('maintain')"
+      >维修信息</a></li>
+      <li role="presentation"><a
+          href="#assignment" aria-controls="assignment" role="tab" data-toggle="tab"
+          @click="TabName('assignment')"
+      >作业信息</a></li>
+      <div class="ul-device-name">
+        <button
+            type="button" class="btn btn-info" @click="visual" v-show="visualShow"
+            style="margin-right: 20px"
+        >
+          可视化
+        </button>
+        <span class="fzy-title" v-cloak>{{parameter.PositionText}}-</span>
+        <span class="fzy-title" v-cloak>{{parameter.DeviceName}} ( {{parameter.DeviceNo}} )  - 状态 :</span>
+        <span class="fzy-title" :style="{color:parameter.colour}" v-cloak>{{parameter.StatusText}}</span>
+      </div>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade" id="parameter">
+        <div class="deviceName-deviceActive">
+          <h4 class="fzy-title">设备参数</h4>
+        </div>
+        <div class="device-parameter">
+          <span v-for="item in ParameterList"><span>{{item.ParameterName}}</span><span> ：</span><span>{{item.ParameterValue}}</span></span>
+        </div>
+        <div class="device-img">
+          <img :src="parameter.ImageIcon" alt="">
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="alarm">
+        <div class="flex-column w-p-10 h-p-10">
+          <div class="alarm-statistics">
+            <div class="title">
+              <h4 style="padding-left: 0" class="fzy-title">报警统计</h4>
+              <p>报警次数 <span>{{AlarmCont}}次</span></p>
+            </div>
+            <div id="pie-chart"></div>
+          </div>
+          <div class="alarm-current">
+            <h4 style="padding-left: 15px" class="fzy-title">{{AlarmTable.title}}</h4>
+            <div class="alarm-now" v-show="AlarmTable.show">
+              <el-table
+                  :data="AlarmCurrentData"
+                  size="mini"
+                  border
+                  current-row-key="Code"
+                  height="300"
+              >
+                <el-table-column
+                    label="报警编码" property="AlarmCode" align="center"
+                    width="100"
+                ></el-table-column>
+                <el-table-column
+                    label="报警名称" property="AlarmName" align="center"
+                    min-width="200"
+                ></el-table-column>
+                <el-table-column
+                    label="起始时刻" property="StatusTime" align="center"
+                ></el-table-column>
+                <el-table-column
+                    label="结束时刻" property="StatusTimeEnd" align="center"
+                ></el-table-column>
+                <el-table-column label="报警描述" property="AlarmDesc" min-width="200" align="center"></el-table-column>
+              </el-table>
+            </div>
+          </div>
+          <div class="alarm-history">
+            <h4 style="padding-left: 15px" class="fzy-title">历史报警记录</h4>
+            <div class="fxy-search">
+              <div class="input-group Device-search">
+                <span class="input-group-addon">选择时间</span>
+                <el-date-picker
+                    v-model="timeSearch"
+                    value-format="yyyy-MM-dd"
+                    :clearable="false"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                >
+                </el-date-picker>
+              </div>
+              <div class="search-btn Device-search">
+                <button type="button" class="btn btn-info " @click="search('Alarm')">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  查询
+                </button>
+                <button
+                    type="button" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                    @click="reset()"
+                >
+                  <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                  重置
+                </button>
+              </div>
+            </div>
+            <div class="table-box HistoryAlarm">
+              <el-table
+                  :data="HistoryAlarm"
+                  size="mini"
+                  border
+                  current-row-key="Code"
+                  height="300"
+              >
+                <el-table-column
+                    label="报警编码" property="AlarmCode" align="center"
+                    width="100"
+                ></el-table-column>
+                <el-table-column
+                    label="报警名称" property="AlarmName" align="center"
+                    min-width="200"
+                ></el-table-column>
+                <el-table-column
+                    label="起始时刻" property="StatusTime" align="center"
+                ></el-table-column>
+                <el-table-column
+                    label="结束时刻" property="StatusTimeEnd" align="center"
+                ></el-table-column>
+                <el-table-column label="报警描述" property="AlarmDesc" min-width="200" align="center"></el-table-column>
+              </el-table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="status">
+        <div class="flex-column w-p-10 h-p-10">
+          <div class="fxy-state-table">
+            <h4 class="fzy-title" style="margin: 0">设备历史状态信息</h4>
+            <div class="fxy-search">
+              <div class="input-group Device-search">
+                <span class="input-group-addon">选择时间</span>
+                <el-date-picker
+                    v-model="timeSearch"
+                    :clearable="false"
+                    value-format="yyyy-MM-dd"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                >
+                </el-date-picker>
+              </div>
+              <div class="search-btn Device-search">
+                <button type="button" class="btn btn-info " @click="search('Status')">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  查询
+                </button>
+                <button
+                    type="button" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                    @click="reset()"
+                >
+                  <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                  重置
+                </button>
+              </div>
+            </div>
+            <div class="table-box HistoryStatusData">
+              <el-table
+                  :data="HistoryStatusData"
+                  size="mini"
+                  border
+                  current-row-key="Code"
+                  height="280"
+              >
+                <el-table-column label="状态名称" property="StatusText" align="center"></el-table-column>
+                <el-table-column label="状态起始时刻" property="StatusTime" align="center"></el-table-column>
+                <el-table-column label="状态结束时刻" property="StatusTimeEnd" align="center"></el-table-column>
+                <el-table-column label="状态持续时长" align="center">
+                  <template slot-scope="scope">
+                    {{ scope.row.StatusTimeEnd | time_H }}
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+          <div class="fxy-state-cartogram">
+            <h4 class="fzy-title" style="margin: 0">设备状态统计表</h4>
+            <div id="device-status"></div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="maintain">
+        <div class="last-maintenance">
+          <div class="maintain-statistics">
+            <div class="maintain-statistics-title">
+              <h4 class="fzy-title" style="padding-left: 0">维修统计</h4>
+              维修次数:<span style="font-size: 24px; font-weight: bold">
+                                    {{MaintenanceCont}}
+                                 </span>次
+            </div>
+            <div id="MaintenanceClass"></div>
+          </div>
+          <div class="ds-maintain-bottom">
+            <h4 class="fzy-title" style="padding-left: 0">最后一次维修记录</h4>
+          </div>
+          <div class="ds-maintain-All">
+            <div class="ds-maintain-block" style="margin-bottom: 10px">
+              <div class="ds-maintain-block-item">
+                异常种类:<span>{{LastMaintenance.AlarmType | AlarmType}}</span>
+              </div>
+              <div class="ds-maintain-block-item">
+                异常等级:<span>{{LastMaintenance.AlarmLevel | AlarmLevel}}</span></div>
+              <div class="ds-maintain-block-item">开始时间:<span>{{LastMaintenance.RepairStartTime}}</span>
+              </div>
+              <div class="ds-maintain-block-item">结束时间:<span>{{LastMaintenance.RepairEndTime}}</span>
+              </div>
+            </div>
+            <div class="ds-maintain-block">
+              <div class="ds-maintain-block-item">维修描述:<span>{{LastMaintenance.RepairRemark}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="maintenance-table">
+          <h4 class="fzy-title" style="margin: 0">维修记录</h4>
+          <div class="fxy-search">
+            <div class="input-group Device-search">
+              <span class="input-group-addon">选择时间</span>
+              <el-date-picker
+                  v-model="timeSearch"
+                  value-format="yyyy-MM-dd"
+                  :clearable="false"
+                  type="daterange"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+              >
+              </el-date-picker>
+            </div>
+            <div class="search-btn Device-search">
+              <button type="button" class="btn btn-info " @click="search('Maintain')">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                查询
+              </button>
+              <button
+                  type="button" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                  @click="reset()"
+              >
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                重置
+              </button>
+            </div>
+          </div>
+          <div class="table-box MaintenanceData">
+            <!-- <table class="pure-table pure-table-bordered">
+               <thead>
+               <tr>
+                 <th>设备编号</th>
+                 <th>设备名称</th>
+                 <th>报修类型</th>
+                 <th>报修编码</th>
+                 <th>报修名称</th>
+                 <th>报修备注</th>
+                 <th>检修等級</th>
+                 <th>报修人</th>
+                 <th>报修时间</th>
+                 <th>检修人</th>
+                 <th>检修时间</th>
+                 <th>检修备注</th>
+                 <th>开始时间</th>
+                 <th>结束时间</th>
+                 <th>状态</th>
+               </tr>
+               </thead>
+               <tbody id="maintenance-table">
+               <tr v-for="item in  MaintenanceData">
+                 <td>{{item.DeviceNo}}</td>
+                 <td>{{item.DeviceName}}</td>
+                 <td>{{item.AlarmType | AlarmType}}</td>
+                 <td>{{item.AlarmCode}}</td>
+                 <td>{{item.AlarmName}}</td>
+                 <td>{{item.AlarmRemark}}</td>
+                 <td>{{item.AlarmLevel | AlarmLevel}}</td>
+                 <td>{{item.Creator}}</td>
+                 <td>{{item.CreateTime}}</td>
+                 <td>{{item.Repairer}}</td>
+                 <td>{{item.RepairTime}}</td>
+                 <td>{{item.RepairRemark}}</td>
+                 <td>{{item.RepairStartTime | effectiveDate}}</td>
+                 <td>{{item.RepairEndTime | effectiveDate}}</td>
+                 <td>{{item.Status | Status}}</td>
+               </tr>
+               </tbody>
+             </table>-->
+            <el-table
+                :data="MaintenanceData"
+                size="mini"
+                border
+                current-row-key="Code"
+                height="300px"
+            >
+              <el-table-column label="设备编号" property="DeviceNo" align="center"></el-table-column>
+              <el-table-column label="设备名称" property="DeviceName" align="center"></el-table-column>
+              <el-table-column label="报修类型" align="center">
+                <template slot-scope="scope">
+                  {{ scope.row.AlarmType | AlarmType }}
+                </template>
+              </el-table-column>
+              <el-table-column label="报修编码" property="AlarmCode" align="center"></el-table-column>
+              <el-table-column label="报修名称" property="AlarmName" align="center"></el-table-column>
+              <el-table-column label="报修备注" property="AlarmRemark" align="center"></el-table-column>
+              <el-table-column label="检修等級" property="AlarmName" align="center">
+                <template slot-scope="scope">
+                  {{ scope.row.AlarmLevel | AlarmLevel }}
+                </template>
+              </el-table-column>
+              <el-table-column label="报修人" property="Creator" align="center"></el-table-column>
+              <el-table-column label="报修时间" property="CreateTime" align="center"></el-table-column>
+              <el-table-column label="检修人" property="Repairer" align="center"></el-table-column>
+              <el-table-column label="检修时间" property="RepairTime" align="center"></el-table-column>
+              <el-table-column label="检修备注" property="RepairRemark" align="center"></el-table-column>
+              <el-table-column label="开始时间" property="StatusTime" align="center">
+                <template slot-scope="scope">
+                  {{ scope.row.RepairStartTime | effectiveDate }}
+                </template>
+              </el-table-column>
+              <el-table-column label="结束时间" property="StatusTimeEnd" align="center">
+                <template slot-scope="scope">
+                  {{ scope.row.RepairEndTime | effectiveDate }}
+                </template>
+              </el-table-column>
+              <el-table-column label="状态" property="AlarmDesc" align="center">
+                <template slot-scope="scope">
+                  {{ scope.row.Status | Status }}
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="assignment">
+        <div class="assignment-table flex-column" v-show="ParticularsShow">
+          <div class="flex-column">
+            <h4 class="fzy-title">{{currentAssignmentShow?"当前无作业":"当前作业列表"}}</h4>
+            <div class="Assignment-table AssignmentListCurrent" v-show="!currentAssignmentShow">
+              <el-table
+                  :data="AssignmentListCurrent"
+                  size="mini"
+                  border
+                  current-row-key="Code"
+                  height="300"
+              >
+                <el-table-column label="订单编号" property="OrderNo" align="center"></el-table-column>
+                <el-table-column label="车号" property="MetroNo" align="center"></el-table-column>
+                <el-table-column label="工件编号" property="WorkPieceNo" align="center"></el-table-column>
+                <el-table-column label="起始时间" property="StartTime" align="center"></el-table-column>
+                <el-table-column label="结束时间" property="EndTime" align="center"></el-table-column>
+                <el-table-column label="状态" property="StatusText" align="center"></el-table-column>
+                <el-table-column label="备注" property="Remark" align="center"></el-table-column>
+                <el-table-column label="操作" align="center">
+                  <template slot-scope="scope">
+                                                                                                <span
+                                                                                                    @click="AssignmentParticulars(scope.row)"
+                                                                                                    class="assignment-particulars-button"
+                                                                                                ><span
+                                                                                                    class="glyphicon glyphicon-zoom-in"
+                                                                                                ></span>详情</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+          <div class="flex-column flex-1">
+            <h4 class="border-top fzy-title">作业记录</h4>
+            <div class="fxy-search">
+              <div class="input-group Device-search">
+                <span class="input-group-addon">选择时间</span>
+                <el-date-picker
+                    v-model="timeSearch"
+                    value-format="yyyy-MM-dd"
+                    :clearable="false"
+                    type="daterange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                >
+                </el-date-picker>
+              </div>
+              <div class="search-btn Device-search">
+                <button type="button" class="btn btn-info " @click="search('Assignment')">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  查询
+                </button>
+                <button
+                    type="button" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+                    @click="reset()"
+                >
+                  <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                  重置
+                </button>
+              </div>
+            </div>
+            <div class="Assignment-table table-box AssignmentListHistory flex-1">
+              <el-table
+                  :data="AssignmentListHistory"
+                  size="mini"
+                  border
+                  current-row-key="Code"
+              >
+                <el-table-column label="订单编号" property="OrderNo" align="center"></el-table-column>
+                <el-table-column label="车号" property="MetroNo" align="center"></el-table-column>
+                <el-table-column label="工件编号" property="WorkPieceNo" align="center"></el-table-column>
+                <el-table-column label="起始时间" property="StartTime" align="center"></el-table-column>
+                <el-table-column label="结束时间" property="EndTime" align="center"></el-table-column>
+                <el-table-column label="状态" property="StatusText" align="center"></el-table-column>
+                <el-table-column label="备注" property="Remark" align="center"></el-table-column>
+                <!--                                <el-table-column
+                        v-for=" item in AssignmentListCurrent[0].ItemList.slice(0,4)"
+                        :label="item.ParameterName"
+                        align="center">
+                    <template slot-scope="scope">
+                        <div v-show="scope.row.DataType==1" :class="{green:scope.row.ParameterValue}"
+                             class="gray"></div>
+                        <span v-show="scope.row.DataType!=1">{{scope.row.ParameterValue}}</span>
+                    </template>
+                </el-table-column>-->
+                <el-table-column label="操作" align="center">
+                  <template slot-scope="scope">
+                                    <span
+                                        @click="AssignmentParticulars(scope.row)"
+                                        class="assignment-particulars-button"
+                                    ><span
+                                        class="glyphicon glyphicon-zoom-in"
+                                    ></span>详情</span>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+          </div>
+        </div>
+        <div class="assignment-table-particulars" v-show="!ParticularsShow">
+          <div class="assignment-title">
+            <button type="button" class="btn btn-info" @click="AssignmentGoBack" v-show="!ParticularsShow">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              返回
+            </button>
+            <span>
+                            订单编号:{{AssignmentListParticulars.OrderNo}}
+                        </span>
+            <span>
+                            车号：{{AssignmentListParticulars.MetroNo}}
+                        </span>
+            <span>
+                            工件编号：{{AssignmentListParticulars.WorkPieceNo}}
+                        </span>
+            <span>
+                            备注：{{AssignmentListParticulars.Remark}}
+                        </span>
+            <span>
+                            状态：{{AssignmentListParticulars.StatusText}}
+                        </span>
+            <span>
+                            起始时间： <span class="font-red">{{AssignmentListParticulars.StartTime}}</span>
+                        </span>
+            <span>
+                            结束时间： <span class="font-red">{{AssignmentListParticulars.EndTime}}</span>
+                        </span>
+
+          </div>
+          <div class="Assignment-table" style="padding: 0 10px">
+            <h4 class="fzy-title" style="padding-left: 0">作业详情</h4>
+            <table class="pure-table pure-table-bordered">
+              <thead>
+              <tr>
+                <th>参数编号</th>
+                <th>参数名称</th>
+                <th>参数值</th>
+                <th>备注</th>
+                <th>抽样时间</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="item in AssignmentListParticulars.ItemList">
+                <td>
+                  {{item.ParameterNo}}
+                </td>
+                <td>
+                  {{item.ParameterName}}
+                </td>
+                <td>
+                  <div
+                      v-if="item.DataType==1" :class="{green:item.ParameterValue}"
+                      class="gray"
+                  ></div>
+                  <span v-else>{{item.ParameterValue}}</span>
+                </td>
+                <td>
+                  {{item.ParameterDesc}}
+                </td>
+                <td>
+                  {{item.SampleTime}}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/DeviceParticulars.js"></script>
+</body>
+
+</html>

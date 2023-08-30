@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备报检修</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/ProcessChange-Vue.css"/>
+  <liik href=""></liik>
+</head>
+<body>
+<div id="fxy-repairs">
+  <template>
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="报修" name="first">
+        <div class="fzy-page" v-show="!repairsParticularsShow">
+          <div class="fzy-search-bar">
+            <div class="input-select-box input-box-300">
+              <div class="label">检修等级</div>
+              <el-select v-model="SearchRepairs.AlarmLevelArray" placeholder="请选择" clearable>
+                <el-option label="A级" value="1"></el-option>
+                <el-option label="B级" value="2"></el-option>
+                <el-option label="C级" value="3"></el-option>
+                <el-option label="D级" value="4"></el-option>
+              </el-select>
+            </div>
+            <div class="input-select-box input-box-300">
+              <div class="label">报修类型</div>
+              <el-select v-model="SearchRepairs.AlarmTypeArray" placeholder="请选择" clearable>
+                <el-option label="默认" value="0"></el-option>
+                <el-option label="状态" value="1"></el-option>
+                <el-option label="报警" value="2"></el-option>
+                <el-option label="参数" value="3"></el-option>
+              </el-select>
+            </div>
+            <div class="input-select-box input-box-300">
+              <div class="label">状态</div>
+              <el-select v-model="SearchRepairs.StatusArray" placeholder="请选择">
+                <el-option label="请选择" value="-1"></el-option>
+                <el-option label="未检修" value="1"></el-option>
+                <el-option label="已检修" value="2"></el-option>
+              </el-select>
+            </div>
+            <div class="input-select-box input-box-400">
+              <div class="label">报修时间</div>
+              <el-date-picker
+                  v-model="SearchRepairs.DateValueRepairs"
+                  type="daterange"
+                  :clearable="false"
+                  range-separator="至"
+                  start-placeholder="开始日期"
+                  end-placeholder="结束日期"
+              >
+              </el-date-picker>
+            </div>
+            <div class="button-box">
+              <button
+                  class="btn lmvt-danger-btn" style="border: 0" type="button"
+                  @click="search('repairs')"
+              >
+                <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                查询
+              </button>
+              <button
+                  class="btn lmvt-def-btn"
+                  type="button"
+                  @click="reset('SearchRepairs')"
+              >
+                <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+                重置
+              </button>
+            </div>
+          </div>
+          <div class="fzy-page-center-box">
+            <div class="fzy-page-center-title-bar">
+              <div class="left">
+                <span class="fzy-title">报修表</span>
+              </div>
+              <div class="right">
+                <button
+                    v-if="repairsJurisdiction"
+                    class="btn lmvt-danger-btn"
+                    type="button"
+                    @click="formDataShow"
+                >
+                  <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>报修
+                </button>
+              </div>
+            </div>
+            <table class="fzy-table">
+              <thead>
+              <tr>
+                <th>设备编号</th>
+                <th>设备名称</th>
+                <th>报修类型</th>
+                <th>异常编码</th>
+                <th>报修名称</th>
+                <th>检修等級</th>
+                <th>报修人</th>
+                <th>报修时间</th>
+                <th>检修人</th>
+                <th>检修时间</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody id="fxy-body-repairs">
+              <tr v-for="item in RepairsList">
+                <td>{{ item.DeviceNo }}</td>
+                <td>{{ item.DeviceName }}</td>
+                <td>{{ item.AlarmType | AlarmType }}</td>
+                <td>{{ item.AlarmCode }}</td>
+                <td>{{ item.AlarmName }}</td>
+                <td>{{ item.AlarmLevel | AlarmLevel }}</td>
+                <td>{{ item.Creator }}</td>
+                <td>{{ item.CreateTime }}</td>
+                <td>{{ item.Repairer }}</td>
+                <td>{{ item.RepairTime | effectiveDate}}</td>
+                <td>{{ item.RepairStartTime | effectiveDate}}</td>
+                <td>{{ item.RepairEndTime | effectiveDate}}</td>
+                <td>{{ item.Status | Status }}</td>
+                <td class="last-td">
+                                    <span
+                                        class="glyphicon glyphicon-zoom-in"
+                                        @click="particulars(item,'repairs')"
+                                    >详情</span>
+                  <span
+                      class="glyphicon glyphicon-trash"
+                      @click="deleteRepars(item)"
+                      :class="{classFalse:!item.isDelete}"
+                  >删除</span>
+                </td>
+              </tr>
+              <tr v-if="RepairsList.length==0">
+                <td colspan="14">暂无数据</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="repairs-particulars flex-column" v-show="repairsParticularsShow">
+          <div class="fxy-head">
+            <button type="button" class="btn lmvt-danger-btn lmvt-default-btn" @click="goback('repairs')">
+              <span class="glyphicon glyphicon-arrow-left">返回</span>
+            </button>
+            <span class="fxy-title" style="font-size: 24px">
+                {{ repairsParticularsObj.DeviceName }}{{ repairsParticularsObj.DeviceNo }}
+              </span>
+            <span class="fxy-title blue-font" :class="{chartreuseFont:repairsParticularsObj.Status===2}">{{ repairsParticularsObj.Status | Status }}</span>
+            <button
+                v-if="repairsParticularsObj.isDelete" type="button"
+                class="btn lmvt-danger-btn lmvt-default-btn" @click="saveClick('repairs')"
+            >
+              保存
+            </button>
+          </div>
+          <div class="repairs-message">
+            <div class="fxy-title" style="width: 960px">
+              报修信息
+            </div>
+            <table>
+              <tr>
+                <td class="fxy-key">报修类型</td>
+                <td class="fxy-value">{{ repairsParticularsObj.AlarmType | AlarmType }}</td>
+                <td class="fxy-key">异常编码</td>
+                <td class="fxy-value">{{ repairsParticularsObj.AlarmCode }}</td>
+                <td class="fxy-key">报修名称</td>
+                <td class="fxy-value">{{ repairsParticularsObj.AlarmName }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修等级</td>
+                <td class="fxy-value">{{ repairsParticularsObj.AlarmLevel | AlarmLevel }}</td>
+                <td class="fxy-key">报修人</td>
+                <td class="fxy-value">{{ repairsParticularsObj.Creator }}</td>
+                <td class="fxy-key">报修时间</td>
+                <td class="fxy-value">{{ repairsParticularsObj.CreateTime }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报修备注</td>
+                <td class="text-left" colspan="5">{{ repairsParticularsObj.AlarmRemark }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报修图片</td>
+                <td class="read-only-img" colspan="5">
+                  <el-image
+                      v-for="item in repairsParticularsObj.AlarmImageList"
+                      style="width: 100px; height: 100px"
+                      :src="item"
+                      :preview-src-list="repairsParticularsObj.AlarmImageList"
+                  >
+                  </el-image>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="service-message">
+            <div class="fxy-title" style="width: 960px">
+              检修信息
+            </div>
+            <table>
+              <tr>
+                <td class="fxy-key">检修人</td>
+                <td class="fxy-value">{{ repairsParticularsObj.Repairer }}</td>
+                <td class="fxy-key">开始是时间</td>
+                <td class="fxy-value">{{ repairsParticularsObj.RepairStartTime }}</td>
+                <td class="fxy-key">结束时间</td>
+                <td class="fxy-value">{{ repairsParticularsObj.RepairTime }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修备注</td>
+                <td class="text-left" colspan="5">{{ repairsParticularsObj.RepairRemark }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修图片</td>
+                <td class="read-only-img" colspan="5">
+                  <el-image
+                      v-for="item in repairsParticularsObj.RepairImageList"
+                      style="width: 100px; height: 100px"
+                      :src="item"
+                      :preview-src-list="repairsParticularsObj.RepairImageList"
+                  >
+                  </el-image>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="repairs-compile" v-if="repairsParticularsObj.isCompile">
+            <div class="fxy-title" style="width: 960px">
+              修改
+            </div>
+            <table>
+              <tr>
+                <td class="fxy-key">异常编码</td>
+                <td class="fxy-value select-style">
+                  <el-select
+                      v-model="repairsCompile.AlarmCode"
+                      @change="currentSel"
+                      filterable
+                      clearable
+                      placeholder="请选择"
+                  >
+                    <el-option
+                        v-for="item in DeviceAlarmList"
+                        :key="item.Code"
+                        :label="item.Name+item.Code"
+                        :value="item.Code"
+                    >
+                    </el-option>
+                  </el-select>
+                </td>
+                <td class="fxy-key">检修等级</td>
+                <td class="fxy-value select-style">
+                  <el-select v-model="repairsCompile.AlarmLevel" placeholder="请选择">
+                    <el-option label="A级" value="1"></el-option>
+                    <el-option label="B级" value="2"></el-option>
+                    <el-option label="C级" value="3"></el-option>
+                    <el-option label="D级" value="4"></el-option>
+                  </el-select>
+                </td>
+                <td class="fxy-key">报修类型</td>
+                <td class="fxy-value select-style">
+                  <el-select v-model="repairsCompile.AlarmType" placeholder="请选择">
+                    <el-option label="默认" value="0"></el-option>
+                    <el-option label="状态" value="1"></el-option>
+                    <el-option label="报警" value="2"></el-option>
+                    <el-option label="参数" value="3"></el-option>
+                  </el-select>
+                </td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报修名称</td>
+                <td colspan="5" class="text-style">
+                  <el-input
+                      type="textarea"
+                      autosize
+                      placeholder="请输入内容"
+                      v-model="repairsCompile.AlarmName"
+                  >
+                  </el-input>
+                </td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报修备注</td>
+                <td class="text-style" colspan="5">
+                  <el-input
+                      type="textarea"
+                      autosize
+                      placeholder="请输入内容"
+                      v-model="repairsCompile.AlarmRemark"
+                  >
+                  </el-input>
+                </td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报修图片</td>
+                <td class="AlarmImageClass" colspan="5">
+                  <el-upload
+                      list-type="picture-card"
+                      ref="test"
+                      multiple
+                      accept=".jpg,.png,.gif,.bmp,.jpeg"
+                      :http-request="function(file){ uploadFileImg(file,'AlarmImageList') }"
+                      :file-list="AlarmImageList"
+                  >
+                    <i slot="default" class="el-icon-plus"></i>
+                    <div slot="file" slot-scope="{file}">
+                      <img
+                          class="el-upload-list__item-thumbnail"
+                          :src="file.url" alt=""
+                      >
+                      <span class="el-upload-list__item-actions">
+                            <span
+                                class="el-upload-list__item-preview"
+                                @click="handlePictureCardPreview(file)"
+                            >
+                              <i class="el-icon-zoom-in"></i>
+                            </span>
+                            <span
+                                v-if="!disabled"
+                                class="el-upload-list__item-delete"
+                                @click="handleRemove(file,'repairs')"
+                            >
+                              <i class="el-icon-delete"></i>
+                            </span>
+                      </span>
+                    </div>
+                  </el-upload>
+
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="white-box"></div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="检修" name="second">
+        <div class="fzy-page" v-show="!serviceParticularsShow">
+          <div class="fzy-search-bar">
+            <div class="input-select-box input-box-300">
+              <div class="label">检修等级</div>
+              <el-select v-model="SearchService.AlarmLevelArray" placeholder="请选择" clearable>
+                <el-option label="A级" value="1"></el-option>
+                <el-option label="B级" value="2"></el-option>
+                <el-option label="C级" value="3"></el-option>
+                <el-option label="D级" value="4"></el-option>
+              </el-select>
+            </div>
+            <div class="input-select-box input-box-300">
+              <div class="label">报警类型</div>
+              <el-select v-model="SearchService.AlarmTypeArray" placeholder="请选择" clearable>
+                <el-option label="状态" value="1"></el-option>
+                <el-option label="报警" value="2"></el-option>
+                <el-option label="参数" value="3"></el-option>
+              </el-select>
+            </div>
+            <div class="input-select-box input-box-300">
+              <div class="label">状态</div>
+              <el-select v-model="SearchService.StatusArray" placeholder="请选择">
+                <el-option label="请选择" value="-1"></el-option>
+                <el-option label="未检修" value="1"></el-option>
+                <el-option label="已检修" value="2"></el-option>
+              </el-select>
+            </div>
+            <div class="input-select-box input-box-400">
+              <div class="label">报修时间</div>
+              <div class="block">
+                <el-date-picker
+                    v-model="SearchService.DateValueRepairs"
+                    type="daterange"
+                    :clearable="false"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                >
+                </el-date-picker>
+              </div>
+            </div>
+            <div class="button-box">
+              <button
+                  class="btn lmvt-danger-btn" style="border: 0" type="button"
+                  @click="search('service')"
+              >
+                <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                查询
+              </button>
+              <button
+                  class="btn lmvt-def-btn"
+                  type="button"
+                  @click="reset('SearchService')"
+              >
+                <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+                重置
+              </button>
+            </div>
+          </div>
+          <div class="fzy-page-center-box">
+            <div class="fzy-page-center-title-bar">
+              <div class="left">
+                <span class="fzy-title">检修表</span>
+              </div>
+            </div>
+            <table class="fzy-table">
+              <thead>
+              <tr>
+                <th>设备编号</th>
+                <th>设备名称</th>
+                <th>报警类型</th>
+                <th>异常编码</th>
+                <th>报修名称</th>
+                <th>检修等級</th>
+                <th>报修人</th>
+                <th>报修时间</th>
+                <th>检修人</th>
+                <th>检修时间</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody id="fxy-body-service">
+              <tr v-for="item in RepairsList">
+                <td>{{ item.DeviceNo }}</td>
+                <td>{{ item.DeviceName }}</td>
+                <td>{{ item.AlarmType | AlarmType }}</td>
+                <td>{{ item.AlarmCode }}</td>
+                <td>{{ item.AlarmName }}</td>
+                <td>{{ item.AlarmLevel | AlarmLevel }}</td>
+                <td>{{ item.Creator }}</td>
+                <td>{{ item.CreateTime }}</td>
+                <td>{{ item.Repairer }}</td>
+                <td>{{ item.RepairTime | effectiveDate}}</td>
+                <td>{{ item.RepairStartTime | effectiveDate}}</td>
+                <td>{{ item.RepairEndTime | effectiveDate}}</td>
+                <td>{{ item.Status | Status }}</td>
+                <td class="last-td">
+                                    <span
+                                        class="glyphicon glyphicon-cog" :class="{classFalse:!item.isService}"
+                                        @click="service(item)"
+                                    >检修</span>
+                  <span
+                      class="glyphicon glyphicon-zoom-in"
+                      @click="particulars(item,'service')"
+                  >详情</span>
+                </td>
+              </tr>
+              <tr v-if="RepairsList.length==0">
+                <td colspan="14">暂无数据</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="repairs-particulars flex-column" v-show="serviceParticularsShow">
+          <div class="fxy-head">
+            <button type="button" class="btn lmvt-danger-btn lmvt-default-btn" @click="goback('service')">
+              <span class="glyphicon glyphicon-arrow-left">返回</span>
+            </button>
+            <span class="fxy-title" style="font-size: 24px">
+                {{ serviceParticularsObj.DeviceName }}{{ serviceParticularsObj.DeviceNo }}
+              </span>
+            <span class="fxy-title blue-font" :class="{chartreuseFont:repairsParticularsObj.Status===2}">{{ serviceParticularsObj.Status | Status }}</span>
+            <button
+                v-if="serviceParticularsObj.isCompile" type="button"
+                class="btn lmvt-danger-btn lmvt-default-btn" @click="saveClick('service')"
+            >
+              保存
+            </button>
+          </div>
+          <div class="repairs-message">
+            <div class="fxy-title" style="width: 960px">
+              报警信息
+            </div>
+            <table>
+              <tr>
+                <td class="fxy-key">报修类型</td>
+                <td class="fxy-value">{{ serviceParticularsObj.AlarmType | AlarmType }}</td>
+                <td class="fxy-key">异常编码</td>
+                <td class="fxy-value">{{ serviceParticularsObj.AlarmCode }}</td>
+                <td class="fxy-key">报修名称</td>
+                <td class="fxy-value">{{ serviceParticularsObj.AlarmName }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修等级</td>
+                <td class="fxy-value">{{ serviceParticularsObj.AlarmLevel | AlarmLevel }}</td>
+                <td class="fxy-key">报修人</td>
+                <td class="fxy-value">{{ serviceParticularsObj.Creator }}</td>
+                <td class="fxy-key">报修时间</td>
+                <td class="fxy-value">{{ serviceParticularsObj.CreateTime }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报警备注</td>
+                <td class="text-left" colspan="5">{{ serviceParticularsObj.AlarmRemark }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">报修图片</td>
+                <td class="read-only-img" colspan="5">
+                  <el-image
+                      v-for="item in serviceParticularsObj.AlarmImageList"
+                      style="width: 100px; height: 100px"
+                      :src="item"
+                      :preview-src-list="serviceParticularsObj.AlarmImageList"
+                  >
+                  </el-image>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="service-message">
+            <div class="fxy-title" style="width: 960px">
+              检修信息
+            </div>
+            <table>
+              <tr>
+                <td class="fxy-key">检修人</td>
+                <td class="fxy-value">{{ serviceParticularsObj.Repairer }}</td>
+                <td class="fxy-key">开始是时间</td>
+                <td class="fxy-value">{{ serviceParticularsObj.RepairStartTime }}</td>
+                <td class="fxy-key">结束时间</td>
+                <td class="fxy-value">{{ serviceParticularsObj.RepairTime }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修备注</td>
+                <td class="text-left" colspan="5">{{ serviceParticularsObj.RepairRemark }}</td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修图片</td>
+                <td class="read-only-img" colspan="5">
+                  <el-image
+                      v-for="item in serviceParticularsObj.RepairImageList"
+                      style="width: 100px; height: 100px"
+                      :src="item"
+                      :preview-src-list="serviceParticularsObj.RepairImageList"
+                  >
+                  </el-image>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="repairs-compile" v-if="serviceParticularsObj.isCompile">
+            <div class="fxy-title" style="width: 960px">
+              修改
+            </div>
+            <table>
+              <tr>
+                <td class="fxy-key">检修人</td>
+                <td class="fxy-value select-style">
+                  <el-select
+                      v-model="serviceCompile.RepairerIDList"
+                      placeholder="请选择"
+                      clearable
+                      multiple
+                      filterable
+                  >
+                    <el-option
+                        v-for="item in userList"
+                        :key="item.value"
+                        :label="item.name"
+                        :value="item.value"
+                    >
+                      <span style="float: left">{{ item.name }}</span>
+                      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+                    </el-option>
+                  </el-select>
+                </td>
+                <td class="fxy-key">开始时间</td>
+                <td class="fxy-value time-picker">
+                  <el-date-picker
+                      v-model="serviceCompile.RepairStartTime"
+                      type="datetime"
+                      placeholder="选择日期"
+                  >
+                  </el-date-picker>
+                </td>
+                <td class="fxy-key">结束时间</td>
+                <td class="fxy-value time-picker">
+                  <el-date-picker
+                      v-model="serviceCompile.RepairEndTime"
+                      type="datetime"
+                      placeholder="选择日期"
+                  >
+                  </el-date-picker>
+                </td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修备注</td>
+                <td class="text-style" colspan="5">
+                  <el-input
+                      type="textarea"
+                      autosize
+                      placeholder="请输入内容"
+                      v-model="serviceCompile.RepairRemark"
+                  >
+                  </el-input>
+                </td>
+              </tr>
+              <tr>
+                <td class="fxy-key">检修图片</td>
+                <td class="AlarmImageClass" colspan="5">
+                  <el-upload
+                      list-type="picture-card"
+                      ref="test"
+                      multiple
+                      accept=".jpg,.png,.gif,.bmp,.jpeg"
+                      :http-request="function(file){ uploadFileImg(file,'RepairImageList') }"
+                      :file-list="RepairImageList"
+                  >
+                    <i slot="default" class="el-icon-plus"></i>
+                    <div slot="file" slot-scope="{file}">
+                      <img
+                          class="el-upload-list__item-thumbnail"
+                          :src="file.url" alt=""
+                      >
+                      <span class="el-upload-list__item-actions">
+                            <span
+                                class="el-upload-list__item-preview"
+                                @click="handlePictureCardPreview(file)"
+                            >
+                              <i class="el-icon-zoom-in"></i>
+                            </span>
+                            <span
+                                v-if="!disabled"
+                                class="el-upload-list__item-delete"
+                                @click="handleRemove(file,'service')"
+                            >
+                              <i class="el-icon-delete"></i>
+                            </span>
+                      </span>
+                    </div>
+                  </el-upload>
+
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="white-box"></div>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+  </template>
+  <el-dialog
+      v-cloak
+      :title="popupData.toRepair?'新增报修':'检修'"
+      :visible.sync="popupData.show"
+      :close-on-click-modal="false"
+      top="5vh"
+      append-to-body
+      width="750px"
+      class="fzy-popup-form"
+      @closed="close"
+  >
+    <div
+        style="
+                padding: 0 10px;
+                overflow-y:auto;
+                overflow-x:hidden;
+                max-height: 60vh;
+            "
+        class="fzy-scroll-hide"
+    >
+      <el-form
+          ref="myForm"
+          :model="popupData.data"
+          :rules="popupData.rules"
+          size="medium"
+
+      >
+        <el-row :gutter="30" v-if="popupData.toRepair">
+          <el-col :span="12">
+            <el-form-item label="设备" prop="device">
+              <el-select
+                  v-model="popupData.data.device"
+                  placeholder="请选择设备"
+                  style="width:100%;"
+                  @change="fromDeviceChange"
+              >
+                <el-option
+                    v-for="item in popupData.selectOptions.device"
+                    :key="item.value"
+                    :label="item.Name"
+                    :value="item.ID"
+                >
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="报警编码">
+              <el-select
+                  v-model="popupData.data.alarmCode"
+                  placeholder="请选择报警编码"
+                  clearable
+                  style="width:100%;"
+                  @change="fromAlarmCodeChange"
+              >
+                <el-option
+                    v-for="(item,index) in popupData.selectOptions.alarmCode"
+                    :key="index"
+                    :label="item.AlarmName+'('+item.AlarmCode+')'"
+                    :value="item.AlarmCode"
+                >
+                  <span style="float: left">{{ item.AlarmName }}</span>
+                  <span style="float: right; color: #8492a6; font-size: 13px">{{ item.AlarmCode }}</span>
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="报修原因" prop="alarmName">
+              <el-input
+                  v-model="popupData.data.alarmName"
+                  placeholder="请输入报修原因"
+                  style="width:100%;"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="报警备注">
+              <el-input
+                  v-model="popupData.data.alarmRemark"
+                  placeholder="请输入报警备注"
+                  type="textarea"
+                  autosize
+                  style="width:100%;"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="报警等级" prop="alarmLevel">
+              <el-select
+                  v-model="popupData.data.alarmLevel"
+                  placeholder="请选择设备"
+                  style="width:100%;"
+              >
+                <el-option
+                    v-for="item in popupData.selectOptions.alarmLevel"
+                    :key="item.value"
+                    :label="item.Name"
+                    :value="item.ID"
+                >
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="报修类型">
+              <el-select
+                  v-model="popupData.data.alarmType"
+                  placeholder="请选择报警编码"
+                  style="width:100%;"
+              >
+                <el-option
+                    v-for="item in popupData.selectOptions.alarmType"
+                    :key="item.value"
+                    :label="item.Name"
+                    :value="item.ID"
+                >
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="报警图片">
+              <el-upload
+                  multiple
+                  accept=".jpg,.png,.gif,.bmp,.jpeg"
+                  list-type="picture-card"
+                  :http-request="addUploadImg"
+                  :file-list="popupData.data.AlarmImage"
+              >
+                <i slot="default" class="el-icon-plus"></i>
+                <div slot="file" slot-scope="{file}">
+                  <img
+                      class="el-upload-list__item-thumbnail"
+                      :src="file.url" alt=""
+                  >
+                  <span class="el-upload-list__item-actions">
+                                    <span
+                                        class="el-upload-list__item-preview"
+                                        @click="handlePictureCardPreview(file)"
+                                    >
+                                      <i class="el-icon-zoom-in"></i>
+                                    </span>
+                                    <span
+                                        v-if="!disabled"
+                                        class="el-upload-list__item-delete"
+                                        @click="handleRemove(file,'add')"
+                                    >
+                                      <i class="el-icon-delete"></i>
+                                    </span>
+                                  </span>
+                </div>
+              </el-upload>
+
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="30" v-if="!popupData.toRepair">
+          <el-col :span="24">
+            <el-form-item label="检修人" prop="repairer">
+              <el-select
+                  v-model="popupData.data.repairer"
+                  placeholder="请选择检修人"
+                  multiple
+                  filterable
+                  style="width:100%;"
+              >
+                <el-option
+                    v-for="(item,index) in popupData.selectOptions.repairer"
+                    :key="index"
+                    :label="item.Name"
+                    :value="item.ID"
+                >
+                  <span style="float: left">{{ item.Name }}</span>
+                  <span style="float: right; color: #8492a6; font-size: 13px">{{ item.LoginName }}</span>
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="检修备注">
+              <el-input
+                  v-model="popupData.data.repairsRemark"
+                  placeholder="请输入检修备注"
+                  type="textarea"
+                  autosize
+                  style="width:100%;"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="检修开始时间">
+              <el-date-picker
+                  v-model="popupData.data.repairsDate.start"
+                  type="datetime"
+                  placeholder="选择起始日期"
+                  style="width:100%;"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="检修结束时间">
+              <el-date-picker
+                  v-model="popupData.data.repairsDate.end"
+                  type="datetime"
+                  placeholder="选择起始日期"
+                  style="width:100%;"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+              >
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+    </div>
+
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="close">关 闭</el-button>
+      <el-button type="primary" @click="confirm">确 定</el-button>
+    </div>
+
+  </el-dialog>
+  <el-dialog
+      width="80vh"
+      :visible.sync="dialogVisible"
+  >
+    <img width="100%" :src="dialogImageUrl" alt="">
+  </el-dialog>
+</div>
+</body>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/ProcessChange-Vue.js"></script>
+</html>

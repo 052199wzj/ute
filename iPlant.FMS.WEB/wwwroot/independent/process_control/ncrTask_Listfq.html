@@ -1,0 +1,859 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>不合格评审</title>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/base.css"/>
+  <link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/process_control/ncrTask_Listfq.css"/>
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/reset.min.css">
+  <link rel="stylesheet" href="../static/css/monthly_plan_approval/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/utils/css/search-top.css"/>
+</head>
+
+<body class="femi-font-size-middle" style="min-width: 1280px;padding-top: 5px;">
+<!-- 发起 -->
+<div class="zace-cbd-contain zacePlanSend" style="height: 100% ;width: auto;">
+  <div class="ds-search-top">
+    <div class="ds-search-top-contain" data-show-mode="0">
+      <div class="ds-search-item-group">
+        <div class="ds-search-item-lable">时间段</div>
+        <input id="lmvt-startTime" readonly class="form-control width200" placeholder="请选择开始时间">
+        <input id="lmvt-endTime" readonly class="form-control width200" placeholder="请选择结束时间">
+      </div>
+      <div class="ds-search-item-group">
+        <div class="ds-search-item-lable">发起人</div>
+        <input
+            readonly class="search-content-UpFlowID form-control" style="width: 150px;" data-value=""
+            placeholder="请选择发起人" data-toggle="modal" data-target="#myModal"
+        >
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">评审级别</div>
+        <select
+            id="slpLevel_search" readonly class="selectpicker search-content-Level"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">车间</div>
+        <select
+            id="slpkWorkShopID_search" readonly class="selectpicker search-content-WorkShopID"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group">
+        <div class="ds-search-item-lable">产品编码</div>
+        <input
+            class="search-content-SerialNo form-control" style="width: 150px;border: 1px solid darkgray;"
+            data-value="" type="text" placeholder="请填写产品编码"
+        >
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">产品类别</div>
+        <select
+            id="slpProductTypeID_search" readonly class="selectpicker search-content-ProductTypeID"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">产品型号</div>
+        <select
+            id="slpProductNo_search" readonly class="selectpicker search-content-ProductNo"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 270px;">
+        <div class="ds-search-item-lable" style="width: 140px;">不合格品来源</div>
+        <select
+            id="slpSource_search" readonly class="selectpicker search-content-Source"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 250px;">
+        <div class="ds-search-item-lable">紧急程度</div>
+        <select
+            id="slpUrgencyLevel_search" readonly class="selectpicker search-content-UrgencyLevel"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 250px;">
+        <div class="ds-search-item-lable" style="width: 120px;">不合格类别</div>
+        <select
+            id="slpClassification_search" readonly class="selectpicker search-content-Classification"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 250px;">
+        <div class="ds-search-item-lable">评审结果</div>
+        <select
+            id="slpConclusionResult_search" readonly class="selectpicker search-content-ConclusionResult"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">发生单位</div>
+        <input
+            readonly class="search-content-OccurDeptID form-control" style="width: 150px;" data-value=""
+            placeholder="请选择发生单位" data-toggle="modal" data-target="#myModalDepartment"
+        >
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">责任单位</div>
+        <input
+            readonly class="search-content-ResponsibleDeptID form-control" style="width: 150px;"
+            data-value=""
+            placeholder="请选择责任单位" data-toggle="modal" data-target="#myModalDepartment"
+        >
+      </div>
+      <div class="ds-search-item-group" style="width: 230px;">
+        <div class="ds-search-item-lable">状态</div>
+        <select
+            id="slpkStatus_search" readonly class="selectpicker search-content-Status"
+            data-live-search="true" data-value="0"
+        ></select>
+      </div>
+      <div class="ds-search-item-group ds-search-btn-group">
+        <button type="button" id="lmvt-search" class="btn lmvt-danger-btn lmvt-default-btn">
+          查询
+        </button>
+        <button type="button" id="lmvt-reset" class="btn btn-default lmvt-default-btn lmvt-def-btn">
+          重置
+        </button>
+        <button
+            type="button" id="lmvt-resetZK" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+            style="display: none;"
+        >
+          展开<img src="../static/images/checkbox/下拉箭头.png" style="width: 15px;height: 15px;">
+        </button>
+        <button
+            type="button" id="lmvt-resetSQ" class="btn btn-default lmvt-default-btn lmvt-def-btn"
+            style="display: none;"
+        >
+          收起<img src="../static/images/checkbox/上拉箭头.png" style="width: 15px;height: 15px;">
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="zace-leftContain ds-contain-middle" style="height: calc(100% - 65px);">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+
+          </div>
+        </div>
+        <div class="columns columns-right btn-group pull-right">
+          <button type="button" class="btn lmvt-def-btn" style="padding: 0">
+            <input
+                type="text" id="zace-search-send"
+                style="border:none; border-radius:4px; margin: 0;padding: 6px 12px; outline: none;"
+                placeholder="请输入查询字符"
+            />
+          </button>
+          <button type="button" id="zace-searchSend" class="btn   lmvt-def-btn">
+            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>筛选
+          </button>
+          <button type="button" id="zace-refresh-Send" class="btn  lmvt-def-btn">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+          </button>
+          <button type="button" id="applySingle" class="btn  lmvt-def-btn">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起申请
+          </button>
+        </div>
+
+        <span class="zace-header-title zace-title">不合格评审列表</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll">
+          <table class="table   table-hover table-bordered table-part table-partApprovalRecord">
+
+            <thead>
+            <tr>
+              <!-- <th style="width: 3px">
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </th> -->
+              <!--<th style="min-width:50px" data-order="WID">序号</th>-->
+              <th style="min-width: 50px" data-order="Code">单据编号</th>
+              <th style="min-width: 50px" data-order="LevelName">评审级别</th>
+              <th style="min-width: 50px" data-order="SourceName">不合格品来源</th>
+              <th style="min-width: 50px" data-order="Product">不合格品名称</th>
+              <th style="min-width: 50px" data-order="LocoTypeNo">不合格品型号</th>
+              <th style="min-width: 50px" data-order="SerialNo">产品编号</th>
+              <th style="min-width: 50px" data-order="UrgencyLevelName">紧急程度</th>
+              <th style="min-width: 50px" data-order="ClassificationName">不合格类别</th>
+              <th style="min-width: 50px" data-order="ConclusionResultName">评审结果</th>
+              <th style="min-width: 50px" data-order="UpFlowName">发起人</th>
+              <th style="min-width: 50px" data-order="CreateTime">发起时间</th>
+              <th style="min-width: 50px" data-order="SubmitTime">操作时间</th>
+              <th style="min-width: 50px" data-order="StatusText">状态</th>
+              <th style="min-width: 50px" data-order="ZZDetail">操作</th>
+            </tr>
+            </thead>
+            <tbody id="femi-zacePlanSend-tbody" class="table-color">
+            <tr>
+              <!-- <td>
+                  <input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+                      value="{{functionID}}" />
+              </td> -->
+              <td colspan="17">等待数据加载</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+    id="outerdiv"
+    style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:9999;width:100%;height:100%;display:none;"
+>
+  <div id="innerdiv" style="position:absolute;">
+    <img id="bigimg" style="border:5px solid #fff;background-color: aliceblue;" src=""/>
+  </div>
+</div>
+<!-- 流程图 -->
+<div id="cby-route-charf-ontask" class="cby-charf-down cby-route-charf " style="display:none">
+  <div class="" style="min-width:1000px">
+    <div class="cby-tree-header" style="overflow:visible;">
+      <div class="btn-group cby-left lmvt-def-btn" role="group">
+
+      </div>
+      <div class="columns columns-right btn-group pull-right">
+
+        <button class="btn lmvt-def-btn" type="button" id="cby-return-ontask">
+          <span class="glyphicon glyphicon-eye-open"></span>隐藏
+        </button>
+      </div>
+      <span class="cby-header-title" id="">流程图</span>
+    </div>
+    <div style="overflow: auto;">
+
+      <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="">
+    </div>
+  </div>
+</div>
+
+<!-- 处理界面 -->
+<div class="zace-cbd-contain zacePencil" style="display: none;">
+
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn  lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <div class="btn-group" role="group">
+
+            <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+              <span class="glyphicon " aria-hidden="true"></span>流程图
+            </button>
+          </div>
+        </div>
+
+        <span class="zace-header-title zace-title BPM-title">不合格评审处理信息</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;">
+          <div
+              class="header"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">基础数据</p>
+              <div class="BasicTable">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >状态</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >待审批</span>
+                  </div>
+                </div>
+              </div>
+              <div class="BasicTableContentBasic">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middle Businessfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">业务数据</p>
+              <div class="BasicTableContentBusiness">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middleFill"
+              style="width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;min-height: 100px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">填写数据</p>
+              <div class="BasicTableContentFillIn" style="height: max-content;">
+                <div class="BasicTable" style="display: flow-root;">
+
+                  <div class="TempTable Write-Control-Level TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Level"
+                    >评审级别</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkLevel" class="selectpicker Write-content-Level"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+
+                  <div class="TempTable Write-Control-Source TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Source"
+                    >不合格品来源</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkSource" class="selectpicker Write-content-Source"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-ProductTypeID TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-ProductTypeID"
+                    >产品类别</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkProductTypeID"
+                          class="selectpicker Write-content-ProductTypeID"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+
+                  <div class="TempTable Write-Control-Product TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Product"
+                    >不合格品名称</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkProduct" class="selectpicker Write-content-Product"
+                          data-live-search="true" data-value="0" data-productID="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-SerialNo TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-SerialNo"
+                    >产品编号</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-SerialNo"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写产品编号" value=""
+                    /></div>
+                  </div>
+                  <div class="TempTable Write-Control-Quantity TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Quantity"
+                    >不合格品数量</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-Quantity"
+                        style="width: 100%;height: 100%;border: 0;" type="number" data-value=""
+                        placeholder="请填写不合格品数量" value=""
+                    /></div>
+                  </div>
+
+                  <div class="TempTable Write-Control-OccurDeptID TempTableContent selectPeople">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-OccurDeptID"
+                    >发生单位</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          style="display: inline-block;font-size: 14px;margin-left: 13px;margin-top: 3%;width: 80%;float: left;"
+                          class="Write-content-OccurDeptID" data-toggle="modal"
+                          data-target="#myModalDepartment" data-value=""
+                      >请选择
+                      </div>
+                      <div
+                          class="caret"
+                          style="float: right;margin-right: 14px;margin-top: 6%;"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-ResponsibleDeptID TempTableContent selectPeople">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-ResponsibleDeptID"
+                    >责任单位</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          style="display: inline-block;font-size: 14px;margin-left: 13px;margin-top: 3%;width: 80%;float: left;"
+                          class="Write-content-ResponsibleDeptID" data-toggle="modal"
+                          data-target="#myModalDepartment" data-value=""
+                      >请选择
+                      </div>
+                      <div
+                          class="caret"
+                          style="float: right;margin-right: 14px;margin-top: 6%;"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-DutyCarfID TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-DutyCarfID"
+                    >相关人员</span></div>
+                    <div
+                        class="FieldContentTwo"
+                        style="padding: 0px;overflow-y: auto;height: 40px;"
+                    >
+                      <!-- <input class="Write-content-DutyCarfID"
+                          style="width: 100%;height: 100%;border: 0;" data-toggle="modal"
+                          data-target="#myModal" data-value="" value="" /> -->
+
+                      <!-- <button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="modal"
+                          data-target="#myModal" data-toggle="dropdown" data-id="slpkLevel" title="请选择" style="width: 100%;"><span class="filter-option pull-left">请选择</span>&nbsp;<span class="caret" style="position: relative;
+                              left: 81px;"></span></button> -->
+                      <div
+                          style="display: inline-block;font-size: 14px;margin-left: 13px;margin-top: 3%;width: 80%;float: left;"
+                          class="Write-content-DutyCarfID" data-toggle="modal"
+                          data-target="#myModal" data-value=""
+                      >请选择
+                      </div>
+                      <div
+                          class="caret" style="    float: right;
+                                                    margin-right: 14px;
+                                                    margin-top: 6%;"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-Classification TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Classification"
+                    >不合格品类别</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkClassification"
+                          class="selectpicker Write-content-Classification"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-UrgencyLevel TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-UrgencyLevel"
+                    >紧急程度</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkUrgencyLevel"
+                          class="selectpicker Write-content-UrgencyLevel"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-Description TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Description"
+                    >不合格描述</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-Description"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写不合格描述" value=""
+                    /></div>
+                  </div>
+
+                  <div class="TempTable Write-Control-ConclusionResult TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-ConclusionResult"
+                    >处理措施</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkConclusionResult"
+                          class="selectpicker Write-content-ConclusionResult"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-ConclusionDescription TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-ConclusionDescription"
+                    >处置措施备注</span>
+                    </div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-ConclusionDescription"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写处置措施备注" value=""
+                    /></div>
+                  </div>
+
+                  <div class="TempTable Write-Control-MakeMeasures TempTableContent Select">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-MakeMeasures"
+                    >是否要求制定纠正或预防措施</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <select
+                          id="slpkMakeMeasures"
+                          class="selectpicker Write-content-MakeMeasures"
+                          data-live-search="true" data-value="0"
+                      ></select>
+                    </div>
+                  </div>
+
+
+                  <div class="TempTable Write-Control-MakeMeasuresDate TempTableContent Time">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-MakeMeasuresDate"
+                    >制定日期</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          style="display: inline-block;font-size: 14px;margin-left: 13px;margin-top: 3%;width: 80%;float: left;"
+                          class="Write-content-MakeMeasuresDate TestTime_close" data-value=""
+                      >请选择
+                      </div>
+                      <div
+                          class="caret" style="    float: right;
+                                                    margin-right: 14px;
+                                                    margin-top: 6%;"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="TempTable Write-Control-MakeMeasuresNo TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-MakeMeasuresNo"
+                    >制定编号</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-MakeMeasuresNo"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写制定编号" value=""
+                    /></div>
+                  </div>
+
+
+                  <div class="TempTable Write-Control-Signature TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Signature"
+                    >审批人员</span></div>
+                    <div
+                        class="FieldContentTwo"
+                        style="padding: 0px;overflow-y: auto;height: 40px;"
+                    >
+
+                      <div
+                          style="display: inline-block;font-size: 14px;margin-left: 13px;margin-top: 3%;width: 80%;float: left;"
+                          class="Write-content-Signature" data-toggle="modal"
+                          data-target="#myModal" data-value=""
+                      >请选择
+                      </div>
+                      <div
+                          class="caret" style="    float: right;
+                                                    margin-right: 14px;
+                                                    margin-top: 6%;"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="TempTable Write-Control-Remark TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-Remark"
+                    >备注</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-Remark"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写备注" value=""
+                    /></div>
+                  </div>
+                  <div class="TempTable Write-Control-DisposalResult TempTableContent">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-DisposalResult"
+                    >处置结果</span></div>
+                    <div class="FieldContentTwo writeContent" style="padding: 0px;"><input
+                        class="Write-content-DisposalResult"
+                        style="width: 100%;height: 100%;border: 0;" data-value=""
+                        placeholder="请填写处置结果" value=""
+                    /></div>
+                  </div>
+
+                  <div class="TempTable Write-Control-ImageList TempTableContent Img">
+                    <div class="FieldName" style="width: 39%;"><span
+                        class="ContentshowName ds-head-ImageList"
+                    >附件</span></div>
+                    <div class="FieldContentTwo" style="padding: 0px;">
+                      <div
+                          class="m-c-body m-c-upload clearfix" style="border: 1px solid #dbdbdb;
+                                                border-width: 1px 0;
+                                                background: #fff;"
+                      >
+                        <ul class="upload-list">
+                          <li
+                              class="upload-btn" style="background: url(/MESCore/my_app/static/images/upload.png) no-repeat;
+                                                        background-size: 100%;
+                                                        float: left;width: 36px;height: 36px;"
+                          >
+                            <input
+                                type="file" data-value=""
+                                class="uploadImageZac Write-content-ImageList" style=" opacity: 0;position: relative;
+                                                            z-index: 100;
+                                                            width: 100%;
+                                                            height: 100%;"
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="footer"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">审批记录</p>
+              <div class="zaceLiuchengPencil" style="width: 60%;">
+
+              </div>
+            </div>
+          </div>
+
+          <div
+              class="bottom"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;display: none;"
+          >
+            <div class="headerAll">
+              <div>
+                <p class="TitieWebBPM" style="display: inline-block;">节点详情</p>
+                <button
+                    class="btn btn-default" type="button" id="lmvt-type-back" style="float: right;"
+                >
+                  <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                </button>
+              </div>
+              <div class="BasicTableDeatil">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >节点</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >节点名称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="TableContentBasicDeatil">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 详情界面 -->
+<div class="zace-cbd-contain zacePencilDone" style="display: none;">
+  <div class="zace-leftContain">
+    <div class="zzza zace-cbd-contain">
+      <div class="zace-tree-header" style="overflow:visible;">
+        <div class="femi-toolbar-self femi-lf">
+          <div class="btn-group" role="group">
+            <button type="button" id="zace-exportApproval-commitReturn" class="btn lmvt-def-btn">
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>返回
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="columns columns-right btn-group pull-right">
+
+          <div class="btn-group zace-button" role="group">
+
+          </div>
+          <button type="button" id="commit_cancel" class="btn lmvt-def-btn ">
+            <span class="glyphicon " aria-hidden="true"></span>撤销
+          </button>
+          <button type="button" id="commit_route" class="btn   commit_route lmvt-def-btn">
+            <span class="glyphicon " aria-hidden="true"></span>流程图
+          </button>
+
+        </div>
+
+        <span class="zace-header-title zace-title">不合格评审审批详情</span>
+      </div>
+
+      <div class="zace-tree-body femi-contain-border">
+        <div class="femi-tb-scroll" style="background-color: #F2F2F2;padding: 10px;">
+          <!-- <div class="zaceContent" style="margin: 0 auto;width: 900px;height: 25%;overflow:auto;">
+              <div class="zace-TitleDetailFirstPencil" style="height: auto;width: 100%;float: left;">
+
+              </div>
+              <div class="zace-TitleDetailSecondPencil" style="height: auto;width: 100%;float: left;">
+
+              </div>
+
+          </div>
+          <div class="zaceContent zaceLiuchengDetail"
+              style="margin: 0 auto;width: 900px;height: 70%;overflow:auto;">
+
+          </div> -->
+
+          <div
+              class="headerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">基础数据</p>
+              <div class="BasicTable">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >状态</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >待审批</span>
+                  </div>
+                </div>
+              </div>
+              <div class="BasicTableContentBasic">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="middlefq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">业务数据</p>
+              <div class="BasicTableContentBusiness">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+              class="footerfq"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;"
+          >
+            <div class="headerAll">
+              <p class="TitieWebBPM">审批记录</p>
+              <div class="zaceLiuchengPencil" style="width: 60%;">
+
+              </div>
+            </div>
+          </div>
+          <div
+              class="bottom"
+              style="overflow: hidden;width: 100%;background-color: white;margin-bottom: 10px;padding-bottom: 20px;display: none;"
+          >
+            <div class="headerAll">
+              <div>
+                <p class="TitieWebBPM" style="display: inline-block;">节点详情</p>
+                <button
+                    class="btn btn-default" type="button" id="lmvt-type-back" style="float: right;"
+                >
+                  <span class="glyphicon glyphicon-eye-close"></span>隐藏
+                </button>
+              </div>
+              <div class="BasicTableDeatil">
+                <div style="display: flex;width: 100%;float: left;">
+                  <div class="FieldName" style="width: 19.5%;"><span
+                      class="ContentshowName"
+                  >节点</span>
+                  </div>
+                  <div class="FieldContentOne" style="width: 80.5%;"><span
+                      class="Contentshow"
+                      style="margin-left: 1.8%;"
+                  >节点名称</span>
+                  </div>
+                </div>
+              </div>
+              <div class="TableContentBasicDeatil">
+                <div class="BasicTable" style="display: block;">
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+    class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    data-backdrop="static"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div
+    class="modal fade" id="myModalDepartment" tabindex="-1" role="dialog" aria-labelledby="myModalDep"
+    data-backdrop="static"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+          <h4 class="modal-title" id="myModalDep" style="font-size: 20px;">查询</h4>
+      </div> -->
+      <div class="modal-bodyDepartment" style="">
+
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="../static/utils/require.js"></script>
+<script type="text/javascript" src="../static/js/process_control/ncrTask_Listfq.js"></script>
+</body>
+
+</html>

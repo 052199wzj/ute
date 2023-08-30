@@ -1,0 +1,421 @@
+@changeLightPX:55px;
+@changeWaterPX:41px;
+
+body {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    font-family: Arial !important;
+    font-size: 14px !important;
+}
+
+#contain{
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: white;
+}
+
+.imgDiv1{
+    background-image: url(../../images/Metro/back.png);
+    position: relative;
+    height: calc(100% - 68px);
+    width: 100%;
+    top: -34px;
+    background-repeat:no-repeat;
+    background-size: auto;
+}
+
+#app{
+    margin: 0 auto;
+    position: relative;
+    /* background-image: url(../../images/Metro/back.png); */
+    background-repeat:no-repeat;
+    /* background-size: 100%; */
+    /* background-size: 100%; */
+    /* overflow: auto; */
+    width: 1366px;
+    /* height: calc(100% - 66px); */
+    height: 768px;
+    background-size:100% auto;
+    /* background-size:auto 100%; */
+    background-attachment:fixed;
+    background-color:#CCCCCC;
+    
+-webkit-background-size: cover; 
+-moz-background-size: cover; 
+-o-background-size: cover;
+}
+
+.imgDiv{
+    /* src: url(../../images/Metro/back.png); */
+    position: relative;
+    height: calc(100% - 66px);
+    width: 100%;
+    top: -34px;
+    z-index: 0;
+}
+
+.app-top{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    z-index: 2;
+    position: relative;
+    font-size: 12px;
+}
+
+.app-sed-switch{
+    /* width: 100%;
+    height: 20px; */
+    clear: both;
+    margin: 0 5px;
+    // height: 24px;
+    // display: flex;
+    // align-items: center;
+}
+
+.app-sed-heght{
+    /* width: 100%;
+    height: 20px; */
+    clear: both;
+    margin: 0 5px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.circle {
+    display: block; 
+    border-radius: 50%; 
+    height: 20px; 
+    width: 20px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+}
+
+.circle-large {
+    display: block; 
+    border-radius: 50%; 
+    height: 20px; 
+    width: 20px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+    /* background-color: green; */
+}
+
+.circle-min {
+    display: block; 
+    border-radius: 50%; 
+    height: 15px; 
+    width: 15px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+}
+
+.circle-big {
+    display: block; 
+    border-radius: 50%; 
+    height: 25px; 
+    width: 25px; 
+    margin: 2px 2px; 
+    border: 1px solid darkgray;
+    background-color: darkgray;
+}
+
+.circlePosition{
+    position: absolute;
+}
+
+.circleTextMa{
+    margin: 3px 0px;
+}
+
+.circleCircleMa{
+    margin: 0px 2px;
+}
+
+.circleText{
+    font-family: Arial !important;
+    font-size: 14px !important;
+    font-weight: 900;
+    color: #6D000E;
+}
+
+
+.circleOne{
+    top: 80px+@changeLightPX;
+    left: 29px;
+}
+
+.circleTwo{
+    top: 80px+@changeLightPX;
+    left: 628px;
+}
+
+.circleThree{
+    top: 80px+@changeLightPX;
+    left: 790px;
+}
+
+.circleFour{
+    top: 80px+@changeLightPX;
+    left: 1227px
+}
+
+.circleFive{
+    top: 156px+@changeLightPX;
+    left: 42px;
+}
+
+.circleSix{
+    top: 156px+@changeLightPX;
+    left: 808px;
+}
+
+.circleSeven{
+    top: 156px+@changeLightPX;
+    left: 1244px;
+}
+
+.circle-Active{
+    background-color: green;
+}
+
+.circle-forbidden{
+    background-color: red;
+}
+
+.flex-column{
+    flex-direction:column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.flex-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+
+.flex-row{
+    flex-direction:row;
+}
+
+.app-float{
+    float: left;
+}
+
+.flex-itemContain{
+    flex: 1;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    padding: 2px;
+    margin: 2px 5px;
+    background-color: aliceblue;
+    font-weight:900;
+}
+
+.flex-css{
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+    ul > li {
+        position: relative;
+        width: 10px;
+        height: 12px;
+        border-bottom: 2px solid black;
+        border-left: 2px solid transparent;
+    }
+
+        ul > li + li {
+            border-left-color: black;
+        }
+
+        ul > li > a {
+            display: block;
+            position: absolute;
+            height: 12px;
+            line-height: 5px;
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 4px;
+        }
+
+        ul > li > h7 {
+            display: block;
+            position: absolute;
+            height: 12px;
+            line-height: 5px;
+            margin-left: 10px;
+            margin-top: 10px;
+            font-size: 4px;
+            color: black;
+        }
+
+.app-top-sed-mode{
+    width: 100%;
+    display: flex;
+    /* float: left; */
+    /* height: 100%; */
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
+.backOne{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 402px;
+    z-index: 10;
+}
+.backTwo{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 474px;
+    z-index: 10;
+}
+.backThree{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 545px;
+    z-index: 10;
+}
+.backFour{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 617px;
+    z-index: 10;
+}
+.backFive{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 688px;
+    z-index: 10;
+}
+.backSix{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 756px;
+    z-index: 10;
+}
+.backSeven{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 955px;
+    z-index: 10;
+}
+.backEight{
+    position: absolute;
+    top: 270px+@changeWaterPX;
+    left: 1024px;
+    z-index: 10;
+}
+
+
+.saveWaterReact{
+    position: absolute;
+    height: 21px;
+    width: 33px;
+    top: 737px;
+    left: 23px;
+    background-color: cornflowerblue;
+}
+
+.desilterReact{
+    position: absolute;
+    height: 93px;
+    width: 221px;
+    top: 644px;
+    left: 154px;
+    /* background-color: cornflowerblue; */
+    z-index: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.desilterReactWater{
+    width: 100%;
+    background-color: cornflowerblue;
+    /* z-index: 0; */
+}
+
+.waterHeater{
+    position: absolute;
+    top: 428px;
+    left: 773px;
+    z-index: 10;
+}
+.saveWater{
+    position: absolute;
+    top: 688px;
+    left: 65px;
+    z-index: 10;
+}
+.desilter{
+    position: absolute;
+    top: 676px;
+    left: 246px;
+    z-index: 10;
+}
+.industrialCatalysis{
+    position: absolute;
+    top: 688px;
+    left: 415px;
+    z-index: 10;
+}
+.backWater{
+    position: absolute;
+    top: 688px;
+    left: 565px;
+    z-index: 10;
+}
+.cleanWater{
+    position: absolute;
+    top: 688px;
+    left: 659px;
+    z-index: 10;
+}
+
+.app-top-fiv-top{
+    height: 100%;
+    padding: 2px 4px;
+    // overflow-y: auto;
+}
+
+.app-top-fiv-bottom{
+    height: 40px;
+    padding: 2px 4px;
+    overflow-y: auto;
+}
+
+.flex-itemContain1{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 2px;
+    background-color: aliceblue;
+    font-weight: 1000;
+}
+

@@ -1,0 +1,160 @@
+html{
+    height: 100%;
+}
+body{
+    width: 100%;
+    height: calc(100% - 10px);
+    margin: 0;
+    padding: 0;
+    background-color: rgb(238,238,238);
+}
+/*公共样式-start*/
+.title{
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+    margin: 10px 0 ;
+}
+th{
+    background-color: rgb(215,215,215);
+    border-color: rgb(233,233,233);
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+.fxy-table{
+    max-height:224px;
+    overflow:auto;
+}
+.green{
+    color: rgb(112,182,3) !important;
+}
+.circle {
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red !important;
+}
+.borders{
+    border: 1px solid rgb(233,233,233);
+    padding: 10px;
+}
+.font-red{
+    color: red;
+}
+.status{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.status-hue{
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    border-radius: 50%;
+    background-color: #9b9b9b;
+    margin: 0 10px;
+}
+.StatusText{
+    margin: 0 10px;
+}
+[v-cloak] {
+    display: none;
+
+}
+/*公共样式-end*/
+
+/*头部-start*/
+.fxy-general{
+    width: calc(100% - 10px);
+    height: 100%;
+    margin:5px;
+    padding:10px;
+    min-width: 900px;
+    background-color: white;
+    overflow-y:auto;
+}
+.fxy-head{
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+}
+.fxy-head > span{
+    margin-right: 100px;
+}
+/*头部-end*/
+
+/*设备图片及其设备报警-start*/
+.fxy-picture-alarm{
+    width: 100%;
+    height: 350px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.fxy-picture-alarm > .picture{
+    width: 23%;
+    height: 100%;
+}
+.fxy-picture-alarm > .picture > .img{
+    width: 100%;
+    height: 50%;
+    background: url("../../images/checkbox/旋床.png") no-repeat;
+}
+.fxy-picture-alarm > .picture > .describe{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 16px;
+    font-weight: bold;
+}
+.fxy-parameter-alarm{
+    width: 75%;
+    height: 100%;
+    border: 1px solid #000000;
+    display: flex;
+    justify-content: space-between;
+}
+.fxy-parameter-alarm > .alarm{
+    width: 49%;
+    height: 100%;
+    padding: 10px 10px;
+}
+.fxy-parameter-alarm > .parameter{
+    width: 49%;
+    height: 100%;
+    padding: 10px 10px;
+}
+/*设备图片及其设备报警-end*/
+
+/*参数以及作业列表-start*/
+.fxy-assignment{
+    width: 100%;
+    margin-top: 30px;
+}
+
+/*参数-end*/
+
+/*作业列表-start*/
+.fxy-assignment > .assignment{
+    width:100%;
+    margin-top: 10px;
+}
+.assignment > .particulars{
+    width: 100%;
+    border: 1px solid #000000;
+    margin: 20px 0;
+}
+.particulars > P{
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-around;
+}
+/*作业列表-end*/
+
+/*参数以及作业列表-end*/

@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>预检段改</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta id="scale" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link type="text/css" rel="stylesheet" href="../static/utils/css/bootstrap.css">
+	<link type="text/css" rel="stylesheet" href="../static/utils/css/base.css">
+	<link type="text/css" rel="stylesheet" href="../static/utils/css/jquery.treeview.css">
+	<link type="text/css" rel="stylesheet" href="../static/css/monitor_quality/standardManagePencil.css">
+
+</head>
+
+<body >
+	<div class="femi-bd-contain" style="overflow:auto">
+		<div class="femi-full-bd  partAllStandard" >		
+			<div class="femi-bd-half-left " >
+				<div style="width: auto;height:100%">
+
+					<div class="zace-container-part-header-btn">
+						<span style="height: 23px">局段:</span><select id="lmvt-select-customer" style="height: 23px"></select>
+						<span style="height: 23px">车型:</span><select id="lmvt-select-product" style="height: 23px"></select>
+						<span style="height: 23px">修程:</span><select id="lmvt-select-workshop" style="height: 23px"></select>
+					
+						<span style="height: 23px">工位:</span><select id="lmvt-select-line" style="height: 23px"></select>
+
+						<span style="height: 23px"><button type="button" id="lmvt-standardtable-searchSubmit" style="height: 23px"> 
+						  查询
+						</button></span>
+					
+					</div>
+					
+					<div class="lmvt-standard-button" style="width: 100%;height: 37px; text-align: center">
+
+						<div class="btn-group" role="group" style="left:12px;min-width:100px;float: left;">
+							
+							<button type="button" id="lmvt-standardtable-import" class="btn btn-default">
+								<span class="glyphicon glyphicon-import" aria-hidden="true"></span>导入
+							</button>
+							<button type="button" id="lmvt-bopImport-inputErrorLog" class="btn btn-default">
+								<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>导入日志
+							</button>   
+							<button type="button" style="display:none" class="btn btn-default">
+								<input type="file" id="input-file" />
+							</button>
+							<button type="button" id="lmvt-standard-add" class="btn btn-default">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+							</button>
+							<button type="button" id="lmvt-standard-delete" class="btn btn-default">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>删除
+							</button>
+							<!-- <button type="button" style="display:none" class="btn btn-default">
+								<input type="file" id="input-file" />
+							</button> -->
+							<button type="button" id="lmvt-set-current" class="btn btn-default">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>设为当前
+							</button>
+							<button type="button" id="lmvt-set-download-alt" class="btn btn-default">
+								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>下载模板
+							</button>
+											
+						</div>
+						<div class="columns columns-right btn-group pull-right" style="right:12px;">
+						
+							<button type="button" id="lmvt-set-currentDetail" class="btn btn-default">
+								<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>版本详情
+							</button>
+							<button type="button" id="lmvt-set-currentDetailRefresh" class="btn btn-default">
+								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+							</button>
+
+							<!-- <button type="button" id="lmvt-set-preCheckProblem" class="btn btn-default">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>生成预检问题项
+							</button> -->
+							<button type="button" style="display:none" class="btn btn-default">
+								<input type="file" id="input-FileProblem" />
+							</button>
+						</div>
+
+
+						<span class='zace-header-title'>版本</span>
+					</div>
+
+					<div class="zace-container-left-table">
+						<div class="femi-tb-scroll">
+							<table class="table table-hover table-bordered standard-table">
+								<thead>
+									<tr>
+										<th style="width: 3px">
+											<input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+												value="{{functionID}}" />
+										</th>
+										<th style="min-width:50px" data-order="WID">序号</th>
+										<th style="min-width: 80px" data-order="CustomName">配属局段</th>
+										<th style="min-width: 50px" data-order="LineName">修程</th>
+										<th style="min-width: 80px" data-order="ProductNo">车型</th>
+										<th style="min-width: 80px" data-order="PartName">工位</th>
+										<th style="min-width: 80px" data-order="PartPointName">工序</th>
+										<th style="min-width: 80px" data-order="Remark">版本</th>
+										<th style="min-width: 80px" data-order="IsCurrent">是否当前</th>
+										<th style="min-width: 80px" data-order="IsUsed">是否已用</th>
+										<th style="min-width: 80px" data-order="UserID">编辑人</th>
+										<th style="min-width: 80px" data-order="TModify">编辑时间</th>
+									
+
+									</tr>
+								</thead>
+								<tbody class="zace-partAll-body table-color">
+									<tr style="">
+										<td colspan="13">等待数据加载</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="femi-full-bd partPointStandard" style='display: none;min-width: 2150px;'>
+			<div class="femi-bd-half-right femi-lf" id="role-user-contain">
+				<div class="femi-tb-head">
+					<div class="femi-toolbar-self femi-lf">
+						<div class="btn-group" role="group">						
+							<button type="button" id="lmvt-standardtable-Close" class="btn btn-default">
+								<span class="glyphicon glyphicon-eye-close" aria-hidden="true">关闭</span>
+							</button>
+							
+							
+						</div>
+					</div>
+
+					<div class="femi-toolbar-self femi-rt">
+						<button type="button" id="lmvt-standardtable-refresh" class="btn btn-default">
+							<span class="glyphicon glyphicon-refresh" aria-hidden="true">刷新</span>
+						</button>
+					</div>
+					<p class="femi-tb-title">
+						<strong>版本详情</strong>
+					</p>
+				</div>
+				<div class="femi-contain-border femi-tb-border">
+					<div style='height: 100%;overflow:auto;'>
+						<ul id="standardItem" class="femi-left-tree treeview-famfamfam">
+							等待。。
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="femi-bd-half-left " >
+				<div style="width: auto;height:100%">
+			
+					<div class="femi-tb-head" style="overflow: visible;">
+						<div class="femi-toolbar-self femi-lf">
+							<div class="btn-group" role="group">		
+								<button type="button" id="lmvt-set-currentNew" class="btn btn-default">
+									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>设为当前
+								</button>				
+								<button type="button" id="lmvt-standarditem-add" class="btn btn-default">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增项
+								</button>
+
+								<button type="button" id="lmvt-standarditem-group" class="btn btn-default">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增组
+								</button>
+
+
+								<button type="button" id="lmvt-standardtable-change" class="btn btn-default">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改项
+								</button>
+								<button type="button" style="display:none" class="btn btn-default">
+									<input type="file" id="input-file" />
+								</button>
+								<button type="button" id="lmvt-standarditem-delete" class="btn btn-default">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除项
+								</button>
+								<button type="button" id="lmvt-change-photo" class="btn btn-default ">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>上传图片
+								</button>
+								<button type="button" style="display:none" class="btn btn-default">
+									<input type="file" id="input-fileImage">
+								</button>
+								<div class="btn-group">
+									<button type="button" class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false">
+										<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>操作
+										<span class="caret"></span> <span class="sr-only">
+											Toggle
+											Dropdown
+										</span>
+									</button>
+									<ul class="dropdown-menu pull-right">
+										<!-- <li class="device_status" id="lmvt-standarditem-Quality">
+											<a href="javascript:;">
+												<span class="glyphicon glyphicon-pencil"
+													  aria-hidden="true"></span>设为质量项点
+											</a>
+										</li>
+										<li class="device_status" id="lmvt-standarditem-QualityClose">
+											<a href="javascript:;">
+												<span class="glyphicon glyphicon-remove"
+													  aria-hidden="true"></span>取消质量项点
+											</a>
+										</li> -->
+										<li class="device_status" id="lmvt-standarditem-PartConfig">
+											<a href="javascript:;">
+												<span class="glyphicon glyphicon-pencil"
+													  aria-hidden="true"></span>设置部件编码
+											</a>
+										</li>
+										<li class="device_status" id="lmvt-standarditem-Order">
+											<a href="javascript:;">
+												<span class="glyphicon glyphicon-saved"
+													  aria-hidden="true"></span>设置项点顺序
+											</a>
+										</li>
+			
+									</ul>
+			
+								</div>
+								
+							</div>
+						</div>
+	
+						<div class="femi-toolbar-self femi-rt">
+							
+						</div>
+						<p class="femi-tb-title zaceText">
+							<strong class="">段改项点</strong>
+						</p>
+					</div>
+
+				
+
+					<div class="femi-contain-border femi-tb-border">
+						<div class="femi-tb-scroll">
+							<table class="table table-hover table-bordered standard-table">
+								<thead>
+									<tr>
+										<th style="width: 3px">
+											<input type="checkbox" class="femi-tb-checkbox" style="margin: 1px 0px 1px"
+												value="{{functionID}}" />
+										</th>
+										<th style="min-width:50px" data-order="ShowID">序号</th>
+										<th style="min-width: 60px" data-order="Text">项名称</th>
+										<th style="min-width: 50px" data-order="Standard">标准</th>
+										<th style="min-width: 50px" data-order="ItemType">项类型</th>
+										<th style="min-width: 80px" data-order="DefaultManufactor">预设厂家</th>
+										<th style="min-width: 80px" data-order="DefaultModal">预设型号</th>
+										<!-- <th style="min-width: 80px" data-order="DefaultNumber">预设编号</th> -->
+										<th style="min-width: 60px" data-order="IsManufactorFill">厂家</th>
+										<th style="min-width: 60px" data-order="IsModalFill">型号</th>
+										<th style="min-width: 60px" data-order="IsNumberFill">编号</th>
+										<th style="min-width: 60px" data-order="StandardType">值类型</th>
+										<th style="min-width: 60px" data-order="StandardLeft">上限值</th>
+										<th style="min-width: 60px" data-order="StandardValue">标准值</th>										
+										<th style="min-width: 60px" data-order="StandardRight">下限值</th>
+										<!-- <th style="min-width: 80px" data-order="Details">描述</th>
+										<th style="min-width: 80px" data-order="Process">过程</th> -->
+										<!-- <th style="min-width: 80px" data-order="MajorItem">工艺要求</th>
+										<th style="min-width: 80px" data-order="MiddleItem">过程</th>
+										<th style="min-width: 80px" data-order="SubItem">描述</th> -->
+										<!-- <th style="min-width: 80px" data-order="TechStandard">技术标准</th> -->
+										<th style="min-width:50px" data-order="Unit">单位</th>
+										<th style="min-width: 100px" data-order="IsWriteFill">填写值必填</th>
+										<th style="min-width: 80px" data-order="ManufactorOptionText">厂家选项</th>
+										<th style="min-width: 80px" data-order="ModalOptionText">型号选项</th>
+										<th style="min-width: 80px" data-order="DefaultStationID">默认工位</th>
+										<th style="min-width: 80px" data-order="IsPeriodChange">是否预检</th>
+										<!-- <th style="min-width:50px" data-order="ValueSource">填写值选项</th> -->
+										<th style="min-width: 80px" data-order="IsPictureFill">图片必填</th>
+
+										<th style="min-width: 60px" data-order="Legend">图例</th>
+
+										<!-- <th style="min-width: 80px" data-order="Visiable">是否可见</th> -->
+										<th style="min-width: 60px" data-order="OptionsItem">选择项</th>
+										<th style="min-width: 60px" data-order="OrderID">顺序</th>
+										<!-- <th style="min-width: 60px" data-order="IsQuality">质量项点</th> -->
+										<th style="min-width: 80px" data-order="PartsCoding">部件编码</th>
+
+									</tr>
+								</thead>
+								<tbody class="zace-type-body table-color">
+									<tr style="">
+										<td colspan="26">等待数据加载</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../static/utils/require.js"></script>
+	<script type="text/javascript" src="../static/js/monitor_quality/standardManageYJPencilPart.js"></script>
+
+</body>
+
+</html>

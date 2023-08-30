@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>设备型号</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="deviceModel-body" class="fzy-page" style="min-width: 1500px">
+  <fzy-popup-form ref="myPopupForm"></fzy-popup-form>
+
+  <div v-cloak class="fzy-search-bar">
+    <el-input v-model="searchData.Name" class="input-box-300" placeholder="设备型号">
+      <template slot="prepend">设备型号</template>
+    </el-input>
+    <div class="input-select-box input-box-200">
+      <div class="label">状态</div>
+      <el-select v-model="searchData.Active" placeholder="请选择">
+        <el-option label="全部" value="-1"></el-option>
+        <el-option label="激活" value="1"></el-option>
+        <el-option label="关闭" value="2"></el-option>
+        <el-option label="保存" value="0"></el-option>
+      </el-select>
+    </div>
+    <div class="button-box">
+      <button class="btn lmvt-danger-btn" style="border: 0" type="button" @click="search">
+        <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+        查询
+      </button>
+      <button
+          class="btn lmvt-def-btn"
+          type="button"
+          @click="emptyClick"
+      >
+        <span aria-hidden="true" class="glyphicon glyphicon-repeat"></span>
+        重置
+      </button>
+    </div>
+  </div>
+
+  <div v-cloak class="fzy-page-center-box">
+    <div class="fzy-page-center-title-bar">
+      <div class="left">
+        <span class="fzy-title">设备型号</span>
+      </div>
+      <div class="right">
+        <button @click="openType" class="btn lmvt-danger-btn" type="button" style="margin-right: 5px">
+          <i class="glyphicon glyphicon-list"></i>
+          设备类型
+        </button>
+        <button class="btn lmvt-danger-btn" type="button" @click="addClick">
+          <span aria-hidden="true" class="glyphicon glyphicon-plus"></span>添加
+        </button>
+      </div>
+    </div>
+    <el-table
+        :data="tableData"
+        size="mini"
+        border
+        current-row-key="Code"
+        height="calc(100% - 45px)"
+    >
+      <el-table-column label="序号" type="index" width="50px" align="center"></el-table-column>
+      <el-table-column label="编码" property="Code" align="center" width="120px"></el-table-column>
+      <el-table-column label="名称" property="Name" align="center" width="200px"></el-table-column>
+      <el-table-column label="所属类型" property="DeviceTypeName" align="center" width="200px"></el-table-column>
+      <el-table-column label="申请人" property="OperatorName" align="center" width="150px"></el-table-column>
+      <el-table-column label="描述" property="Remark" align="center" min-width="150px"></el-table-column>
+
+      <el-table-column label="申请时间" align="center" width="150px">
+        <template slot-scope="scope">
+          {{ scope.row.OperateTime | timeStr }}
+        </template>
+      </el-table-column>
+
+      <el-table-column label="状态" align="center" width="80px">
+        <template slot-scope="scope">
+          <el-switch
+              :value="scope.row.Active | switchStatus"
+              active-color="#0ea9f7"
+              inactive-color="#cccccc"
+              @change="activeChange(scope.row)"
+          >
+          </el-switch>
+        </template>
+      </el-table-column>
+
+
+      <el-table-column label="操作" align="center" width="120px">
+        <template slot-scope="scope">
+          <div
+              class="col-md-6 lmvt-do-info lmvt-resetPencil"
+              @click="editClick(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+            编辑
+          </div>
+          <div
+              :class="{forbidden:scope.row.Active !== 0}"
+              class="col-md-6 lmvt-do-info lmvt-delete fzy-text-btn"
+              @click="removeClick(scope.row)"
+          >
+            <span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+            删除
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+
+
+</div>
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/basicSet/DeviceModel-Vue.js" type="text/javascript"></script>
+</body>
+</html>

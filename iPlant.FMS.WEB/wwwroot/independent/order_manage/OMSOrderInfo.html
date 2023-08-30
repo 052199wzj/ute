@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>工单详情</title>
+  <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+  <link href="../static/css/order_manage/OMSOrderInfo.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="fzy-oms-order-info">
+  <div class="fzy-title-box">
+    <span class="fzy-title">工单详情:</span>
+  </div>
+  <div class="fzy-head-box">
+    <div v-cloak class="fzy-line-box-icon">
+      <img :src="getLineBarIcon(0)" alt="">
+      <div :class="{ show:lineBarIndex>0  }" class="fzy-line"></div>
+      <img :src="getLineBarIcon(1)" alt="">
+      <div :class="{ show:lineBarIndex>1  }" class="fzy-line"></div>
+      <img :src="getLineBarIcon(2)" alt="">
+      <div :class="{ show:lineBarIndex>2  }" class="fzy-line"></div>
+      <img :src="getLineBarIcon(3)" alt="">
+    </div>
+    <div class="fzy-line-box-msg">
+      <span>工单导入</span>
+      <span>工单开工</span>
+      <span>工单完成/关闭</span>
+      <span>信息上传</span>
+    </div>
+    <div v-cloak class="fzy-line-box-msg">
+      <span>{{ orderInfo.AuditTime | validTime }}</span>
+      <span>{{ orderInfo.RealStartDate |validTime }}</span>
+      <span>{{ orderInfo.RealFinishDate |validTime }}</span>
+      <span>{{ orderInfo.RealSendDate |validTime }}</span>
+    </div>
+  </div>
+  <div class="fzy-center-box">
+    <div class="fzy-center-box-title">
+            <span>
+                <span class="glyphicon glyphicon-info-sign"></span>
+                当前工单状态: <span v-cloak>{{ orderInfo.Status | orderStatus }}</span>
+            </span>
+    </div>
+    <table class="fzy-center-box-form">
+      <div style="display:flex;justify-content: space-between;margin: 0 0 5px">
+        <span class="fzy-title">基本信息:</span>
+        <div v-if="isCheckRole">
+          <button v-cloak class="btn btn-info" @click="editClick">{{ isEdit ? '保存' : '编辑' }}</button>
+          <button v-show="isEdit" class="btn btn-info" @click="cancelClick">取消</button>
+        </div>
+      </div>
+
+      <tbody>
+
+      <tr>
+        <td class="fzy-label">工单编号</td>
+        <td class="fzy-value">
+          <input v-model="orderInfo.OrderNo" :disabled="!isEdit" type="text">
+        </td>
+
+        <td class="fzy-label">作业工位</td>
+        <td class="fzy-value">
+          <select v-model="orderInfo.StationID" :disabled="!isEdit">
+            <option value="-1">无</option>
+            <option v-for="item in fMCStationList" :key="item.ID" :value="item.ID">
+              {{ item.Name }}
+            </option>
+          </select>
+        </td>
+
+        <td class="fzy-label">作业班组</td>
+        <td class="fzy-value">
+          <select v-model="orderInfo.TeamID" :disabled="!isEdit" @change="function(){ getUserList() }">
+            <option v-for="item in teamManageList" :key="item.ID" :value="item.ID">
+              <span v-cloak>{{ item.Name }}</span>
+            </option>
+          </select>
+        </td>
+
+        <td class="fzy-label">作业人员</td>
+        <td class="fzy-value">
+          <select
+              id="fzy-user-list-select"
+              class="selectpicker"
+              multiple
+          >
+          </select>
+        </td>
+
+      </tr>
+
+      <tr>
+
+        <td class="fzy-label">车号</td>
+        <td class="fzy-value">
+          <input v-model="orderInfo.WBSNo" :disabled="!isEdit" type="text">
+        </td>
+
+        <td class="fzy-label">路线号</td>
+        <td class="fzy-value"><input :value="orderInfo.Customer" disabled type="text"></td>
+
+        <td class="fzy-label">作业名称</td>
+        <td class="fzy-value"><input :value="orderInfo.WorkName" disabled type="text"></td>
+
+
+        <td class="fzy-label">计划员</td>
+        <td class="fzy-value"><input :value="orderInfo.Auditor" disabled type="text"></td>
+
+      </tr>
+
+      <tr v-show="!isEdit">
+
+        <td class="fzy-label">下达时间</td>
+        <td class="fzy-value"><input :value="orderInfo.AuditTime | validTime" disabled type="text"></td>
+
+        <td class="fzy-label">开工时间</td>
+        <td class="fzy-value"><input :value="orderInfo.RealStartDate | validTime" disabled type="text"></td>
+
+        <td class="fzy-label">完工时间</td>
+        <td class="fzy-value"><input :value="orderInfo.RealFinishDate | validTime" disabled type="text"></td>
+
+        <td class="fzy-label">信息上传时间</td>
+        <td class="fzy-value"><input :value="orderInfo.RealSendDate | validTime" disabled type="text"></td>
+      </tr>
+
+      </tbody>
+    </table>
+    <div v-show="!isEdit && !isInfo">
+      <div>
+        <table class="fzy-center-box-table">
+          <div style="margin: 5px 0">
+            <span class="fzy-title">部件检修明细:</span>
+          </div>
+          <thead>
+          <tr>
+            <th>工件编号</th>
+            <th>起始时间</th>
+            <th>结束时间</th>
+            <th>状态</th>
+            <th>备注</th>
+            <th v-for="item in dmsProcessRecordTh" v-cloak :key="item">
+              {{ item.ParameterName }}
+            </th>
+            <th>操作</th>
+
+          </tr>
+          </thead>
+          <tbody v-cloak id="femi-Device-tbody-item">
+          <tr v-for="(item,index) in dmsProcessRecord" :key="index">
+            <td>{{ item.WorkPieceNo }}</td>
+            <td>{{ item.StartTime }}</td>
+            <td>{{ item.EndTime }}</td>
+            <td>{{ item.StatusText }}</td>
+            <td>{{ item.Remark }}</td>
+            <td
+                v-for="(items,index_) in item.ItemList.slice(0,6)"
+                :key="index_"
+            >
+              <div
+                  v-if="items.DataType === 1"
+                  :style="{background: items.ParameterValue?'#70b603':'#808080'}"
+                  class="circle"
+              >
+              </div>
+              <span v-else-if="items.DataType ===4">{{ items.ParameterValue | decimal2 }}</span>
+              <span v-else-if="items.DataType ===5">{{ items.ParameterValue | decimal4 }}</span>
+              <span v-else>{{ items.ParameterValue }}</span>
+            </td>
+            <td>
+					<span class="info-btn" @click="dmsProcessRecordInfoClick(item)">
+						<span class="glyphicon glyphicon-zoom-in"></span>
+						详情
+					</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div v-show="isInfo">
+      <table class="fzy-center-box-table">
+        <div style="margin: 5px 0">
+          <div style="display:flex;justify-content: space-between;margin: 0 0 5px">
+            <span class="fzy-title">工件详情(<span v-cloak>{{ dmsProcessRecordInfo.MetroNo }}</span>):</span>
+            <button class="btn btn-info" @click="isInfo=false">
+              <span aria-hidden="true" class="glyphicon glyphicon-arrow-left"></span>
+              返回
+            </button>
+          </div>
+        </div>
+        <thead>
+        <tr>
+          <th>参数编号</th>
+          <th>抽样时间</th>
+          <th>参数名称</th>
+          <th>参数内容</th>
+          <th>备注</th>
+        </tr>
+        </thead>
+        <tbody v-cloak>
+        <tr v-for="(item,index) in dmsProcessRecordInfo.ItemList" :key="index">
+          <td>{{ item.ParameterNo }}</td>
+          <td>{{ item.SampleTime }}</td>
+          <td>{{ item.ParameterName }}</td>
+          <td>
+            <div
+                v-if="item.DataType === 1"
+                :style="{background: item.ParameterValue?'#70b603':'#808080'}"
+                class="circle"
+            >
+            </div>
+            <span v-else-if="item.DataType ===4">{{ item.ParameterValue | decimal2 }}</span>
+            <span v-else-if="item.DataType ===5">{{ item.ParameterValue | decimal4 }}</span>
+            <span v-else>{{ item.ParameterValue }}</span>
+          </td>
+          <td>{{ item.ParameterDesc }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+<script src="../static/utils/require.js" type="text/javascript"></script>
+<script src="../static/js/order_manage/OMSOrderInfo.js" type="text/javascript"></script>
+</html>

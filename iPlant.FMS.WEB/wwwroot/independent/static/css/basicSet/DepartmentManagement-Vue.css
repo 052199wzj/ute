@@ -1,0 +1,25 @@
+#department-body .el-dialog {
+  min-width: 650px;
+  height: 70vh !important;
+}
+#department-body .el-dialog .el-dialog__header {
+  border-bottom: 1px solid #aaaaaa !important;
+}
+#department-body .tree-node-style {
+  color: #ffffff;
+}
+#department-body .tree-node-style.type-1 {
+  background-color: #66b1ff;
+}
+#department-body .tree-node-style.type-2 {
+  background-color: #67c23a;
+}
+#department-body .tree-node-style.type-3 {
+  background-color: #e6a23c;
+}
+#department-body .tree-node-style.type-11 {
+  background-color: #f56c6c;
+}
+#department-body .tree-node-style.forbidden {
+  background-color: #909399 !important;
+}

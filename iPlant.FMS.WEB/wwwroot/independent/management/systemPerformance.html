@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统性能</title>
+    <link href="../static/utils/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/utils/css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/utils/css/element-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/common/fzy/element-cover.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/common/fzy/common.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/management/systemPerformance.css"/>
+</head>
+<body>
+    <div id="systemPerformance">
+        <div class="fxy-heard">
+            <span>系统名称: <span v-text="systemInfo.ComputerInfo && systemInfo.ComputerInfo.OSFullName"></span></span>
+            <span>系统版本: <span v-text="systemInfo.ComputerInfo && systemInfo.ComputerInfo.OSVersion"></span></span>
+            <span>操作系统平台: <span v-text="systemInfo.ComputerInfo && systemInfo.ComputerInfo.OSPlatform"></span></span>
+            <span>处理器数量: <span v-text="systemInfo.ComputerInfo && systemInfo.ComputerInfo.ProcessorCount"></span></span>
+        </div>
+        <div class="fxy-content flex-1 ">
+            <div id="connection" class="flex-1"></div>
+            <div id="realMemory" class="flex-1"></div>
+            <div id="virtualMemory" class="flex-1"></div>
+        </div>
+        <div class="fxy-content flex-column flex-1 mb-5">
+            <div class="h-3 flex flex-a-center flex-j-end mr-2 mt-2 flex-a-center">
+                <span class="search-text"> 查询时间（分钟）：</span>
+                <el-input-number v-model="minute" @change="affirm" :min="1" :max="10" label="描述文字"></el-input-number>
+            </div>
+            <div id="CPURate" class="flex-1"></div>
+        </div>
+        <div class="fxy-content flex-1">
+            <div v-for="item in systemInfo.DiskList" :id="item.DiskName" class="flex-1"></div>
+        </div>
+    </div>
+    <script src="../static/utils/require.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../static/js/management/systemPerformance.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ClientConfig xmlns@xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns@xsd="http://www.w3.org/2001/XMLSchema">
+  <VersionID>2.3.5</VersionID>
+  <IsUpdate>false</IsUpdate>
+  <Url>/my_app/app_update/iplant.apk</Url>
+  <Description>发现新的客户端版本！</Description>
+</ClientConfig>
